@@ -1,3 +1,5 @@
+'use client';
+
 import className from 'classnames';
 
 type IButtonProps = {

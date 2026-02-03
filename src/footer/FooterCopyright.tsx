@@ -1,3 +1,5 @@
+'use client';
+
 import { AppConfig } from '../utils/AppConfig';
 
 const FooterCopyright = () => (
