@@ -32,7 +32,8 @@ const CenteredFooter = (props: ICenteredFooterProps) => (
     <style jsx>
       {`
         .navbar :global(li) {
-          @apply mx-4;
+          margin-left: 1rem;
+          margin-right: 1rem;
         }
       `}
     </style>
