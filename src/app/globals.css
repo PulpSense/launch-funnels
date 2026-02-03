@@ -1,5 +1,36 @@
-@tailwind base;
+@import 'tailwindcss';
 
-@tailwind components;
+@theme {
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
 
-@tailwind utilities;
+  --color-primary-100: #e6f6fe;
+  --color-primary-200: #c0eafc;
+  --color-primary-300: #9addfb;
+  --color-primary-400: #4fc3f7;
+  --color-primary-500: #03a9f4;
+  --color-primary-600: #0398dc;
+  --color-primary-700: #026592;
+  --color-primary-800: #014c6e;
+  --color-primary-900: #013349;
+
+  --color-gray-100: #f7fafc;
+  --color-gray-200: #edf2f7;
+  --color-gray-300: #e2e8f0;
+  --color-gray-400: #cbd5e0;
+  --color-gray-500: #a0aec0;
+  --color-gray-600: #718096;
+  --color-gray-700: #4a5568;
+  --color-gray-800: #2d3748;
+  --color-gray-900: #1a202c;
+
+  --line-height-hero: 4.5rem;
+}
