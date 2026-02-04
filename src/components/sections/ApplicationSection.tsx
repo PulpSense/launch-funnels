@@ -6,7 +6,7 @@ const ApplicationSection = ({
   header,
   description,
   urgency,
-  formUrl,
+  filloutId,
 }: ApplicationSectionProps) => {
   return (
     <section className="bg-navy-800 py-16">
@@ -30,7 +30,7 @@ const ApplicationSection = ({
         )}
 
         {/* Form embed */}
-        <FormEmbed formUrl={formUrl} minHeight="700px" />
+        <FormEmbed filloutId={filloutId} />
       </div>
     </section>
   );

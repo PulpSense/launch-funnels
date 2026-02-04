@@ -97,7 +97,7 @@ export type ApplicationSectionProps = {
   header: string;
   description: string;
   urgency?: string;
-  formUrl?: string;
+  filloutId?: string;
 };
 
 // Disclaimer Footer Types
