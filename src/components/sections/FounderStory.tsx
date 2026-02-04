@@ -40,20 +40,29 @@ const FounderStory = ({
   return (
     <section className="bg-white py-16">
       <div className="mx-auto max-w-4xl px-4">
-        {/* Section label as blue pill badge */}
+        {/* Section label as light pill badge with icon */}
         {sectionLabel && (
           <div className="mb-4 flex justify-center">
-            <PillBadge variant="blue">{sectionLabel}</PillBadge>
+            <PillBadge
+              variant="light"
+              icon={
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-bold text-white">
+                  ?
+                </span>
+              }
+            >
+              {sectionLabel}
+            </PillBadge>
           </div>
         )}
 
         {/* Main headline with highlighted name */}
-        <h2 className="mb-12 text-center text-2xl font-bold text-navy-900 md:text-3xl">
+        <h2 className="mb-12 text-center text-2xl font-bold text-black md:text-3xl">
           {namePrefix && <span>{namePrefix} </span>}
           <span className="relative inline-block">
-            <span className="relative z-10 text-navy-900">{name}</span>
+            <span className="relative z-10">{name}</span>
             <span
-              className="absolute inset-x-0 bottom-1 z-0 h-3 bg-yellow-300"
+              className="absolute inset-x-0 bottom-1 z-0 h-3 rounded-sm bg-gradient-to-r from-orange-400 to-yellow-300"
               aria-hidden="true"
             />
           </span>
@@ -126,7 +135,7 @@ const FounderStory = ({
 
         {/* Quote */}
         {quote && (
-          <blockquote className="mb-12 border-l-4 border-orange-500 pl-6 text-xl italic text-navy-900">
+          <blockquote className="mb-12 border-l-4 border-orange-500 pl-6 text-xl italic text-black">
             &ldquo;{quote}&rdquo;
           </blockquote>
         )}

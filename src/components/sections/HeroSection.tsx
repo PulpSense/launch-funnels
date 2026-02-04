@@ -35,8 +35,8 @@ const HeroSection = ({
 
         {/* Banner */}
         <div className="mb-8 overflow-hidden rounded-full">
-          <div className="bg-gradient-to-r from-orange-500 to-yellow-400 px-6 py-3 text-center">
-            <span className="text-base font-bold text-white md:text-lg">
+          <div className="bg-[#FA6B18] px-4 py-1 text-center">
+            <span className="text-lg font-bold text-white md:text-xl">
               {banner.text}
             </span>
           </div>
