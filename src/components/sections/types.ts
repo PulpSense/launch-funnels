@@ -8,7 +8,7 @@ export type SectionCTAConfig = {
 export type TrustBadgeConfig = {
   text: string;
   stars?: number;
-  imageCount?: number;
+  avatars?: string[];
 };
 
 export type BannerConfig = {

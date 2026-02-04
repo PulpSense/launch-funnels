@@ -46,6 +46,27 @@ src/app/sell-ai-funnel/
 
 Copy an existing funnel folder and modify the `content` object in each page. All section components accept typed props defined in `src/components/sections/types.ts`.
 
+### Asset Organization
+
+Assets are organized in `public/` with a parallel structure to funnels:
+
+```
+public/
+├── assets/                    # Shared assets across all funnels
+│   └── images/
+├── sell-ai-funnel/            # Funnel-specific assets (mirrors src/app/sell-ai-funnel/)
+│   └── images/
+├── [another-funnel]/          # Each funnel gets its own folder
+│   └── images/
+└── favicon.ico                # Root-level files
+```
+
+**Usage in content objects:**
+- Shared: `"/assets/images/logo.svg"`
+- Funnel-specific: `"/sell-ai-funnel/images/hero.png"`
+
+When creating a new funnel, also create a matching folder in `public/` for its assets.
+
 ### Configuration
 
 - `src/utils/AppConfig.ts` - Global site config (name, title, description, locale)

@@ -20,7 +20,6 @@ const content = {
     trustBadge: {
       text: 'Trusted by 200+ Agencies',
       stars: 5,
-      imageCount: 4,
     },
     banner: {
       text: 'For Anyone Wanting To Start Selling A.I. To Local Businesses...',

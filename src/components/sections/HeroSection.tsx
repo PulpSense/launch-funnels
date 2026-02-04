@@ -29,7 +29,7 @@ const HeroSection = ({
           <TrustBadge
             text={trustBadge.text}
             stars={trustBadge.stars}
-            imageCount={trustBadge.imageCount}
+            avatars={trustBadge.avatars}
           />
         </div>
 
