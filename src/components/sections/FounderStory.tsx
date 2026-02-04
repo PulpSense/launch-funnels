@@ -1,52 +1,144 @@
-import type { FounderStoryProps } from './types';
+'use client';
+
+import { GradientButton, PillBadge } from '@/components/ui';
+
+import type { FounderStoryImage, FounderStoryProps } from './types';
+
+const ImageWithCaption = ({ image }: { image: FounderStoryImage }) => {
+  return (
+    <div className="flex flex-col">
+      {image.src ? (
+        <img
+          src={image.src}
+          alt={image.alt}
+          className="aspect-square w-full rounded-lg object-cover"
+        />
+      ) : (
+        <div
+          className="flex aspect-square w-full items-center justify-center rounded-lg bg-gray-200"
+          aria-label={image.alt}
+        >
+          <span className="text-xs text-gray-500">Image</span>
+        </div>
+      )}
+      <p className="mt-2 text-center text-sm text-gray-600">{image.caption}</p>
+    </div>
+  );
+};
 
 const FounderStory = ({
-  header,
-  headerHighlight,
+  sectionLabel,
+  name,
+  namePrefix,
   paragraphs,
-  imageCount = 4,
+  featuredImage,
+  galleryImages,
+  additionalContent,
   quote,
+  cta,
 }: FounderStoryProps) => {
   return (
-    <section className="bg-navy-800 py-16">
+    <section className="bg-white py-16">
       <div className="mx-auto max-w-4xl px-4">
-        {/* Section header */}
-        <h2 className="mb-8 text-center text-2xl font-bold text-white md:text-3xl">
-          {header}
-          {headerHighlight && (
-            <>
-              {' '}
-              <span className="text-orange-500">{headerHighlight}</span>
-            </>
-          )}
+        {/* Section label as blue pill badge */}
+        {sectionLabel && (
+          <div className="mb-4 flex justify-center">
+            <PillBadge variant="blue">{sectionLabel}</PillBadge>
+          </div>
+        )}
+
+        {/* Main headline with highlighted name */}
+        <h2 className="mb-12 text-center text-2xl font-bold text-navy-900 md:text-3xl">
+          {namePrefix && <span>{namePrefix} </span>}
+          <span className="relative inline-block">
+            <span className="relative z-10 text-navy-900">{name}</span>
+            <span
+              className="absolute inset-x-0 bottom-1 z-0 h-3 bg-yellow-300"
+              aria-hidden="true"
+            />
+          </span>
         </h2>
 
-        {/* Story content */}
-        <div className="mb-12 space-y-6 text-gray-300">
-          {paragraphs.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+        {/* Two-column layout: paragraphs left, featured image right */}
+        <div className="mb-12 grid gap-8 md:grid-cols-2">
+          <div className="space-y-6 text-gray-700">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+          {featuredImage && (
+            <div className="flex items-start justify-center">
+              {featuredImage.src ? (
+                <img
+                  src={featuredImage.src}
+                  alt={featuredImage.alt}
+                  className="w-full max-w-sm rounded-lg object-cover"
+                />
+              ) : (
+                <div
+                  className="flex aspect-[3/4] w-full max-w-sm items-center justify-center rounded-lg bg-gray-200"
+                  aria-label={featuredImage.alt}
+                >
+                  <span className="text-sm text-gray-500">Featured Image</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Image grid placeholder */}
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {Array.from({ length: imageCount }).map((_, i) => (
-            <div
-              key={i}
-              className="aspect-square rounded-lg bg-navy-700"
-              aria-label={`Lifestyle image ${i + 1}`}
-            >
-              <div className="flex size-full items-center justify-center text-gray-500">
-                <span className="text-xs">Image {i + 1}</span>
+        {/* Gallery images with captions */}
+        {galleryImages && galleryImages.length > 0 && (
+          <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {galleryImages.map((image, index) => (
+              <ImageWithCaption key={index} image={image} />
+            ))}
+          </div>
+        )}
+
+        {/* Additional content block with image */}
+        {additionalContent && (
+          <div className="mb-12 grid gap-8 md:grid-cols-2">
+            {additionalContent.image && (
+              <div className="flex items-start justify-center">
+                {additionalContent.image.src ? (
+                  <img
+                    src={additionalContent.image.src}
+                    alt={additionalContent.image.alt}
+                    className="w-full rounded-lg object-cover"
+                  />
+                ) : (
+                  <div
+                    className="flex aspect-video w-full items-center justify-center rounded-lg bg-gray-200"
+                    aria-label={additionalContent.image.alt}
+                  >
+                    <span className="text-sm text-gray-500">Image</span>
+                  </div>
+                )}
               </div>
+            )}
+            <div className="space-y-6 text-gray-700">
+              {additionalContent.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Quote */}
-        <blockquote className="mt-12 border-l-4 border-orange-500 pl-6 text-xl italic text-white">
-          &ldquo;{quote}&rdquo;
-        </blockquote>
+        {quote && (
+          <blockquote className="mb-12 border-l-4 border-orange-500 pl-6 text-xl italic text-navy-900">
+            &ldquo;{quote}&rdquo;
+          </blockquote>
+        )}
+
+        {/* CTA Button */}
+        {cta && (
+          <div className="text-center">
+            <GradientButton xl scrollTo={cta.scrollTo}>
+              {cta.text}
+            </GradientButton>
+          </div>
+        )}
       </div>
     </section>
   );

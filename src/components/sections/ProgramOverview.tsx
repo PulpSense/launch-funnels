@@ -1,34 +1,51 @@
+'use client';
+
+import { GradientButton } from '@/components/ui';
+
 import type { ProgramOverviewProps } from './types';
 
 const ProgramOverview = ({
   header,
-  description,
+  paragraphs,
+  highlightBox,
   features,
-  valueStack,
+  cta,
 }: ProgramOverviewProps) => {
   return (
     <section className="bg-white py-16">
       <div className="mx-auto max-w-4xl px-4">
-        {/* Section header */}
-        <h2 className="mb-4 text-center text-2xl font-bold text-gray-900 md:text-3xl">
-          {header}
-        </h2>
-        <p className="mx-auto mb-12 max-w-2xl text-center text-gray-600">
-          {description}
-        </p>
+        {/* Content card with subtle shadow */}
+        <div className="rounded-2xl bg-white px-8 py-10 shadow-[0_4px_40px_rgba(0,0,0,0.08)] md:px-12">
+          {/* Section header */}
+          <h2 className="mb-8 text-center text-2xl font-bold text-navy-900 md:text-3xl">
+            {header}
+          </h2>
 
-        {/* Features grid */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-lg border border-gray-200 bg-gray-50 p-6 transition-shadow hover:shadow-md"
-            >
-              <div className="mb-3 flex items-center gap-3">
-                {/* Checkmark icon */}
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-green-100">
+          {/* Body paragraphs */}
+          <div className="mb-8 space-y-4 text-gray-700">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          {/* Highlight box */}
+          {highlightBox && (
+            <div className="mb-8 border-l-4 border-orange-500 bg-gray-50 px-6 py-4">
+              <p className="font-bold text-navy-900 underline decoration-orange-400 decoration-2 underline-offset-2">
+                {highlightBox.title}
+              </p>
+              <p className="mt-2 text-gray-700">{highlightBox.content}</p>
+            </div>
+          )}
+
+          {/* Checkmark feature list */}
+          <div className="mb-12 space-y-4">
+            {features.map((feature) => (
+              <div key={feature.title} className="flex items-start gap-3">
+                {/* Green checkmark icon */}
+                <div className="flex size-6 shrink-0 items-center justify-center rounded bg-green-500">
                   <svg
-                    className="size-5 text-green-600"
+                    className="size-4 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -37,27 +54,29 @@ const ProgramOverview = ({
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={2}
+                      strokeWidth={3}
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {feature.title}
-                </h3>
+                <div>
+                  <span className="font-bold text-navy-900">{feature.title}</span>
+                  {feature.text && (
+                    <span className="text-gray-700"> — {feature.text}</span>
+                  )}
+                </div>
               </div>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Value stack */}
-        <div className="mt-12 rounded-lg bg-navy-900 p-8 text-center">
-          <p className="mb-2 text-gray-400">{valueStack.label}</p>
-          <p className="mb-4 text-4xl font-bold text-white line-through">
-            {valueStack.originalPrice}
-          </p>
-          <p className="text-gray-300">{valueStack.teaser}</p>
+          {/* CTA Button */}
+          {cta && (
+            <div className="text-center">
+              <GradientButton xl scrollTo={cta.scrollTo}>
+                {cta.text}
+              </GradientButton>
+            </div>
+          )}
         </div>
       </div>
     </section>

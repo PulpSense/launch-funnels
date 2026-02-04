@@ -1,4 +1,4 @@
-import { AlertBanner, GradientButton, TrustBadge, VideoPlaceholder } from '@/components/ui';
+import { GradientButton, TrustBadge, VideoPlaceholder } from '@/components/ui';
 
 import type { HeroSectionProps } from './types';
 
@@ -13,8 +13,17 @@ const HeroSection = ({
   cta,
 }: HeroSectionProps) => {
   return (
-    <section className="bg-navy-900 pb-16 pt-8">
-      <div className="mx-auto max-w-4xl px-4">
+    <section className="relative bg-navy-900 pb-16 pt-8">
+      {/* White radial glow at top center */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-96"
+        style={{
+          background:
+            'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative mx-auto max-w-4xl px-4">
         {/* Trust badge */}
         <div className="mb-6 flex justify-center">
           <TrustBadge
@@ -25,8 +34,12 @@ const HeroSection = ({
         </div>
 
         {/* Banner */}
-        <div className="mb-8 overflow-hidden rounded-lg">
-          <AlertBanner variant={banner.variant}>{banner.text}</AlertBanner>
+        <div className="mb-8 overflow-hidden rounded-full">
+          <div className="bg-gradient-to-r from-orange-500 to-yellow-400 px-6 py-3 text-center">
+            <span className="text-base font-bold text-white md:text-lg">
+              {banner.text}
+            </span>
+          </div>
         </div>
 
         {/* Main headline */}

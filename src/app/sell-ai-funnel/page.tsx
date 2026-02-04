@@ -42,62 +42,95 @@ const content = {
   } satisfies HeroSectionProps,
 
   founderStory: {
-    header: 'From Struggling Freelancer To',
-    headerHighlight: '$50K/Month AI Agency Owner',
+    sectionLabel: 'WHO AM I?',
+    namePrefix: 'MY NAME IS',
+    name: 'SANTIAGO LEONI',
     paragraphs: [
       'Three years ago, I was stuck in a dead-end 9-5 job, barely making ends meet. I knew there had to be a better way to build wealth and create freedom in my life.',
       "Then I discovered the power of selling AI automation to local businesses. These business owners are drowning in manual tasks – answering phones, scheduling appointments, following up with leads – and they're willing to pay a premium for solutions that save them time.",
       'Within 6 months of implementing my system, I went from $0 to $15,000/month in recurring revenue. Today, my agency generates over $50,000/month helping local businesses automate their operations.',
     ],
-    imageCount: 4,
+    featuredImage: {
+      alt: 'Santiago Leoni portrait',
+      caption: 'Founder & CEO',
+    },
+    galleryImages: [
+      {
+        alt: 'Speaking at AI conference',
+        caption: 'Speaking at AI Summit 2024',
+      },
+      {
+        alt: 'Team meeting',
+        caption: 'Working with our team',
+      },
+      {
+        alt: 'Client success story',
+        caption: 'Client meeting in Miami',
+      },
+    ],
+    additionalContent: {
+      image: {
+        alt: 'AI dashboard screenshot',
+        caption: 'Our proprietary AI platform',
+      },
+      paragraphs: [
+        "I've now helped over 200 people start their own AI agencies using the exact same system I developed.",
+        "The best part? You don't need any technical skills or prior experience. Our done-for-you AI tools handle all the complexity – you just need to follow the proven sales process.",
+      ],
+    },
     quote:
       'The best time to start an AI business was yesterday. The second best time is today.',
+    cta: {
+      text: 'YES! I Want To Start Selling AI →',
+      scrollTo: 'apply-form',
+    },
   } satisfies FounderStoryProps,
 
   programOverview: {
-    header: 'Everything You Need To Start Your AI Agency',
-    description:
+    header: 'What You Get Inside The Program',
+    paragraphs: [
       'Our comprehensive program gives you all the tools, training, and support you need to start signing clients within your first 30 days.',
+      "We've distilled years of trial and error into a proven, step-by-step system that anyone can follow.",
+    ],
+    highlightBox: {
+      title: 'Our Sell AI to Local Businesses Program',
+      content:
+        'A complete done-for-you system including AI tools, sales scripts, lead generation strategies, and 1-on-1 mentorship to help you build a profitable AI agency from scratch.',
+    },
     features: [
       {
         title: '1-on-1 Mentorship',
-        description:
-          'Weekly calls with our team to guide you through every step of building your AI agency.',
+        text: 'Weekly calls with our team to guide you through every step',
       },
       {
         title: 'Done-For-You AI Agent',
-        description:
-          'Get a fully-built AI voice agent you can white-label and sell to clients immediately.',
+        text: 'A fully-built AI voice agent you can white-label and sell',
       },
       {
         title: 'Proven Sales Scripts',
-        description:
-          'Word-for-word scripts that convert cold prospects into paying clients.',
+        text: 'Word-for-word scripts that convert cold prospects',
       },
       {
         title: 'Lead Generation System',
-        description:
-          'Our exact process for finding and qualifying local business owners who need AI.',
+        text: 'Our exact process for finding qualified business owners',
       },
       {
         title: 'Pricing & Packaging',
-        description:
-          'Learn how to price your services at $500-$3,000/month and justify every penny.',
+        text: 'How to price at $500-$3,000/month and justify every penny',
       },
       {
         title: 'Private Community',
-        description:
-          'Access to our exclusive community of AI agency owners sharing wins and strategies.',
+        text: 'Exclusive access to AI agency owners sharing strategies',
       },
     ],
-    valueStack: {
-      label: 'Total Value:',
-      originalPrice: '$9,997',
-      teaser: "But you won't pay anywhere near that today...",
+    cta: {
+      text: 'YES! I Want To Start Selling AI →',
+      scrollTo: 'apply-form',
     },
   } satisfies ProgramOverviewProps,
 
   faq: {
+    headerLabel: 'FAQ',
     header: 'Frequently Asked Questions',
     items: [
       {
@@ -131,6 +164,10 @@ const content = {
           "We offer a 30-day action-based guarantee. If you follow our system, attend the calls, and do the work without getting results, we'll work with you until you do or refund your investment.",
       },
     ],
+    cta: {
+      text: 'Apply Now - Limited Spots Available →',
+      scrollTo: 'apply-form',
+    },
   } satisfies FAQProps,
 
   application: {

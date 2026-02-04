@@ -1,5 +1,3 @@
-import { AlertBanner } from './AlertBanner';
-
 type VideoPlaceholderProps = {
   posterSrc?: string;
   altText?: string;
@@ -12,7 +10,11 @@ const VideoPlaceholder = ({
   return (
     <div className="w-full overflow-hidden rounded-lg shadow-2xl">
       {/* Sound alert bar */}
-      <AlertBanner variant="red">🔊 Make Sure Sound Is Turned On</AlertBanner>
+      <div className="w-full bg-red-500 py-2 text-center">
+        <span className="text-sm font-bold text-white">
+          🔊 Make Sure Sound Is Turned On (Please Wait For Video To Fully Load!)
+        </span>
+      </div>
 
       {/* Video poster with play button */}
       <div className="relative aspect-video bg-navy-800">

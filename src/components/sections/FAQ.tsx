@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 
+import { GradientButton, PillBadge } from '@/components/ui';
+
 import type { FAQProps } from './types';
 
-const FAQ = ({ header, items }: FAQProps) => {
+const FAQ = ({ headerLabel, header, items, cta }: FAQProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -14,7 +16,12 @@ const FAQ = ({ header, items }: FAQProps) => {
   return (
     <section className="bg-navy-900 py-16">
       <div className="mx-auto max-w-3xl px-4">
-        {/* Section header */}
+        {/* Stacked header with pill badge */}
+        {headerLabel && (
+          <div className="mb-4 flex justify-center">
+            <PillBadge variant="blue">{headerLabel}</PillBadge>
+          </div>
+        )}
         <h2 className="mb-12 text-center text-2xl font-bold text-white md:text-3xl">
           {header}
         </h2>
@@ -24,7 +31,7 @@ const FAQ = ({ header, items }: FAQProps) => {
           {items.map((faq, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-lg border border-navy-700 bg-navy-800"
+              className="overflow-hidden rounded-lg bg-navy-700/50"
             >
               <button
                 type="button"
@@ -36,7 +43,7 @@ const FAQ = ({ header, items }: FAQProps) => {
                   {faq.question}
                 </span>
                 <svg
-                  className={`size-5 shrink-0 text-orange-500 transition-transform ${
+                  className={`size-5 shrink-0 text-gray-400 transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -53,13 +60,22 @@ const FAQ = ({ header, items }: FAQProps) => {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="border-t border-navy-700 px-6 py-4">
+                <div className="border-t border-navy-600 px-6 py-4">
                   <p className="text-gray-300">{faq.answer}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
+
+        {/* CTA Button */}
+        {cta && (
+          <div className="mt-12 text-center">
+            <GradientButton xl scrollTo={cta.scrollTo}>
+              {cta.text}
+            </GradientButton>
+          </div>
+        )}
       </div>
     </section>
   );
