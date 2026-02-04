@@ -1,6 +1,6 @@
 export const AppConfig = {
-  site_name: 'Starter',
-  title: 'Nextjs Starter',
-  description: 'Starter code for your Nextjs Boilerplate with Tailwind CSS',
+  site_name: 'Launch Funnels',
+  title: 'Launch Funnels',
+  description: 'High-converting funnel templates built with Next.js',
   locale: 'en',
 };
