@@ -19,7 +19,16 @@ const FAQ = ({ headerLabel, header, items, cta }: FAQProps) => {
         {/* Stacked header with pill badge */}
         {headerLabel && (
           <div className="mb-4 flex justify-center">
-            <PillBadge variant="blue">{headerLabel}</PillBadge>
+            <PillBadge
+              variant="light"
+              icon={
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[12px] font-black leading-none text-white">
+                  ?
+                </span>
+              }
+            >
+              {headerLabel}
+            </PillBadge>
           </div>
         )}
         <h2 className="mb-12 text-center text-2xl font-bold text-white md:text-3xl">

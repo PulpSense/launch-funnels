@@ -46,7 +46,7 @@ const FounderStory = ({
             <PillBadge
               variant="light"
               icon={
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[10px] font-bold text-white">
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[12px] font-black leading-none text-white">
                   ?
                 </span>
               }
