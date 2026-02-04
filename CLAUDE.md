@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 pnpm dev          # Start dev server with Turbopack
 pnpm build        # Production build
+pnpm start        # Run production build locally
 pnpm lint         # Run ESLint
 pnpm format       # Fix lint + format JSON/YAML with Prettier
 pnpm check-types  # TypeScript type checking
@@ -22,7 +23,7 @@ This is a Next.js 16 landing page template using the App Router, Tailwind CSS v4
 The codebase follows a specific layering pattern:
 
 1. **Pages** (`src/app/`) - Route entry points
-2. **Templates** (`src/templates/`) - Full page sections that compose atomic components (Hero, Footer, Banner, VerticalFeatures)
+2. **Templates** (`src/templates/`) - Full page sections that compose atomic components (Hero, Footer, Banner, VerticalFeatures, Logo)
 3. **Atomic Components** (`src/button/`, `src/layout/`, etc.) - Reusable UI primitives organized by type
 
 ### Funnel Routing
@@ -31,6 +32,8 @@ Dynamic funnel routes live in `src/app/[funnel]/`. To add a new funnel:
 1. Add the slug to `validFunnels` array in `src/app/[funnel]/page.tsx`
 2. The route becomes available at `yourdomain.com/[slug]`
 3. Thank-you pages are at `[funnel]/thank-you/`
+
+Pages are statically generated at build time via `generateStaticParams()`.
 
 ### Configuration
 
