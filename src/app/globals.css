@@ -32,5 +32,14 @@
   --color-gray-800: #2d3748;
   --color-gray-900: #1a202c;
 
+  /* Sell-AI Funnel Theme Colors */
+  --color-navy-900: #02142D;
+  --color-navy-800: #0a1f3d;
+  --color-navy-700: #122d52;
+  --color-orange-500: #FF5B23;
+  --color-orange-400: #F2BB06;
+  --color-red-500: #DC2626;
+  --color-red-600: #B91C1C;
+
   --line-height-hero: 4.5rem;
 }
