@@ -20,20 +20,31 @@ This is a Next.js 16 landing page template using the App Router, Tailwind CSS v4
 
 ### Component Layering
 
-The codebase follows a specific layering pattern:
+The codebase follows a props-driven component architecture:
 
-1. **Pages** (`src/app/`) - Route entry points
-2. **Templates** (`src/templates/`) - Full page sections that compose atomic components (Hero, Footer, Banner, VerticalFeatures, Logo)
-3. **Atomic Components** (`src/button/`, `src/layout/`, etc.) - Reusable UI primitives organized by type
+1. **Pages** (`src/app/[funnel-name]/`) - Route entry points that define all content as props
+2. **Sections** (`src/components/sections/`) - Props-driven page sections (HeroSection, FAQ, DisclaimerFooter, etc.)
+3. **UI Components** (`src/components/ui/`) - Reusable UI primitives (GradientButton, TrustBadge, FormEmbed, etc.)
 
 ### Funnel Routing
 
-Dynamic funnel routes live in `src/app/[funnel]/`. To add a new funnel:
-1. Add the slug to `validFunnels` array in `src/app/[funnel]/page.tsx`
-2. The route becomes available at `yourdomain.com/[slug]`
-3. Thank-you pages are at `[funnel]/thank-you/`
+Each funnel has its own explicit folder in `src/app/`. To add a new funnel:
 
-Pages are statically generated at build time via `generateStaticParams()`.
+1. Create a new folder: `src/app/[your-funnel-name]/`
+2. Add `page.tsx` with content defined as a `content` object and passed to section components as props
+3. Add `thank-you/page.tsx` and `unqualified/page.tsx` as needed
+
+Example structure:
+```
+src/app/sell-ai-funnel/
+├── page.tsx              # Lander with all content defined here
+├── thank-you/page.tsx    # Thank you page
+└── unqualified/page.tsx  # Unqualified page
+```
+
+### Creating New Funnels
+
+Copy an existing funnel folder and modify the `content` object in each page. All section components accept typed props defined in `src/components/sections/types.ts`.
 
 ### Configuration
 
