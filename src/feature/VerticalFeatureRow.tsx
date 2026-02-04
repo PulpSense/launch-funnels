@@ -1,4 +1,5 @@
 import className from 'classnames';
+import Image from 'next/image';
 
 type IVerticalFeatureRowProps = {
   title: string;
@@ -27,7 +28,7 @@ const VerticalFeatureRow = (props: IVerticalFeatureRowProps) => {
       </div>
 
       <div className="w-full p-6 sm:w-1/2">
-        <img src={props.image} alt={props.imageAlt} />
+        <Image src={props.image} alt={props.imageAlt} width={512} height={512} />
       </div>
     </div>
   );

@@ -1,9 +1,7 @@
-'use client';
-
 import { AppConfig } from '../utils/AppConfig';
 
 const FooterCopyright = () => (
-  <div className="footer-copyright">
+  <div className="[&_a]:text-primary-500 [&_a:hover]:underline">
     © Copyright {new Date().getFullYear()} {AppConfig.title}.
     {/*
      * PLEASE READ THIS SECTION
@@ -11,17 +9,6 @@ const FooterCopyright = () => (
      * The link doesn't need to appear on every pages, one link on one page is enough.
      * For example, in the `About` page. Thank you for your support, it'll mean a lot to me.
      */}
-    <style jsx>
-      {`
-        .footer-copyright :global(a) {
-          color: var(--color-primary-500);
-        }
-
-        .footer-copyright :global(a:hover) {
-          text-decoration: underline;
-        }
-      `}
-    </style>
   </div>
 );
 
