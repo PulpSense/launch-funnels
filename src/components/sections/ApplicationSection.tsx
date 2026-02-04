@@ -22,7 +22,10 @@ const ApplicationSection = ({
         {/* Urgency indicator */}
         {urgency && (
           <div className="mb-8 rounded-lg border border-orange-500/30 bg-orange-500/10 p-4 text-center">
-            <p className="text-orange-400">{urgency}</p>
+            <p
+              className="text-orange-400"
+              dangerouslySetInnerHTML={{ __html: urgency }}
+            />
           </div>
         )}
 
