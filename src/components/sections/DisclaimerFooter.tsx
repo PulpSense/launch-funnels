@@ -8,7 +8,7 @@ const DisclaimerFooter = ({
   platformDisclaimer,
 }: DisclaimerFooterProps) => {
   return (
-    <footer className="bg-navy-900 py-12">
+    <footer className="py-12">
       <div className="mx-auto max-w-4xl px-4">
         {/* Earnings disclaimer */}
         <div className="mb-8 border-t border-navy-700 pt-8">

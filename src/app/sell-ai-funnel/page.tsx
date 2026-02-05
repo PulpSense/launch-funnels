@@ -14,13 +14,13 @@ import type {
   HeroSectionProps,
   ProgramOverviewProps,
 } from '@/components/sections';
+import { PageLayout } from '@/components/ui';
 
 const content = {
   hero: {
     trustBadge: {
       text: 'Trusted by 200+ Agencies',
       stars: 5,
-      imageCount: 4,
     },
     banner: {
       text: 'For Anyone Wanting To Start Selling A.I. To Local Businesses...',
@@ -32,7 +32,8 @@ const content = {
     subheadline:
       'Watch this free training to discover the exact system we use to close high-ticket AI deals with local business owners who are desperate for automation solutions.',
     video: {
-      altText: 'AI Sales Training Video',
+      provider: 'wistia',
+      videoId: 'tam0inpvqg',
     },
     cta: {
       text: 'YES! I Want To Start Selling AI →',
@@ -198,13 +199,18 @@ const content = {
 
 export default function SellAiFunnelPage() {
   return (
-    <div className="antialiased">
-      <HeroSection {...content.hero} />
+    <PageLayout
+      hero={<HeroSection {...content.hero} />}
+      footer={
+        <>
+          <FAQ {...content.faq} />
+          <ApplicationSection {...content.application} />
+          <DisclaimerFooter {...content.footer} />
+        </>
+      }
+    >
       <FounderStory {...content.founderStory} />
       <ProgramOverview {...content.programOverview} />
-      <FAQ {...content.faq} />
-      <ApplicationSection {...content.application} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    </PageLayout>
   );
 }

@@ -1,27 +1,46 @@
 import {
   DisclaimerFooter,
-  UnqualifiedSection,
+  UnqualifiedContent,
+  UnqualifiedHero,
 } from '@/components/sections';
 import type {
   DisclaimerFooterProps,
-  UnqualifiedSectionProps,
+  UnqualifiedContentProps,
+  UnqualifiedHeroProps,
 } from '@/components/sections';
+import { PageLayout } from '@/components/ui';
 
 const content = {
-  unqualified: {
-    title: 'Thanks For Your Interest',
-    subtitle:
-      "Based on your responses, it looks like our program may not be the right fit for you at this time. But don't worry – we have other resources that might help!",
-    alternativeOffer: {
-      header: 'Free Resource For You:',
-      description:
-        'Get our free guide on "5 AI Tools Every Local Business Needs" to learn more about the AI opportunity.',
-      ctaText: 'Download Free Guide →',
-      ctaHref: '#',
+  hero: {
+    trustBadge: {
+      text: 'Trusted by 200+ Agencies',
+      stars: 5,
     },
+    banner: {
+      text: 'For Anyone Wanting To Start Selling A.I. To Local Businesses...',
+      variant: 'orange',
+    },
+    title: 'We Are So Sorry!',
+    subtitle:
+      'Unfortunately, we are only able to work with applicants who are serious about building an AI agency and can fully commit to the program requirements.',
+    cta: {
+      text: 'Back To Homepage →',
+      href: '/sell-ai-funnel',
+    },
+  } satisfies UnqualifiedHeroProps,
+
+  content: {
+    followUpMessage:
+      "That being said, when your situation has a few more boxes checked, we'd love to help!",
+    requirements: [
+      'Ability to dedicate 5-10 hours per week',
+      'Willingness to invest in your business',
+      'Basic computer and communication skills',
+      'Ready to start within 30 days',
+    ],
     reapplyText: 'Situation changed?',
     reapplyHref: '/sell-ai-funnel',
-  } satisfies UnqualifiedSectionProps,
+  } satisfies UnqualifiedContentProps,
 
   footer: {
     disclaimerHeader: 'Earnings Disclaimer',
@@ -42,9 +61,11 @@ const content = {
 
 export default function UnqualifiedPage() {
   return (
-    <div className="flex min-h-screen flex-col antialiased">
-      <UnqualifiedSection {...content.unqualified} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    <PageLayout
+      hero={<UnqualifiedHero {...content.hero} />}
+      footer={<DisclaimerFooter {...content.footer} />}
+    >
+      <UnqualifiedContent {...content.content} />
+    </PageLayout>
   );
 }

@@ -1,24 +1,78 @@
 import {
   DisclaimerFooter,
-  ThankYouSection,
+  ThankYouContent,
+  ThankYouHero,
 } from '@/components/sections';
 import type {
   DisclaimerFooterProps,
-  ThankYouSectionProps,
+  ThankYouContentProps,
+  ThankYouHeroProps,
 } from '@/components/sections';
+import { ContentCard, PageLayout } from '@/components/ui';
 
 const content = {
-  thankYou: {
-    title: "You're In! 🎉",
-    subtitle:
-      'Your application has been received. Our team will review it and reach out within 24-48 hours.',
-    stepsHeader: "While You Wait, Here's What To Do:",
-    nextSteps: [
-      { number: '1.', text: 'Check your email inbox (and spam folder)' },
-      { number: '2.', text: 'Save our email to your contacts' },
-      { number: '3.', text: 'Be ready to hop on a quick call with our team' },
+  hero: {
+    title: '\u{1F389} Congratulations: One Last Step \u{1F6A8}',
+    subtitle: 'Watch This Mandatory',
+    requiredLabel: 'REQUIRED',
+    alertMessage:
+      '\u{1F6A8} There is a button that appears below at the end of the video you NEED TO CLICK or else we\'ll cancel your call',
+    videoPlaceholder: {
+      provider: 'wistia',
+      videoId: 'tam0inpvqg',
+    },
+  } satisfies ThankYouHeroProps,
+
+  content: {
+    steps: [
+      {
+        number: 1,
+        heading: 'Search your inbox/spam for "Scale Up Your AI Agency"',
+        description:
+          'Click "Add to calendar" and "Yes" for the calendar invitation',
+        highlightedText: 'Add to calendar',
+      },
+      {
+        number: 2,
+        heading: 'Check out our wall of fame',
+        cta: {
+          text: 'Check Out Wall Of Fame',
+          subtext: 'View our program client wins...',
+          href: '#',
+        },
+      },
+      {
+        number: 3,
+        heading: 'Got a question?',
+        cta: {
+          text: 'Check Out FAQs',
+          subtext: 'Got a question about our program?',
+          href: '#',
+        },
+      },
+      {
+        number: 4,
+        heading: 'Watch The Videos Down Below \u{1F447}',
+      },
     ],
-  } satisfies ThankYouSectionProps,
+    bottomVideos: [
+      {
+        title: 'How I Made $3K in a Day Selling AI to Local Businesses',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
+      },
+      {
+        title: 'Getting rich will be a spiritual journey',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
+      },
+      {
+        title: 'One decision will change the trajectory of your life (make that decision)',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
+      },
+    ],
+  } satisfies ThankYouContentProps,
 
   footer: {
     disclaimerHeader: 'Earnings Disclaimer',
@@ -39,9 +93,13 @@ const content = {
 
 export default function ThankYouPage() {
   return (
-    <div className="flex min-h-screen flex-col antialiased">
-      <ThankYouSection {...content.thankYou} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    <PageLayout
+      hero={<ThankYouHero {...content.hero} />}
+      footer={<DisclaimerFooter {...content.footer} />}
+    >
+      <ContentCard>
+        <ThankYouContent {...content.content} />
+      </ContentCard>
+    </PageLayout>
   );
 }

@@ -13,23 +13,14 @@ const HeroSection = ({
   cta,
 }: HeroSectionProps) => {
   return (
-    <section className="relative bg-navy-900 pb-16 pt-8">
-      {/* White radial glow at top center */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-96"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="relative mx-auto max-w-4xl px-4">
+    <section className="pb-16 pt-8">
+      <div className="mx-auto max-w-4xl px-4">
         {/* Trust badge */}
         <div className="mb-6 flex justify-center">
           <TrustBadge
             text={trustBadge.text}
             stars={trustBadge.stars}
-            imageCount={trustBadge.imageCount}
+            avatars={trustBadge.avatars}
           />
         </div>
 
@@ -43,7 +34,7 @@ const HeroSection = ({
         </div>
 
         {/* Main headline */}
-        <h1 className="mb-6 text-center text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        <h1 className="mb-6 text-center text-2xl font-extrabold leading-tight text-white md:text-3xl lg:text-4xl">
           {headline}
           {highlightedText && (
             <>
@@ -61,10 +52,7 @@ const HeroSection = ({
 
         {/* Video placeholder */}
         <div className="mb-8">
-          <VideoPlaceholder
-            posterSrc={video.posterSrc}
-            altText={video.altText}
-          />
+          <VideoPlaceholder video={video} priority />
         </div>
 
         {/* CTA Button */}

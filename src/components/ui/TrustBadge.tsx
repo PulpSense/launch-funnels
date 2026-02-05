@@ -1,18 +1,35 @@
+import Image from 'next/image';
+
+const DEFAULT_AVATARS = [
+  '/assets/images/avatars/avatar-1.avif',
+  '/assets/images/avatars/avatar-2.avif',
+  '/assets/images/avatars/avatar-3.avif',
+  '/assets/images/avatars/avatar-4.avif',
+];
+
 type TrustBadgeProps = {
   text: string;
   stars?: number;
-  imageCount?: number;
+  avatars?: string[];
 };
 
-const TrustBadge = ({ text, stars = 5, imageCount = 4 }: TrustBadgeProps) => {
+const TrustBadge = ({
+  text,
+  stars = 5,
+  avatars = DEFAULT_AVATARS,
+}: TrustBadgeProps) => {
   return (
     <div className="flex items-center gap-3">
-      {/* Overlapping profile placeholders */}
+      {/* Overlapping profile images */}
       <div className="flex -space-x-2">
-        {Array.from({ length: imageCount }).map((_, i) => (
-          <div
+        {avatars.map((src, i) => (
+          <Image
             key={i}
-            className="size-8 rounded-full border-2 border-navy-900 bg-gray-400"
+            src={src}
+            alt=""
+            width={32}
+            height={32}
+            className="size-8 rounded-full border-2 border-navy-900 object-cover"
             aria-hidden="true"
           />
         ))}

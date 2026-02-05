@@ -4,7 +4,9 @@ export { FAQ } from './FAQ';
 export { FounderStory } from './FounderStory';
 export { HeroSection } from './HeroSection';
 export { ProgramOverview } from './ProgramOverview';
-export { ThankYouSection } from './ThankYouSection';
-export { UnqualifiedSection } from './UnqualifiedSection';
+export { ThankYouContent } from './ThankYouContent';
+export { ThankYouHero } from './ThankYouHero';
+export { UnqualifiedContent } from './UnqualifiedContent';
+export { UnqualifiedHero } from './UnqualifiedHero';
 
 export type * from './types';

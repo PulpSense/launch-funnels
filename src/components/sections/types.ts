@@ -8,7 +8,7 @@ export type SectionCTAConfig = {
 export type TrustBadgeConfig = {
   text: string;
   stars?: number;
-  imageCount?: number;
+  avatars?: string[];
 };
 
 export type BannerConfig = {
@@ -16,10 +16,10 @@ export type BannerConfig = {
   variant: 'orange' | 'red';
 };
 
-export type VideoConfig = {
-  posterSrc?: string;
-  altText?: string;
-};
+export type VideoConfig =
+  | { provider: 'wistia'; videoId: string }
+  | { provider: 'youtube'; videoId: string }
+  | { provider?: undefined; posterSrc?: string; altText?: string };
 
 export type CTAConfig = {
   text: string;
@@ -115,30 +115,56 @@ export type DisclaimerFooterProps = {
 };
 
 // Thank You Section Types
-export type NextStep = {
-  number: string;
+export type ThankYouStepCTA = {
   text: string;
+  subtext?: string;
+  href: string;
 };
 
-export type ThankYouSectionProps = {
+export type ThankYouStep = {
+  number: number;
+  heading: string;
+  description?: string;
+  highlightedText?: string;
+  cta?: ThankYouStepCTA;
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
+export type ThankYouVideo = { title: string } & (
+  | { provider: 'wistia'; videoId: string }
+  | { provider: 'youtube'; videoId: string }
+  | { provider?: undefined; thumbnailSrc?: string; href?: string }
+);
+
+export type ThankYouHeroProps = {
   title: string;
   subtitle: string;
-  stepsHeader: string;
-  nextSteps: NextStep[];
+  requiredLabel?: string;
+  alertMessage?: string;
+  videoPlaceholder?:
+    | { provider: 'wistia'; videoId: string }
+    | { provider: 'youtube'; videoId: string }
+    | { provider?: undefined; title?: string; subtitle?: string };
+};
+
+export type ThankYouContentProps = {
+  steps: ThankYouStep[];
+  bottomVideos?: ThankYouVideo[];
 };
 
 // Unqualified Section Types
-export type AlternativeOffer = {
-  header: string;
-  description: string;
-  ctaText: string;
-  ctaHref: string;
-};
-
-export type UnqualifiedSectionProps = {
+export type UnqualifiedHeroProps = {
+  trustBadge?: TrustBadgeConfig;
+  banner?: BannerConfig;
   title: string;
   subtitle: string;
-  alternativeOffer: AlternativeOffer;
+  cta: { text: string; href: string };
+};
+
+export type UnqualifiedContentProps = {
+  followUpMessage: string;
+  requirements: string[];
   reapplyText: string;
   reapplyHref: string;
 };
