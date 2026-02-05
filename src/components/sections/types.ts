@@ -151,17 +151,14 @@ export type ThankYouSectionProps = {
 };
 
 // Unqualified Section Types
-export type AlternativeOffer = {
-  header: string;
-  description: string;
-  ctaText: string;
-  ctaHref: string;
-};
-
 export type UnqualifiedSectionProps = {
+  trustBadge?: TrustBadgeConfig;
+  banner?: BannerConfig;
   title: string;
   subtitle: string;
-  alternativeOffer: AlternativeOffer;
+  cta: { text: string; href: string };
+  followUpMessage: string;
+  requirements: string[];
   reapplyText: string;
   reapplyHref: string;
 };
