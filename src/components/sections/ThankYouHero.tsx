@@ -1,3 +1,5 @@
+import { VideoEmbed } from '@/components/ui/VideoEmbed';
+
 import type { ThankYouHeroProps } from './types';
 
 const ThankYouHero = ({
@@ -32,32 +34,36 @@ const ThankYouHero = ({
         </div>
       )}
 
-      {/* Video placeholder area */}
+      {/* Video area */}
       {videoPlaceholder && (
         <div className="mx-auto max-w-2xl overflow-hidden rounded-lg bg-black shadow-xl">
-          <div className="flex aspect-video flex-col items-center justify-center bg-navy-800 text-white">
-            {videoPlaceholder.title && (
-              <p className="mb-2 text-lg font-bold md:text-xl">
-                {videoPlaceholder.title}
-              </p>
-            )}
-            {/* Play button circle */}
-            <div className="mb-3 flex size-16 items-center justify-center rounded-full bg-white/20">
-              <svg
-                className="ml-1 size-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+          {videoPlaceholder.provider ? (
+            <VideoEmbed video={videoPlaceholder} />
+          ) : (
+            <div className="flex aspect-video flex-col items-center justify-center bg-navy-800 text-white">
+              {videoPlaceholder.title && (
+                <p className="mb-2 text-lg font-bold md:text-xl">
+                  {videoPlaceholder.title}
+                </p>
+              )}
+              {/* Play button circle */}
+              <div className="mb-3 flex size-16 items-center justify-center rounded-full bg-white/20">
+                <svg
+                  className="ml-1 size-8 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              {videoPlaceholder.subtitle && (
+                <p className="text-sm text-gray-300">
+                  {videoPlaceholder.subtitle}
+                </p>
+              )}
             </div>
-            {videoPlaceholder.subtitle && (
-              <p className="text-sm text-gray-300">
-                {videoPlaceholder.subtitle}
-              </p>
-            )}
-          </div>
+          )}
         </div>
       )}
     </section>

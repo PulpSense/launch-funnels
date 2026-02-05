@@ -16,10 +16,10 @@ export type BannerConfig = {
   variant: 'orange' | 'red';
 };
 
-export type VideoConfig = {
-  posterSrc?: string;
-  altText?: string;
-};
+export type VideoConfig =
+  | { provider: 'wistia'; videoId: string }
+  | { provider: 'youtube'; videoId: string }
+  | { provider?: undefined; posterSrc?: string; altText?: string };
 
 export type CTAConfig = {
   text: string;
@@ -131,21 +131,21 @@ export type ThankYouStep = {
   imageAlt?: string;
 };
 
-export type ThankYouVideo = {
-  title: string;
-  thumbnailSrc?: string;
-  href?: string;
-};
+export type ThankYouVideo = { title: string } & (
+  | { provider: 'wistia'; videoId: string }
+  | { provider: 'youtube'; videoId: string }
+  | { provider?: undefined; thumbnailSrc?: string; href?: string }
+);
 
 export type ThankYouHeroProps = {
   title: string;
   subtitle: string;
   requiredLabel?: string;
   alertMessage?: string;
-  videoPlaceholder?: {
-    title?: string;
-    subtitle?: string;
-  };
+  videoPlaceholder?:
+    | { provider: 'wistia'; videoId: string }
+    | { provider: 'youtube'; videoId: string }
+    | { provider?: undefined; title?: string; subtitle?: string };
 };
 
 export type ThankYouContentProps = {

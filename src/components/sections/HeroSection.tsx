@@ -52,10 +52,7 @@ const HeroSection = ({
 
         {/* Video placeholder */}
         <div className="mb-8">
-          <VideoPlaceholder
-            posterSrc={video.posterSrc}
-            altText={video.altText}
-          />
+          <VideoPlaceholder video={video} />
         </div>
 
         {/* CTA Button */}

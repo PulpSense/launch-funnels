@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { VideoEmbed } from '@/components/ui/VideoEmbed';
+
 import type { ThankYouContentProps } from './types';
 
 const ThankYouContent = ({ steps, bottomVideos }: ThankYouContentProps) => {
@@ -71,36 +73,42 @@ const ThankYouContent = ({ steps, bottomVideos }: ThankYouContentProps) => {
                 <h4 className="mb-3 text-sm font-bold text-black">
                   {video.title}
                 </h4>
-                <a
-                  href={video.href || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative block aspect-video overflow-hidden rounded-lg bg-navy-800"
-                >
-                  {video.thumbnailSrc ? (
-                    <Image
-                      src={video.thumbnailSrc}
-                      alt={video.title}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex size-full items-center justify-center bg-navy-800" />
-                  )}
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex size-12 items-center justify-center rounded-full bg-black/60 transition-colors group-hover:bg-black/80">
-                      <svg
-                        className="ml-0.5 size-5 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
+                {video.provider ? (
+                  <div className="overflow-hidden rounded-lg">
+                    <VideoEmbed video={video} />
                   </div>
-                </a>
+                ) : (
+                  <a
+                    href={video.href || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative block aspect-video overflow-hidden rounded-lg bg-navy-800"
+                  >
+                    {video.thumbnailSrc ? (
+                      <Image
+                        src={video.thumbnailSrc}
+                        alt={video.title}
+                        fill
+                        className="object-cover transition-transform group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex size-full items-center justify-center bg-navy-800" />
+                    )}
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex size-12 items-center justify-center rounded-full bg-black/60 transition-colors group-hover:bg-black/80">
+                        <svg
+                          className="ml-0.5 size-5 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                )}
               </div>
             ))}
           </div>

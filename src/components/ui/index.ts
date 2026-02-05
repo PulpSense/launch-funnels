@@ -9,4 +9,7 @@ export { PillBadge } from './PillBadge';
 export { Section } from './Section';
 export { TrustBadge } from './TrustBadge';
 export { PageLayout } from './PageLayout';
+export { VideoEmbed } from './VideoEmbed';
 export { VideoPlaceholder } from './VideoPlaceholder';
+export { WistiaPlayer } from './WistiaPlayer';
+export { YouTubePlayer } from './YouTubePlayer';
