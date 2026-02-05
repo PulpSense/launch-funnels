@@ -18,8 +18,8 @@ const content = {
     alertMessage:
       '\u{1F6A8} There is a button that appears below at the end of the video you NEED TO CLICK or else we\'ll cancel your call',
     videoPlaceholder: {
-      title: 'Watch This Before Our Call',
-      subtitle: 'Mandatory or else we\'ll cancel the call',
+      provider: 'wistia',
+      videoId: 'tam0inpvqg',
     },
   } satisfies ThankYouHeroProps,
 
@@ -58,15 +58,18 @@ const content = {
     bottomVideos: [
       {
         title: 'How I Made $3K in a Day Selling AI to Local Businesses',
-        href: '#',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
       },
       {
         title: 'Getting rich will be a spiritual journey',
-        href: '#',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
       },
       {
         title: 'One decision will change the trajectory of your life (make that decision)',
-        href: '#',
+        provider: 'wistia',
+        videoId: 'tam0inpvqg',
       },
     ],
   } satisfies ThankYouContentProps,

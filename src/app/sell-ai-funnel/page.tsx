@@ -32,7 +32,8 @@ const content = {
     subheadline:
       'Watch this free training to discover the exact system we use to close high-ticket AI deals with local business owners who are desperate for automation solutions.',
     video: {
-      altText: 'AI Sales Training Video',
+      provider: 'wistia',
+      videoId: 'tam0inpvqg',
     },
     cta: {
       text: 'YES! I Want To Start Selling AI →',

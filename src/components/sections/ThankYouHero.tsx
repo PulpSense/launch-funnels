@@ -38,7 +38,7 @@ const ThankYouHero = ({
       {videoPlaceholder && (
         <div className="mx-auto max-w-2xl overflow-hidden rounded-lg bg-black shadow-xl">
           {videoPlaceholder.provider ? (
-            <VideoEmbed video={videoPlaceholder} />
+            <VideoEmbed video={videoPlaceholder} priority />
           ) : (
             <div className="flex aspect-video flex-col items-center justify-center bg-navy-800 text-white">
               {videoPlaceholder.title && (

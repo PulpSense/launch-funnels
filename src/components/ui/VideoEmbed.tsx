@@ -5,14 +5,15 @@ import { YouTubePlayer } from './YouTubePlayer';
 
 type VideoEmbedProps = {
   video: VideoConfig;
+  priority?: boolean;
 };
 
-const VideoEmbed = ({ video }: VideoEmbedProps) => {
+const VideoEmbed = ({ video, priority }: VideoEmbedProps) => {
   switch (video.provider) {
     case 'wistia':
-      return <WistiaPlayer mediaId={video.videoId} />;
+      return <WistiaPlayer mediaId={video.videoId} priority={priority} />;
     case 'youtube':
-      return <YouTubePlayer videoId={video.videoId} />;
+      return <YouTubePlayer videoId={video.videoId} priority={priority} />;
     default:
       return (
         <div className="relative aspect-video bg-navy-800">

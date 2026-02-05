@@ -4,9 +4,10 @@ import { VideoEmbed } from './VideoEmbed';
 
 type VideoPlaceholderProps = {
   video?: VideoConfig;
+  priority?: boolean;
 };
 
-const VideoPlaceholder = ({ video }: VideoPlaceholderProps) => {
+const VideoPlaceholder = ({ video, priority }: VideoPlaceholderProps) => {
   return (
     <div className="w-full overflow-hidden rounded-lg shadow-2xl">
       {/* Sound alert bar */}
@@ -16,7 +17,7 @@ const VideoPlaceholder = ({ video }: VideoPlaceholderProps) => {
           Load!)
         </span>
       </div>
-      <VideoEmbed video={video ?? {}} />
+      <VideoEmbed video={video ?? {}} priority={priority} />
     </div>
   );
 };
