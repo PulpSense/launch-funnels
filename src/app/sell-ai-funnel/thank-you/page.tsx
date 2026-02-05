@@ -8,7 +8,7 @@ import type {
   ThankYouContentProps,
   ThankYouHeroProps,
 } from '@/components/sections';
-import { PageLayout } from '@/components/ui';
+import { ContentCard, PageLayout } from '@/components/ui';
 
 const content = {
   hero: {
@@ -94,7 +94,9 @@ export default function ThankYouPage() {
       hero={<ThankYouHero {...content.hero} />}
       footer={<DisclaimerFooter {...content.footer} />}
     >
-      <ThankYouContent {...content.content} />
+      <ContentCard>
+        <ThankYouContent {...content.content} />
+      </ContentCard>
     </PageLayout>
   );
 }

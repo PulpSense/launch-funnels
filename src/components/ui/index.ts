@@ -1,5 +1,6 @@
 export { AlertBanner } from './AlertBanner';
 export { Background } from './Background';
+export { ContentCard } from './ContentCard';
 export { FormEmbed } from './FormEmbed';
 export { GradientButton } from './GradientButton';
 export { HighlightBox } from './HighlightBox';
