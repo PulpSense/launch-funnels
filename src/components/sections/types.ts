@@ -115,16 +115,39 @@ export type DisclaimerFooterProps = {
 };
 
 // Thank You Section Types
-export type NextStep = {
-  number: string;
+export type ThankYouStepCTA = {
   text: string;
+  subtext?: string;
+  href: string;
+};
+
+export type ThankYouStep = {
+  number: number;
+  heading: string;
+  description?: string;
+  highlightedText?: string;
+  cta?: ThankYouStepCTA;
+  imageSrc?: string;
+  imageAlt?: string;
+};
+
+export type ThankYouVideo = {
+  title: string;
+  thumbnailSrc?: string;
+  href?: string;
 };
 
 export type ThankYouSectionProps = {
   title: string;
   subtitle: string;
-  stepsHeader: string;
-  nextSteps: NextStep[];
+  requiredLabel?: string;
+  alertMessage?: string;
+  videoPlaceholder?: {
+    title?: string;
+    subtitle?: string;
+  };
+  steps: ThankYouStep[];
+  bottomVideos?: ThankYouVideo[];
 };
 
 // Unqualified Section Types
