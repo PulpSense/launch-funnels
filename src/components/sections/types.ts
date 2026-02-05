@@ -137,7 +137,7 @@ export type ThankYouVideo = {
   href?: string;
 };
 
-export type ThankYouSectionProps = {
+export type ThankYouHeroProps = {
   title: string;
   subtitle: string;
   requiredLabel?: string;
@@ -146,17 +146,23 @@ export type ThankYouSectionProps = {
     title?: string;
     subtitle?: string;
   };
+};
+
+export type ThankYouContentProps = {
   steps: ThankYouStep[];
   bottomVideos?: ThankYouVideo[];
 };
 
 // Unqualified Section Types
-export type UnqualifiedSectionProps = {
+export type UnqualifiedHeroProps = {
   trustBadge?: TrustBadgeConfig;
   banner?: BannerConfig;
   title: string;
   subtitle: string;
   cta: { text: string; href: string };
+};
+
+export type UnqualifiedContentProps = {
   followUpMessage: string;
   requirements: string[];
   reapplyText: string;

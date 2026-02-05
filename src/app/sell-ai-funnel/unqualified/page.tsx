@@ -1,14 +1,17 @@
 import {
   DisclaimerFooter,
-  UnqualifiedSection,
+  UnqualifiedContent,
+  UnqualifiedHero,
 } from '@/components/sections';
 import type {
   DisclaimerFooterProps,
-  UnqualifiedSectionProps,
+  UnqualifiedContentProps,
+  UnqualifiedHeroProps,
 } from '@/components/sections';
+import { PageLayout } from '@/components/ui';
 
 const content = {
-  unqualified: {
+  hero: {
     trustBadge: {
       text: 'Trusted by 200+ Agencies',
       stars: 5,
@@ -24,6 +27,9 @@ const content = {
       text: 'Back To Homepage →',
       href: '/sell-ai-funnel',
     },
+  } satisfies UnqualifiedHeroProps,
+
+  content: {
     followUpMessage:
       "That being said, when your situation has a few more boxes checked, we'd love to help!",
     requirements: [
@@ -34,7 +40,7 @@ const content = {
     ],
     reapplyText: 'Situation changed?',
     reapplyHref: '/sell-ai-funnel',
-  } satisfies UnqualifiedSectionProps,
+  } satisfies UnqualifiedContentProps,
 
   footer: {
     disclaimerHeader: 'Earnings Disclaimer',
@@ -55,9 +61,11 @@ const content = {
 
 export default function UnqualifiedPage() {
   return (
-    <div className="flex min-h-screen flex-col antialiased">
-      <UnqualifiedSection {...content.unqualified} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    <PageLayout
+      hero={<UnqualifiedHero {...content.hero} />}
+      footer={<DisclaimerFooter {...content.footer} />}
+    >
+      <UnqualifiedContent {...content.content} />
+    </PageLayout>
   );
 }

@@ -7,4 +7,5 @@ export { Logo } from './Logo';
 export { PillBadge } from './PillBadge';
 export { Section } from './Section';
 export { TrustBadge } from './TrustBadge';
+export { PageLayout } from './PageLayout';
 export { VideoPlaceholder } from './VideoPlaceholder';

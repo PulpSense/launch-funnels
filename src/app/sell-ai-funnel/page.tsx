@@ -14,6 +14,7 @@ import type {
   HeroSectionProps,
   ProgramOverviewProps,
 } from '@/components/sections';
+import { PageLayout } from '@/components/ui';
 
 const content = {
   hero: {
@@ -197,13 +198,18 @@ const content = {
 
 export default function SellAiFunnelPage() {
   return (
-    <div className="antialiased">
-      <HeroSection {...content.hero} />
+    <PageLayout
+      hero={<HeroSection {...content.hero} />}
+      footer={
+        <>
+          <FAQ {...content.faq} />
+          <ApplicationSection {...content.application} />
+          <DisclaimerFooter {...content.footer} />
+        </>
+      }
+    >
       <FounderStory {...content.founderStory} />
       <ProgramOverview {...content.programOverview} />
-      <FAQ {...content.faq} />
-      <ApplicationSection {...content.application} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    </PageLayout>
   );
 }

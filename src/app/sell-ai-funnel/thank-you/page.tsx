@@ -1,14 +1,17 @@
 import {
   DisclaimerFooter,
-  ThankYouSection,
+  ThankYouContent,
+  ThankYouHero,
 } from '@/components/sections';
 import type {
   DisclaimerFooterProps,
-  ThankYouSectionProps,
+  ThankYouContentProps,
+  ThankYouHeroProps,
 } from '@/components/sections';
+import { PageLayout } from '@/components/ui';
 
 const content = {
-  thankYou: {
+  hero: {
     title: '\u{1F389} Congratulations: One Last Step \u{1F6A8}',
     subtitle: 'Watch This Mandatory',
     requiredLabel: 'REQUIRED',
@@ -18,6 +21,9 @@ const content = {
       title: 'Watch This Before Our Call',
       subtitle: 'Mandatory or else we\'ll cancel the call',
     },
+  } satisfies ThankYouHeroProps,
+
+  content: {
     steps: [
       {
         number: 1,
@@ -63,7 +69,7 @@ const content = {
         href: '#',
       },
     ],
-  } satisfies ThankYouSectionProps,
+  } satisfies ThankYouContentProps,
 
   footer: {
     disclaimerHeader: 'Earnings Disclaimer',
@@ -84,9 +90,11 @@ const content = {
 
 export default function ThankYouPage() {
   return (
-    <div className="flex min-h-screen flex-col antialiased">
-      <ThankYouSection {...content.thankYou} />
-      <DisclaimerFooter {...content.footer} />
-    </div>
+    <PageLayout
+      hero={<ThankYouHero {...content.hero} />}
+      footer={<DisclaimerFooter {...content.footer} />}
+    >
+      <ThankYouContent {...content.content} />
+    </PageLayout>
   );
 }
