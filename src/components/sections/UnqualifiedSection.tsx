@@ -16,17 +16,8 @@ const UnqualifiedSection = ({
   return (
     <main className="flex-1">
       {/* ── Top: dark navy with radial glow ── */}
-      <section className="relative bg-navy-900 px-4 pb-16 pt-8 text-center">
-        {/* White radial glow at top center */}
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-96"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
-
-        <div className="relative mx-auto max-w-3xl">
+      <section className="px-4 pb-16 pt-8 text-center">
+        <div className="mx-auto max-w-3xl">
           {/* Trust badge */}
           {trustBadge && (
             <div className="mb-6 flex justify-center">
@@ -73,7 +64,7 @@ const UnqualifiedSection = ({
       </section>
 
       {/* ── Bottom: white card with requirements ── */}
-      <section className="bg-navy-900 px-4 pb-16">
+      <section className="px-4 pb-16">
         <div className="mx-auto max-w-3xl rounded-2xl bg-white px-6 py-10 shadow-lg md:px-12">
           <h2 className="mb-8 text-center text-xl font-bold text-black md:text-2xl">
             {followUpMessage}

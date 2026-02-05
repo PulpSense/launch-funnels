@@ -14,73 +14,62 @@ const ThankYouSection = ({
   return (
     <main className="flex-1">
       {/* ── Top Hero: dark navy background ── */}
-      <section className="relative bg-navy-900 px-4 pb-12 pt-8 text-center">
-        {/* White radial glow at top center */}
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-96"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%)',
-          }}
-        />
+      <section className="px-4 pb-12 pt-8 text-center">
+        <h1 className="mb-3 text-3xl font-black text-white md:text-4xl">
+          {title}
+        </h1>
 
-        <div className="relative">
-          <h1 className="mb-3 text-3xl font-black text-white md:text-4xl">
-            {title}
-          </h1>
+        {(requiredLabel || subtitle) && (
+          <h2 className="mb-6 text-xl text-white md:text-2xl">
+            {requiredLabel && (
+              <span className="mr-1 rounded bg-red-500 px-2 py-0.5 font-bold text-white">
+                {requiredLabel}
+              </span>
+            )}
+            {': '}
+            {subtitle}
+          </h2>
+        )}
 
-          {(requiredLabel || subtitle) && (
-            <h2 className="mb-6 text-xl text-white md:text-2xl">
-              {requiredLabel && (
-                <span className="mr-1 rounded bg-red-500 px-2 py-0.5 font-bold text-white">
-                  {requiredLabel}
-                </span>
+        {/* Red alert banner */}
+        {alertMessage && (
+          <div className="mx-auto mb-6 max-w-2xl rounded-t-lg bg-red-500 px-4 py-3 text-sm font-medium text-white">
+            {alertMessage}
+          </div>
+        )}
+
+        {/* Video placeholder area */}
+        {videoPlaceholder && (
+          <div className="mx-auto max-w-2xl overflow-hidden rounded-lg bg-black shadow-xl">
+            <div className="flex aspect-video flex-col items-center justify-center bg-navy-800 text-white">
+              {videoPlaceholder.title && (
+                <p className="mb-2 text-lg font-bold md:text-xl">
+                  {videoPlaceholder.title}
+                </p>
               )}
-              {': '}
-              {subtitle}
-            </h2>
-          )}
-
-          {/* Red alert banner */}
-          {alertMessage && (
-            <div className="mx-auto mb-6 max-w-2xl rounded-t-lg bg-red-500 px-4 py-3 text-sm font-medium text-white">
-              {alertMessage}
-            </div>
-          )}
-
-          {/* Video placeholder area */}
-          {videoPlaceholder && (
-            <div className="mx-auto max-w-2xl overflow-hidden rounded-lg bg-black shadow-xl">
-              <div className="flex aspect-video flex-col items-center justify-center bg-navy-800 text-white">
-                {videoPlaceholder.title && (
-                  <p className="mb-2 text-lg font-bold md:text-xl">
-                    {videoPlaceholder.title}
-                  </p>
-                )}
-                {/* Play button circle */}
-                <div className="mb-3 flex size-16 items-center justify-center rounded-full bg-white/20">
-                  <svg
-                    className="ml-1 size-8 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                {videoPlaceholder.subtitle && (
-                  <p className="text-sm text-gray-300">
-                    {videoPlaceholder.subtitle}
-                  </p>
-                )}
+              {/* Play button circle */}
+              <div className="mb-3 flex size-16 items-center justify-center rounded-full bg-white/20">
+                <svg
+                  className="ml-1 size-8 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </div>
+              {videoPlaceholder.subtitle && (
+                <p className="text-sm text-gray-300">
+                  {videoPlaceholder.subtitle}
+                </p>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
 
       {/* ── Middle: white card with steps ── */}
-      <section className="bg-navy-900 px-4 pb-16">
+      <section className="px-4 pb-16">
         <div className="mx-auto max-w-3xl rounded-2xl bg-white px-6 py-10 shadow-lg md:px-12">
           {steps.map((step) => (
             <div

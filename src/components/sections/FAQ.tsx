@@ -14,7 +14,7 @@ const FAQ = ({ headerLabel, header, items, cta }: FAQProps) => {
   };
 
   return (
-    <section className="bg-navy-900 py-16">
+    <section className="py-16">
       <div className="mx-auto max-w-3xl px-4">
         {/* Stacked header with pill badge */}
         {headerLabel && (

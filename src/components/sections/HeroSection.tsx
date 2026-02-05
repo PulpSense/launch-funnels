@@ -13,17 +13,8 @@ const HeroSection = ({
   cta,
 }: HeroSectionProps) => {
   return (
-    <section className="relative bg-navy-900 pb-16 pt-8">
-      {/* White radial glow at top center */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-96"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="relative mx-auto max-w-4xl px-4">
+    <section className="pb-16 pt-8">
+      <div className="mx-auto max-w-4xl px-4">
         {/* Trust badge */}
         <div className="mb-6 flex justify-center">
           <TrustBadge
