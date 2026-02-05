@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import {
   ApplicationSection,
   DisclaimerFooter,
@@ -15,6 +17,12 @@ import type {
   ProgramOverviewProps,
 } from '@/components/sections';
 import { PageLayout } from '@/components/ui';
+
+export const metadata: Metadata = {
+  title: 'Sell AI to Local Businesses for $500–$3,000/mo | Free Training',
+  description:
+    'Watch the free training to learn how we sell automated AI tools to local businesses for $500–$3,000/month — without cold calling or hard selling.',
+};
 
 const content = {
   hero: {
