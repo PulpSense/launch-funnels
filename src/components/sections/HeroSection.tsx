@@ -34,7 +34,7 @@ const HeroSection = ({
         </div>
 
         {/* Main headline */}
-        <h1 className="mb-6 text-center text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        <h1 className="mb-6 text-center text-2xl font-extrabold leading-tight text-white md:text-3xl lg:text-4xl">
           {headline}
           {highlightedText && (
             <>
