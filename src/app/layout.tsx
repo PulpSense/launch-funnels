@@ -7,6 +7,15 @@ import { AppConfig } from '@/utils/AppConfig';
 export const metadata: Metadata = {
   title: AppConfig.title,
   description: AppConfig.description,
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   openGraph: {
     title: AppConfig.title,
     description: AppConfig.description,
