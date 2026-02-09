@@ -1,12 +1,17 @@
 export { ApplicationSection } from './ApplicationSection';
+export { BenefitsSection } from './BenefitsSection';
 export { ComparisonTable } from './ComparisonTable';
+export { CTASection } from './CTASection';
 export { DisclaimerFooter } from './DisclaimerFooter';
 export { FAQ } from './FAQ';
 export { FounderStory } from './FounderStory';
 export { HeroSection } from './HeroSection';
 export { HowItWorks } from './HowItWorks';
+export { ProblemSection } from './ProblemSection';
 export { ProgramOverview } from './ProgramOverview';
+export { ResultsSection } from './ResultsSection';
 export { SocialProofLogos } from './SocialProofLogos';
+export { TestimonialsSection } from './TestimonialsSection';
 export { ThankYouContent } from './ThankYouContent';
 export { ThankYouHero } from './ThankYouHero';
 export { UnqualifiedContent } from './UnqualifiedContent';

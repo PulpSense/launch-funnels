@@ -1,22 +1,32 @@
 import type { Metadata } from 'next';
 
 import {
+  BenefitsSection,
   ComparisonTable,
+  CTASection,
   DisclaimerFooter,
   FAQ,
   HeroSection,
   HowItWorks,
+  ProblemSection,
+  ResultsSection,
   SocialProofLogos,
+  TestimonialsSection,
 } from '@/components/sections';
 import type {
+  BenefitsSectionProps,
   ComparisonTableProps,
+  CTASectionProps,
   DisclaimerFooterProps,
   FAQProps,
   HeroSectionProps,
   HowItWorksProps,
+  ProblemSectionProps,
+  ResultsSectionProps,
   SocialProofLogosProps,
+  TestimonialsSectionProps,
 } from '@/components/sections';
-import { GradientButton, PageLayout } from '@/components/ui';
+import { PageLayout } from '@/components/ui';
 
 export const metadata: Metadata = {
   title:
@@ -65,7 +75,7 @@ const content = {
     ],
   } satisfies SocialProofLogosProps,
 
-  caseStudy: {
+  benefits: {
     headline:
       'How One Agency Eliminated 400+ Hours of Manual Setter Work Per Week and Stopped Leaking Deals',
     benefits: [
@@ -75,9 +85,13 @@ const content = {
       'Your closers only talk to prospects who are ready and pre-qualified',
       'Done-for-you setup. Trained on your best conversations. Built around your sales process.',
     ],
-  },
+    cta: {
+      text: 'See If You Qualify →',
+      scrollTo: 'apply-section',
+    },
+  } satisfies BenefitsSectionProps,
 
-  problemSection: {
+  problem: {
     headline:
       "🤔 Your Setters Are Your Bottleneck. You Just Haven't Admitted It Yet.",
     paragraphs: [
@@ -87,11 +101,16 @@ const content = {
       'You know the cycle. Hire a setter. Spend weeks training them on your scripts, your qualification criteria, your objection handling. They start slow. Maybe they get decent after a month. Then they plateau. Or they leave. Or they start cutting corners when nobody is watching. And you are back to square one, except now you have cold leads sitting in your CRM that nobody followed up with.',
       'Meanwhile, the math keeps getting worse. More revenue means more leads means more setters means more payroll, more management, more inconsistency. You are scaling headcount linearly just to keep up, and your margins are getting thinner even though top-line revenue looks healthy.',
     ],
+    emphasizedText: 'Your setters.',
     highlight:
       'Every lead that waits more than 5 minutes for a response is 10x less likely to book. Every setter who forgets to follow up is a deal you will never see. Every inconsistent qualification is a wasted closer call.',
     conclusion:
       "The businesses that figure this out first will not just grow faster. They will make their competitors irrelevant. Because while everyone else is hiring their fifth setter and praying for consistency, you will have a system that never sleeps, never forgets, and never has a bad day.",
-  },
+    cta: {
+      text: 'See If You Qualify →',
+      scrollTo: 'apply-section',
+    },
+  } satisfies ProblemSectionProps,
 
   howItWorks: {
     headerLabel: 'The Process',
@@ -113,7 +132,7 @@ const content = {
         number: 3,
         title: 'Your Calendar Fills With Qualified, Ready-to-Close Prospects',
         description:
-          'Once live, your AI setter handles inbound and outbound conversations across SMS, DM, email, and chat. It responds instantly, qualifies ruthlessly, handles objections naturally, and books directly onto your closers\' calendars. Your team stops chasing and starts closing.',
+          "Once live, your AI setter handles inbound and outbound conversations across SMS, DM, email, and chat. It responds instantly, qualifies ruthlessly, handles objections naturally, and books directly onto your closers' calendars. Your team stops chasing and starts closing.",
       },
     ],
     cta: {
@@ -162,7 +181,7 @@ const content = {
       {
         feature: 'Monthly Cost',
         traditional: '$3K–$8K+ per setter',
-        modern: 'Fraction of one setter\'s salary',
+        modern: "Fraction of one setter's salary",
       },
       {
         feature: 'Scalability',
@@ -209,34 +228,37 @@ const content = {
       'Lead response time reduced from hours to under 60 seconds',
       'Implementation started within 24 hours, not weeks',
     ],
-  },
+  } satisfies ResultsSectionProps,
 
-  testimonials: [
-    {
-      quote:
-        'We were spending $28K a month on setters and still missing leads. Within the first week of going live with PulpSense, our response time went from hours to seconds. My closers are finally talking to people who are actually qualified. The ROI was obvious in the first 30 days.',
-      name: '[Client Name]',
-      title: '[Title], [Company]',
-    },
-    {
-      quote:
-        'I did not need another tool. I needed a machine. For the first time in a long time, my pipeline behaves predictably. The system follows up, qualifies, and books without me checking in. My business finally feels like an asset that runs instead of a monster that constantly needs to be fed.',
-      name: '[Client Name]',
-      title: '[Title], [Company]',
-    },
-    {
-      quote:
-        'We tried automation before and it broke under volume. PulpSense is different. The system held when we scaled ad spend 3x. No more scrambling. No more leaked leads. Just qualified calls showing up on the calendar every morning.',
-      name: '[Client Name]',
-      title: '[Title], [Company]',
-    },
-    {
-      quote:
-        'The biggest change has been trust. I trust the pipeline again. Not because I am checking it more, but because it behaves more predictably. Stages make sense. Ownership is clear. Nothing sits without a next step. I am thinking about scaling again, but with less fear.',
-      name: '[Client Name]',
-      title: '[Title], [Company]',
-    },
-  ],
+  testimonials: {
+    header: 'What Our Clients Say',
+    testimonials: [
+      {
+        quote:
+          'We were spending $28K a month on setters and still missing leads. Within the first week of going live with PulpSense, our response time went from hours to seconds. My closers are finally talking to people who are actually qualified. The ROI was obvious in the first 30 days.',
+        name: '[Client Name]',
+        title: '[Title], [Company]',
+      },
+      {
+        quote:
+          'I did not need another tool. I needed a machine. For the first time in a long time, my pipeline behaves predictably. The system follows up, qualifies, and books without me checking in. My business finally feels like an asset that runs instead of a monster that constantly needs to be fed.',
+        name: '[Client Name]',
+        title: '[Title], [Company]',
+      },
+      {
+        quote:
+          'We tried automation before and it broke under volume. PulpSense is different. The system held when we scaled ad spend 3x. No more scrambling. No more leaked leads. Just qualified calls showing up on the calendar every morning.',
+        name: '[Client Name]',
+        title: '[Title], [Company]',
+      },
+      {
+        quote:
+          'The biggest change has been trust. I trust the pipeline again. Not because I am checking it more, but because it behaves more predictably. Stages make sense. Ownership is clear. Nothing sits without a next step. I am thinking about scaling again, but with less fear.',
+        name: '[Client Name]',
+        title: '[Title], [Company]',
+      },
+    ],
+  } satisfies TestimonialsSectionProps,
 
   faq: {
     headerLabel: 'FAQ',
@@ -269,7 +291,8 @@ const content = {
           'The opposite. Because the AI is trained on your voice and your process, conversations feel natural and on-brand. And because it responds instantly and follows up consistently, your prospects actually get a better experience than they do with most human setters. No generic templates. No over-messaging. Just smart, timely conversations that move qualified people to your calendar.',
       },
       {
-        question: 'My sales process is unique. Can this really handle our complexity?',
+        question:
+          'My sales process is unique. Can this really handle our complexity?',
         answer:
           'That is exactly why we do not sell a generic product. We build your AI setter around your offer, your qualification logic, your objection handling, and your scheduling rules. If your best setter can do it, we can train the AI to do it. And it will do it the same way, every time, without drift.',
       },
@@ -290,7 +313,7 @@ const content = {
     },
   } satisfies FAQProps,
 
-  ctaSection: {
+  cta: {
     header: 'What to Expect on Your 15-Minute Call',
     steps: [
       'We will audit your current setter setup and show you exactly where leads are slipping, response times are lagging, and follow-up is breaking down',
@@ -303,7 +326,7 @@ const content = {
       href: 'https://calendly.com/your-link', // Replace with actual booking link
     },
     urgency: 'Limited spots available this week',
-  },
+  } satisfies CTASectionProps,
 
   footer: {
     disclaimerHeader: 'Earnings Disclaimer',
@@ -322,164 +345,6 @@ const content = {
   } satisfies DisclaimerFooterProps,
 };
 
-// Case Study Hook Section
-const CaseStudySection = () => (
-  <section className="bg-navy-900 py-16">
-    <div className="mx-auto max-w-screen-lg px-4">
-      <h2 className="mb-8 text-center text-2xl font-bold text-white md:text-3xl">
-        {content.caseStudy.headline}
-      </h2>
-      <ul className="mx-auto max-w-2xl space-y-4">
-        {content.caseStudy.benefits.map((benefit, index) => (
-          <li key={index} className="flex items-start gap-3 text-gray-300">
-            <span className="mt-1 text-green-400">✓</span>
-            <span>{benefit}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="mt-10 text-center">
-        <GradientButton xl scrollTo="apply-section">
-          See If You Qualify →
-        </GradientButton>
-      </div>
-    </div>
-  </section>
-);
-
-// Problem Awareness Section
-const ProblemSection = () => (
-  <section className="bg-white py-16">
-    <div className="mx-auto max-w-3xl px-4">
-      <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 md:text-3xl">
-        {content.problemSection.headline}
-      </h2>
-      <div className="space-y-4 text-gray-700 leading-relaxed">
-        {content.problemSection.paragraphs.map((paragraph, index) => (
-          <p
-            key={index}
-            className={
-              paragraph === 'Your setters.'
-                ? 'text-xl font-bold text-gray-900'
-                : ''
-            }
-          >
-            {paragraph}
-          </p>
-        ))}
-      </div>
-      <div className="my-8 rounded-xl border-l-4 border-orange-500 bg-orange-50 p-6">
-        <p className="font-semibold text-gray-900">
-          {content.problemSection.highlight}
-        </p>
-      </div>
-      <p className="text-gray-700 leading-relaxed">
-        {content.problemSection.conclusion}
-      </p>
-      <div className="mt-10 text-center">
-        <GradientButton xl scrollTo="apply-section">
-          See If You Qualify →
-        </GradientButton>
-      </div>
-    </div>
-  </section>
-);
-
-// Results Section with Stats
-const ResultsSection = () => (
-  <section className="bg-gray-50 py-16">
-    <div className="mx-auto max-w-screen-lg px-4">
-      <h2 className="mb-10 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-        {content.results.header}
-      </h2>
-      <div className="grid gap-6 md:grid-cols-2">
-        {content.results.stats.map((stat, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-4 rounded-xl bg-white p-6 shadow-sm"
-          >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
-              ✓
-            </span>
-            <span className="font-medium text-gray-900">{stat}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-// Testimonials Section
-const TestimonialsSection = () => (
-  <section className="bg-white py-16">
-    <div className="mx-auto max-w-screen-lg px-4">
-      <h2 className="mb-10 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-        What Our Clients Say
-      </h2>
-      <div className="grid gap-6 md:grid-cols-2">
-        {content.testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="rounded-xl border border-gray-200 bg-gray-50 p-6"
-          >
-            <p className="mb-4 text-gray-700 italic leading-relaxed">
-              &quot;{testimonial.quote}&quot;
-            </p>
-            <div>
-              <p className="font-semibold text-gray-900">{testimonial.name}</p>
-              <p className="text-sm text-gray-500">{testimonial.title}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-// CTA Section
-const CTASection = () => (
-  <section id="apply-section" className="bg-navy-900 py-16">
-    <div className="mx-auto max-w-2xl px-4 text-center">
-      <h2 className="mb-8 text-3xl font-bold text-white md:text-4xl">
-        {content.ctaSection.header}
-      </h2>
-
-      <ul className="mb-8 space-y-4 text-left text-gray-300">
-        {content.ctaSection.steps.map((step, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-white">
-              ✓
-            </span>
-            <span>{step}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="rounded-xl bg-white p-8">
-        <h3 className="mb-2 text-xl font-bold text-gray-900">
-          Save Your Slot for a Personalized Demo
-        </h3>
-        <p className="mb-6 text-sm text-gray-600">
-          {content.ctaSection.urgency}
-        </p>
-
-        <a
-          href={content.ctaSection.cta.href}
-          className="inline-block w-full rounded-lg px-8 py-4 text-center text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
-          style={{
-            background: 'linear-gradient(90deg, #FF5B23, #F2BB06)',
-          }}
-        >
-          {content.ctaSection.cta.text}
-        </a>
-
-        <p className="mt-4 text-xs text-gray-500">
-          No long-term contracts. Cancel anytime.
-        </p>
-      </div>
-    </div>
-  </section>
-);
-
 export default function AiSetterPage() {
   return (
     <PageLayout
@@ -487,18 +352,18 @@ export default function AiSetterPage() {
       footer={
         <>
           <FAQ {...content.faq} />
-          <CTASection />
+          <CTASection {...content.cta} />
           <DisclaimerFooter {...content.footer} />
         </>
       }
     >
       <SocialProofLogos {...content.socialProof} />
-      <CaseStudySection />
-      <ProblemSection />
+      <BenefitsSection {...content.benefits} />
+      <ProblemSection {...content.problem} />
       <HowItWorks {...content.howItWorks} />
       <ComparisonTable {...content.comparison} />
-      <ResultsSection />
-      <TestimonialsSection />
+      <ResultsSection {...content.results} />
+      <TestimonialsSection {...content.testimonials} />
     </PageLayout>
   );
 }
