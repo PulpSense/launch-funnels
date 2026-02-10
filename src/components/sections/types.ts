@@ -168,3 +168,55 @@ export type UnqualifiedContentProps = {
   reapplyText: string;
   reapplyHref: string;
 };
+
+// Benefits Section Types (Case Study / Hook Section)
+export type BenefitsSectionProps = {
+  headline: string;
+  benefits: string[];
+  cta?: SectionCTAConfig;
+};
+
+// Problem Section Types
+export type ProblemSectionProps = {
+  headline: string;
+  paragraphs: string[];
+  /** Text to emphasize (will be bold if it matches a paragraph exactly) */
+  emphasizedText?: string;
+  highlight: string;
+  conclusion: string;
+  cta?: SectionCTAConfig;
+};
+
+// Results Section Types
+export type ResultsSectionProps = {
+  header: string;
+  stats: string[];
+};
+
+// Testimonials Section Types
+export type TestimonialItem = {
+  quote: string;
+  name: string;
+  title: string;
+  avatar?: string;
+  stars?: number;
+};
+
+export type TestimonialsSectionProps = {
+  header?: string;
+  testimonials: TestimonialItem[];
+};
+
+// CTA Section Types
+export type CTASectionProps = {
+  id?: string;
+  header: string;
+  steps: string[];
+  cta: {
+    text: string;
+    href: string;
+  };
+  urgency?: string;
+  cardTitle?: string;
+  cardSubtext?: string;
+};
