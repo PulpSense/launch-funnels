@@ -7,7 +7,7 @@ type ContentCardProps = {
 
 const ContentCard = ({ children, className = '' }: ContentCardProps) => (
   <div
-    className={`mx-auto my-12 max-w-5xl rounded-2xl bg-white px-8 py-10 shadow-[0_8px_60px_rgba(0,0,0,0.16)] md:px-12 ${className}`.trim()}
+    className={`mx-4 my-12 max-w-5xl rounded-2xl bg-white px-8 py-10 shadow-[0_8px_60px_rgba(0,0,0,0.16)] md:mx-auto md:px-12 ${className}`.trim()}
   >
     {children}
   </div>
