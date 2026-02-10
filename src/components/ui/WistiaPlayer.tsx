@@ -16,11 +16,11 @@ const WistiaPlayer = ({
   const strategy = priority ? 'afterInteractive' : 'lazyOnload';
 
   return (
-    <>
-      <Script
-        src="https://fast.wistia.com/player.js"
-        strategy={strategy}
-      />
+    <div
+      className="relative w-full"
+      style={{ aspectRatio: aspect }}
+    >
+      <Script src="https://fast.wistia.com/player.js" strategy={strategy} />
       <Script
         src={`https://fast.wistia.com/embed/${mediaId}.js`}
         strategy={strategy}
@@ -28,12 +28,15 @@ const WistiaPlayer = ({
       />
       <style
         dangerouslySetInnerHTML={{
-          __html: `wistia-player[media-id='${mediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch'); display: block; filter: blur(5px); padding-top: ${(1 / aspect) * 100}%; }`,
+          __html: `
+            wistia-player[media-id='${mediaId}'] { position: absolute; inset: 0; width: 100%; height: 100%; }
+            wistia-player[media-id='${mediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch'); filter: blur(5px); }
+          `,
         }}
       />
       {/* @ts-expect-error -- wistia-player is a custom element */}
       <wistia-player media-id={mediaId} aspect={String(aspect)} />
-    </>
+    </div>
   );
 };
 
