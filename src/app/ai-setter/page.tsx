@@ -51,7 +51,7 @@ const content = {
       'Without hiring, training, or babysitting another human. Your AI setter qualifies leads, handles objections, and fills your calendar while your team focuses on closing.',
     video: {
       provider: 'wistia',
-      videoId: 'tam0inpvqg', // Replace with actual video ID
+      videoId: 'sm1gejc6p5',
     },
     cta: {
       text: 'See If You Qualify →',
@@ -61,17 +61,26 @@ const content = {
     },
   } satisfies HeroSectionProps,
 
+  clientLogos: {
+    title: 'Trusted By Growing Businesses',
+    invertLogos: true,
+    logos: [
+      { src: '/ai-setter/images/client-logos/logo-client-1.avif', alt: 'Client 1' },
+      { src: '/ai-setter/images/client-logos/logo-client-2.avif', alt: 'Client 2' },
+      { src: '/ai-setter/images/client-logos/logo-client-3.svg', alt: 'Client 3' },
+      { src: '/ai-setter/images/client-logos/logo-client-4.avif', alt: 'Client 4' },
+      { src: '/ai-setter/images/client-logos/logo-client-5.avif', alt: 'Client 5' },
+    ],
+  } satisfies SocialProofLogosProps,
+
   socialProof: {
     title: 'Built With Enterprise-Grade Tools',
     logos: [
-      { src: '/ai-setter/images/logo-make.svg', alt: 'Make.com' },
-      { src: '/ai-setter/images/logo-n8n.svg', alt: 'n8n' },
-      {
-        src: '/ai-setter/images/logo-gohighlevel.svg',
-        alt: 'GoHighLevel',
-      },
-      { src: '/ai-setter/images/logo-openai.svg', alt: 'OpenAI' },
-      { src: '/ai-setter/images/logo-twilio.svg', alt: 'Twilio' },
+      { src: '/ai-setter/images/tools/48001205362-using-the-highlevel-logo.png', alt: 'GoHighLevel' },
+      { src: '/ai-setter/images/tools/HubSpot_Logo.svg.png', alt: 'HubSpot' },
+      { src: '/ai-setter/images/tools/N8n-logo-new.svg.png', alt: 'n8n' },
+      { src: '/ai-setter/images/tools/Salesforce.com_logo.svg', alt: 'Salesforce' },
+      { src: '/ai-setter/images/tools/Twilio_logo.png', alt: 'Twilio' },
     ],
   } satisfies SocialProofLogosProps,
 
@@ -235,27 +244,31 @@ const content = {
     testimonials: [
       {
         quote:
-          'We were spending $28K a month on setters and still missing leads. Within the first week of going live with PulpSense, our response time went from hours to seconds. My closers are finally talking to people who are actually qualified. The ROI was obvious in the first 30 days.',
-        name: '[Client Name]',
-        title: '[Title], [Company]',
+          "I can't say enough good things about working with Santi and PulpSense. They go above and beyond for their clients. They truly listen. They nailed the complicated nature of our project and communicated every step of the way.\n\nThe systems they set up for me are exactly what I needed - they work. Further, he has gone above and beyond to continue to check in with me and our team to make sure all systems continue to run smoothly.\n\nIf you have an online business and need help, they are your go to. I will absolutely continue to work with them in the future and consider them a valuable part of my team.",
+        name: 'Meegan Gregg',
+        title: 'Backbody Project',
+        avatar: '/ai-setter/images/testimonials/meegan.avif',
       },
       {
         quote:
-          'I did not need another tool. I needed a machine. For the first time in a long time, my pipeline behaves predictably. The system follows up, qualifies, and books without me checking in. My business finally feels like an asset that runs instead of a monster that constantly needs to be fed.',
-        name: '[Client Name]',
-        title: '[Title], [Company]',
+          'Absolutely thrilled with the experience of working with Santi and his team on our AI and automations trainings! His deep knowledge and remarkable professionalism shone through every step of the way.\n\nHis ability to simplify complex concepts and his meticulous attention to detail made the whole process seamless and highly productive. I highly recommend him to anyone looking to excel in this field. A true gem in the world of AI and automations!',
+        name: 'George Banda',
+        title: 'Skale Media',
+        avatar: '/ai-setter/images/testimonials/george.avif',
       },
       {
         quote:
-          'We tried automation before and it broke under volume. PulpSense is different. The system held when we scaled ad spend 3x. No more scrambling. No more leaked leads. Just qualified calls showing up on the calendar every morning.',
-        name: '[Client Name]',
-        title: '[Title], [Company]',
+          'Before Santi, our sales system was disjointed, creating extra steps and slowing us down. Santi came in, understood the gaps, and streamlined everything. He automated processes and connected tools like Make, Monday.com, and AI, creating a seamless flow from sales to onboarding and delivery.\n\nHe was clear, flexible, and always delivered. Now, we\'re more efficient, and our team can focus on scaling instead of admin work. Highly recommend working with him.',
+        name: 'Charlie Vicente',
+        title: 'Ares Projects',
+        avatar: '/ai-setter/images/testimonials/charlie.avif',
       },
       {
         quote:
-          'The biggest change has been trust. I trust the pipeline again. Not because I am checking it more, but because it behaves more predictably. Stages make sense. Ownership is clear. Nothing sits without a next step. I am thinking about scaling again, but with less fear.',
-        name: '[Client Name]',
-        title: '[Title], [Company]',
+          "Working with Santi was a total game changer. Before, our leads would load to our CRM overnight, so we'd often respond a day late, hurting our conversions.\n\nNow, thanks to his automations, leads get added into our CRM instantly, a sales rep gets assigned to it and instantly gets contacted. It's saved us loads of time and really boosted our conversions. Highly recommend them if you want to stay on top of your leads!",
+        name: 'Facundo Rosello',
+        title: 'Good Nomads',
+        avatar: '/ai-setter/images/testimonials/facundo.avif',
       },
     ],
   } satisfies TestimonialsSectionProps,
@@ -357,8 +370,9 @@ export default function AiSetterPage() {
         </>
       }
     >
-      <SocialProofLogos {...content.socialProof} />
+      <SocialProofLogos {...content.clientLogos} />
       <BenefitsSection {...content.benefits} />
+      <SocialProofLogos {...content.socialProof} />
       <ProblemSection {...content.problem} />
       <HowItWorks {...content.howItWorks} />
       <ComparisonTable {...content.comparison} />
