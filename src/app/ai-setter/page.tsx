@@ -340,7 +340,7 @@ const content = {
     ],
     cta: {
       text: 'Book Your AI Setter Demo →',
-      href: 'https://calendly.com/your-link', // Replace with actual booking link
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
     urgency: 'Limited spots available this week',
   } satisfies CTASectionProps,

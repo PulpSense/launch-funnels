@@ -18,7 +18,7 @@ const ThankYouHero = ({
       {(requiredLabel || subtitle) && (
         <h2 className="mb-6 text-xl text-white md:text-2xl">
           {requiredLabel && (
-            <span className="mr-1 rounded bg-red-500 px-2 py-0.5 font-bold text-white">
+            <span className="mr-1 rounded bg-gradient-to-r from-orange-500 to-orange-400 px-2 py-0.5 font-bold text-white">
               {requiredLabel}
             </span>
           )}
@@ -29,14 +29,14 @@ const ThankYouHero = ({
 
       {/* Red alert banner */}
       {alertMessage && (
-        <div className="mx-auto mb-6 max-w-2xl rounded-t-lg bg-red-500 px-4 py-3 text-sm font-medium text-white">
+        <div className="mx-auto max-w-2xl rounded-t-lg bg-red-500 px-4 py-3 text-sm font-medium text-white">
           {alertMessage}
         </div>
       )}
 
       {/* Video area */}
       {videoPlaceholder && (
-        <div className="mx-auto max-w-2xl overflow-hidden rounded-lg bg-black shadow-xl">
+        <div className="mx-auto max-w-2xl overflow-hidden rounded-b-lg bg-black shadow-xl">
           {videoPlaceholder.provider ? (
             <VideoEmbed video={videoPlaceholder} priority />
           ) : (
