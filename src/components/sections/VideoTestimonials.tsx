@@ -26,7 +26,7 @@ const VideoTestimonials = ({
 }: VideoTestimonialsProps) => {
   const renderVideo = (video: VideoConfig) => {
     if (video.provider === 'wistia') {
-      return <WistiaPlayer videoId={video.videoId} />;
+      return <WistiaPlayer mediaId={video.videoId} />;
     }
     if (video.provider === 'youtube') {
       return <YouTubePlayer videoId={video.videoId} />;

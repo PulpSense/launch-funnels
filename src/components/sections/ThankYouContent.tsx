@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import { ContentCard } from '@/components/ui/ContentCard';
 import { VideoEmbed } from '@/components/ui/VideoEmbed';
 
 import type { ThankYouContentProps } from './types';
@@ -7,7 +8,7 @@ import type { ThankYouContentProps } from './types';
 const ThankYouContent = ({ steps, bottomVideos }: ThankYouContentProps) => {
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-3xl px-4 md:px-12">
+      <ContentCard>
         {steps.map((step) => (
           <div key={step.number} className="mb-10 text-center last:mb-0">
             {/* Step heading with orange gradient badge */}
@@ -64,56 +65,56 @@ const ThankYouContent = ({ steps, bottomVideos }: ThankYouContentProps) => {
             )}
           </div>
         ))}
+      </ContentCard>
 
-        {/* Video thumbnails grid */}
-        {bottomVideos && bottomVideos.length > 0 && (
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {bottomVideos.map((video) => (
-              <div key={video.title} className="text-center">
-                <h4 className="mb-3 text-sm font-bold text-black">
-                  {video.title}
-                </h4>
-                {video.provider ? (
-                  <div className="overflow-hidden rounded-lg">
-                    <VideoEmbed video={video} />
-                  </div>
-                ) : (
-                  <a
-                    href={video.href || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative block aspect-video overflow-hidden rounded-lg bg-navy-800"
-                  >
-                    {video.thumbnailSrc ? (
-                      <Image
-                        src={video.thumbnailSrc}
-                        alt={video.title}
-                        fill
-                        className="object-cover transition-transform group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="flex size-full items-center justify-center bg-navy-800" />
-                    )}
-                    {/* Play button overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex size-12 items-center justify-center rounded-full bg-black/60 transition-colors group-hover:bg-black/80">
-                        <svg
-                          className="ml-0.5 size-5 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
+      {/* Video thumbnails grid */}
+      {bottomVideos && bottomVideos.length > 0 && (
+        <div className="mx-auto mt-16 grid max-w-3xl gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3">
+          {bottomVideos.map((video) => (
+            <div key={video.title} className="text-center">
+              <h4 className="mb-3 text-sm font-bold text-black">
+                {video.title}
+              </h4>
+              {video.provider ? (
+                <div className="overflow-hidden rounded-lg">
+                  <VideoEmbed video={video} />
+                </div>
+              ) : (
+                <a
+                  href={video.href || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block aspect-video overflow-hidden rounded-lg bg-navy-800"
+                >
+                  {video.thumbnailSrc ? (
+                    <Image
+                      src={video.thumbnailSrc}
+                      alt={video.title}
+                      fill
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex size-full items-center justify-center bg-navy-800" />
+                  )}
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex size-12 items-center justify-center rounded-full bg-black/60 transition-colors group-hover:bg-black/80">
+                      <svg
+                        className="ml-0.5 size-5 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
                     </div>
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+                  </div>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
