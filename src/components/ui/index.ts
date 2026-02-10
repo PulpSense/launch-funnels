@@ -7,6 +7,8 @@ export { HighlightBox } from './HighlightBox';
 export { Logo } from './Logo';
 export { PillBadge } from './PillBadge';
 export { Section } from './Section';
+export { TrackingPixels } from './TrackingPixels';
+export type { PixelConfig, TrackingPixelsProps } from './TrackingPixels';
 export { TrustBadge } from './TrustBadge';
 export { PageLayout } from './PageLayout';
 export { VideoEmbed } from './VideoEmbed';
