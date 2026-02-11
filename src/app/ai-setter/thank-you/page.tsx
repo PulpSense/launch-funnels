@@ -24,6 +24,10 @@ export const metadata: Metadata = {
 const content = {
   pixels: {
     facebookPixelId: '', // Add your Facebook Pixel ID here
+    facebookEvents: [
+      { name: 'PageView', type: 'standard' },
+      { name: 'Schedule', type: 'custom' },
+    ],
   } satisfies PixelConfig,
 
   hero: {
