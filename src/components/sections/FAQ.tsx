@@ -80,7 +80,7 @@ const FAQ = ({ headerLabel, header, items, cta }: FAQProps) => {
         {/* CTA Button */}
         {cta && (
           <div className="mt-12 text-center">
-            <GradientButton xl scrollTo={cta.scrollTo}>
+            <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
               {cta.text}
             </GradientButton>
           </div>

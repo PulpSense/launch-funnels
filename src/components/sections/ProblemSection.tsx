@@ -11,7 +11,7 @@ const ProblemSection = ({
   cta,
 }: ProblemSectionProps) => {
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-gray-100">
       <ContentCard>
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 md:text-3xl">
           {headline}
@@ -38,7 +38,7 @@ const ProblemSection = ({
         </p>
         {cta && (
           <div className="mt-10 text-center">
-            <GradientButton xl scrollTo={cta.scrollTo}>
+            <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
               {cta.text}
             </GradientButton>
           </div>
