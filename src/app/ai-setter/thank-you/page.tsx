@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const content = {
   pixels: {
     facebookPixelId: '828948073514575',
-    facebookEvents: [{ name: 'Schedule', type: 'custom' }],
+    facebookEvents: [{ name: 'Schedule', type: 'standard' }],
   } satisfies PixelConfig,
 
   hero: {
