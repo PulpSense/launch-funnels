@@ -36,7 +36,7 @@ const ThankYouHero = ({
 
       {/* Video area */}
       {videoPlaceholder && (
-        <div className="mx-auto max-w-2xl overflow-hidden rounded-b-lg bg-black shadow-xl">
+        <div className={`mx-auto max-w-2xl overflow-hidden bg-black shadow-xl ${alertMessage ? 'rounded-b-lg' : 'rounded-lg'}`}>
           {videoPlaceholder.provider ? (
             <VideoEmbed video={videoPlaceholder} priority />
           ) : (

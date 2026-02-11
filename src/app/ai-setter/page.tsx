@@ -12,6 +12,7 @@ import {
   ResultsSection,
   SocialProofLogos,
   TestimonialsSection,
+  VideoTestimonials,
 } from '@/components/sections';
 import type {
   BenefitsSectionProps,
@@ -25,6 +26,7 @@ import type {
   ResultsSectionProps,
   SocialProofLogosProps,
   TestimonialsSectionProps,
+  VideoTestimonialsProps,
 } from '@/components/sections';
 import { PageLayout, TrackingPixels } from '@/components/ui';
 import type { PixelConfig } from '@/components/ui';
@@ -255,6 +257,28 @@ const content = {
     ],
   } satisfies TestimonialsSectionProps,
 
+  videoTestimonials: {
+    header: 'See the Results for Yourself',
+    videos: [
+      {
+        video: { provider: 'wistia', videoId: 'mg51fk3kah' },
+        title: 'Amazon Agency Cuts VAs 67% & Saves 400+ Hs/Wk',
+      },
+      {
+        video: { provider: 'wistia', videoId: 'nrehjvyz7s' },
+        title: 'Sports Agency Grows 4 to 25 Clubs, Cuts 640 Hs/M',
+      },
+      {
+        video: { provider: 'wistia', videoId: 'ge2tc7bxu9' },
+        title: '$630K in Captured Global Food Trading Opportunities',
+      },
+    ],
+    cta: {
+      text: 'See If You Qualify →',
+      href: 'https://pulpsense.fillout.com/ai-setter',
+    },
+  } satisfies VideoTestimonialsProps,
+
   faq: {
     headerLabel: 'FAQ',
     header: 'Frequently Asked Questions',
@@ -362,6 +386,7 @@ export default function AiSetterPage() {
       <ComparisonTable {...content.comparison} />
       <ResultsSection {...content.results} />
       <TestimonialsSection {...content.testimonials} />
+      <VideoTestimonials {...content.videoTestimonials} />
     </PageLayout>
     </>
   );
