@@ -5,6 +5,7 @@ export { FormEmbed } from './FormEmbed';
 export { GradientButton } from './GradientButton';
 export { HighlightBox } from './HighlightBox';
 export { Logo } from './Logo';
+export { Marquee } from './Marquee';
 export { PillBadge } from './PillBadge';
 export { Section } from './Section';
 export { TrackingPixels } from './TrackingPixels';
