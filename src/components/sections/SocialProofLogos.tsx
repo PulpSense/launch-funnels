@@ -22,7 +22,7 @@ const SocialProofLogos = ({
   return (
     <div className="bg-gray-50 py-4">
       <div className="mx-auto max-w-5xl px-4">
-        <Marquee pauseOnHover className="[--duration:15s] [--gap:5rem]">
+        <Marquee pauseOnHover className="[--duration:20s] [--gap:3rem]">
           {logos.map((logo, index) => (
             <Image
               key={index}
