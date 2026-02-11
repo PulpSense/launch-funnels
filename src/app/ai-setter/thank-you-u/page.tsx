@@ -25,11 +25,9 @@ const content = {
     title: '🎉 Congratulations: One last step 🚨',
     subtitle: 'Watch this important video',
     requiredLabel: 'Required',
-    alertMessage:
-      'Watch the video below before your call to make the most of our time together.',
     videoPlaceholder: {
       provider: 'wistia',
-      videoId: 'tam0inpvqg', // Replace with pre-call video
+      videoId: 'sm1gejc6p5', // Temporarily using main page video
     },
   } satisfies ThankYouHeroProps,
 
