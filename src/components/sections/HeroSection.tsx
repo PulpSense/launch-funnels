@@ -13,7 +13,7 @@ const HeroSection = ({
   cta,
 }: HeroSectionProps) => {
   return (
-    <section className="pb-12 pt-6 md:pb-16 md:pt-8">
+    <section className="pb-6 pt-6 md:pb-8 md:pt-8">
       <div className="mx-auto max-w-4xl px-4">
         {/* Trust badge */}
         <div className="mb-4 flex justify-center md:mb-6">
