@@ -26,7 +26,8 @@ import type {
   SocialProofLogosProps,
   TestimonialsSectionProps,
 } from '@/components/sections';
-import { PageLayout } from '@/components/ui';
+import { PageLayout, TrackingPixels } from '@/components/ui';
+import type { PixelConfig } from '@/components/ui';
 
 export const metadata: Metadata = {
   title:
@@ -36,6 +37,11 @@ export const metadata: Metadata = {
 };
 
 const content = {
+  pixels: {
+    facebookPixelId: '', // Add your Facebook Pixel ID here
+    facebookEvents: [{ name: 'PageView', type: 'standard' }],
+  } satisfies PixelConfig,
+
   hero: {
     trustBadge: {
       text: 'Trusted by 50+ Founders',
@@ -363,7 +369,9 @@ const content = {
 
 export default function AiSetterPage() {
   return (
-    <PageLayout
+    <>
+      <TrackingPixels pixels={content.pixels} />
+      <PageLayout
       hero={<HeroSection {...content.hero} />}
       footer={
         <>
@@ -382,5 +390,6 @@ export default function AiSetterPage() {
       <ResultsSection {...content.results} />
       <TestimonialsSection {...content.testimonials} />
     </PageLayout>
+    </>
   );
 }
