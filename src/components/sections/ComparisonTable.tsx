@@ -101,7 +101,7 @@ const ComparisonTable = ({
         {/* CTA */}
         {cta && (
           <div className="mt-10 text-center">
-            <GradientButton xl scrollTo={cta.scrollTo}>
+            <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
               {cta.text}
             </GradientButton>
           </div>

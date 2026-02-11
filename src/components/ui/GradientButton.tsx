@@ -7,6 +7,7 @@ type GradientButtonProps = {
   xl?: boolean;
   children: ReactNode;
   scrollTo?: string;
+  href?: string;
   onClick?: () => void;
 };
 
@@ -14,6 +15,7 @@ const GradientButton = ({
   xl,
   children,
   scrollTo,
+  href,
   onClick,
 }: GradientButtonProps) => {
   const handleClick = () => {
@@ -32,14 +34,22 @@ const GradientButton = ({
     },
   );
 
+  const style = { background: 'linear-gradient(90deg, #FF5B23, #F2BB06)' };
+
+  if (href) {
+    return (
+      <a href={href} className={btnClass} style={style}>
+        {children}
+      </a>
+    );
+  }
+
   return (
     <button
       type="button"
       className={btnClass}
       onClick={handleClick}
-      style={{
-        background: 'linear-gradient(90deg, #FF5B23, #F2BB06)',
-      }}
+      style={style}
     >
       {children}
     </button>
