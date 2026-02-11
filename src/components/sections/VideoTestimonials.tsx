@@ -85,7 +85,7 @@ const VideoTestimonials = ({
         {/* CTA */}
         {cta && (
           <div className="mt-12 text-center">
-            <GradientButton xl scrollTo={cta.scrollTo}>
+            <GradientButton xl href={cta.href} scrollTo={cta.scrollTo}>
               {cta.text}
             </GradientButton>
           </div>
