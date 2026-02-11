@@ -172,18 +172,13 @@ const content = {
       },
       {
         feature: 'Availability',
-        traditional: 'Business hours only',
-        modern: '24/7/365, no breaks',
+        traditional: 'Business hours, sick days, turnover',
+        modern: '24/7/365 — never quits, never calls in sick',
       },
       {
         feature: 'Consistency',
         traditional: 'Varies by mood, day, skill',
-        modern: 'Same quality every conversation',
-      },
-      {
-        feature: 'Qualification Accuracy',
-        traditional: 'Depends on training + memory',
-        modern: 'Follows your exact criteria, no deviation',
+        modern: 'Same quality every conversation, no deviation',
       },
       {
         feature: 'Follow-Up',
@@ -191,45 +186,20 @@ const content = {
         modern: 'Automated, persistent, timed perfectly',
       },
       {
-        feature: 'Onboarding Time',
-        traditional: '2–4 weeks per new hire',
-        modern: 'Built and live within days',
-      },
-      {
         feature: 'Monthly Cost',
-        traditional: '$1K–$2K+ per setter',
+        traditional: '$3K–$8K+ per setter (fully loaded)',
         modern: "Fraction of one setter's salary",
       },
       {
         feature: 'Scalability',
-        traditional: 'Hire more = more payroll',
-        modern: 'Handles volume without added headcount',
-      },
-      {
-        feature: 'Churn Risk',
-        traditional: 'High (setters leave constantly)',
-        modern: 'Zero. Your AI never quits.',
-      },
-      {
-        feature: 'Objection Handling',
-        traditional: 'Inconsistent across reps',
-        modern: 'Trained on your best scripts, every time',
-      },
-      {
-        feature: 'Data & Insights',
-        traditional: 'Anecdotal at best',
-        modern: 'Every conversation logged and analyzed',
-      },
-      {
-        feature: 'Long-Term Contracts',
-        traditional: 'Employment obligations',
-        modern: 'No lock-in. Cancel anytime.',
+        traditional: 'More leads = more hires = more payroll',
+        modern: 'Handles unlimited volume, no added headcount',
       },
     ],
     bottomNote: {
       title: 'The Bottom Line',
       content:
-        'Your closers are only as good as the meetings on their calendar. When the setter is inconsistent, everything downstream suffers: show rates drop, close rates fall, and revenue becomes unpredictable. Your AI setter removes the weakest link in your sales chain and replaces it with a system that compounds instead of decays.',
+        'Your closers are only as good as the meetings on their calendar. Replace the weakest link in your sales chain with a system that compounds instead of decays.',
     },
     cta: {
       text: 'See If You Qualify →',
