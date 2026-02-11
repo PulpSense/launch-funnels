@@ -38,17 +38,17 @@ export const metadata: Metadata = {
 const content = {
   hero: {
     trustBadge: {
-      text: 'Trusted by 40+ High-Growth Founders',
+      text: 'Trusted by 50+ Founders',
       stars: 5,
     },
     banner: {
-      text: '🚨 Attention Coaches, Consultants & Agency Owners Doing $5M+ 🚨',
+      text: 'Coaches, Consultants & Agencies',
       variant: 'orange',
     },
     headline: 'We Replace Your Inconsistent Setters With an AI That',
     highlightedText: 'Books Qualified Calls 24/7.',
     subheadline:
-      'Without hiring, training, or babysitting another human. Your AI setter qualifies leads, handles objections, and fills your calendar while your team focuses on closing.',
+      'No hiring, training, or babysitting. Your AI qualifies leads, handles objections, and fills your calendar.',
     video: {
       provider: 'wistia',
       videoId: 'sm1gejc6p5',
@@ -56,8 +56,7 @@ const content = {
     cta: {
       text: 'See If You Qualify →',
       scrollTo: 'apply-section',
-      disclaimer:
-        'Our Clients See an Average 3x Increase in Booked Qualified Calls',
+      disclaimer: 'Clients see 3x more booked calls',
     },
   } satisfies HeroSectionProps,
 

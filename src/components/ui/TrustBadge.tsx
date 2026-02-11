@@ -20,8 +20,8 @@ const TrustBadge = ({
 }: TrustBadgeProps) => {
   return (
     <div className="flex items-center gap-3">
-      {/* Overlapping profile images */}
-      <div className="flex -space-x-2">
+      {/* Overlapping profile images - hidden on mobile */}
+      <div className="hidden -space-x-2 md:flex">
         {avatars.map((src, i) => (
           <Image
             key={i}
