@@ -12,7 +12,8 @@ import type {
   ThankYouContentProps,
   ThankYouHeroProps,
 } from '@/components/sections';
-import { PageLayout } from '@/components/ui';
+import { PageLayout, TrackingPixels } from '@/components/ui';
+import type { PixelConfig } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Your Call is Booked! | AI Appointment Setter',
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
 };
 
 const content = {
+  pixels: {
+    facebookPixelId: '', // Add your Facebook Pixel ID here
+  } satisfies PixelConfig,
+
   hero: {
     title: '🎉 Congratulations: One last step 🚨',
     subtitle: 'Watch this important video',
@@ -147,7 +152,9 @@ const content = {
 
 export default function ThankYouPage() {
   return (
-    <PageLayout
+    <>
+      <TrackingPixels pixels={content.pixels} />
+      <PageLayout
       hero={<ThankYouHero {...content.hero} />}
       footer={
         <>
@@ -158,5 +165,6 @@ export default function ThankYouPage() {
     >
       <ThankYouContent {...content.content} />
     </PageLayout>
+    </>
   );
 }
