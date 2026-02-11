@@ -20,14 +20,9 @@ const SocialProofLogos = ({
   invertLogos = false,
 }: SocialProofLogosProps) => {
   return (
-    <div className="bg-gray-50 py-8">
+    <div className="bg-gray-50 py-4">
       <div className="mx-auto max-w-5xl px-4">
-        {title && (
-          <p className="mb-6 text-center text-sm font-medium uppercase tracking-wide text-gray-500">
-            {title}
-          </p>
-        )}
-        <Marquee pauseOnHover className="[--duration:15s] [--gap:3rem]">
+        <Marquee pauseOnHover className="[--duration:15s] [--gap:5rem]">
           {logos.map((logo, index) => (
             <Image
               key={index}
@@ -43,6 +38,11 @@ const SocialProofLogos = ({
             />
           ))}
         </Marquee>
+        {title && (
+          <p className="mt-3 text-center text-sm font-medium uppercase tracking-wide text-gray-500">
+            {title}
+          </p>
+        )}
       </div>
     </div>
   );

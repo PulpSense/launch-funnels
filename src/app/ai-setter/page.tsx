@@ -75,6 +75,9 @@ const content = {
       { src: '/assets/images/client-logos/logo-client-3.svg', alt: 'Client 3' },
       { src: '/assets/images/client-logos/logo-client-4.avif', alt: 'Client 4' },
       { src: '/assets/images/client-logos/logo-client-5.avif', alt: 'Client 5' },
+      { src: '/assets/images/client-logos/logo-client-6.avif', alt: 'Client 6' },
+      { src: '/assets/images/client-logos/logo-client-7.avif', alt: 'Client 7' },
+      { src: '/assets/images/client-logos/logo-client-8.svg', alt: 'Client 8' },
     ],
   } satisfies SocialProofLogosProps,
 
