@@ -33,7 +33,7 @@ const content = {
     requiredLabel: 'Required',
     videoPlaceholder: {
       provider: 'wistia',
-      videoId: 'sm1gejc6p5', // Temporarily using main page video
+      videoId: 'q16jferagz',
     },
   } satisfies ThankYouHeroProps,
 

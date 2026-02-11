@@ -92,9 +92,9 @@ const ComparisonTable = ({
 
         {/* Bottom Note */}
         {bottomNote && (
-          <div className="mt-8 rounded-xl bg-blue-600 p-6 text-center text-white">
-            <h3 className="mb-2 text-lg font-bold">{bottomNote.title}</h3>
-            <p className="text-sm text-blue-100">{bottomNote.content}</p>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-blue-600 px-8 py-8 text-center text-white">
+            <h3 className="mb-3 text-xl font-bold italic">{bottomNote.title}</h3>
+            <p className="text-base leading-relaxed text-blue-50">{bottomNote.content}</p>
           </div>
         )}
 
