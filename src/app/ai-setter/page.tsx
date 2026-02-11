@@ -61,7 +61,7 @@ const content = {
     },
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
       disclaimer: 'Clients see 3x more booked calls',
     },
   } satisfies HeroSectionProps,
@@ -104,7 +104,7 @@ const content = {
     ],
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies BenefitsSectionProps,
 
@@ -125,7 +125,7 @@ const content = {
       "The businesses that figure this out first will not just grow faster. They will make their competitors irrelevant. Because while everyone else is hiring their fifth setter and praying for consistency, you will have a system that never sleeps, never forgets, and never has a bad day.",
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies ProblemSectionProps,
 
@@ -154,7 +154,7 @@ const content = {
     ],
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies HowItWorksProps,
 
@@ -233,7 +233,7 @@ const content = {
     },
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies ComparisonTableProps,
 
@@ -334,7 +334,7 @@ const content = {
     ],
     cta: {
       text: 'Book Your AI Setter Demo →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies FAQProps,
 

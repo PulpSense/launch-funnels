@@ -57,7 +57,7 @@ const HeroSection = ({
 
         {/* CTA Button */}
         <div className="text-center">
-          <GradientButton xl scrollTo={cta.scrollTo}>
+          <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
             {cta.text}
           </GradientButton>
           {cta.disclaimer && (

@@ -2,6 +2,7 @@
 export type SectionCTAConfig = {
   text: string;
   scrollTo?: string;
+  href?: string;
 };
 
 // Hero Section Types
@@ -24,6 +25,7 @@ export type VideoConfig =
 export type CTAConfig = {
   text: string;
   scrollTo?: string;
+  href?: string;
   disclaimer?: string;
 };
 
