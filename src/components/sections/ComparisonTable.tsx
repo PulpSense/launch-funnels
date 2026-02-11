@@ -45,7 +45,7 @@ const ComparisonTable = ({
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-8">
       <div className="mx-auto max-w-screen-lg px-4">
         {/* Header */}
         <div className="mb-8 text-center">
