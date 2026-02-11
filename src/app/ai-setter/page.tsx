@@ -12,6 +12,7 @@ import {
   ResultsSection,
   SocialProofLogos,
   TestimonialsSection,
+  VideoTestimonials,
 } from '@/components/sections';
 import type {
   BenefitsSectionProps,
@@ -25,8 +26,10 @@ import type {
   ResultsSectionProps,
   SocialProofLogosProps,
   TestimonialsSectionProps,
+  VideoTestimonialsProps,
 } from '@/components/sections';
-import { PageLayout } from '@/components/ui';
+import { PageLayout, TrackingPixels } from '@/components/ui';
+import type { PixelConfig } from '@/components/ui';
 
 export const metadata: Metadata = {
   title:
@@ -36,28 +39,32 @@ export const metadata: Metadata = {
 };
 
 const content = {
+  pixels: {
+    facebookPixelId: '', // Add your Facebook Pixel ID here
+    facebookEvents: [{ name: 'PageView', type: 'standard' }],
+  } satisfies PixelConfig,
+
   hero: {
     trustBadge: {
-      text: 'Trusted by 40+ High-Growth Founders',
+      text: 'Trusted by 50+ Founders',
       stars: 5,
     },
     banner: {
-      text: '🚨 Attention Coaches, Consultants & Agency Owners Doing $5M+ 🚨',
+      text: 'Coaches, Consultants & Agencies',
       variant: 'orange',
     },
     headline: 'We Replace Your Inconsistent Setters With an AI That',
     highlightedText: 'Books Qualified Calls 24/7.',
     subheadline:
-      'Without hiring, training, or babysitting another human. Your AI setter qualifies leads, handles objections, and fills your calendar while your team focuses on closing.',
+      'No hiring, training, or babysitting. Your AI qualifies leads, handles objections, and fills your calendar.',
     video: {
       provider: 'wistia',
       videoId: 'sm1gejc6p5',
     },
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
-      disclaimer:
-        'Our Clients See an Average 3x Increase in Booked Qualified Calls',
+      href: 'https://pulpsense.fillout.com/ai-setter',
+      disclaimer: 'Clients see 3x more booked calls',
     },
   } satisfies HeroSectionProps,
 
@@ -65,11 +72,14 @@ const content = {
     title: 'Trusted By Growing Businesses',
     invertLogos: true,
     logos: [
-      { src: '/ai-setter/images/client-logos/logo-client-1.avif', alt: 'Client 1' },
-      { src: '/ai-setter/images/client-logos/logo-client-2.avif', alt: 'Client 2' },
-      { src: '/ai-setter/images/client-logos/logo-client-3.svg', alt: 'Client 3' },
-      { src: '/ai-setter/images/client-logos/logo-client-4.avif', alt: 'Client 4' },
-      { src: '/ai-setter/images/client-logos/logo-client-5.avif', alt: 'Client 5' },
+      { src: '/assets/images/client-logos/logo-client-1.avif', alt: 'Client 1' },
+      { src: '/assets/images/client-logos/logo-client-2.avif', alt: 'Client 2' },
+      { src: '/assets/images/client-logos/logo-client-3.svg', alt: 'Client 3' },
+      { src: '/assets/images/client-logos/logo-client-4.avif', alt: 'Client 4' },
+      { src: '/assets/images/client-logos/logo-client-5.avif', alt: 'Client 5' },
+      { src: '/assets/images/client-logos/logo-client-6.avif', alt: 'Client 6' },
+      { src: '/assets/images/client-logos/logo-client-7.avif', alt: 'Client 7' },
+      { src: '/assets/images/client-logos/logo-client-8.svg', alt: 'Client 8' },
     ],
   } satisfies SocialProofLogosProps,
 
@@ -96,7 +106,7 @@ const content = {
     ],
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies BenefitsSectionProps,
 
@@ -117,7 +127,7 @@ const content = {
       "The businesses that figure this out first will not just grow faster. They will make their competitors irrelevant. Because while everyone else is hiring their fifth setter and praying for consistency, you will have a system that never sleeps, never forgets, and never has a bad day.",
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies ProblemSectionProps,
 
@@ -146,7 +156,7 @@ const content = {
     ],
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies HowItWorksProps,
 
@@ -164,18 +174,13 @@ const content = {
       },
       {
         feature: 'Availability',
-        traditional: 'Business hours only',
-        modern: '24/7/365, no breaks',
+        traditional: 'Business hours, sick days, turnover',
+        modern: '24/7/365 — never quits, never calls in sick',
       },
       {
         feature: 'Consistency',
         traditional: 'Varies by mood, day, skill',
-        modern: 'Same quality every conversation',
-      },
-      {
-        feature: 'Qualification Accuracy',
-        traditional: 'Depends on training + memory',
-        modern: 'Follows your exact criteria, no deviation',
+        modern: 'Same quality every conversation, no deviation',
       },
       {
         feature: 'Follow-Up',
@@ -183,49 +188,24 @@ const content = {
         modern: 'Automated, persistent, timed perfectly',
       },
       {
-        feature: 'Onboarding Time',
-        traditional: '2–4 weeks per new hire',
-        modern: 'Built and live within days',
-      },
-      {
         feature: 'Monthly Cost',
-        traditional: '$1K–$2K+ per setter',
+        traditional: '$3K–$8K+ per setter (fully loaded)',
         modern: "Fraction of one setter's salary",
       },
       {
         feature: 'Scalability',
-        traditional: 'Hire more = more payroll',
-        modern: 'Handles volume without added headcount',
-      },
-      {
-        feature: 'Churn Risk',
-        traditional: 'High (setters leave constantly)',
-        modern: 'Zero. Your AI never quits.',
-      },
-      {
-        feature: 'Objection Handling',
-        traditional: 'Inconsistent across reps',
-        modern: 'Trained on your best scripts, every time',
-      },
-      {
-        feature: 'Data & Insights',
-        traditional: 'Anecdotal at best',
-        modern: 'Every conversation logged and analyzed',
-      },
-      {
-        feature: 'Long-Term Contracts',
-        traditional: 'Employment obligations',
-        modern: 'No lock-in. Cancel anytime.',
+        traditional: 'More leads = more hires = more payroll',
+        modern: 'Handles unlimited volume, no added headcount',
       },
     ],
     bottomNote: {
       title: 'The Bottom Line',
       content:
-        'Your closers are only as good as the meetings on their calendar. When the setter is inconsistent, everything downstream suffers: show rates drop, close rates fall, and revenue becomes unpredictable. Your AI setter removes the weakest link in your sales chain and replaces it with a system that compounds instead of decays.',
+        'Your closers are only as good as the meetings on their calendar. Replace the weakest link in your sales chain with a system that compounds instead of decays.',
     },
     cta: {
       text: 'See If You Qualify →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies ComparisonTableProps,
 
@@ -248,7 +228,7 @@ const content = {
           "Working with Santi was a total game changer. Before, our leads would load to our CRM overnight, so we'd often respond a day late, hurting our conversions.\n\nNow, thanks to his automations, leads get added into our CRM instantly, a sales rep gets assigned to it and instantly gets contacted. It's saved us loads of time and really boosted our conversions. Highly recommend them if you want to stay on top of your leads!",
         name: 'Facundo Rosello',
         title: 'Good Nomads',
-        avatar: '/ai-setter/images/testimonials/facundo.avif',
+        avatar: '/assets/images/testimonials/facundo.avif',
       },
       {
         // Trimmed to focus on sales system + automation, removed generic praise
@@ -256,7 +236,7 @@ const content = {
           "Before Santi, our sales system was disjointed, creating extra steps and slowing us down. Santi came in, understood the gaps, and streamlined everything.\n\nHe automated processes and connected tools like Make, Monday.com, and AI, creating a seamless flow from sales to onboarding and delivery. Now, we're more efficient, and our team can focus on scaling instead of admin work.",
         name: 'Charlie Vicente',
         title: 'Ares Projects',
-        avatar: '/ai-setter/images/testimonials/charlie.avif',
+        avatar: '/assets/images/testimonials/charlie.avif',
       },
       {
         // Trimmed to focus on systems + ongoing reliability, removed generic "go to" pitch
@@ -264,7 +244,7 @@ const content = {
           "They nailed the complicated nature of our project and communicated every step of the way. The systems they set up for me are exactly what I needed - they work.\n\nFurther, he has gone above and beyond to continue to check in with me and our team to make sure all systems continue to run smoothly. I consider them a valuable part of my team.",
         name: 'Meegan Gregg',
         title: 'Backbody Project',
-        avatar: '/ai-setter/images/testimonials/meegan.avif',
+        avatar: '/assets/images/testimonials/meegan.avif',
       },
       {
         // Reframed around AI expertise - this is the weakest fit, consider replacing
@@ -272,10 +252,32 @@ const content = {
           "Santi's deep knowledge of AI and automations shone through every step of the way. His ability to simplify complex concepts and his meticulous attention to detail made the whole process seamless and highly productive.\n\nI highly recommend him to anyone looking to excel in this field. A true gem in the world of AI and automations!",
         name: 'George Banda',
         title: 'Skale Media',
-        avatar: '/ai-setter/images/testimonials/george.avif',
+        avatar: '/assets/images/testimonials/george.avif',
       },
     ],
   } satisfies TestimonialsSectionProps,
+
+  videoTestimonials: {
+    header: 'See the Results for Yourself',
+    videos: [
+      {
+        video: { provider: 'wistia', videoId: 'mg51fk3kah' },
+        title: 'Amazon Agency Cuts VAs 67% & Saves 400+ Hs/Wk',
+      },
+      {
+        video: { provider: 'wistia', videoId: 'nrehjvyz7s' },
+        title: 'Sports Agency Grows 4 to 25 Clubs, Cuts 640 Hs/M',
+      },
+      {
+        video: { provider: 'wistia', videoId: 'ge2tc7bxu9' },
+        title: '$630K in Captured Global Food Trading Opportunities',
+      },
+    ],
+    cta: {
+      text: 'See If You Qualify →',
+      href: 'https://pulpsense.fillout.com/ai-setter',
+    },
+  } satisfies VideoTestimonialsProps,
 
   faq: {
     headerLabel: 'FAQ',
@@ -326,7 +328,7 @@ const content = {
     ],
     cta: {
       text: 'Book Your AI Setter Demo →',
-      scrollTo: 'apply-section',
+      href: 'https://pulpsense.fillout.com/ai-setter',
     },
   } satisfies FAQProps,
 
@@ -364,7 +366,9 @@ const content = {
 
 export default function AiSetterPage() {
   return (
-    <PageLayout
+    <>
+      <TrackingPixels pixels={content.pixels} />
+      <PageLayout
       hero={<HeroSection {...content.hero} />}
       footer={
         <>
@@ -382,6 +386,8 @@ export default function AiSetterPage() {
       <ComparisonTable {...content.comparison} />
       <ResultsSection {...content.results} />
       <TestimonialsSection {...content.testimonials} />
+      <VideoTestimonials {...content.videoTestimonials} />
     </PageLayout>
+    </>
   );
 }

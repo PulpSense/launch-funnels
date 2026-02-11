@@ -13,10 +13,10 @@ const HeroSection = ({
   cta,
 }: HeroSectionProps) => {
   return (
-    <section className="pb-16 pt-8">
+    <section className="pb-6 pt-6 md:pb-8 md:pt-8">
       <div className="mx-auto max-w-4xl px-4">
         {/* Trust badge */}
-        <div className="mb-6 flex justify-center">
+        <div className="mb-4 flex justify-center md:mb-6">
           <TrustBadge
             text={trustBadge.text}
             stars={trustBadge.stars}
@@ -25,16 +25,16 @@ const HeroSection = ({
         </div>
 
         {/* Banner */}
-        <div className="mb-8 overflow-hidden rounded-full">
+        <div className="mb-6 overflow-hidden rounded-full md:mb-8">
           <div className="bg-[#FA6B18] px-4 py-1 text-center">
-            <span className="text-lg font-bold text-white md:text-xl">
+            <span className="text-sm font-bold text-white md:text-lg">
               {banner.text}
             </span>
           </div>
         </div>
 
         {/* Main headline */}
-        <h1 className="mb-6 text-center text-2xl font-extrabold leading-tight text-white md:text-3xl lg:text-4xl">
+        <h1 className="mb-4 text-center text-xl font-extrabold leading-tight text-white md:mb-6 md:text-2xl lg:text-3xl">
           {headline}
           {highlightedText && (
             <>
@@ -46,18 +46,18 @@ const HeroSection = ({
         </h1>
 
         {/* Subheadline */}
-        <p className="mx-auto mb-8 max-w-2xl text-center text-lg text-gray-300">
+        <p className="mx-auto mb-6 max-w-2xl text-center text-base text-gray-300 md:mb-8 md:text-lg">
           {subheadline}
         </p>
 
         {/* Video placeholder */}
-        <div className="mb-8">
+        <div className="mb-6 md:mb-8">
           <VideoPlaceholder video={video} priority />
         </div>
 
         {/* CTA Button */}
         <div className="text-center">
-          <GradientButton xl scrollTo={cta.scrollTo}>
+          <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
             {cta.text}
           </GradientButton>
           {cta.disclaimer && (

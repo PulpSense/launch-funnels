@@ -45,7 +45,7 @@ const ComparisonTable = ({
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-8">
       <div className="mx-auto max-w-screen-lg px-4">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -79,8 +79,8 @@ const ComparisonTable = ({
               key={index}
               className={`grid grid-cols-3 ${index !== rows.length - 1 ? 'border-b border-gray-100' : ''}`}
             >
-              <div className="p-4 text-sm text-gray-700">{row.feature}</div>
-              <div className="flex items-center justify-center border-x border-gray-100 p-4 text-center text-sm text-gray-600">
+              <div className="p-4 text-sm font-medium text-gray-900">{row.feature}</div>
+              <div className="flex items-center justify-center border-x border-gray-100 p-4 text-center text-sm text-gray-700">
                 {renderCellValue(row.traditional)}
               </div>
               <div className="flex items-center justify-center p-4 text-center text-sm font-medium text-gray-900">
@@ -101,7 +101,7 @@ const ComparisonTable = ({
         {/* CTA */}
         {cta && (
           <div className="mt-10 text-center">
-            <GradientButton xl scrollTo={cta.scrollTo}>
+            <GradientButton xl scrollTo={cta.scrollTo} href={cta.href}>
               {cta.text}
             </GradientButton>
           </div>

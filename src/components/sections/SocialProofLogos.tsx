@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { Marquee } from '@/components/ui';
+
 export type SocialProofLogosProps = {
   title?: string;
   logos: Array<{
@@ -18,14 +20,9 @@ const SocialProofLogos = ({
   invertLogos = false,
 }: SocialProofLogosProps) => {
   return (
-    <div className="bg-gray-50 py-8">
+    <div className="bg-gray-50 py-4">
       <div className="mx-auto max-w-5xl px-4">
-        {title && (
-          <p className="mb-6 text-center text-sm font-medium uppercase tracking-wide text-gray-500">
-            {title}
-          </p>
-        )}
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+        <Marquee pauseOnHover className="[--duration:20s] [--gap:3rem]">
           {logos.map((logo, index) => (
             <Image
               key={index}
@@ -40,7 +37,12 @@ const SocialProofLogos = ({
               }`}
             />
           ))}
-        </div>
+        </Marquee>
+        {title && (
+          <p className="mt-3 text-center text-sm font-medium uppercase tracking-wide text-gray-500">
+            {title}
+          </p>
+        )}
       </div>
     </div>
   );
