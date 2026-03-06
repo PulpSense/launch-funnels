@@ -222,3 +222,55 @@ export type CTASectionProps = {
   cardTitle?: string;
   cardSubtext?: string;
 };
+
+// VSL Hero Section Types
+export type VSLHeroCheckoutConfig = {
+  originalPrice: number;
+  currentPrice: number;
+  productLabels: string[];
+  ctaText: string;
+  ctaScrollTo?: string;
+};
+
+export type VSLHeroSectionProps = {
+  announcementBar?: string;
+  forLabel: string;
+  headline: string;
+  highlightedPrice?: string;
+  subheadline: string;
+  video: VideoConfig;
+  checkout: VSLHeroCheckoutConfig;
+};
+
+// Bonus Section Types
+export type BonusItem = {
+  number: number;
+  title: string;
+  subtitle?: string;
+  paragraphs: string[];
+};
+
+export type BonusSectionProps = {
+  header: string;
+  bonuses: BonusItem[];
+  cta: SectionCTAConfig;
+};
+
+// Guarantee Section Types
+export type GuaranteeSectionProps = {
+  headline: string;
+  paragraphs: string[];
+  days: number;
+  keepOnRefund?: boolean;
+  cta: SectionCTAConfig;
+};
+
+// Scroller Summary Section Types
+export type ScrollerSummarySectionProps = {
+  label: string;
+  heading: string;
+  intro: string;
+  items: string[];
+  price: string;
+  cta: SectionCTAConfig;
+};
