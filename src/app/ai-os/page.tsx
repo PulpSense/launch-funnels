@@ -108,6 +108,7 @@ const content = {
       'You are the one who remembers which client is getting frustrated. You are the one checking messages to see if deliverables are on track. You are the one who notices when a lead goes cold because nobody followed up. You are the one reviewing content before it goes out, managing the pipeline in your head, and fielding questions from your team all day because they need your context to move forward.',
       'And the worst part? You have tried to fix this. You hired an ops person they needed three months of onboarding and still came to you for every decision. You bought project management tools your team used them for two weeks. You set up automations they handle the easy stuff but break the moment something falls outside the playbook.',
       'None of it replaced you. It just added more things to manage.',
+      'You are tired of copy-pasting between ChatGPT, Claude, and five other tabs just to get one piece of content out the door. Each tool does one thing. None of them know your business. None of them talk to each other.',
     ],
     emphasizedText: 'You are the system.',
     highlight:
