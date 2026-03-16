@@ -85,7 +85,7 @@ const content = {
 
   benefits: {
     headline:
-      'How We Eliminated 30+ Hours of Weekly Ops Work From Our Own Business and Now We Build It For Yours',
+      'How we eliminated 30+ hours of weekly ops work from our own business and our clients — and now we build it for yours',
     benefits: [
       'Your content pipeline runs on autopilot research, drafts, and scheduling handled before you wake up',
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM',
@@ -125,19 +125,19 @@ const content = {
     steps: [
       {
         number: 1,
-        title: 'We Audit Your Operations',
+        title: 'We audit your operations',
         description:
           'We map where your time goes, what falls through the cracks, and which workflows are costing you the most. No generic templates. We find where the AI OS will have the biggest immediate impact.',
       },
       {
         number: 2,
-        title: 'We Build and Deploy Your AI OS',
+        title: 'We build and deploy your AI OS',
         description:
           'We configure everything to your business: your CRM, your channels, your content pipeline, your processes. Trained on how your business actually works. Up and running in days.',
       },
       {
         number: 3,
-        title: 'We Train You to Own It',
+        title: 'We train you to own it',
         description:
           'Two to three hands-on sessions with you and your team. You learn how to use it, extend it, and build on top of it. No black box. No dependency on us. You own the system.',
       },
@@ -325,7 +325,7 @@ const content = {
   } satisfies FAQProps,
 
   cta: {
-    header: 'How the Application Process Works',
+    header: 'How the application process works',
     steps: [
       'Fill out a short application so we understand your business, your bottlenecks, and what you are trying to solve',
       'If it looks like a fit, you will be invited to book a 30-minute strategy call with Santi directly',
