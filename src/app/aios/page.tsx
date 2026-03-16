@@ -56,7 +56,7 @@ const content = {
     headline: 'We Build You an AI OS That',
     highlightedText: 'Becomes the Moat of Your Business.',
     subheadline:
-      'Not a chatbot. Not another SaaS tool. A real AI operating system that runs your backend, outpaces your competition, and becomes impossible to compete with. Setup in days, not months.',
+      'Not a chatbot. Not another SaaS tool. A real AI operating system that runs your backend, outpaces your competition, and becomes impossible to compete with. Setup in 2 weeks, not months.',
     video: {
       provider: 'wistia',
       videoId: '86m0027qn1',
