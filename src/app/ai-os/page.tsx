@@ -53,8 +53,8 @@ const content = {
       text: 'Coaches, Consultants & Agency Owners Doing $1M+/Year',
       variant: 'orange',
     },
-    headline: 'We Build You an AI OS That',
-    highlightedText: 'Becomes the Moat of Your Business.',
+    headline: 'We Build You an AI OS That Becomes',
+    highlightedText: '\nthe Moat of Your Business.',
     subheadline:
       'Not a chatbot. Not another SaaS tool. An AI Operating System built for your business that runs your backend, outpaces your competition, and becomes impossible to replicate. Setup in 2 weeks, not months.',
     video: {
@@ -85,7 +85,7 @@ const content = {
 
   benefits: {
     headline:
-      '30+ hours of ops work eliminated. From our own business and our clients.',
+      '30+ hours of ops work eliminated.\nFrom our own and our clients\' businesses.',
     benefits: [
       'Your content pipeline runs on autopilot. Research, drafts, and scheduling handled before you wake up.',
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM.',
@@ -224,7 +224,7 @@ const content = {
     testimonials: [
       {
         quote:
-          "Working with Santi was a total game changer. Before, our leads would load to our CRM overnight, so we'd often respond a day late, hurting our conversions.\n\nNow, thanks to his automations, leads get added into our CRM instantly, a sales rep gets assigned to it and instantly gets contacted. It's saved us loads of time and really boosted our conversions. Highly recommend them if you want to stay on top of your leads!",
+          "Working with Santi was a total game changer. Before, our leads would load to our CRM overnight, so we'd often respond a day late, hurting our conversions.\n\nNow, thanks to his automations, leads get added into our CRM and get contacted instantly. It's saved us loads of time and really boosted our conversions. Highly recommend them if you want to stay on top of your leads!",
         name: 'Facundo Rosello',
         title: 'Good Nomads',
         avatar: '/assets/images/testimonials/facundo.avif',
