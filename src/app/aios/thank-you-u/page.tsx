@@ -12,28 +12,22 @@ import type {
   ThankYouContentProps,
   ThankYouHeroProps,
 } from '@/components/sections';
-import { PageLayout, TrackingPixels } from '@/components/ui';
-import type { PixelConfig } from '@/components/ui';
+import { PageLayout } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: "You're In. Here's What Happens Next. | AI Employee",
+  title: "You're In. Here's What Happens Next. | AI OS",
   description:
     "We've received your application and it looks like a strong fit. Here's what to expect before your strategy call.",
 };
 
 const content = {
-  pixels: {
-    facebookPixelId: '828948073514575',
-    facebookEvents: [{ name: 'Schedule', type: 'standard' }],
-  } satisfies PixelConfig,
-
   hero: {
     title: "You're In. Here's What Happens Next.",
     subtitle: 'Watch this quick case study while you wait',
     requiredLabel: 'Required',
     videoPlaceholder: {
       provider: 'wistia',
-      videoId: 'mg51fk3kah', // Existing case study video
+      videoId: 'mg51fk3kah',
     },
   } satisfies ThankYouHeroProps,
 
@@ -142,11 +136,9 @@ const content = {
   } satisfies DisclaimerFooterProps,
 };
 
-export default function ThankYouPage() {
+export default function ThankYouUnqualifiedPage() {
   return (
-    <>
-      <TrackingPixels pixels={content.pixels} />
-      <PageLayout
+    <PageLayout
       hero={<ThankYouHero {...content.hero} />}
       footer={
         <>
@@ -157,6 +149,5 @@ export default function ThankYouPage() {
     >
       <ThankYouContent {...content.content} />
     </PageLayout>
-    </>
   );
 }

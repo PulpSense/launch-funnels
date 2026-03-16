@@ -33,9 +33,9 @@ import type { PixelConfig } from '@/components/ui';
 
 export const metadata: Metadata = {
   title:
-    'AI Employee for $1M+ Businesses | Runs Your Backend Operations 24/7',
+    'AI OS for $1M+ Businesses | The Operating System Your Business Has Been Missing',
   description:
-    'We build you an AI employee that actually runs your business backend. Not a chatbot. A real AI agent deployed on your hardware — managing content, monitoring clients, tracking leads, and reporting to you daily.',
+    'We build you an AI OS — not a chatbot, not an employee. A real AI operating system deployed on your hardware that holds all your business data, advises on decisions, runs your content, monitors clients, and reports to you daily.',
 };
 
 const content = {
@@ -62,9 +62,9 @@ const content = {
       videoId: 'sm1gejc6p5', // TODO: Replace with OpenClaw-specific video
     },
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
-      disclaimer: '3 spots available this month',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
+      disclaimer: 'Takes 2 minutes · 3 spots available this month',
     },
   } satisfies HeroSectionProps,
 
@@ -101,8 +101,8 @@ const content = {
       'Runs locally on your hardware. Your data never leaves your building. You own it completely.',
     ],
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies BenefitsSectionProps,
 
@@ -121,8 +121,8 @@ const content = {
     conclusion:
       'The businesses that break past this ceiling are not the ones that hire more people. They are the ones that build a system that watches the business the way the founder does — but without the founder having to be there. That is exactly what we build.',
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies ProblemSectionProps,
 
@@ -150,8 +150,8 @@ const content = {
       },
     ],
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies HowItWorksProps,
 
@@ -209,8 +209,8 @@ const content = {
         'An ops hire manages tasks. Your AI employee watches the entire business. It does not forget, it does not get overwhelmed, and it does not quit after 8 months to go work somewhere else.',
     },
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies ComparisonTableProps,
 
@@ -275,8 +275,8 @@ const content = {
       },
     ],
     cta: {
-      text: 'Book a Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies VideoTestimonialsProps,
 
@@ -326,22 +326,22 @@ const content = {
       },
     ],
     cta: {
-      text: 'Book Your Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
   } satisfies FAQProps,
 
   cta: {
-    header: 'What to Expect on Your 30-Minute Strategy Call',
+    header: 'How the Application Process Works',
     steps: [
-      'We audit your current operations and show you exactly where time, leads, and client trust are leaking',
-      'We walk you through a live demo of the AI agent using our own business as the example',
-      'We map out what your specific deployment would look like — which capabilities, which integrations, what timeline',
-      'No pressure. If it is not the right fit, we will tell you. We only take on 3 new clients per month.',
+      'Fill out a short application so we understand your business, your bottlenecks, and what you are trying to solve',
+      'If it looks like a fit, you will be invited to book a 30-minute strategy call with Santi directly',
+      'On the call, we audit your ops, walk you through a live demo, and map out your specific deployment',
+      'No pressure. We only take on 3 clients per month — this is to make sure every deployment gets done right.',
     ],
     cta: {
-      text: 'Book Your Strategy Call →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      text: 'Apply for AI OS →',
+      href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
     },
     urgency: '3 spots available this month',
   } satisfies CTASectionProps,
