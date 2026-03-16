@@ -238,7 +238,7 @@ export type VSLHeroSectionProps = {
   headline: string;
   highlightedPrice?: string;
   subheadline: string;
-  video: VideoConfig;
+  video?: VideoConfig;
   checkout: VSLHeroCheckoutConfig;
 };
 
