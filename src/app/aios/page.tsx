@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title:
     'AI OS for $1M+ Businesses | The Operating System Your Business Has Been Missing',
   description:
-    'We build you an AI OS — not a chatbot, not an employee. A real AI operating system deployed on your hardware that holds all your business data, advises on decisions, runs your content, monitors clients, and reports to you daily.',
+    'We build you an AI OS — not a chatbot, not an employee. A real AI operating system that holds all your business data, advises on decisions, runs your content, monitors clients, and reports to you daily.',
 };
 
 const content = {
@@ -53,14 +53,10 @@ const content = {
       text: 'Coaches, Consultants & Agency Owners Doing $1M+/Year',
       variant: 'orange',
     },
-    headline: 'We Build You an AI Employee That',
+    headline: 'We Build You an AI OS That',
     highlightedText: 'Actually Runs Your Business\'s Backend.',
     subheadline:
-      'Not a chatbot. Not another SaaS tool. A real AI agent deployed on your hardware — managing content, monitoring clients, tracking leads, and reporting to you daily. Setup in days, not months.',
-    video: {
-      provider: 'wistia',
-      videoId: 'sm1gejc6p5', // TODO: Replace with OpenClaw-specific video
-    },
+      'Not a chatbot. Not another SaaS tool. A real AI operating system — managing content, monitoring clients, tracking leads, and reporting to you daily. Setup in days, not months.',
     cta: {
       text: 'Apply for AI OS →',
       href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
@@ -83,13 +79,6 @@ const content = {
     ],
   } satisfies SocialProofLogosProps,
 
-  socialProof: {
-    title: 'Built With Enterprise-Grade Tools',
-    logos: [
-      { src: '/ai-setter/images/tools/N8n-logo-new.svg.png', alt: 'n8n' },
-    ],
-  } satisfies SocialProofLogosProps,
-
   benefits: {
     headline:
       'How We Eliminated 30+ Hours of Weekly Ops Work From Our Own Business — and Now We Build It For Yours',
@@ -98,7 +87,7 @@ const content = {
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM',
       'Your team communication channels get monitored 24/7 — issues flagged before they escalate, daily digests delivered to you',
       'You and your team get trained to use and extend the system yourselves. No black box. No dependency.',
-      'Runs locally on your hardware. Your data never leaves your building. You own it completely.',
+      'All your business data in one place — the AI OS knows your numbers, your pipeline, your content, and your clients at a glance.',
     ],
     cta: {
       text: 'Apply for AI OS →',
@@ -134,13 +123,13 @@ const content = {
         number: 1,
         title: 'We Audit Your Operations and Identify the Bottlenecks',
         description:
-          'We look at how your business actually runs day to day — where your time goes, what falls through the cracks, which tasks eat hours but add no value. No generic assessment. We map your specific workflows across content, sales, client management, and team coordination to find where an AI agent will have the biggest impact.',
+          'We look at how your business actually runs day to day — where your time goes, what falls through the cracks, which tasks eat hours but add no value. No generic assessment. We map your specific workflows across content, sales, client management, and team coordination to find where the AI OS will have the biggest impact.',
       },
       {
         number: 2,
-        title: 'We Build and Deploy Your AI Agent on Your Hardware',
+        title: 'We Build and Deploy Your AI OS',
         description:
-          'We configure a local AI agent tailored to your business — your CRM, your communication channels, your content pipeline, your processes. It runs on your machine, not in the cloud. Your data never leaves your building. The agent is trained on how your business works, not a generic template.',
+          'We configure an AI OS tailored to your business — your CRM, your communication channels, your content pipeline, your processes. The agent is trained on how your business works, not a generic template. Your data stays private and you control access completely.',
       },
       {
         number: 3,
@@ -157,10 +146,10 @@ const content = {
 
   comparison: {
     header: 'Hiring an Ops Person vs',
-    headerHighlight: 'Your AI Employee',
+    headerHighlight: 'Your AI OS',
     subheader: 'See why business owners are making the switch',
     traditionalLabel: 'Ops Hire',
-    modernLabel: 'Your AI Employee ✨',
+    modernLabel: 'Your AI OS ✨',
     rows: [
       {
         feature: 'Availability',
@@ -200,13 +189,13 @@ const content = {
       {
         feature: 'Data Privacy',
         traditional: 'Has access to everything, takes it when they leave',
-        modern: 'Runs locally, data never leaves your hardware',
+        modern: 'You control access completely. Data stays private.',
       },
     ],
     bottomNote: {
       title: 'The Bottom Line',
       content:
-        'An ops hire manages tasks. Your AI employee watches the entire business. It does not forget, it does not get overwhelmed, and it does not quit after 8 months to go work somewhere else.',
+        'An ops hire manages tasks. Your AI OS watches the entire business. It does not forget, it does not get overwhelmed, and it does not quit after 8 months to go work somewhere else.',
     },
     cta: {
       text: 'Apply for AI OS →',
@@ -220,7 +209,7 @@ const content = {
       '30+ hours of founder ops time reclaimed per week',
       'Lead follow-up time reduced from days to under 5 minutes',
       'Zero dropped leads or missed client escalations since deployment',
-      'Full agent operational within 7 days of kickoff',
+      'Full AI OS operational within 7 days of kickoff',
     ],
   } satisfies ResultsSectionProps,
 
@@ -292,7 +281,7 @@ const content = {
       {
         question: 'Is my client data safe?',
         answer:
-          'Yes. The agent runs locally on your hardware — not in the cloud. Your client data, lead information, messages, and internal files never leave your machine. Nothing is sent to external servers for storage or training. You control it completely.',
+          'Yes. Your client data, lead information, messages, and internal files are kept secure and private. You control access completely — nothing gets shared without your explicit setup.',
       },
       {
         question: 'What if something breaks or needs updating?',
@@ -312,17 +301,17 @@ const content = {
       {
         question: 'Why would I not just hire an ops person instead?',
         answer:
-          'You can. A good ops person costs $60K to $120K a year, needs months to ramp up, works business hours, and eventually leaves. Your AI employee costs a fraction of that, works 24/7, never forgets, and does not quit. Most of our clients use it alongside their team — it handles the monitoring and repetitive work so their people can focus on higher-value tasks.',
+          'You can. A good ops person costs $60K to $120K a year, needs months to ramp up, works business hours, and eventually leaves. Your AI OS costs a fraction of that, works 24/7, never forgets, and does not quit. Most of our clients use it alongside their team — it handles the monitoring and repetitive work so their people can focus on higher-value tasks.',
       },
       {
         question: 'Do I need to be technical to use this?',
         answer:
-          'No. The agent is designed to be used by business owners, not developers. You interact with it through Slack or a simple chat interface. We train you on everything during setup. If you can send a message, you can use the agent.',
+          'No. The AI OS is designed to be used by business owners, not developers. You interact with it through Slack or a simple chat interface. We train you on everything during setup. If you can send a message, you can use it.',
       },
       {
         question: 'What is the investment?',
         answer:
-          'We offer custom packages based on your business size, complexity, and which capabilities you need. Book a strategy call and we will walk you through options that make sense for your business.',
+          'We offer custom packages based on your business size, complexity, and which capabilities you need. Apply and we will walk you through options that make sense for your business.',
       },
     ],
     cta: {
@@ -363,30 +352,29 @@ const content = {
   } satisfies DisclaimerFooterProps,
 };
 
-export default function OpenClawAgentPage() {
+export default function AIOSPage() {
   return (
     <>
       <TrackingPixels pixels={content.pixels} />
       <PageLayout
-      hero={<HeroSection {...content.hero} />}
-      footer={
-        <>
-          <FAQ {...content.faq} />
-          <CTASection {...content.cta} />
-          <DisclaimerFooter {...content.footer} />
-        </>
-      }
-    >
-      <SocialProofLogos {...content.clientLogos} />
-      <BenefitsSection {...content.benefits} />
-      <SocialProofLogos {...content.socialProof} />
-      <ProblemSection {...content.problem} />
-      <HowItWorks {...content.howItWorks} />
-      <ComparisonTable {...content.comparison} />
-      <ResultsSection {...content.results} />
-      <TestimonialsSection {...content.testimonials} />
-      <VideoTestimonials {...content.videoTestimonials} />
-    </PageLayout>
+        hero={<HeroSection {...content.hero} />}
+        footer={
+          <>
+            <FAQ {...content.faq} />
+            <CTASection {...content.cta} />
+            <DisclaimerFooter {...content.footer} />
+          </>
+        }
+      >
+        <SocialProofLogos {...content.clientLogos} />
+        <BenefitsSection {...content.benefits} />
+        <ProblemSection {...content.problem} />
+        <HowItWorks {...content.howItWorks} />
+        <ComparisonTable {...content.comparison} />
+        <ResultsSection {...content.results} />
+        <TestimonialsSection {...content.testimonials} />
+        <VideoTestimonials {...content.videoTestimonials} />
+      </PageLayout>
     </>
   );
 }
