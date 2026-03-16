@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title:
     'AI OS for $1M+ Businesses | The Operating System Your Business Has Been Missing',
   description:
-    'We build you an AI OS not a chatbot, not an employee. A real AI operating system that holds all your business data, advises on decisions, runs your content, monitors clients, and reports to you daily.',
+    'We build you an AI OS. Not a chatbot, not an employee. A real AI Operating System that holds all your business data, advises on decisions, runs your content, monitors clients, and reports to you daily.',
 };
 
 const content = {
@@ -87,11 +87,11 @@ const content = {
     headline:
       '30+ hours of ops work eliminated. From our own business and our clients.',
     benefits: [
-      'Your content pipeline runs on autopilot research, drafts, and scheduling handled before you wake up',
-      'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM',
-      'Your team communication channels get monitored 24/7 issues flagged before they escalate, daily digests delivered to you',
-      'You and your team get trained to use and extend the system yourselves. No black box. No dependency.',
-      'All your business data in one place the AI OS knows your numbers, your pipeline, your content, and your clients at a glance.',
+      'Your content pipeline runs on autopilot. Research, drafts, and scheduling handled before you wake up.',
+      'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM.',
+      'Your team channels get monitored 24/7. Issues get flagged before they escalate, daily digests delivered to you.',
+      'You and your team get trained to use and extend the system. No black box. No dependency on us.',
+      'All your business data in one place. The AI OS knows your numbers, your pipeline, your content, and your clients.',
     ],
     cta: {
       text: 'Apply for AI OS →',
@@ -106,7 +106,7 @@ const content = {
       'You have clients. You have a team. Revenue is real. But somewhere past $1M, you became the operating system.',
       'The businesses that will own your market in 5 years are building AI into their core right now. Not as a feature. As infrastructure. As a moat.',
       'You are the one who remembers which client is getting frustrated. You are the one checking messages to see if deliverables are on track. You are the one who notices when a lead goes cold because nobody followed up. You are the one reviewing content before it goes out, managing the pipeline in your head, and fielding questions from your team all day because they need your context to move forward.',
-      'And the worst part? You have tried to fix this. You hired an ops person they needed three months of onboarding and still came to you for every decision. You bought project management tools your team used them for two weeks. You set up automations they handle the easy stuff but break the moment something falls outside the playbook.',
+      'And the worst part? You have tried to fix this. You hired an ops person. Three months of onboarding and they still came to you for every decision. You bought project management tools. Your team used them for two weeks. You set up automations. They handle the easy stuff but break the moment anything falls outside the script.',
       'None of it replaced you. It just added more things to manage.',
       'You are tired of copy-pasting between ChatGPT, Claude, and five other tabs just to get one piece of content out the door. Each tool does one thing. None of them know your business. None of them talk to each other.',
     ],
@@ -114,7 +114,7 @@ const content = {
     highlight:
       'Every hour you spend checking on your team is an hour you are not selling. Every lead that sits in your CRM for 48 hours without follow-up is revenue you will never recover. Every client issue you catch late costs 10x more to fix than if you had caught it on day one.',
     conclusion:
-      'The businesses that break past this ceiling are not the ones that hire more people. They are the ones that build a system that watches the business the way the founder does but without the founder having to be there. That is exactly what we build.',
+      'The businesses that break past this ceiling do not hire their way out. They build a system that watches the business the way the founder does, without the founder needing to be there. That is exactly what we build.',
     cta: {
       text: 'Apply for AI OS →',
       href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
@@ -160,7 +160,7 @@ const content = {
       {
         feature: 'Availability',
         traditional: 'Business hours, sick days, vacations',
-        modern: '24/7/365 never quits, never calls in sick',
+        modern: '24/7/365. Never quits, never calls in sick.',
       },
       {
         feature: 'Ramp-Up Time',
@@ -199,9 +199,9 @@ const content = {
       },
     ],
     bottomNote: {
-      title: 'The Bottom Line',
+      title: 'The bottom line',
       content:
-        'An ops hire manages tasks. Your AI OS watches the entire business. It does not forget, it does not get overwhelmed, and it does not quit after 8 months to go work somewhere else.',
+        'An ops hire manages tasks. Your AI OS watches the entire business. It does not forget, does not get overwhelmed, and does not quit after 8 months to go work somewhere else.',
     },
     cta: {
       text: 'Apply for AI OS →',
@@ -287,37 +287,37 @@ const content = {
       {
         question: 'Is my client data safe?',
         answer:
-          'Yes. Your client data, lead information, messages, and internal files are kept secure and private. You control access completely nothing gets shared without your explicit setup.',
+          'Yes. Your client data, lead information, messages, and internal files are kept secure and private. You control access completely. Nothing gets shared without your explicit setup.',
       },
       {
         question: 'What if something breaks or needs updating?',
         answer:
-          'That is what the maintenance retainer covers. We monitor, update, and improve your agent on an ongoing basis. If something needs adjusting as your business changes new CRM, new processes, new team members we handle it. You use it, we maintain it.',
+          'That is what the maintenance retainer covers. We monitor, update, and improve your agent on an ongoing basis. If something needs adjusting as your business changes (new CRM, new processes, new hires), we handle it. You use it, we maintain it.',
       },
       {
         question: 'We already tried automation and it did not stick.',
         answer:
-          'Most automation fails because it is rule-based and fragile. It only does exactly what you programmed it to do, and the moment something falls outside the playbook, it breaks or does nothing. An AI agent is different it understands context, adapts to new situations, and handles the stuff that rigid automations cannot. Plus, we train you to extend it yourself so it evolves with your business.',
+          'Most automation fails because it is rule-based and fragile. It only does what you programmed it to do, and the moment anything falls outside the playbook, it breaks. An AI agent is different. It understands context, adapts to new situations, and handles the stuff that rigid automations cannot. Plus, we train you to extend it yourself so it grows with your business.',
       },
       {
         question: 'How long does setup take?',
         answer:
-          'Most businesses are fully operational within 7 days. We start with an ops audit, build and configure the agent, then run training sessions with you and your team. You do not need to be technical we handle the setup end to end.',
+          'Most businesses are fully operational within 2 weeks. We start with an ops audit, build and configure the agent, then run training sessions with you and your team. You do not need to be technical. We handle the setup end to end.',
       },
       {
         question: 'Why would I not just hire an ops person instead?',
         answer:
-          'You can. A good ops person costs $60K to $120K a year, needs months to ramp up, works business hours, and eventually leaves. Your AI OS costs a fraction of that, works 24/7, never forgets, and does not quit. Most of our clients use it alongside their team it handles the monitoring and repetitive work so their people can focus on higher-value tasks.',
+          'You can. A good ops person costs $60K to $120K a year, needs months to ramp up, works business hours, and eventually leaves. Your AI OS costs a fraction of that, works 24/7, never forgets, and does not quit. Most clients use it alongside their team. It handles the monitoring and repetitive work so their people can focus on higher-value tasks.',
       },
       {
         question: 'Do I need to be technical to use this?',
         answer:
-          'No. The AI OS is designed to be used by business owners, not developers. You interact with it through Slack or a simple chat interface. We train you on everything during setup. If you can send a message, you can use it.',
+          'No. The AI OS is built for business owners, not developers. You interact with it through Slack or a simple chat interface. We train you on everything during setup. If you can send a message, you can use it.',
       },
       {
         question: 'What is the investment?',
         answer:
-          'We offer custom packages based on your business size, complexity, and which capabilities you need. Apply and we will walk you through options that make sense for your business.',
+          'We put together custom packages based on your business size, complexity, and what you need. Apply and we will walk you through the options on the call.',
       },
     ],
     cta: {
@@ -330,9 +330,9 @@ const content = {
     header: 'How the application process works',
     steps: [
       'Fill out a short application so we understand your business, your bottlenecks, and what you are trying to solve',
-      'If it looks like a fit, you will be invited to book a 30-minute strategy call with Santi directly',
-      'On the call, we audit your ops, walk you through a live demo, and map out your specific deployment',
-      'No pressure. We only take on 3 clients per month this is to make sure every deployment gets done right.',
+      'If it looks like a fit, you will be invited to book a 30-minute call with Santi directly',
+      'On the call, we audit your ops, walk you through a live demo, and map out your deployment',
+      'We take on 3 clients per month so every deployment gets done right. No pressure.',
     ],
     cta: {
       text: 'Apply for AI OS →',
