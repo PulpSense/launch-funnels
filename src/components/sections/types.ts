@@ -36,7 +36,7 @@ export type HeroSectionProps = {
   highlightedText?: string;
   headlineSuffix?: string;
   subheadline: string;
-  video: VideoConfig;
+  video?: VideoConfig;
   cta: CTAConfig;
 };
 

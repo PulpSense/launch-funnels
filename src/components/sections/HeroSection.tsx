@@ -51,9 +51,11 @@ const HeroSection = ({
         </p>
 
         {/* Video placeholder */}
-        <div className="mb-6 md:mb-8">
-          <VideoPlaceholder video={video} priority />
-        </div>
+        {video && (
+          <div className="mb-6 md:mb-8">
+            <VideoPlaceholder video={video} priority />
+          </div>
+        )}
 
         {/* CTA Button */}
         <div className="text-center">
