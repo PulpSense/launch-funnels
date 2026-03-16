@@ -56,7 +56,7 @@ const content = {
     headline: 'We Build You an AI OS That',
     highlightedText: 'Becomes the Moat of Your Business.',
     subheadline:
-      'Not a chatbot. Not another SaaS tool. A real AI operating system that runs your backend, outpaces your competition, and becomes impossible to compete with. Setup in 2 weeks, not months.',
+      'Not a chatbot. Not another SaaS tool. An AI Operating System built for your business that runs your backend, outpaces your competition, and becomes impossible to replicate. Setup in 2 weeks, not months.',
     video: {
       provider: 'wistia',
       videoId: '86m0027qn1',
@@ -69,7 +69,7 @@ const content = {
   } satisfies HeroSectionProps,
 
   clientLogos: {
-    title: 'Trusted By Growing Businesses',
+    title: 'Trusted by growing businesses',
     invertLogos: true,
     logos: [
       { src: '/assets/images/client-logos/logo-client-1.avif', alt: 'Client 1' },
@@ -85,7 +85,7 @@ const content = {
 
   benefits: {
     headline:
-      'How we eliminated 30+ hours of weekly ops work from our own business and our clients. And now we build it for yours.',
+      '30+ hours of ops work eliminated. From our own business and our clients.',
     benefits: [
       'Your content pipeline runs on autopilot research, drafts, and scheduling handled before you wake up',
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM',
@@ -151,7 +151,7 @@ const content = {
   } satisfies HowItWorksProps,
 
   comparison: {
-    header: 'Hiring an Ops Person vs',
+    header: 'Hiring an ops person vs',
     headerHighlight: 'Your AI OS',
     subheader: 'See why business owners are making the switch',
     traditionalLabel: 'Ops Hire',
@@ -210,7 +210,7 @@ const content = {
   } satisfies ComparisonTableProps,
 
   results: {
-    header: 'What Business Owners Are Seeing',
+    header: 'What business owners are seeing',
     stats: [
       '30+ hours of founder ops time reclaimed per week',
       'Lead follow-up time reduced from days to under 5 minutes',
@@ -220,7 +220,7 @@ const content = {
   } satisfies ResultsSectionProps,
 
   testimonials: {
-    header: 'What Our Clients Say',
+    header: 'What our clients say',
     testimonials: [
       {
         quote:
@@ -254,7 +254,7 @@ const content = {
   } satisfies TestimonialsSectionProps,
 
   videoTestimonials: {
-    header: 'See the Results for Yourself',
+    header: 'See the results for yourself',
     videos: [
       {
         video: { provider: 'wistia', videoId: 'mg51fk3kah' },
@@ -277,7 +277,7 @@ const content = {
 
   faq: {
     headerLabel: 'FAQ',
-    header: 'Frequently Asked Questions',
+    header: 'Frequently asked questions',
     items: [
       {
         question: 'How is this different from ChatGPT or other AI tools?',
