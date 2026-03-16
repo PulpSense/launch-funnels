@@ -29,12 +29,7 @@ const content = {
 
   hero: {
     title: "You're In. Here's What Happens Next.",
-    subtitle: 'Watch this quick case study while you wait',
-    requiredLabel: 'Required',
-    videoPlaceholder: {
-      provider: 'wistia',
-      videoId: 'mg51fk3kah', // Existing case study video
-    },
+    subtitle: 'Check your email for next steps.',
   } satisfies ThankYouHeroProps,
 
   content: {
