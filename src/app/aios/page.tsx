@@ -57,6 +57,10 @@ const content = {
     highlightedText: 'Actually Runs Your Business\'s Backend.',
     subheadline:
       'Not a chatbot. Not another SaaS tool. A real AI operating system — managing content, monitoring clients, tracking leads, and reporting to you daily. Setup in days, not months.',
+    video: {
+      provider: 'youtube',
+      videoId: 'WkITJ-WyHZA',
+    },
     cta: {
       text: 'Apply for AI OS →',
       href: 'https://pulpsense.fillout.com/t/xsMCsFPnw6us',
