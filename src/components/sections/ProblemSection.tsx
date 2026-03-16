@@ -14,7 +14,9 @@ const ProblemSection = ({
     <section className="bg-gray-100">
       <ContentCard>
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 md:text-3xl">
-          {headline}
+          {headline.split('\n').map((line, i) => (
+            <span key={i}>{line}{i < headline.split('\n').length - 1 && <br />}</span>
+          ))}
         </h2>
         <div className="mx-auto max-w-3xl space-y-4 text-gray-700 leading-relaxed">
           {paragraphs.map((paragraph, index) => (
