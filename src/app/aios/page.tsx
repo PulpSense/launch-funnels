@@ -103,7 +103,8 @@ const content = {
     headline:
       '🤔 You Built a Real Business. So Why Are You Still the One Holding It Together?',
     paragraphs: [
-      'You have clients. You have a team. Revenue is real. But somewhere past $1M, you became the operating system.\n\nThe businesses that will own your market in 5 years are building AI into their core right now. Not as a feature. As infrastructure. As a moat.',
+      'You have clients. You have a team. Revenue is real. But somewhere past $1M, you became the operating system.',
+      'The businesses that will own your market in 5 years are building AI into their core right now. Not as a feature. As infrastructure. As a moat.',
       'You are the one who remembers which client is getting frustrated. You are the one checking messages to see if deliverables are on track. You are the one who notices when a lead goes cold because nobody followed up. You are the one reviewing content before it goes out, managing the pipeline in your head, and fielding questions from your team all day because they need your context to move forward.',
       'And the worst part? You have tried to fix this. You hired an ops person they needed three months of onboarding and still came to you for every decision. You bought project management tools your team used them for two weeks. You set up automations they handle the easy stuff but break the moment something falls outside the playbook.',
       'None of it replaced you. It just added more things to manage.',
