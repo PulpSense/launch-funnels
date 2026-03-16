@@ -85,7 +85,7 @@ const content = {
 
   benefits: {
     headline:
-      'How we eliminated 30+ hours of weekly ops work from our own business and our clients — and now we build it for yours',
+      'How we eliminated 30+ hours of weekly ops work from our own business and our clients. And now we build it for yours.',
     benefits: [
       'Your content pipeline runs on autopilot research, drafts, and scheduling handled before you wake up',
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM',
@@ -101,7 +101,7 @@ const content = {
 
   problem: {
     headline:
-      '🤔 You Built a Real Business. So Why Are You Still the One Holding It Together?',
+      '🤔 You Built a Real Business.\nSo Why Are You Still the One Holding It Together?',
     paragraphs: [
       'You have clients. You have a team. Revenue is real. But somewhere past $1M, you became the operating system.',
       'The businesses that will own your market in 5 years are building AI into their core right now. Not as a feature. As infrastructure. As a moat.',
