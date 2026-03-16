@@ -39,7 +39,11 @@ const HeroSection = ({
           {highlightedText && (
             <>
               {' '}
-              <span className="text-orange-500">{highlightedText}</span>
+              <span className="text-orange-500">
+                {highlightedText.split('\n').map((line, i) => (
+                  <span key={i}>{i > 0 && <br />}{line}</span>
+                ))}
+              </span>
             </>
           )}
           {headlineSuffix && <> {headlineSuffix}</>}
