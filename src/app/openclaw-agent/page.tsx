@@ -719,6 +719,12 @@ export default function OpenClawAgentPage() {
             >
               {CTA_TEXT} &rarr;
             </a>
+
+            {/* Add-on strip — inside left card */}
+            <div className={s.addonInline}>
+              <span className={s.addonTitle}>Need more than 3 agents?</span>
+              <span className={s.addonPrice}>$1,500 each</span>
+            </div>
           </div>
 
           {/* Secondary — Retainer with 3 tiers */}
@@ -787,14 +793,6 @@ export default function OpenClawAgentPage() {
               {CTA_TEXT} &rarr;
             </a>
           </div>
-        </div>
-
-        {/* Add-on strip */}
-        <div className={s.addonStrip}>
-          <h4>Additional agents: $1,500 each</h4>
-          <p>
-            Need more than 3 agents? Add extras during setup or anytime after.
-          </p>
         </div>
 
         {/* Running cost note */}
