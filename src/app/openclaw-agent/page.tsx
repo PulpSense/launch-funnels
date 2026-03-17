@@ -87,7 +87,7 @@ const content = {
       'Every lead gets tracked, followed up on, and flagged automatically. No more deals dying in your CRM.',
       'Your team communication channels get monitored 24/7 — issues flagged before they escalate, daily digests delivered to you.',
       'You and your team get trained to use and extend the system yourselves. No black box. No dependency.',
-      'Runs locally on your hardware. Your data never leaves your building. You own it completely.',
+      'Runs on a dedicated private server provisioned for your business. Enterprise-grade security. Your data never touches shared infrastructure.',
     ],
     cta: {
       text: 'Book Your Free Strategy Call →',
@@ -284,7 +284,7 @@ const content = {
       {
         question: 'What is OpenClaw?',
         answer:
-          'OpenClaw is an open-source AI assistant that runs locally on your infrastructure. It connects to your messaging apps, email, calendar, CRM, and other tools. The software is free (MIT license). You only pay for API usage and hosting, which typically runs $8–$50/month depending on usage.',
+          'OpenClaw is an open-source AI assistant that runs on a dedicated private server provisioned for your business. It connects to your messaging apps, email, calendar, CRM, and other tools. The software is free (MIT license). You only pay for API usage and hosting, which typically runs $8–$50/month depending on usage.',
       },
       {
         question: 'What kind of tasks can AI agents handle?',
