@@ -84,19 +84,19 @@ const STEPS = [
 
 /* ── Deliverables ── */
 const DELIVERABLES_LEFT = [
-  '3 custom AI agents built for your workflows',
-  'Command Center dashboard — one view of all agent activity',
-  'CRM, email, calendar, and Slack integrations (5 included)',
-  'Custom prompt engineering tuned to your tone and rules',
-  'Approval rules and permission configuration',
+  '3 AI agents built around your actual workflows',
+  'One dashboard to see everything agents are doing',
+  '5 integrations: Gmail, Slack, CRM, calendar, and more',
+  'Agents tuned to your tone, your rules, your business',
+  'Approval controls so nothing sends without your sign-off',
 ];
 
 const DELIVERABLES_RIGHT = [
-  'Agent monitoring and alerting system',
-  '30-minute training video for you and your team',
-  'Documentation for every workflow we automate',
-  '14 days of post-launch hands-on support',
-  'Full ownership — everything we build is yours',
+  '30-min Loom walkthrough of your specific setup',
+  '14 days of support after you go live',
+  'Written docs for every workflow we automate',
+  'Monitoring so you know if something stops working',
+  'You own everything — code, configs, the whole system',
 ];
 
 /* ── Results ── */
