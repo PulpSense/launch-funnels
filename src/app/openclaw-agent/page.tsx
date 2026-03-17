@@ -181,7 +181,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What is the investment?',
-    a: 'Setup starts at $7,500 (early adopter pricing). Ongoing retainer tiers start at $1,500/month. Apply and we will walk you through the options on the call.',
+    a: 'Setup starts at $5,000 (early adopter pricing). Ongoing retainer tiers start at $1,500/month. Apply and we will walk you through the options on the call.',
   },
 ];
 
@@ -696,11 +696,11 @@ export default function OpenClawAgentPage() {
               Full AI agent system, built and deployed for your business.
             </p>
             <div className={s.priceRow}>
-              <span className={s.priceAmount}>$7,500</span>
+              <span className={s.priceAmount}>$5,000</span>
               <span className={s.pricePeriod}>one-time setup</span>
             </div>
             <div className={s.priceRow}>
-              <span className={s.priceOriginal}>$10,000</span>
+              <span className={s.priceOriginal}>$7,500</span>
             </div>
             <p className={s.priceNote}>Early adopter pricing</p>
             <ul>
