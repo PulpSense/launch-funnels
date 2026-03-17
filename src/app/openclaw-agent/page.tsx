@@ -189,40 +189,48 @@ const FAQ_ITEMS = [
 /* ── Timeline ── */
 const TIMELINE = [
   {
-    day: 'Day 1',
-    title: 'Kickoff & Operations Audit',
-    desc: '60-minute deep dive into your tools, workflows, and bottlenecks. We identify the 3 highest-ROI automations.',
+    badge: 'Within 48 hrs',
+    text: 'I reach out to schedule your kickoff call and create a dedicated Slack channel',
   },
   {
-    day: 'Days 2–7',
-    title: 'Build & Configure Agents',
-    desc: 'We build your 3 custom AI agents, connect integrations, engineer prompts, and set up your Command Center dashboard.',
+    badge: 'Day 1',
+    text: '60-minute discovery call. We map your workflows, integrations, and preferences.',
   },
   {
-    day: 'Days 8–10',
-    title: 'Internal Testing & QA',
-    desc: 'Every agent is stress-tested against real scenarios and edge cases. Permissions and approval rules locked down.',
+    badge: 'Days 2-12',
+    text: 'I build your agents, wire your integrations, and configure your dashboard',
   },
   {
-    day: 'Days 11–12',
-    title: 'Training & Handoff',
-    desc: '30-minute walkthrough with you and your team. Training video delivered. Full documentation provided.',
+    badge: 'Day 13',
+    text: 'Walkthrough and handoff. Recorded Loom + live Q&A. You\u2019re in control.',
   },
   {
-    day: 'Days 13–14+',
-    title: 'Go Live + Hands-On Support',
-    desc: 'Your agents go live. We monitor performance, tune prompts, and handle any issues for the first 14 days.',
+    badge: 'Day 14',
+    text: 'You\u2019re live. Second payment due only after you confirm it\u2019s working.',
   },
 ];
 
 /* ── Component ── */
 export default function OpenClawAgentPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [revenueDisplay, setRevenueDisplay] = useState('50,000');
   const [revenue, setRevenue] = useState(50000);
   const [adminHours, setAdminHours] = useState(15);
 
   const toggleFaq = useCallback(
     (i: number) => setOpenFaq((prev) => (prev === i ? null : i)),
+    [],
+  );
+
+  const handleRevenueChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const raw = e.target.value.replace(/,/g, '');
+      if (raw === '' || /^\d+$/.test(raw)) {
+        const num = Number(raw) || 0;
+        setRevenue(num);
+        setRevenueDisplay(num === 0 && raw === '' ? '' : num.toLocaleString());
+      }
+    },
     [],
   );
 
@@ -318,33 +326,6 @@ export default function OpenClawAgentPage() {
         Early adopter pricing for the first 5 clients. 2 spots left.
       </div>
 
-      {/* ── Nav ── */}
-      <nav className={s.nav}>
-        <div className={s.navInner}>
-          <a href="#" className={s.navLogo}>
-            Setup<span>Claw</span>
-          </a>
-          <ul className={s.navLinks}>
-            <li>
-              <a href="#how-it-works">How It Works</a>
-            </li>
-            <li>
-              <a href="#deliverables">Deliverables</a>
-            </li>
-            <li>
-              <a href="#pricing">Pricing</a>
-            </li>
-            <li>
-              <a href="#faq">FAQ</a>
-            </li>
-            <li>
-              <a href={CTA_HREF} className={s.navCta}>
-                {CTA_TEXT}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
 
       {/* ── Hero ── */}
       <section className={s.hero}>
@@ -409,12 +390,11 @@ export default function OpenClawAgentPage() {
       <section className={s.section}>
         <span className={s.sectionLabel}>The problem</span>
         <h2 className={s.sectionTitle}>
-          You built a real business. So why are you still the one holding it
-          together?
+          You didn&apos;t start a business to do admin
         </h2>
         <p className={s.sectionSubtitle}>
-          Somewhere past $50K/month, you became the operating system. These are
-          the symptoms.
+          But somehow, half your week is emails, reports, follow-ups, and CRM
+          updates. Sound familiar?
         </p>
         <div className={s.painGrid}>
           {PAIN_POINTS.map((p) => (
@@ -430,9 +410,10 @@ export default function OpenClawAgentPage() {
       {/* ── How It Works ── */}
       <section id="how-it-works" className={s.section}>
         <span className={s.sectionLabel}>The process</span>
-        <h2 className={s.sectionTitle}>How it works</h2>
+        <h2 className={s.sectionTitle}>How SetupClaw works</h2>
         <p className={s.sectionSubtitle}>
-          From audit to go-live in 14 days. Four steps, zero fluff.
+          From kickoff to go-live in 14 days. Your total time commitment: one
+          60-minute call.
         </p>
         <div className={s.stepsGrid}>
           {STEPS.map((step) => (
@@ -514,11 +495,10 @@ export default function OpenClawAgentPage() {
                 <div className={s.calcInputWrap}>
                   <span className={s.calcPrefix}>$</span>
                   <input
-                    type="number"
-                    value={revenue}
-                    min={0}
-                    step={5000}
-                    onChange={(e) => setRevenue(Number(e.target.value) || 0)}
+                    type="text"
+                    inputMode="numeric"
+                    value={revenueDisplay}
+                    onChange={handleRevenueChange}
                     className={s.calcInput}
                   />
                 </div>
@@ -702,7 +682,7 @@ export default function OpenClawAgentPage() {
       {/* ── Pricing ── */}
       <section id="pricing" className={s.section}>
         <span className={s.sectionLabel}>Investment</span>
-        <h2 className={s.sectionTitle}>Simple, transparent pricing</h2>
+        <h2 className={s.sectionTitle}>Simple pricing. No surprises.</h2>
         <p className={s.sectionSubtitle}>
           One-time setup + optional monthly retainer. You own everything we
           build.
@@ -812,7 +792,7 @@ export default function OpenClawAgentPage() {
 
         {/* Add-on strip */}
         <div className={s.addonStrip}>
-          <h4>Additional agents: $2,500 each</h4>
+          <h4>Additional agents: $1,500 each</h4>
           <p>
             Need more than 3 agents? Add extras during setup or anytime after.
           </p>
@@ -857,60 +837,60 @@ export default function OpenClawAgentPage() {
       </section>
 
       {/* ── Timeline ── */}
-      <section className={s.section}>
-        <span className={s.sectionLabel}>After you purchase</span>
-        <h2 className={s.sectionTitle}>Your 14-day timeline</h2>
-        <p className={s.sectionSubtitle}>
-          Here is exactly what happens after you say &ldquo;go.&rdquo;
-        </p>
-        <div className={s.timeline}>
-          {TIMELINE.map((t) => (
-            <div key={t.day} className={s.timelineItem}>
-              <div className={s.timelineDot} />
-              <div className={s.timelineDay}>{t.day}</div>
-              <h3>{t.title}</h3>
-              <p>{t.desc}</p>
-            </div>
-          ))}
+      <section className={s.timelineSection}>
+        <div className={s.wrap}>
+          <h2 className={s.timelineSectionH2}>After you purchase</h2>
+          <div className={s.timelineRef}>
+            {TIMELINE.map((t) => (
+              <div key={t.badge} className={s.timelineRefItem}>
+                <div className={s.timelineBadge}>{t.badge}</div>
+                <div className={s.timelineText}>{t.text}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section id="faq" className={s.section}>
-        <span className={s.sectionLabel}>FAQ</span>
-        <h2 className={s.sectionTitle} style={{ textAlign: 'center' }}>
-          Frequently asked questions
-        </h2>
-        <div className={s.faqList}>
-          {FAQ_ITEMS.map((item, i) => (
-            <div key={item.q} className={s.faqItem}>
-              <button className={s.faqQuestion} onClick={() => toggleFaq(i)}>
-                {item.q}
-                <span
-                  className={`${s.faqChevron} ${openFaq === i ? s.faqChevronOpen : ''}`}
-                >
-                  &#9662;
-                </span>
-              </button>
-              {openFaq === i && <div className={s.faqAnswer}>{item.a}</div>}
-            </div>
-          ))}
+      <section id="faq" className={s.faqSection}>
+        <div className={s.wrap}>
+          <h2 className={s.faqSectionH2}>Common questions</h2>
+          <div className={s.faqListRef}>
+            {FAQ_ITEMS.map((item, i) => (
+              <div
+                key={item.q}
+                className={`${s.faqItemRef} ${openFaq === i ? s.faqItemOpen : ''}`}
+              >
+                <button className={s.faqQ} onClick={() => toggleFaq(i)}>
+                  {item.q}
+                  <span className={s.faqIcon}>+</span>
+                </button>
+                <div className={s.faqA}>
+                  <p>{item.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Final CTA ── */}
-      <section className={s.finalCta}>
-        <h2>
-          Ready to get 15+ hours back every month?
-        </h2>
-        <p>
-          Book a free 25-minute strategy call. We&apos;ll audit your ops, show
-          you a live demo, and map out your deployment. No pressure — 3 spots
-          available this month.
-        </p>
-        <a href={CTA_HREF} className={s.ctaBtn}>
-          {CTA_TEXT} &rarr;
-        </a>
+      <section className={s.finalCtaRef} id="cta">
+        <div className={s.wrap}>
+          <h2>Ready to get 15+ hours back?</h2>
+          <p>
+            Book a free 25-minute strategy call. We&apos;ll map your biggest
+            time drains and show you exactly which 3 agents would make the
+            biggest impact.
+          </p>
+          <a href={CTA_HREF} className={s.ctaBtn}>
+            {CTA_TEXT}
+          </a>
+          <div className={s.finalCtaSub}>
+            No commitment. 25 minutes. If it&apos;s not a fit, we&apos;ll tell
+            you.
+          </div>
+        </div>
       </section>
 
       {/* ── Footer ── */}
