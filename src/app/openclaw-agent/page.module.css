@@ -281,10 +281,10 @@
 
 /* ── How It Works ── */
 .stepsGrid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  max-width: 640px;
+  max-width: 860px;
   margin: 0 auto;
 }
 
