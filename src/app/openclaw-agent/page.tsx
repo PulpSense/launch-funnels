@@ -755,9 +755,9 @@ export default function OpenClawAgentPage() {
                 </div>
                 <ul className={s.tierList}>
                   <li>Everything in Maintain</li>
-                  <li>1 new agent per month</li>
+                  <li>1 new agent every 2 months</li>
                   <li>Bi-weekly optimization call</li>
-                  <li>New tool integrations</li>
+                  <li>1 new tool integration per month</li>
                   <li>A/B testing of prompts</li>
                 </ul>
               </div>
