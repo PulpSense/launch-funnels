@@ -84,19 +84,19 @@ const STEPS = [
 
 /* ── Deliverables ── */
 const DELIVERABLES_LEFT = [
-  '3 AI agents built around your actual workflows',
-  'One dashboard to see everything agents are doing',
-  '5 integrations: Gmail, Slack, CRM, calendar, and more',
-  'Agents tuned to your tone, your rules, your business',
-  'Approval controls so nothing sends without your sign-off',
+  '3 custom AI agents for your top workflows',
+  'One dashboard for all agent activity',
+  '5 integrations: Gmail, Slack, CRM, calendar + more',
+  'Tuned to your tone, rules, and business logic',
+  'Approval controls on every agent action',
 ];
 
 const DELIVERABLES_RIGHT = [
-  '30-min Loom walkthrough of your specific setup',
-  '14 days of support after you go live',
-  'Written docs for every workflow we automate',
-  'Monitoring so you know if something stops working',
-  'You own everything — code, configs, the whole system',
+  '30-min Loom walkthrough of your setup',
+  '14 days of post-launch support',
+  'Written docs for every automated workflow',
+  'Monitoring and uptime alerts',
+  'Full ownership — code, configs, everything',
 ];
 
 /* ── Results ── */
@@ -336,15 +336,13 @@ export default function OpenClawAgentPage() {
           <span className={s.heroHighlight}>Let AI Handle It.</span>
         </h1>
         <p className={s.heroSub}>
-          We build 3 custom AI agents that handle your email, reporting, and
-          follow-ups 24/7. One dashboard. Set up in 14 days. You get 15+ hours
-          back every month.
+          3 AI agents. Email, reporting, and follow-ups handled 24/7. One dashboard. Live in 14 days.
         </p>
         <a href={CTA_HREF} className={s.ctaBtn}>
           {CTA_TEXT} &rarr;
         </a>
         <p className={s.ctaDisclaimer}>
-          No commitment. 25 minutes. We&apos;ll map your biggest time drains.
+          No commitment. 25 minutes.
         </p>
 
         {/* Stats bar */}
@@ -417,8 +415,10 @@ export default function OpenClawAgentPage() {
         <div className={s.stepsGrid}>
           {STEPS.map((step) => (
             <div key={step.num} className={s.stepCard}>
-              <div className={s.stepNumber}>{step.num}</div>
-              <h3>{step.title}</h3>
+              <div>
+                <span className={s.stepNumber}>{step.num}</span>
+                <h3>{step.title}</h3>
+              </div>
               <p>{step.desc}</p>
             </div>
           ))}
