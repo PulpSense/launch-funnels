@@ -1260,6 +1260,11 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  /* How it works — single column on mobile */
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
   /* Hero section — fit above fold on ~667px viewport */
   .hero {
     padding-top: 48px;
