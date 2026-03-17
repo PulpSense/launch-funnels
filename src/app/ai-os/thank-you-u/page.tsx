@@ -15,7 +15,7 @@ import type {
 import { PageLayout } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: "You're In. Here's What Happens Next. | AI OS",
+  title: "Thank You | The Operator Launchpad",
   description:
     "We've received your application and it looks like a strong fit. Here's what to expect before your strategy call.",
 };
