@@ -336,15 +336,13 @@ export default function OpenClawAgentPage() {
           <span className={s.heroHighlight}>Let AI Handle It.</span>
         </h1>
         <p className={s.heroSub}>
-          We build 3 custom AI agents that handle your email, reporting, and
-          follow-ups 24/7. One dashboard. Set up in 14 days. You get 15+ hours
-          back every month.
+          3 AI agents. Email, reporting, and follow-ups handled 24/7. One dashboard. Live in 14 days.
         </p>
         <a href={CTA_HREF} className={s.ctaBtn}>
           {CTA_TEXT} &rarr;
         </a>
         <p className={s.ctaDisclaimer}>
-          No commitment. 25 minutes. We&apos;ll map your biggest time drains.
+          No commitment. 25 minutes.
         </p>
 
         {/* Stats bar */}
