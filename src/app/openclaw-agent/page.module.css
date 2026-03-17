@@ -1280,9 +1280,9 @@
   }
 
   .heroSub {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
   }
 
   .ctaBtn {
@@ -1295,8 +1295,9 @@
   }
 
   .ctaDisclaimer {
-    font-size: 0.72rem;
-    margin-top: 8px;
+    font-size: 0.68rem;
+    margin-top: 6px;
+    white-space: nowrap;
   }
 
   .statsBar {
