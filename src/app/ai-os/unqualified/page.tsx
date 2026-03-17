@@ -13,7 +13,7 @@ import type {
 import { PageLayout } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: 'Thanks for Your Interest | AI Employee',
+  title: 'Thanks for Your Interest | The Operator Launchpad',
   description:
     'We appreciate your interest. This program may not be the right fit for your business right now.',
 };
@@ -30,7 +30,7 @@ const content = {
     },
     title: 'Thanks for Your Interest',
     subtitle:
-      'Based on your responses, this program may not be the right fit for your business right now. We typically work with coaches, consultants, and agency owners doing $1M+/year who have an established team and are looking to scale operations without adding headcount.',
+      'Based on your responses, this program may not be the right fit for your business right now. We typically work with coaches, consultants, and agency owners doing $50K+/month who have an established team and are looking to scale operations without adding headcount.',
     cta: {
       text: 'Follow Us for Free AI Content →',
       href: 'https://pulpsense.fillout.com/openclaw-agent',
@@ -41,7 +41,7 @@ const content = {
     followUpMessage:
       'If your situation changes, feel free to reapply anytime. In the meantime, follow us for free content on AI and automation for businesses.',
     requirements: [
-      'Build consistent revenue past $1M/year with a proven offer',
+      'Build consistent revenue past $50K/month with a proven offer',
       'Have an established team handling day-to-day operations',
       'Identify repetitive ops tasks that consume founder time',
       'Document your core workflows and communication channels',
