@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import AIOsClient from './AIOsClient';
 
 export const metadata: Metadata = {
-  title: 'AI Agent Systems for Agency Owners & Operators | PulpSense',
+  title: 'AI OS by PulpSense | Custom AI Agent Systems for Agency Owners',
   description:
-    'We build 3 custom AI agents that handle your email, reporting, and follow-ups 24/7. One dashboard. Set up in 14 days. For agency owners and operators doing $50K+/month.',
+    'AI OS by PulpSense builds you a custom AI agent system that runs your ops around the clock. Email, reporting, follow-ups handled. Live in 14 days.',
   openGraph: {
-    title: 'AI Agent Systems for Agency Owners & Operators | PulpSense',
+    title: 'AI OS by PulpSense | Custom AI Agent Systems for Agency Owners',
     description:
-      'We build 3 custom AI agents that handle your email, reporting, and follow-ups 24/7. One dashboard. Set up in 14 days.',
+      'Custom AI agents that handle your email, reporting, and follow-ups 24/7. One dashboard. Set up in 14 days.',
     siteName: 'PulpSense',
     locale: 'en',
     type: 'website',
