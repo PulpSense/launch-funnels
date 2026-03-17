@@ -1227,8 +1227,70 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  /* Hero section — fit above fold on ~667px viewport */
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+
+  .hero::before {
+    height: 400px;
+  }
+
+  .heroPill {
+    font-size: 0.72rem;
+    padding: 5px 14px;
+    margin-bottom: 12px;
+    white-space: normal;
+    text-align: center;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroH1 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .heroSub {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  .ctaDisclaimer {
+    font-size: 0.72rem;
+    margin-top: 8px;
+  }
+
   .statsBar {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    border-radius: 12px;
+  }
+
+  .statItem {
+    padding: 14px 10px;
+  }
+
+  .statValue {
+    font-size: 1.4rem;
+  }
+
+  .statLabel {
+    font-size: 0.62rem;
   }
 
   .pricingGrid {
@@ -1268,10 +1330,6 @@
 
   .resultPaybackSub {
     display: none;
-  }
-
-  .hero {
-    padding-top: 100px;
   }
 
   .timelineSectionH2 {
