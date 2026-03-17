@@ -84,19 +84,19 @@ const STEPS = [
 
 /* ── Deliverables ── */
 const DELIVERABLES_LEFT = [
-  '3 AI agents built around your actual workflows',
-  'One dashboard to see everything agents are doing',
-  '5 integrations: Gmail, Slack, CRM, calendar, and more',
-  'Agents tuned to your tone, your rules, your business',
-  'Approval controls so nothing sends without your sign-off',
+  '3 custom AI agents for your top workflows',
+  'One dashboard for all agent activity',
+  '5 integrations: Gmail, Slack, CRM, calendar + more',
+  'Tuned to your tone, rules, and business logic',
+  'Approval controls on every agent action',
 ];
 
 const DELIVERABLES_RIGHT = [
-  '30-min Loom walkthrough of your specific setup',
-  '14 days of support after you go live',
-  'Written docs for every workflow we automate',
-  'Monitoring so you know if something stops working',
-  'You own everything — code, configs, the whole system',
+  '30-min Loom walkthrough of your setup',
+  '14 days of post-launch support',
+  'Written docs for every automated workflow',
+  'Monitoring and uptime alerts',
+  'Full ownership — code, configs, everything',
 ];
 
 /* ── Results ── */
