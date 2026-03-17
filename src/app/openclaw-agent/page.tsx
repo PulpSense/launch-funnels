@@ -114,24 +114,28 @@ const TESTIMONIALS = [
       'Working with Santi was a total game changer. Before, our leads would load to our CRM overnight, so we would often respond a day late, hurting our conversions. Now, thanks to his automations, leads get added into our CRM and get contacted instantly. It has saved us loads of time and really boosted our conversions.',
     name: 'Facundo Rosello',
     company: 'Good Nomads',
+    avatar: '/assets/images/testimonials/facundo.avif',
   },
   {
     quote:
       'Before Santi, our sales system was disjointed, creating extra steps and slowing us down. Santi came in, understood the gaps, and streamlined everything. He automated processes and connected tools, creating a seamless flow from sales to onboarding and delivery. Now, we are more efficient, and our team can focus on scaling instead of admin work.',
     name: 'Charlie Vicente',
     company: 'Ares Projects',
+    avatar: '/assets/images/testimonials/charlie.avif',
   },
   {
     quote:
       'They nailed the complicated nature of our project and communicated every step of the way. The systems they set up for me are exactly what I needed, they work. He has gone above and beyond to continue to check in with me and our team to make sure all systems continue to run smoothly. I consider them a valuable part of my team.',
     name: 'Meegan Gregg',
     company: 'Backbody Project',
+    avatar: '/assets/images/testimonials/meegan.avif',
   },
   {
     quote:
       "Santi's deep knowledge of AI and automations shone through every step of the way. His ability to simplify complex concepts and his meticulous attention to detail made the whole process seamless and highly productive. I highly recommend him to anyone looking to excel in this field.",
     name: 'George Banda',
     company: 'Skale Media',
+    avatar: '/assets/images/testimonials/george.avif',
   },
 ];
 
@@ -214,16 +218,59 @@ const TIMELINE = [
 /* ── Component ── */
 export default function OpenClawAgentPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [hoursPerWeek, setHoursPerWeek] = useState(15);
-  const [hourlyRate, setHourlyRate] = useState(150);
+  const [revenue, setRevenue] = useState(50000);
+  const [adminHours, setAdminHours] = useState(15);
 
   const toggleFaq = useCallback(
     (i: number) => setOpenFaq((prev) => (prev === i ? null : i)),
     [],
   );
 
-  const annualSavings = hoursPerWeek * hourlyRate * 52;
-  const monthlySavings = hoursPerWeek * hourlyRate * 4;
+  /* ROI calculator logic — matches reference */
+  const HOURS_PER_WEEK = 40;
+  const OPS_HIRE_MONTHLY = 6000;
+  const SETUP_FEE = 5000;
+  const MONTHLY_RUNNING = 150;
+
+  const monthlyHours = HOURS_PER_WEEK * 4.33;
+  const rate = revenue / monthlyHours;
+  const monthlyAdmin = adminHours * 4.33 * rate;
+  const annualAdmin = monthlyAdmin * 12;
+  const annualOps = OPS_HIRE_MONTHLY * 12;
+  const annualClaw = SETUP_FEE + MONTHLY_RUNNING * 12;
+  const roi = annualAdmin > 0 ? annualAdmin / annualClaw : 0;
+
+  const monthlySavingsCalc = monthlyAdmin - MONTHLY_RUNNING;
+  let paybackDays = 0;
+  if (monthlySavingsCalc > 0) {
+    paybackDays = Math.ceil((SETUP_FEE / monthlySavingsCalc) * 30);
+  }
+
+  const maxVal = Math.max(annualAdmin, annualOps, annualClaw, 1);
+  const selfPct = Math.min((annualAdmin / maxVal) * 100, 100);
+  const hirePct = Math.min((annualOps / maxVal) * 100, 100);
+  const clawPct = Math.max((annualClaw / maxVal) * 100, 5);
+
+  const fmt = (n: number) => {
+    if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(1) + 'M';
+    if (n >= 1000) return '$' + Math.round(n).toLocaleString();
+    return '$' + Math.round(n);
+  };
+
+  const paybackLabel =
+    monthlySavingsCalc <= 0 || paybackDays <= 0
+      ? '--'
+      : paybackDays + ' days';
+  const paybackSub =
+    monthlySavingsCalc <= 0 || paybackDays <= 0
+      ? 'Enter your numbers above.'
+      : paybackDays <= 30
+        ? 'Pays for itself in under a month.'
+        : paybackDays <= 60
+          ? 'Pays for itself in under 2 months.'
+          : paybackDays <= 90
+            ? 'Pays for itself in under 3 months.'
+            : `Pays for itself in ${Math.ceil(paybackDays / 30)} months.`;
 
   return (
     <div className={s.page}>
@@ -328,7 +375,7 @@ export default function OpenClawAgentPage() {
           </div>
           <div className={s.statItem}>
             <span className={s.statValue}>14</span>
-            <span className={s.statLabel}>Days to Go Live</span>
+            <span className={s.statLabel}>Days to System Live</span>
           </div>
           <div className={s.statItem}>
             <span className={s.statValue}>24/7</span>
@@ -450,49 +497,155 @@ export default function OpenClawAgentPage() {
       </section>
 
       {/* ── ROI Calculator ── */}
-      <section className={s.section}>
-        <div className={s.roiCalc}>
-          <h3>ROI Calculator</h3>
-          <p className={s.roiCalcSub}>
-            See how much time and money you could save with AI agents.
+      <section className={s.calcSection}>
+        <div className={s.calcWrap}>
+          <h2 className={s.calcH2}>How much is admin costing you?</h2>
+          <p className={s.calcSubtitle}>
+            Plug in your numbers. See what you&apos;d save. Takes 30 seconds.
           </p>
-          <div className={s.roiSliders}>
-            <div className={s.roiSliderGroup}>
-              <label>
-                Hours spent on admin per week
-                <span>{hoursPerWeek}h</span>
-              </label>
-              <input
-                type="range"
-                min={5}
-                max={40}
-                value={hoursPerWeek}
-                onChange={(e) => setHoursPerWeek(Number(e.target.value))}
-              />
+
+          <div className={s.calculator}>
+            <div className={s.calcInputs}>
+              <div className={s.calcRow}>
+                <div className={s.calcLabel}>
+                  Your monthly revenue
+                  <small>Gross revenue before expenses</small>
+                </div>
+                <div className={s.calcInputWrap}>
+                  <span className={s.calcPrefix}>$</span>
+                  <input
+                    type="number"
+                    value={revenue}
+                    min={0}
+                    step={5000}
+                    onChange={(e) => setRevenue(Number(e.target.value) || 0)}
+                    className={s.calcInput}
+                  />
+                </div>
+              </div>
+
+              <div className={s.calcRow}>
+                <div className={s.calcLabel}>
+                  Hours spent on admin per week
+                  <small>Email, reports, follow-ups, CRM, scheduling</small>
+                </div>
+                <div className={s.calcInputWrap}>
+                  <input
+                    type="number"
+                    value={adminHours}
+                    min={0}
+                    max={40}
+                    onChange={(e) => setAdminHours(Number(e.target.value) || 0)}
+                    className={s.calcInput}
+                    style={{ paddingLeft: 14 }}
+                  />
+                  <span className={s.calcSuffix}>hrs</span>
+                </div>
+              </div>
             </div>
-            <div className={s.roiSliderGroup}>
-              <label>
-                Your effective hourly rate
-                <span>${hourlyRate}</span>
-              </label>
-              <input
-                type="range"
-                min={50}
-                max={500}
-                step={10}
-                value={hourlyRate}
-                onChange={(e) => setHourlyRate(Number(e.target.value))}
-              />
+
+            <div className={s.calcResults}>
+              <div className={s.resultsTitle}>Your numbers</div>
+
+              <div className={s.resultRows}>
+                <div className={s.resultRow}>
+                  <span className={s.resultRowLabel}>Effective hourly rate</span>
+                  <span className={`${s.resultRowVal} ${s.accentText}`}>
+                    {fmt(rate)}/hr
+                  </span>
+                </div>
+                <div className={s.resultRow}>
+                  <span className={s.resultRowLabel}>Monthly cost of admin</span>
+                  <span className={`${s.resultRowVal} ${s.greenText}`}>
+                    {fmt(monthlyAdmin)}/mo
+                  </span>
+                </div>
+                <div className={s.resultRow}>
+                  <span className={s.resultRowLabel}>Annual cost of admin</span>
+                  <span className={`${s.resultRowVal} ${s.blueText}`}>
+                    {fmt(annualAdmin)}/yr
+                  </span>
+                </div>
+              </div>
+
+              {/* Bar chart */}
+              <div style={{ marginBottom: 20 }}>
+                <div className={s.barSectionTitle}>Annual cost comparison</div>
+
+                <div className={s.resultBar}>
+                  <div className={s.resultBarLabel}>Doing it yourself</div>
+                  <div className={s.resultBarRow}>
+                    <div className={s.resultBarTrack}>
+                      <div
+                        className={`${s.resultBarFill} ${s.redBar}`}
+                        style={{ width: `${selfPct}%` }}
+                      />
+                    </div>
+                    <div className={`${s.resultBarAmount} ${s.redText}`}>
+                      {fmt(annualAdmin)}/yr
+                    </div>
+                  </div>
+                </div>
+
+                <div className={s.resultBar}>
+                  <div className={s.resultBarLabel}>Full-time ops hire</div>
+                  <div className={s.resultBarRow}>
+                    <div className={s.resultBarTrack}>
+                      <div
+                        className={`${s.resultBarFill} ${s.accentBar}`}
+                        style={{ width: `${hirePct}%` }}
+                      />
+                    </div>
+                    <div className={`${s.resultBarAmount} ${s.accentText}`}>
+                      {fmt(annualOps)}/yr
+                    </div>
+                  </div>
+                </div>
+
+                <div className={s.resultBar}>
+                  <div className={s.resultBarLabel}>SetupClaw (year 1)</div>
+                  <div className={s.resultBarRow}>
+                    <div className={s.resultBarTrack}>
+                      <div
+                        className={`${s.resultBarFill} ${s.greenBar}`}
+                        style={{ width: `${clawPct}%` }}
+                      />
+                    </div>
+                    <div className={`${s.resultBarAmount} ${s.greenText}`}>
+                      {fmt(annualClaw)}/yr
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Highlight boxes */}
+              <div className={s.resultHighlights}>
+                <div className={s.resultPayback}>
+                  <div className={s.resultPaybackVal}>{paybackLabel}</div>
+                  <div className={s.resultPaybackLabel}>Payback period</div>
+                  <div className={s.resultPaybackSub}>{paybackSub}</div>
+                </div>
+                <div className={s.resultBig}>
+                  <div className={s.resultBigVal}>{roi.toFixed(1)}x</div>
+                  <div className={s.resultBigLabel}>First-year ROI</div>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', marginTop: 20 }}>
+                <a href={CTA_HREF} className={s.ctaBtnSmall}>
+                  {CTA_TEXT} &rarr;
+                </a>
+              </div>
             </div>
-          </div>
-          <div className={s.roiResult}>
-            <span className={s.roiValue}>
-              ${annualSavings.toLocaleString()}
-            </span>
-            <span className={s.roiLabel}>
-              estimated annual value recovered ({' '}
-              ${monthlySavings.toLocaleString()}/month )
-            </span>
+
+            <div className={s.calcNote}>
+              <span>
+                Note: This only measures admin time costs. It doesn&apos;t
+                include the extra revenue from redirecting freed hours into
+                revenue generating activities. The true ROI is significantly
+                higher.
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -505,8 +658,19 @@ export default function OpenClawAgentPage() {
           {TESTIMONIALS.map((t) => (
             <div key={t.name} className={s.testimonialCard}>
               <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
-              <div className={s.testimonialAuthor}>{t.name}</div>
-              <div className={s.testimonialCompany}>{t.company}</div>
+              <div className={s.testimonialMeta}>
+                <Image
+                  src={t.avatar}
+                  alt={t.name}
+                  width={48}
+                  height={48}
+                  className={s.testimonialAvatar}
+                />
+                <div>
+                  <div className={s.testimonialAuthor}>{t.name}</div>
+                  <div className={s.testimonialCompany}>{t.company}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -578,42 +742,64 @@ export default function OpenClawAgentPage() {
             </a>
           </div>
 
-          {/* Secondary — Retainer */}
+          {/* Secondary — Retainer with 3 tiers */}
           <div className={s.pricingCard}>
-            <h3>Ongoing Retainer</h3>
+            <h3>Ongoing retainer</h3>
             <p className={s.pricingDesc}>
               We keep your agents running, optimized, and evolving with your
               business.
             </p>
-            <div className={s.priceRow}>
-              <span className={s.priceAmount}>$3,500</span>
-              <span className={s.pricePeriod}>/month</span>
-            </div>
-            <p className={s.priceNote}>Most clients choose Optimize</p>
 
             <div className={s.retainerTiers}>
-              <h4>3 tiers available</h4>
-              <div className={s.tierRow}>
-                <span>Maintain</span>
-                <span className={s.tierPrice}>$1,500/mo</span>
+              {/* Maintain */}
+              <div className={s.tierBlock}>
+                <div className={s.tierHeader}>
+                  <span className={s.tierName}>Maintain</span>
+                  <span className={s.tierPrice}>$1,500/mo</span>
+                </div>
+                <ul className={s.tierList}>
+                  <li>Agent monitoring &amp; uptime</li>
+                  <li>Prompt tuning (up to 5/month)</li>
+                  <li>Monthly performance report</li>
+                  <li>Priority email support</li>
+                </ul>
               </div>
-              <div className={s.tierRow}>
-                <span>Optimize</span>
-                <span className={s.tierPrice}>$3,500/mo</span>
+
+              {/* Optimize */}
+              <div className={`${s.tierBlock} ${s.tierPopular}`}>
+                <div className={s.tierHeader}>
+                  <span className={s.tierName}>
+                    Optimize
+                    <span className={s.tierBadge}>Most popular</span>
+                  </span>
+                  <span className={s.tierPrice}>$3,500/mo</span>
+                </div>
+                <ul className={s.tierList}>
+                  <li>Everything in Maintain</li>
+                  <li>1 new agent per month</li>
+                  <li>Bi-weekly optimization call</li>
+                  <li>New tool integrations</li>
+                  <li>A/B testing of prompts</li>
+                </ul>
               </div>
-              <div className={s.tierRow}>
-                <span>Scale</span>
-                <span className={s.tierPrice}>$5,000–$8,000/mo</span>
+
+              {/* Scale */}
+              <div className={s.tierBlock}>
+                <div className={s.tierHeader}>
+                  <span className={s.tierName}>Scale</span>
+                  <span className={s.tierPrice}>$5,000–$8,000/mo</span>
+                </div>
+                <ul className={s.tierList}>
+                  <li>Everything in Optimize</li>
+                  <li>Unlimited agents</li>
+                  <li>Weekly strategy call</li>
+                  <li>Multi-team deployment</li>
+                  <li>Custom dashboards</li>
+                  <li>Dedicated Slack channel</li>
+                </ul>
               </div>
             </div>
 
-            <ul>
-              <li>Agent monitoring &amp; alerting</li>
-              <li>Prompt tuning &amp; optimization</li>
-              <li>New workflow builds</li>
-              <li>Priority support</li>
-              <li>Monthly performance reviews</li>
-            </ul>
             <a
               href={CTA_HREF}
               className={s.ctaBtnSmall}
