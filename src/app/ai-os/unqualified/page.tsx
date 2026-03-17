@@ -33,7 +33,7 @@ const content = {
       'Based on your responses, this program may not be the right fit for your business right now. We typically work with coaches, consultants, and agency owners doing $50K+/month who have an established team and are looking to scale operations without adding headcount.',
     cta: {
       text: 'Follow Us for Free AI Content →',
-      href: 'https://pulpsense.fillout.com/openclaw-agent',
+      href: 'https://pulpsense.fillout.com/ai-os',
     },
   } satisfies UnqualifiedHeroProps,
 
@@ -49,7 +49,7 @@ const content = {
     ],
     reapplyText:
       'Once your business meets these criteria, we would love to hear from you again.',
-    reapplyHref: '/openclaw-agent',
+    reapplyHref: '/ai-os',
   } satisfies UnqualifiedContentProps,
 
   footer: {
