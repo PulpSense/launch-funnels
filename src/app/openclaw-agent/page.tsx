@@ -415,8 +415,10 @@ export default function OpenClawAgentPage() {
         <div className={s.stepsGrid}>
           {STEPS.map((step) => (
             <div key={step.num} className={s.stepCard}>
-              <div className={s.stepNumber}>{step.num}</div>
-              <h3>{step.title}</h3>
+              <div>
+                <span className={s.stepNumber}>{step.num}</span>
+                <h3>{step.title}</h3>
+              </div>
               <p>{step.desc}</p>
             </div>
           ))}
