@@ -410,7 +410,7 @@ export default function OpenClawAgentPage() {
       {/* ── How It Works ── */}
       <section id="how-it-works" className={s.section}>
         <span className={s.sectionLabel}>The process</span>
-        <h2 className={s.sectionTitle}>How SetupClaw works</h2>
+        <h2 className={s.sectionTitle}>How it works</h2>
         <p className={s.sectionSubtitle}>
           From kickoff to go-live in 14 days. Your total time commitment: one
           60-minute call.
@@ -583,7 +583,7 @@ export default function OpenClawAgentPage() {
                 </div>
 
                 <div className={s.resultBar}>
-                  <div className={s.resultBarLabel}>SetupClaw (year 1)</div>
+                  <div className={s.resultBarLabel}>The Operator Launchpad (year 1)</div>
                   <div className={s.resultBarRow}>
                     <div className={s.resultBarTrack}>
                       <div
@@ -908,7 +908,7 @@ export default function OpenClawAgentPage() {
           <a href="#">Contact Us</a>
         </div>
         <p className={s.footerCopy}>
-          &copy; {new Date().getFullYear()} setupclaw.com. All Rights Reserved.
+          &copy; {new Date().getFullYear()} pulpsense.com. All Rights Reserved.
         </p>
         <p>
           This site is not a part of the Facebook website or Facebook Inc.
