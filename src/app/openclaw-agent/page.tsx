@@ -103,8 +103,7 @@ const DELIVERABLES_RIGHT = [
 const RESULTS = [
   '30+ hours of founder ops time reclaimed per week',
   'Lead follow-up time reduced from days to under 5 minutes',
-  'Zero dropped leads or missed client escalations since deployment',
-  'Full AI agent system operational within 7 days of kickoff',
+  'Full AI agent system operational within 14 days of kickoff',
 ];
 
 /* ── Testimonials ── */
