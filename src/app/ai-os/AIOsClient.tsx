@@ -471,17 +471,23 @@ export default function AIOsClient() {
                   <span className={s.calcLabelText}>Monthly revenue</span>
                   <span className={s.calcLabelValue}>${revenue.toLocaleString()}</span>
                 </div>
-                <input
-                  type="range"
-                  min={25000}
-                  max={500000}
-                  step={25000}
-                  value={revenue}
-                  onChange={(e) => setRevenue(Number(e.target.value))}
-                  className={s.calcSlider}
-                />
+                <div className={s.sliderRow}>
+                  <input
+                    type="range"
+                    min={25000}
+                    max={500000}
+                    step={25000}
+                    value={revenue}
+                    list="revenue-ticks"
+                    onChange={(e) => setRevenue(Number(e.target.value))}
+                    className={s.calcSlider}
+                  />
+                </div>
+                <datalist id="revenue-ticks">
+                  {[25000,100000,200000,300000,400000,500000].map(v => <option key={v} value={v} />)}
+                </datalist>
                 <div className={s.calcSliderLabels}>
-                  <span>$25K</span><span>$500K</span>
+                  <span>$25K</span><span>$100K</span><span>$200K</span><span>$300K</span><span>$400K</span><span>$500K</span>
                 </div>
               </div>
 
@@ -490,17 +496,23 @@ export default function AIOsClient() {
                   <span className={s.calcLabelText}>Admin hours per week</span>
                   <span className={s.calcLabelValue}>{adminHours} hrs</span>
                 </div>
-                <input
-                  type="range"
-                  min={1}
-                  max={40}
-                  step={1}
-                  value={adminHours}
-                  onChange={(e) => setAdminHours(Number(e.target.value))}
-                  className={s.calcSlider}
-                />
+                <div className={s.sliderRow}>
+                  <input
+                    type="range"
+                    min={1}
+                    max={40}
+                    step={1}
+                    value={adminHours}
+                    list="hours-ticks"
+                    onChange={(e) => setAdminHours(Number(e.target.value))}
+                    className={s.calcSlider}
+                  />
+                </div>
+                <datalist id="hours-ticks">
+                  {[1,10,20,30,40].map(v => <option key={v} value={v} />)}
+                </datalist>
                 <div className={s.calcSliderLabels}>
-                  <span>1 hr</span><span>40 hrs</span>
+                  <span>1</span><span>10</span><span>20</span><span>30</span><span>40 hrs</span>
                 </div>
               </div>
             </div>
