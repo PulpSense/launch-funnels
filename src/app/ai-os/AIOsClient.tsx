@@ -338,6 +338,22 @@ export default function AIOsClient() {
         <p className={s.heroSub}>
           AI agents built for your ops. Email, reporting and follow-ups handled 24/7. One dashboard. Live in 14 days.
         </p>
+        {/* DSL Embed */}
+        <div className={s.dslEmbed}>
+          <iframe
+            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000&rm=minimal#slide=id.slide001xx"
+            allowFullScreen
+            title="AI OS — DSL"
+          />
+        </div>
+
+        <a href={CTA_HREF} className={s.ctaBtn}>
+          {CTA_TEXT} &rarr;
+        </a>
+        <p className={s.ctaDisclaimer}>
+          No commitment · 25 minutes
+        </p>
+
         {/* ── Client Logos Marquee ── */}
       <div className={s.logosSection}>
         <p className={s.logosTitle}>Trusted by growing businesses</p>
@@ -356,23 +372,6 @@ export default function AIOsClient() {
           </div>
         </div>
       </div>
-
-      
-        {/* DSL Embed */}
-        <div className={s.dslEmbed}>
-          <iframe
-            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000&rm=minimal#slide=id.slide001xx"
-            allowFullScreen
-            title="AI OS — DSL"
-          />
-        </div>
-
-        <a href={CTA_HREF} className={s.ctaBtn}>
-          {CTA_TEXT} &rarr;
-        </a>
-        <p className={s.ctaDisclaimer}>
-          No commitment · 25 minutes
-        </p>
       </section>
 
       {/* ── Problem Section — 6 Pain Cards ── */}
