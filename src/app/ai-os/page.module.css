@@ -1256,6 +1256,14 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  /* DSL smaller on mobile to fit ATF */
+  .dslEmbed {
+    margin-top: 16px;
+    margin-bottom: 20px;
+    max-height: 200px;
+    aspect-ratio: 16 / 9;
+  }
+
   /* How it works — single column on mobile */
   .stepsGrid {
     grid-template-columns: 1fr;
