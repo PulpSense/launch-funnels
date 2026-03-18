@@ -175,6 +175,7 @@
   color: var(--text-muted);
   font-size: 13px;
   margin-top: 12px;
+  margin-bottom: 4px;
 }
 
 /* ── Stats Bar ── */
@@ -211,7 +212,7 @@
 
 /* ── Client Logos ── */
 .logosSection {
-  padding: 20px 0 24px;
+  padding: 12px 0 20px;
   text-align: center;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
