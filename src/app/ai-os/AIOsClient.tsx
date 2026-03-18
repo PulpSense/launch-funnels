@@ -343,13 +343,13 @@ export default function AIOsClient() {
           {CTA_TEXT} &rarr;
         </a>
         <p className={s.ctaDisclaimer}>
-          No commitment. 25 minutes. We&apos;ll map your biggest time drains.
+          No commitment · 25 minutes
         </p>
 
         {/* DSL Embed */}
         <div className={s.dslEmbed}>
           <iframe
-            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000&rm=minimal"
+            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000&rm=minimal#slide=id.slide001xx"
             allowFullScreen
             title="AI OS — DSL"
           />
@@ -874,7 +874,7 @@ export default function AIOsClient() {
             {CTA_TEXT}
           </a>
           <div className={s.finalCtaSub}>
-            No commitment. 25 minutes. If it&apos;s not a fit, we&apos;ll tell
+            No commitment · 25 minutes If it&apos;s not a fit, we&apos;ll tell
             you.
           </div>
         </div>
