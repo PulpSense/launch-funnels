@@ -212,24 +212,11 @@ const TIMELINE = [
 /* ── Component ── */
 export default function AIOsClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [revenueDisplay, setRevenueDisplay] = useState('50,000');
   const [revenue, setRevenue] = useState(50000);
   const [adminHours, setAdminHours] = useState(15);
 
   const toggleFaq = useCallback(
     (i: number) => setOpenFaq((prev) => (prev === i ? null : i)),
-    [],
-  );
-
-  const handleRevenueChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value.replace(/,/g, '');
-      if (raw === '' || /^\d+$/.test(raw)) {
-        const num = Number(raw) || 0;
-        setRevenue(num);
-        setRevenueDisplay(num === 0 && raw === '' ? '' : num.toLocaleString());
-      }
-    },
     [],
   );
 
@@ -477,38 +464,40 @@ export default function AIOsClient() {
           <div className={s.calculator}>
             <div className={s.calcInputs}>
               <div className={s.calcRow}>
-                <div className={s.calcLabel}>
-                  Your monthly revenue
-                  <small>Gross revenue before expenses</small>
+                <div className={s.calcLabelRow}>
+                  <span className={s.calcLabelText}>Monthly revenue</span>
+                  <span className={s.calcLabelValue}>${revenue.toLocaleString()}</span>
                 </div>
-                <div className={s.calcInputWrap}>
-                  <span className={s.calcPrefix}>$</span>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    value={revenueDisplay}
-                    onChange={handleRevenueChange}
-                    className={s.calcInput}
-                  />
+                <input
+                  type="range"
+                  min={10000}
+                  max={500000}
+                  step={5000}
+                  value={revenue}
+                  onChange={(e) => setRevenue(Number(e.target.value))}
+                  className={s.calcSlider}
+                />
+                <div className={s.calcSliderLabels}>
+                  <span>$10K</span><span>$500K</span>
                 </div>
               </div>
 
               <div className={s.calcRow}>
-                <div className={s.calcLabel}>
-                  Hours spent on admin per week
-                  <small>Email, reports, follow-ups, CRM, scheduling</small>
+                <div className={s.calcLabelRow}>
+                  <span className={s.calcLabelText}>Admin hours per week</span>
+                  <span className={s.calcLabelValue}>{adminHours} hrs</span>
                 </div>
-                <div className={s.calcInputWrap}>
-                  <input
-                    type="number"
-                    value={adminHours}
-                    min={0}
-                    max={40}
-                    onChange={(e) => setAdminHours(Number(e.target.value) || 0)}
-                    className={s.calcInput}
-                    style={{ paddingLeft: 14 }}
-                  />
-                  <span className={s.calcSuffix}>hrs</span>
+                <input
+                  type="range"
+                  min={1}
+                  max={40}
+                  step={1}
+                  value={adminHours}
+                  onChange={(e) => setAdminHours(Number(e.target.value))}
+                  className={s.calcSlider}
+                />
+                <div className={s.calcSliderLabels}>
+                  <span>1 hr</span><span>40 hrs</span>
                 </div>
               </div>
             </div>
