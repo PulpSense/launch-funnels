@@ -1557,7 +1557,8 @@
     margin-top: 20px;
     margin-bottom: 16px;
     min-height: unset;
-    max-height: 42vh;
+    max-height: unset;
+    aspect-ratio: 16 / 9;
   }
 
   .ctaBtn {
