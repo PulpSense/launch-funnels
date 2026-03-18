@@ -341,7 +341,9 @@ export default function AIOsClient() {
           No commitment · 25 minutes
         </p>
 
-        {/* ── Client Logos Marquee ── */}
+      </section>
+
+      {/* ── Client Logos Marquee ── */}
       <div className={s.logosSection}>
         <p className={s.logosTitle}>Trusted by growing businesses</p>
         <div className={s.marqueeOuter}>
@@ -360,7 +362,6 @@ export default function AIOsClient() {
           </div>
         </div>
       </div>
-      </section>
 
       {/* ── Problem Section — 6 Pain Cards ── */}
       <section className={s.section}>
