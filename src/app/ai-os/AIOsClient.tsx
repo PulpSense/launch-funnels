@@ -834,15 +834,15 @@ export default function AIOsClient() {
           <span className={s.sectionLabel}>Book your call</span>
           <h2 className={s.sectionTitle}>Book your free strategy call</h2>
           <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
-          <div className={s.formEmbed}>
-            <Script src="https://server.fillout.com/embed/v1/" strategy="lazyOnload" />
-            <div
-              data-fillout-id="xsMCsFPnw6us"
-              data-fillout-embed-type="standard"
-              data-fillout-inherit-parameters
-              style={{width: '100%'}}
-            />
-          </div>
+        </div>
+        <div className={s.formEmbed}>
+          <Script src="https://server.fillout.com/embed/v1/" strategy="lazyOnload" />
+          <div
+            data-fillout-id="xsMCsFPnw6us"
+            data-fillout-embed-type="standard"
+            data-fillout-inherit-parameters
+            style={{width: '100%'}}
+          />
         </div>
       </section>
       {/* ── FAQ ── */}
