@@ -1274,6 +1274,7 @@
   .dslEmbed {
     margin-top: 16px;
     margin-bottom: 20px;
+    min-height: unset;
     max-height: 200px;
     aspect-ratio: 16 / 9;
   }
