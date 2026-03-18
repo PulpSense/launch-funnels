@@ -1580,10 +1580,11 @@
   }
 
   .dslEmbed {
-    margin-top: 20px;
-    margin-bottom: 16px;
+    margin-top: 16px;
+    margin-bottom: 12px;
     min-height: unset;
     max-height: unset;
+    max-width: 720px;
     aspect-ratio: 16 / 9;
   }
 
