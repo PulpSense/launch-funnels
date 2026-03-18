@@ -468,25 +468,22 @@ export default function AIOsClient() {
             <div className={s.calcInputs}>
               {/* Revenue slider */}
               {(() => {
-                const revStops = [25000,100000,200000,300000,400000,500000,600000,700000,800000,900000,1000000];
                 const revMin = 25000, revMax = 1000000;
                 const revPct = (revenue - revMin) / (revMax - revMin) * 100;
                 const revLabel = revenue >= 1000000 ? '$1M' : `$${revenue/1000}K`;
+                const revBg = `linear-gradient(to right, #f97316 0%, #f97316 ${revPct}%, #27272a ${revPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
                     <span className={s.calcLabelText}>Monthly revenue</span>
                     <div className={s.sliderWithValue}>
-                      <div className={s.customSlider}>
-                        <div className={s.customTrack}>
-                          <div className={s.customFill} style={{width: `${revPct}%`}} />
-                          {revStops.map(stop => {
-                            const pct = (stop - revMin) / (revMax - revMin) * 100;
-                            return <div key={stop} className={`${s.stopDot} ${stop <= revenue ? s.stopDotActive : ''}`} style={{left: `${pct}%`}} />;
-                          })}
-                          <div className={s.customThumb} style={{left: `${revPct}%`}} />
-                        </div>
-                        <input type="range" min={revMin} max={revMax} step={25000} value={revenue} onChange={(e) => setRevenue(Number(e.target.value))} className={s.hiddenRange} />
-                      </div>
+                      <input
+                        type="range"
+                        min={revMin} max={revMax} step={25000}
+                        value={revenue}
+                        onChange={(e) => setRevenue(Number(e.target.value))}
+                        className={s.calcSlider}
+                        style={{background: revBg}}
+                      />
                       <span className={s.calcLabelValue}>{revLabel}</span>
                     </div>
                   </div>
@@ -495,24 +492,21 @@ export default function AIOsClient() {
 
               {/* Hours slider */}
               {(() => {
-                const hrStops = [1,5,10,15,20,25,30,35,40];
                 const hrMin = 1, hrMax = 40;
                 const hrPct = (adminHours - hrMin) / (hrMax - hrMin) * 100;
+                const hrBg = `linear-gradient(to right, #f97316 0%, #f97316 ${hrPct}%, #27272a ${hrPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
                     <span className={s.calcLabelText}>Admin hours per week</span>
                     <div className={s.sliderWithValue}>
-                      <div className={s.customSlider}>
-                        <div className={s.customTrack}>
-                          <div className={s.customFill} style={{width: `${hrPct}%`}} />
-                          {hrStops.map(stop => {
-                            const pct = (stop - hrMin) / (hrMax - hrMin) * 100;
-                            return <div key={stop} className={`${s.stopDot} ${stop <= adminHours ? s.stopDotActive : ''}`} style={{left: `${pct}%`}} />;
-                          })}
-                          <div className={s.customThumb} style={{left: `${hrPct}%`}} />
-                        </div>
-                        <input type="range" min={hrMin} max={hrMax} step={1} value={adminHours} onChange={(e) => setAdminHours(Number(e.target.value))} className={s.hiddenRange} />
-                      </div>
+                      <input
+                        type="range"
+                        min={hrMin} max={hrMax} step={1}
+                        value={adminHours}
+                        onChange={(e) => setAdminHours(Number(e.target.value))}
+                        className={s.calcSlider}
+                        style={{background: hrBg}}
+                      />
                       <span className={s.calcLabelValue}>{adminHours} hrs</span>
                     </div>
                   </div>
