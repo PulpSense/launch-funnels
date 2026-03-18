@@ -466,54 +466,86 @@ export default function AIOsClient() {
 
           <div className={s.calculator}>
             <div className={s.calcInputs}>
+              {/* Revenue slider */}
               <div className={s.calcRow}>
                 <div className={s.calcLabelRow}>
                   <span className={s.calcLabelText}>Monthly revenue</span>
-                  <span className={s.calcLabelValue}>${revenue.toLocaleString()}</span>
+                  <span className={s.calcLabelValue}>${revenue >= 1000000 ? '1M' : revenue >= 1000 ? `${revenue/1000}K` : revenue.toLocaleString()}</span>
                 </div>
-                <div className={s.sliderRow}>
-                  <input
-                    type="range"
-                    min={25000}
-                    max={500000}
-                    step={25000}
-                    value={revenue}
-                    list="revenue-ticks"
-                    onChange={(e) => setRevenue(Number(e.target.value))}
-                    className={s.calcSlider}
-                  />
-                </div>
-                <datalist id="revenue-ticks">
-                  {[25000,100000,200000,300000,400000,500000].map(v => <option key={v} value={v} />)}
-                </datalist>
-                <div className={s.calcSliderLabels}>
-                  <span>$25K</span><span>$100K</span><span>$200K</span><span>$300K</span><span>$400K</span><span>$500K</span>
-                </div>
+                {(() => {
+                  const revStops = [25000,100000,200000,300000,400000,500000,600000,700000,800000,900000,1000000];
+                  const revMin = 25000, revMax = 1000000;
+                  const revPct = (revenue - revMin) / (revMax - revMin) * 100;
+                  return (
+                    <div className={s.customSlider}>
+                      <div className={s.customTrack}>
+                        <div className={s.customFill} style={{width: `${revPct}%`}} />
+                        {revStops.map(stop => {
+                          const pct = (stop - revMin) / (revMax - revMin) * 100;
+                          const isActive = stop <= revenue;
+                          return (
+                            <div
+                              key={stop}
+                              className={`${s.stopDot} ${isActive ? s.stopDotActive : ''}`}
+                              style={{left: `${pct}%`}}
+                            />
+                          );
+                        })}
+                        <div className={s.customThumb} style={{left: `${revPct}%`}} />
+                      </div>
+                      <input
+                        type="range"
+                        min={revMin}
+                        max={revMax}
+                        step={25000}
+                        value={revenue}
+                        onChange={(e) => setRevenue(Number(e.target.value))}
+                        className={s.hiddenRange}
+                      />
+                    </div>
+                  );
+                })()}
               </div>
 
+              {/* Hours slider */}
               <div className={s.calcRow}>
                 <div className={s.calcLabelRow}>
                   <span className={s.calcLabelText}>Admin hours per week</span>
                   <span className={s.calcLabelValue}>{adminHours} hrs</span>
                 </div>
-                <div className={s.sliderRow}>
-                  <input
-                    type="range"
-                    min={1}
-                    max={40}
-                    step={1}
-                    value={adminHours}
-                    list="hours-ticks"
-                    onChange={(e) => setAdminHours(Number(e.target.value))}
-                    className={s.calcSlider}
-                  />
-                </div>
-                <datalist id="hours-ticks">
-                  {[1,10,20,30,40].map(v => <option key={v} value={v} />)}
-                </datalist>
-                <div className={s.calcSliderLabels}>
-                  <span>1</span><span>10</span><span>20</span><span>30</span><span>40 hrs</span>
-                </div>
+                {(() => {
+                  const hrStops = [1,5,10,15,20,25,30,35,40];
+                  const hrMin = 1, hrMax = 40;
+                  const hrPct = (adminHours - hrMin) / (hrMax - hrMin) * 100;
+                  return (
+                    <div className={s.customSlider}>
+                      <div className={s.customTrack}>
+                        <div className={s.customFill} style={{width: `${hrPct}%`}} />
+                        {hrStops.map(stop => {
+                          const pct = (stop - hrMin) / (hrMax - hrMin) * 100;
+                          const isActive = stop <= adminHours;
+                          return (
+                            <div
+                              key={stop}
+                              className={`${s.stopDot} ${isActive ? s.stopDotActive : ''}`}
+                              style={{left: `${pct}%`}}
+                            />
+                          );
+                        })}
+                        <div className={s.customThumb} style={{left: `${hrPct}%`}} />
+                      </div>
+                      <input
+                        type="range"
+                        min={hrMin}
+                        max={hrMax}
+                        step={1}
+                        value={adminHours}
+                        onChange={(e) => setAdminHours(Number(e.target.value))}
+                        className={s.hiddenRange}
+                      />
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
