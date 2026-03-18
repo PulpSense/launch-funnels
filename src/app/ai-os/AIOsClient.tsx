@@ -350,7 +350,7 @@ export default function AIOsClient() {
         {/* DSL Embed */}
         <div className={s.dslEmbed}>
           <iframe
-            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000"
+            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000&rm=minimal"
             allowFullScreen
             title="AI OS — DSL"
           />
