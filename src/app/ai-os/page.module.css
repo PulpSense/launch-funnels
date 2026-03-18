@@ -236,15 +236,15 @@
 .marqueeTrack {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 64px;
   width: max-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 25s linear infinite;
   opacity: 0.65;
   padding: 0 24px;
 }
 
 .marqueeTrack img {
-  height: 28px;
+  height: 44px;
   width: auto;
   filter: brightness(0) invert(1);
   flex-shrink: 0;
@@ -1261,6 +1261,13 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .marqueeTrack img {
+    height: 28px;
+  }
+  .marqueeTrack {
+    gap: 40px;
+  }
+
   /* DSL smaller on mobile to fit ATF */
   .dslEmbed {
     margin-top: 16px;
