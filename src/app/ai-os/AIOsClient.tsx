@@ -332,12 +332,12 @@ export default function AIOsClient() {
           Agency Owners, Consultants &amp; Coaches Doing $50K+/Month
         </div>
         <h1 className={s.heroH1}>
-          Stop Spending Half Your Week on Admin.{' '}
-          <span className={s.heroHighlight}>Let AI Handle It.</span>
+          Get 15+ Hours Back Every Week.{' '}
+          <span className={s.heroHighlight}>We Build Your AI OS.</span>
         </h1>
         <p className={s.heroSub}>
-          We build 3 custom AI agents that handle your email, reporting, and
-          follow-ups 24/7. One dashboard. Set up in 14 days. You get 15+ hours
+          3 custom AI agents built for your ops. Email, reporting, and
+          follow-ups handled 24/7. One dashboard. Live in 14 days.
           back every month.
         </p>
         <a href={CTA_HREF} className={s.ctaBtn}>
