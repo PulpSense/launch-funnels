@@ -338,7 +338,6 @@ export default function AIOsClient() {
         <p className={s.heroSub}>
           3 custom AI agents built for your ops. Email, reporting, and
           follow-ups handled 24/7. One dashboard. Live in 14 days.
-          back every month.
         </p>
         <a href={CTA_HREF} className={s.ctaBtn}>
           {CTA_TEXT} &rarr;
