@@ -105,7 +105,28 @@ export default function ThankYouUnqualifiedPage() {
 
       {/* Footer */}
       <footer className={s.footer}>
-        <p>&copy; {new Date().getFullYear()} PulpSense. All Rights Reserved.</p>
+        <p>
+          <strong>Earnings Disclaimer:</strong> The results stated on this page
+          are specific client results. Please understand these results are not
+          typical. We are not implying you will duplicate them. Your results will
+          vary based on your effort, business model, market conditions, and many
+          other factors.
+        </p>
+        <div className={s.footerLinks}>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <p className={s.footerCopy}>
+          &copy; {new Date().getFullYear()} pulpsense.com. All Rights Reserved.
+        </p>
+        <p>
+          This site is not a part of the Facebook website or Facebook Inc.
+          Additionally, this site is not endorsed by Facebook in any way.
+          FACEBOOK is a trademark of FACEBOOK, Inc. This site is not a part of
+          the Google website or Alphabet Inc. Additionally, this site is not
+          endorsed by Google in any way. GOOGLE is a trademark of ALPHABET, Inc.
+        </p>
       </footer>
     </div>
   );
