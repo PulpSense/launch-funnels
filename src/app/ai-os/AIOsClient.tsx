@@ -471,15 +471,15 @@ export default function AIOsClient() {
                 </div>
                 <input
                   type="range"
-                  min={10000}
+                  min={25000}
                   max={500000}
-                  step={5000}
+                  step={25000}
                   value={revenue}
                   onChange={(e) => setRevenue(Number(e.target.value))}
                   className={s.calcSlider}
                 />
                 <div className={s.calcSliderLabels}>
-                  <span>$10K</span><span>$500K</span>
+                  <span>$25K</span><span>$500K</span>
                 </div>
               </div>
 
