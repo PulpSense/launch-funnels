@@ -243,7 +243,8 @@
   padding: 0 24px;
 }
 
-.marqueeTrack img {
+.marqueeTrack img,
+.logoImg {
   height: 44px;
   width: auto;
   filter: brightness(0) invert(1);
@@ -1261,7 +1262,8 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .marqueeTrack img {
+  .marqueeTrack img,
+  .logoImg {
     height: 28px;
   }
   .marqueeTrack {

@@ -365,8 +365,9 @@ export default function AIOsClient() {
                 src={logo.src}
                 alt={logo.alt}
                 width={120}
-                height={28}
-                style={{ height: 28, width: 'auto', flexShrink: 0 }}
+                height={44}
+                className={s.logoImg}
+                style={{ width: 'auto', flexShrink: 0 }}
               />
             ))}
           </div>
@@ -845,13 +846,13 @@ export default function AIOsClient() {
           <h2 className={s.sectionTitle}>Book your free strategy call</h2>
           <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
           <div className={s.formEmbed}>
+            <Script src="https://server.fillout.com/embed/v1/" strategy="lazyOnload" />
             <div
               data-fillout-id="xsMCsFPnw6us"
               data-fillout-embed-type="standard"
               data-fillout-inherit-parameters
-              style={{width: '100%', height: '100%'}}
+              style={{width: '100%'}}
             />
-            <script src="https://server.fillout.com/embed/v1/"></script>
           </div>
         </div>
       </section>
