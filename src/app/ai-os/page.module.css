@@ -1530,7 +1530,9 @@
 }
 
 .sliderWithValue .calcLabelValue {
-  min-width: 56px;
+  width: 72px;
+  min-width: 72px;
+  max-width: 72px;
   text-align: right;
   flex-shrink: 0;
 }
@@ -1595,5 +1597,20 @@
     margin-top: 8px;
     margin-bottom: 0;
   }
+
+  .calcRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .sliderWithValue {
+    margin-top: 0;
+  }
+
+  .calcInputs {
+    padding: 36px 48px;
+  }
+
 }
 
