@@ -175,36 +175,30 @@
 
 /* ── Stats Bar ── */
 .statsBar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-top: 48px;
+  display: none; /* replaced by DSL embed */
+}
+
+.statItem { display: none; }
+.statValue { display: none; }
+.statLabel { display: none; }
+
+/* ── DSL Embed ── */
+.dslEmbed {
+  margin-top: 40px;
+  width: 100%;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
 }
 
-.statItem {
-  background: var(--bg-card);
-  padding: 24px 16px;
-  text-align: center;
-}
-
-.statValue {
-  font-size: 24px;
-  font-weight: 800;
-  color: #ffffff;
-  display: block;
-}
-
-.statLabel {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 4px;
+.dslEmbed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
   display: block;
 }
 
