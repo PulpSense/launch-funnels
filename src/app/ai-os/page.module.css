@@ -1511,3 +1511,45 @@
   font-size: 11px;
   color: #52525b;
 }
+
+/* ── Desktop ATF optimization (≥1024px) ── */
+@media (min-width: 1024px) {
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 24px;
+    max-width: 1200px;
+  }
+
+  .heroPill {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .heroH1 {
+    font-size: clamp(32px, 3.8vw, 52px);
+    margin-bottom: 12px;
+  }
+
+  .heroSub {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .dslEmbed {
+    margin-top: 20px;
+    margin-bottom: 16px;
+    min-height: unset;
+    max-height: 42vh;
+  }
+
+  .ctaBtn {
+    margin-top: 0;
+    padding: 14px 32px;
+    font-size: 16px;
+  }
+
+  .ctaDisclaimer {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+}
