@@ -1577,15 +1577,17 @@
 /* ── Custom Slider ── */
 .customSlider {
   position: relative;
-  height: 20px;
   flex: 1;
-  display: flex;
-  align-items: center;
+  min-width: 0;
+  height: 20px;
 }
 
 .customTrack {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   height: 4px;
   background: #27272a;
   border-radius: 2px;
@@ -1642,6 +1644,8 @@
   margin: 0;
   padding: 0;
   z-index: 4;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .sliderWithValue {
