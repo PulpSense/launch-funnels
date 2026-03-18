@@ -845,13 +845,13 @@ export default function AIOsClient() {
           <h2 className={s.sectionTitle}>Book your free strategy call</h2>
           <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
           <div className={s.formEmbed}>
-            <iframe
-              src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
-              width="100%"
-              height="600"
-              style={{border: 'none', borderRadius: '12px'}}
-              title="Book a strategy call"
+            <div
+              data-fillout-id="xsMCsFPnw6us"
+              data-fillout-embed-type="standard"
+              data-fillout-inherit-parameters
+              style={{width: '100%', height: '100%'}}
             />
+            <script src="https://server.fillout.com/embed/v1/"></script>
           </div>
         </div>
       </section>
