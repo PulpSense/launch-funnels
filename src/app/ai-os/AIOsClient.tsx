@@ -339,13 +339,6 @@ export default function AIOsClient() {
           3 custom AI agents built for your ops. Email, reporting, and
           follow-ups handled 24/7. One dashboard. Live in 14 days.
         </p>
-        <a href={CTA_HREF} className={s.ctaBtn}>
-          {CTA_TEXT} &rarr;
-        </a>
-        <p className={s.ctaDisclaimer}>
-          No commitment · 25 minutes
-        </p>
-
         {/* DSL Embed */}
         <div className={s.dslEmbed}>
           <iframe
@@ -354,6 +347,13 @@ export default function AIOsClient() {
             title="AI OS — DSL"
           />
         </div>
+
+        <a href={CTA_HREF} className={s.ctaBtn}>
+          {CTA_TEXT} &rarr;
+        </a>
+        <p className={s.ctaDisclaimer}>
+          No commitment · 25 minutes
+        </p>
       </section>
 
       {/* ── Client Logos Marquee ── */}
