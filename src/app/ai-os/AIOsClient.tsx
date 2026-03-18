@@ -8,7 +8,7 @@ import s from './page.module.css';
 /* ── Metadata (exported from a separate file since this is 'use client') ── */
 // See layout.tsx or use generateMetadata in a wrapper; inline approach below via <title>.
 
-const CTA_HREF = 'https://pulpsense.fillout.com/t/xsMCsFPnw6us';
+const CTA_HREF = '#apply';
 const CTA_TEXT = 'Book Your Free Strategy Call';
 const FB_PIXEL_ID = '828948073514575';
 
@@ -837,6 +837,24 @@ export default function AIOsClient() {
         </div>
       </section>
 
+
+      {/* ── Apply / Embedded Form ── */}
+      <section id="apply" className={s.applySection}>
+        <div className={s.wrap}>
+          <span className={s.sectionLabel}>Book your call</span>
+          <h2 className={s.sectionTitle}>Book your free strategy call</h2>
+          <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
+          <div className={s.formEmbed}>
+            <iframe
+              src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
+              width="100%"
+              height="600"
+              style={{border: 'none', borderRadius: '12px'}}
+              title="Book a strategy call"
+            />
+          </div>
+        </div>
+      </section>
       {/* ── FAQ ── */}
       <section id="faq" className={s.faqSection}>
         <div className={s.wrap}>
