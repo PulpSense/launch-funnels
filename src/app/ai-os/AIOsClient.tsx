@@ -854,7 +854,7 @@ export default function AIOsClient() {
           <iframe
             src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
             width="100%"
-            height="900"
+            height="700"
             style={{border: 'none'}}
             title="Book a strategy call"
           />
