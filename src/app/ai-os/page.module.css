@@ -1572,3 +1572,70 @@
     margin-bottom: 0;
   }
 }
+
+/* ── Custom Slider ── */
+.customSlider {
+  position: relative;
+  padding: 12px 0 4px;
+}
+
+.customTrack {
+  position: relative;
+  height: 4px;
+  background: #27272a;
+  border-radius: 2px;
+  margin: 0 0;
+}
+
+.customFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #f97316;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.customThumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: #f97316;
+  border: 2px solid #09090b;
+  box-shadow: 0 0 0 2px #f97316;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.stopDot {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  background: #3f3f46;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.stopDotActive {
+  background: #f97316;
+}
+
+.hiddenRange {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  z-index: 4;
+}
