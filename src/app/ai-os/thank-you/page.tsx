@@ -14,17 +14,17 @@ const STEPS = [
   {
     num: 1,
     title: 'Check your email',
-    desc: "You'll get a calendar link within 24 hours to book your strategy call.",
+    desc: "A calendar link is on its way within 24 hours. Use it to book your strategy call.",
   },
   {
     num: 2,
     title: 'We review your application',
-    desc: "Before the call, we'll review your details and come prepared with specific recommendations for your business.",
+    desc: "We'll go through your application before we talk so we show up with specific ideas for your business, not generic ones.",
   },
   {
     num: 3,
     title: 'Your strategy call',
-    desc: "We walk you through a live demo using our own business as the example, then map out what your deployment would look like.",
+    desc: "You see the AI OS running on our actual business, then we map out what yours would look like.",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function ThankYouPage() {
       <section className={s.videosSection}>
         <div className={s.wrap}>
           <h2 className={s.sectionTitle}>
-            While you wait &mdash; see the results
+            See what others have built
           </h2>
           <div className={s.videosGrid}>
             {VIDEOS.map((v) => (
