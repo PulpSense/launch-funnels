@@ -347,24 +347,13 @@ export default function AIOsClient() {
           No commitment. 25 minutes. We&apos;ll map your biggest time drains.
         </p>
 
-        {/* Stats bar */}
-        <div className={s.statsBar}>
-          <div className={s.statItem}>
-            <span className={s.statValue}>15+</span>
-            <span className={s.statLabel}>Hours Saved/Month</span>
-          </div>
-          <div className={s.statItem}>
-            <span className={s.statValue}>14</span>
-            <span className={s.statLabel}>Days to System Live</span>
-          </div>
-          <div className={s.statItem}>
-            <span className={s.statValue}>24/7</span>
-            <span className={s.statLabel}>Agents Never Sleep</span>
-          </div>
-          <div className={s.statItem}>
-            <span className={s.statValue}>&lt;$200</span>
-            <span className={s.statLabel}>Monthly Running Cost</span>
-          </div>
+        {/* DSL Embed */}
+        <div className={s.dslEmbed}>
+          <iframe
+            src="https://docs.google.com/presentation/d/1DlKMRNmurT6bocVWPy4vf6zSfBaqG4V8TrXYU2DGdZ0/embed?start=false&loop=false&delayms=3000"
+            allowFullScreen
+            title="AI OS — DSL"
+          />
         </div>
       </section>
 
