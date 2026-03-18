@@ -347,18 +347,20 @@ export default function AIOsClient() {
       <div className={s.logosSection}>
         <p className={s.logosTitle}>Trusted by growing businesses</p>
         <div className={s.marqueeOuter}>
-          <div className={s.marqueeTrack}>
-            {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
-              <Image
-                key={logo.src + i}
-                src={logo.src}
-                alt={logo.alt}
-                width={120}
-                height={44}
-                className={s.logoImg}
-                style={{ width: 'auto', flexShrink: 0 }}
-              />
-            ))}
+          <div className={s.marqueeInner}>
+            <div className={s.marqueeTrack}>
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+                <Image
+                  key={logo.src + i}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={120}
+                  height={44}
+                  className={s.logoImg}
+                  style={{ width: 'auto', flexShrink: 0 }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
