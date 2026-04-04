@@ -15,6 +15,7 @@
   --orange: #f97316;
   --orange-dark: #ea580c;
   --orange-glow: rgba(249, 115, 22, 0.15);
+  --orange-border: rgba(0, 0, 0, 0.18);
   --green: #22c55e;
   --radius: 12px;
 
@@ -42,6 +43,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-bottom: 2px solid var(--orange-border);
 }
 
 /* ── Wrap ── */
@@ -155,8 +157,8 @@
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-  border: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  border: 2px solid var(--orange-border);
   cursor: pointer;
 }
 
@@ -851,6 +853,7 @@
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  border: 2px solid var(--orange-border);
 }
 
 .pricingCard h3 {
@@ -966,6 +969,7 @@
   position: absolute;
   top: -10px;
   right: 20px;
+  border: 2px solid var(--orange-border);
 }
 
 .tierPrice {
@@ -1379,6 +1383,16 @@
 
   .calcInputWrap {
     width: 100%;
+  }
+
+  .sliderWithValue {
+    width: 100%;
+  }
+
+  .sliderWithValue .calcLabelValue {
+    width: 90px;
+    min-width: 90px;
+    max-width: 90px;
   }
 
   .calcResults {
