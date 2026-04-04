@@ -812,7 +812,7 @@
   height: 100%;
 }
 
-.videoCard h4 {
+.videoCard h3 {
   padding: 16px 20px;
   margin: 0;
   font-size: 14px;
@@ -1072,7 +1072,7 @@
   text-align: center;
 }
 
-.alreadyRunning h4 {
+.alreadyRunning h3 {
   margin: 0 0 8px;
   font-size: 18px;
   font-weight: 700;
