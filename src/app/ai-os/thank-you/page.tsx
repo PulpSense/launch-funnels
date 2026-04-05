@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 
+import { MetaPixelEvents } from '@/components/ui/MetaPixelEvents';
+
 import s from './page.module.css';
 
 export const metadata: Metadata = {
@@ -48,9 +50,8 @@ export default function ThankYouPage() {
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '${FB_PIXEL_ID}');
-        fbq('track', 'PageView');
-        fbq('track', 'Schedule');
       `}</Script>
+      <MetaPixelEvents events={['PageView', 'Schedule']} />
       <noscript>
         <img
           height="1"

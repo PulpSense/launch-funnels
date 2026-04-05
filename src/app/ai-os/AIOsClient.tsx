@@ -3,6 +3,8 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
+
+import { trackMetaEvent } from '@/utils/metaCapi';
 import s from './page.module.css';
 
 function useInView(rootMargin = '200px') {
@@ -237,6 +239,12 @@ export default function AIOsClient() {
   const [videosRef, videosVisible] = useInView('400px');
   const [formRef, formVisible] = useInView('400px');
 
+  // Fire PageView via both pixel + CAPI (with dedup event ID)
+  useEffect(() => {
+    const timer = setTimeout(() => trackMetaEvent('PageView'), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const toggleFaq = useCallback(
     (i: number) => setOpenFaq((prev) => (prev === i ? null : i)),
     [],
@@ -316,7 +324,6 @@ export default function AIOsClient() {
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '${FB_PIXEL_ID}');
-        fbq('track', 'PageView');
       `}</Script>
       <noscript>
         { }
