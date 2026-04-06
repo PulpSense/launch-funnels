@@ -38,8 +38,6 @@ const FB_PIXEL_ID = '828948073514575';
 
 /* ── Multi-step form config ── */
 const FORM_CONFIG: MultiStepFormConfig = {
-  webhookUrl: process.env.NEXT_PUBLIC_FORM_WEBHOOK_URL,
-  webhookUrlComplete: process.env.NEXT_PUBLIC_FORM_WEBHOOK_COMPLETE_URL,
   qualifiedRedirect: '/ai-os/thank-you',
   unqualifiedRedirect: '/ai-os/thank-you-u',
   qualificationRules: [
