@@ -1641,7 +1641,7 @@
 }
 
 .formEmbed :global(.msf-dropdown-list) {
-  max-height: 220px;
+  max-height: 260px;
   overflow-y: auto;
 }
 
