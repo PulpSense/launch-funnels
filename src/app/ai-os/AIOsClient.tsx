@@ -1,9 +1,31 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
+
+import { trackMetaEvent } from '@/utils/metaCapi';
 import s from './page.module.css';
+
+function useInView(rootMargin = '200px') {
+  const [inView, setInView] = useState(false);
+  const [el, setEl] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [el, rootMargin]);
+  return [setEl, inView] as const;
+}
 
 /* ── Metadata (exported from a separate file since this is 'use client') ── */
 // See layout.tsx or use generateMetadata in a wrapper; inline approach below via <title>.
@@ -214,6 +236,14 @@ export default function AIOsClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [revenue, setRevenue] = useState(50000);
   const [adminHours, setAdminHours] = useState(15);
+  const [videosRef, videosVisible] = useInView('400px');
+  const [formRef, formVisible] = useInView('400px');
+
+  // Fire PageView via both pixel + CAPI (with dedup event ID)
+  useEffect(() => {
+    const timer = setTimeout(() => trackMetaEvent('PageView'), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleFaq = useCallback(
     (i: number) => setOpenFaq((prev) => (prev === i ? null : i)),
@@ -221,29 +251,50 @@ export default function AIOsClient() {
   );
 
   /* ROI calculator logic — matches reference */
-  const HOURS_PER_WEEK = 40;
-  const OPS_HIRE_MONTHLY = 6000;
-  const SETUP_FEE = 5000;
-  const MONTHLY_RUNNING = 150;
+  const calc = useMemo(() => {
+    const HOURS_PER_WEEK = 40;
+    const OPS_HIRE_MONTHLY = 6000;
+    const SETUP_FEE = 5000;
+    const MONTHLY_RUNNING = 150;
 
-  const monthlyHours = HOURS_PER_WEEK * 4.33;
-  const rate = revenue / monthlyHours;
-  const monthlyAdmin = adminHours * 4.33 * rate;
-  const annualAdmin = monthlyAdmin * 12;
-  const annualOps = OPS_HIRE_MONTHLY * 12;
-  const annualClaw = SETUP_FEE + MONTHLY_RUNNING * 12;
-  const roi = annualAdmin > 0 ? annualAdmin / annualClaw : 0;
+    const monthlyHours = HOURS_PER_WEEK * 4.33;
+    const rate = revenue / monthlyHours;
+    const monthlyAdmin = adminHours * 4.33 * rate;
+    const annualAdmin = monthlyAdmin * 12;
+    const annualOps = OPS_HIRE_MONTHLY * 12;
+    const annualClaw = SETUP_FEE + MONTHLY_RUNNING * 12;
+    const roi = annualAdmin > 0 ? annualAdmin / annualClaw : 0;
 
-  const monthlySavingsCalc = monthlyAdmin - MONTHLY_RUNNING;
-  let paybackDays = 0;
-  if (monthlySavingsCalc > 0) {
-    paybackDays = Math.ceil((SETUP_FEE / monthlySavingsCalc) * 30);
-  }
+    const monthlySavingsCalc = monthlyAdmin - MONTHLY_RUNNING;
+    let paybackDays = 0;
+    if (monthlySavingsCalc > 0) {
+      paybackDays = Math.ceil((SETUP_FEE / monthlySavingsCalc) * 30);
+    }
 
-  const maxVal = Math.max(annualAdmin, annualOps, annualClaw, 1);
-  const selfPct = Math.min((annualAdmin / maxVal) * 100, 100);
-  const hirePct = Math.min((annualOps / maxVal) * 100, 100);
-  const clawPct = Math.max((annualClaw / maxVal) * 100, 5);
+    const maxVal = Math.max(annualAdmin, annualOps, annualClaw, 1);
+    const selfPct = Math.min((annualAdmin / maxVal) * 100, 100);
+    const hirePct = Math.min((annualOps / maxVal) * 100, 100);
+    const clawPct = Math.max((annualClaw / maxVal) * 100, 5);
+
+    const paybackLabel =
+      monthlySavingsCalc <= 0 || paybackDays <= 0
+        ? '--'
+        : paybackDays + ' days';
+    const paybackSub =
+      monthlySavingsCalc <= 0 || paybackDays <= 0
+        ? 'Enter your numbers above.'
+        : paybackDays <= 30
+          ? 'Pays for itself in under a month.'
+          : paybackDays <= 60
+            ? 'Pays for itself in under 2 months.'
+            : paybackDays <= 90
+              ? 'Pays for itself in under 3 months.'
+              : `Pays for itself in ${Math.ceil(paybackDays / 30)} months.`;
+
+    return { rate, monthlyAdmin, annualAdmin, annualOps, annualClaw, roi, selfPct, hirePct, clawPct, paybackLabel, paybackSub };
+  }, [revenue, adminHours]);
+
+  const { rate, monthlyAdmin, annualAdmin, annualOps, annualClaw, roi, selfPct, hirePct, clawPct, paybackLabel, paybackSub } = calc;
 
   const fmt = (n: number) => {
     if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(1) + 'M';
@@ -251,23 +302,8 @@ export default function AIOsClient() {
     return '$' + Math.round(n);
   };
 
-  const paybackLabel =
-    monthlySavingsCalc <= 0 || paybackDays <= 0
-      ? '--'
-      : paybackDays + ' days';
-  const paybackSub =
-    monthlySavingsCalc <= 0 || paybackDays <= 0
-      ? 'Enter your numbers above.'
-      : paybackDays <= 30
-        ? 'Pays for itself in under a month.'
-        : paybackDays <= 60
-          ? 'Pays for itself in under 2 months.'
-          : paybackDays <= 90
-            ? 'Pays for itself in under 3 months.'
-            : `Pays for itself in ${Math.ceil(paybackDays / 30)} months.`;
-
   return (
-    <div className={s.page}>
+    <main className={s.page}>
       {/* Meta */}
       <title>
         The Operator Launchpad | AI Agent Systems for $50K+/Month Operators
@@ -278,7 +314,7 @@ export default function AIOsClient() {
       />
 
       {/* Facebook Pixel */}
-      <Script id="fb-pixel" strategy="afterInteractive">{`
+      <Script id="fb-pixel" strategy="lazyOnload">{`
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -288,7 +324,6 @@ export default function AIOsClient() {
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '${FB_PIXEL_ID}');
-        fbq('track', 'PageView');
       `}</Script>
       <noscript>
         { }
@@ -301,11 +336,13 @@ export default function AIOsClient() {
         />
       </noscript>
 
-      {/* Wistia embed scripts */}
-      <Script
-        src="https://fast.wistia.com/assets/external/E-v1.js"
-        strategy="lazyOnload"
-      />
+      {/* Wistia embed scripts — loaded when videos scroll into view */}
+      {videosVisible && (
+        <Script
+          src="https://fast.wistia.com/assets/external/E-v1.js"
+          strategy="lazyOnload"
+        />
+      )}
 
       {/* ── Banner ── */}
       <div className={s.banner}>
@@ -474,9 +511,10 @@ export default function AIOsClient() {
                 const revBg = `linear-gradient(to right, #f97316 0%, #f97316 ${revPct}%, #27272a ${revPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
-                    <span className={s.calcLabelText}>Monthly revenue</span>
+                    <label htmlFor="calc-revenue" className={s.calcLabelText}>Monthly revenue</label>
                     <div className={s.sliderWithValue}>
                       <input
+                        id="calc-revenue"
                         type="range"
                         min={revMin} max={revMax} step={25000}
                         value={revenue}
@@ -497,9 +535,10 @@ export default function AIOsClient() {
                 const hrBg = `linear-gradient(to right, #f97316 0%, #f97316 ${hrPct}%, #27272a ${hrPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
-                    <span className={s.calcLabelText}>Admin hours per week</span>
+                    <label htmlFor="calc-admin-hours" className={s.calcLabelText}>Admin hours per week</label>
                     <div className={s.sliderWithValue}>
                       <input
+                        id="calc-admin-hours"
                         type="range"
                         min={hrMin} max={hrMax} step={1}
                         value={adminHours}
@@ -647,7 +686,7 @@ export default function AIOsClient() {
       </section>
 
       {/* ── Video Testimonials ── */}
-      <section className={s.section}>
+      <section ref={videosRef} className={s.section}>
         <h2 className={s.sectionTitle}>See the results for yourself</h2>
         <div className={s.videosGrid}>
           {VIDEO_TESTIMONIALS.map((v) => (
@@ -658,7 +697,7 @@ export default function AIOsClient() {
                   style={{ width: '100%', height: '100%' }}
                 />
               </div>
-              <h4>{v.title}</h4>
+              <h3>{v.title}</h3>
             </div>
           ))}
         </div>
@@ -816,7 +855,7 @@ export default function AIOsClient() {
           </div>
         </div>
         <div className={s.alreadyRunning}>
-          <h4>Already running OpenClaw?</h4>
+          <h3>Already running OpenClaw?</h3>
           <p>
             I&apos;ll audit your setup, build your Mission Control layer, tune
             your prompts, and add monitoring. Same pricing.
@@ -847,14 +886,18 @@ export default function AIOsClient() {
           <h2 className={s.sectionTitle}>Book your free strategy call</h2>
           <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
         </div>
-        <div className={s.formEmbed}>
-          <iframe
-            src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
-            width="100%"
-            height="700"
-            style={{border: 'none'}}
-            title="Book a strategy call"
-          />
+        <div ref={formRef} className={s.formEmbed}>
+          {formVisible ? (
+            <iframe
+              src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
+              width="100%"
+              height="700"
+              style={{border: 'none'}}
+              title="Book a strategy call"
+            />
+          ) : (
+            <div style={{ height: 700 }} />
+          )}
         </div>
       </section>
       {/* ── FAQ ── */}
@@ -924,6 +967,6 @@ export default function AIOsClient() {
           endorsed by Google in any way. GOOGLE is a trademark of ALPHABET, Inc.
         </p>
       </footer>
-    </div>
+    </main>
   );
 }
