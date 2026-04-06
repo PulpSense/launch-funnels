@@ -85,19 +85,40 @@ function isValidPhone(raw: string, country: Country): boolean {
   return digits.length >= country.minDigits && digits.length <= country.maxDigits;
 }
 
-/* ── Country picker (custom dropdown: flag only when closed, full name when open) ── */
+/* ── Generic dropdown ── */
 
-function CountryPicker({ value, onChange, hasError }: {
-  value: Country;
-  onChange: (c: Country) => void;
-  hasError: boolean;
+type DropdownOption = {
+  value: string;
+  label: string;
+  /** Optional leading element (e.g. flag emoji) */
+  prefix?: string;
+  /** Optional trailing element (e.g. dial code) */
+  suffix?: string;
+};
+
+function Dropdown({ options, value, onChange, placeholder, hasError, searchable, toggleLabel, toggleClass, fullWidth }: {
+  options: DropdownOption[];
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  hasError?: boolean;
+  /** Enable search filtering (default: true when > 8 options) */
+  searchable?: boolean;
+  /** Custom content for the closed toggle (defaults to selected label) */
+  toggleLabel?: React.ReactNode;
+  /** Extra class on the toggle button */
+  toggleClass?: string;
+  /** Stretch toggle to full width (default: false) */
+  fullWidth?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  // Close on outside click
+  const showSearch = searchable ?? options.length > 8;
+  const selected = options.find((o) => o.value === value);
+
   useEffect(() => {
     if (!open) return;
     const handle = (e: MouseEvent) => {
@@ -110,61 +131,107 @@ function CountryPicker({ value, onChange, hasError }: {
     return () => document.removeEventListener('mousedown', handle);
   }, [open]);
 
-  // Focus search when opened
   useEffect(() => {
-    if (open) searchRef.current?.focus();
-  }, [open]);
+    if (open && showSearch) searchRef.current?.focus();
+  }, [open, showSearch]);
 
   const filtered = search
-    ? COUNTRIES.filter((c) =>
-        c.name.toLowerCase().includes(search.toLowerCase()) ||
-        c.code.includes(search)
+    ? options.filter((o) =>
+        o.label.toLowerCase().includes(search.toLowerCase()) ||
+        o.value.toLowerCase().includes(search.toLowerCase()) ||
+        (o.suffix ?? '').toLowerCase().includes(search.toLowerCase())
       )
-    : COUNTRIES;
+    : options;
 
   return (
-    <div className="msf-country-picker" ref={containerRef}>
+    <div className={`msf-dropdown ${fullWidth ? 'msf-dropdown-full' : ''}`} ref={containerRef}>
       <button
         type="button"
-        className={`msf-country-toggle ${hasError ? 'msf-input-error' : ''}`}
+        className={`msf-dropdown-toggle ${hasError ? 'msf-input-error' : ''} ${toggleClass ?? ''}`}
         onClick={() => setOpen(!open)}
-        aria-label="Select country"
       >
-        <span className="msf-country-flag">{value.flag}</span>
-        <span className="msf-country-dial">{value.code}</span>
-        <span className="msf-country-caret">▾</span>
+        {toggleLabel ?? (
+          <span className={`msf-dropdown-label ${!selected ? 'msf-dropdown-placeholder' : ''}`}>
+            {selected ? (
+              <>
+                {selected.prefix && <span className="msf-dropdown-prefix">{selected.prefix}</span>}
+                {selected.label}
+              </>
+            ) : (placeholder ?? 'Select one')}
+          </span>
+        )}
+        <span className="msf-dropdown-caret">▾</span>
       </button>
       {open && (
-        <div className="msf-country-dropdown">
-          <input
-            ref={searchRef}
-            type="text"
-            className="msf-country-search"
-            placeholder="Search…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <div className="msf-country-list">
-            {filtered.map((c, i) => (
+        <div className="msf-dropdown-panel">
+          {showSearch && (
+            <input
+              ref={searchRef}
+              type="text"
+              className="msf-dropdown-search"
+              placeholder="Search…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          )}
+          <div className="msf-dropdown-list">
+            {filtered.map((o) => (
               <button
-                key={`${c.code}-${c.name}-${i}`}
+                key={o.value + o.label}
                 type="button"
-                className={`msf-country-option ${c.name === value.name && c.code === value.code ? 'msf-country-option-active' : ''}`}
+                className={`msf-dropdown-option ${o.value === value ? 'msf-dropdown-option-active' : ''}`}
                 onClick={() => {
-                  onChange(c);
+                  onChange(o.value);
                   setOpen(false);
                   setSearch('');
                 }}
               >
-                <span className="msf-country-flag">{c.flag}</span>
-                <span className="msf-country-name">{c.name}</span>
-                <span className="msf-country-code">{c.code}</span>
+                {o.prefix && <span className="msf-dropdown-prefix">{o.prefix}</span>}
+                <span className="msf-dropdown-option-label">{o.label}</span>
+                {o.suffix && <span className="msf-dropdown-option-suffix">{o.suffix}</span>}
               </button>
             ))}
+            {filtered.length === 0 && (
+              <div className="msf-dropdown-empty">No results</div>
+            )}
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+/* ── Country picker (thin wrapper over Dropdown) ── */
+
+const COUNTRY_OPTIONS: DropdownOption[] = COUNTRIES.map((c, i) => ({
+  value: `${i}`,
+  label: c.name,
+  prefix: c.flag,
+  suffix: c.code,
+}));
+
+function CountryPicker({ value, onChange, hasError }: {
+  value: Country;
+  onChange: (c: Country) => void;
+  hasError: boolean;
+}) {
+  const selectedIdx = COUNTRIES.findIndex((c) => c.name === value.name && c.code === value.code);
+
+  return (
+    <Dropdown
+      options={COUNTRY_OPTIONS}
+      value={String(selectedIdx >= 0 ? selectedIdx : 0)}
+      onChange={(v) => onChange(COUNTRIES[Number(v)]!)}
+      hasError={hasError}
+      searchable
+      toggleClass="msf-country-toggle"
+      toggleLabel={
+        <>
+          <span className="msf-country-flag">{value.flag}</span>
+          <span className="msf-country-dial">{value.code}</span>
+        </>
+      }
+    />
   );
 }
 
@@ -437,17 +504,14 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
                 </label>
 
                 {field.inputType === 'select' && (
-                  <select
-                    id={field.name}
+                  <Dropdown
+                    options={field.options.map((opt) => ({ value: opt, label: opt }))}
                     value={(formData[field.name] as string) ?? ''}
-                    onChange={(e) => updateField(field.name, e.target.value)}
-                    className={errors[field.name] ? 'msf-input-error' : ''}
-                  >
-                    <option value="">Select one</option>
-                    {field.options.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                    onChange={(v) => updateField(field.name, v)}
+                    placeholder="Select one"
+                    hasError={!!errors[field.name]}
+                    fullWidth
+                  />
                 )}
 
                 {field.inputType === 'multi-select' && (
