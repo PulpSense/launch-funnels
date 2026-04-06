@@ -1463,10 +1463,342 @@
 }
 
 .formEmbed {
-  max-width: 860px;
+  max-width: 640px;
   margin: 40px auto 0;
   padding: 0 24px;
   overflow: visible;
+}
+
+/* ── Multi-Step Form ── */
+.formEmbed :global(.msf-progress) {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.formEmbed :global(.msf-progress-bar) {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.formEmbed :global(.msf-body) {
+  min-height: 280px;
+}
+
+.formEmbed :global(.msf-fields-grid) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 540px) {
+  .formEmbed :global(.msf-fields-grid) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formEmbed :global(.msf-fields-stack) {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formEmbed :global(.msf-field) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formEmbed :global(.msf-field label) {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.formEmbed :global(.msf-required) {
+  color: var(--orange);
+  margin-left: 3px;
+}
+
+.formEmbed :global(.msf-field input),
+.formEmbed :global(.msf-field select) {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.formEmbed :global(.msf-field input::placeholder) {
+  color: var(--text-muted);
+}
+
+.formEmbed :global(.msf-field input:focus),
+.formEmbed :global(.msf-field select:focus) {
+  border-color: var(--orange);
+}
+
+.formEmbed :global(.msf-field select) {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.formEmbed :global(.msf-field select option) {
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.formEmbed :global(.msf-phone-row) {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.formEmbed :global(.msf-phone-row input) {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Country Picker ── */
+.formEmbed :global(.msf-country-picker) {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.formEmbed :global(.msf-country-toggle) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  height: 46px;
+}
+
+.formEmbed :global(.msf-country-toggle:hover) {
+  border-color: var(--text-muted);
+}
+
+.formEmbed :global(.msf-country-flag) {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.formEmbed :global(.msf-country-dial) {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.formEmbed :global(.msf-country-caret) {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.formEmbed :global(.msf-country-dropdown) {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.formEmbed :global(.msf-country-search) {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.formEmbed :global(.msf-country-search::placeholder) {
+  color: var(--text-muted);
+}
+
+.formEmbed :global(.msf-country-list) {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.formEmbed :global(.msf-country-list::-webkit-scrollbar) {
+  width: 6px;
+}
+
+.formEmbed :global(.msf-country-list::-webkit-scrollbar-track) {
+  background: transparent;
+}
+
+.formEmbed :global(.msf-country-list::-webkit-scrollbar-thumb) {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.formEmbed :global(.msf-country-option) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.formEmbed :global(.msf-country-option:hover) {
+  background: var(--bg-card-hover);
+}
+
+.formEmbed :global(.msf-country-option-active) {
+  background: var(--orange-glow);
+}
+
+.formEmbed :global(.msf-country-name) {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.formEmbed :global(.msf-country-code) {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.formEmbed :global(.msf-input-error) {
+  border-color: #ef4444 !important;
+}
+
+.formEmbed :global(.msf-error) {
+  color: #ef4444;
+  font-size: 0.78rem;
+}
+
+.formEmbed :global(.msf-chips) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.formEmbed :global(.msf-chip) {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.formEmbed :global(.msf-chip:hover) {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.formEmbed :global(.msf-chip-selected) {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #000;
+  font-weight: 600;
+}
+
+.formEmbed :global(.msf-chip-selected:hover) {
+  background: var(--orange-dark);
+  border-color: var(--orange-dark);
+  color: #000;
+}
+
+.formEmbed :global(.msf-nav) {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.formEmbed :global(.msf-btn) {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+}
+
+.formEmbed :global(.msf-btn-primary) {
+  background: var(--orange);
+  color: #000;
+}
+
+.formEmbed :global(.msf-btn-primary:hover) {
+  background: var(--orange-dark);
+}
+
+.formEmbed :global(.msf-btn-primary:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formEmbed :global(.msf-btn-back) {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.formEmbed :global(.msf-btn-back:hover) {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.formEmbed :global(.msf-btn-finish) {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.formEmbed :global(.msf-embed) {
+  min-height: 500px;
+}
+
+.formEmbed :global(.msf-embed iframe) {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+  border-radius: 8px;
+}
+
+.formEmbed :global(.msf-embed-hint) {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 16px;
 }
 
 /* ── Calculator Sliders ── */
