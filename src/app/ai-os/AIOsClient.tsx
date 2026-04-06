@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Script from 'next/script';
 
 import { trackMetaEvent } from '@/utils/metaCapi';
+import { MultiStepForm } from '@/components/ui/MultiStepForm';
+import type { MultiStepFormConfig } from '@/components/ui/MultiStepForm';
 import s from './page.module.css';
 
 function useInView(rootMargin = '200px') {
@@ -33,6 +35,59 @@ function useInView(rootMargin = '200px') {
 const CTA_HREF = '#apply';
 const CTA_TEXT = 'Book Your Free Strategy Call';
 const FB_PIXEL_ID = '828948073514575';
+
+/* ── Multi-step form config ── */
+const FORM_CONFIG: MultiStepFormConfig = {
+  webhookUrl: process.env.NEXT_PUBLIC_FORM_WEBHOOK_URL,
+  webhookUrlComplete: process.env.NEXT_PUBLIC_FORM_WEBHOOK_COMPLETE_URL,
+  qualifiedRedirect: '/ai-os/thank-you',
+  unqualifiedRedirect: '/ai-os/thank-you-u',
+  qualificationRules: [
+    { field: 'revenue', disqualifyValues: ['< $25k'] },
+    { field: 'businessType', disqualifyValues: ['Other'] },
+  ],
+  steps: [
+    {
+      type: 'contact',
+      fields: [
+        { name: 'firstName', label: 'First name', inputType: 'text', placeholder: 'Henry', required: true },
+        { name: 'lastName', label: 'Last name', inputType: 'text', placeholder: 'Ford', required: true },
+        { name: 'email', label: 'Business email', inputType: 'email', placeholder: 'henry@ford.com', required: true },
+        { name: 'phone', label: 'Phone number', inputType: 'phone', placeholder: '(888) 123-4567', required: true },
+      ],
+    },
+    {
+      type: 'qualify',
+      fields: [
+        {
+          name: 'revenue',
+          label: 'What\'s your current monthly revenue (USD)?',
+          inputType: 'select',
+          required: true,
+          options: ['< $25k', '$25k – $50k', '$50k – $200k', '$200k – $500k', '$500k – $1M', '$1M – $5M', '> $5M'],
+        },
+        {
+          name: 'businessType',
+          label: 'What type of business do you run?',
+          inputType: 'select',
+          required: true,
+          options: ['Coaching', 'Consultant', 'Agency', 'Other'],
+        },
+        {
+          name: 'leadGen',
+          label: 'What are your main lead generation methods?',
+          inputType: 'multi-select',
+          required: true,
+          options: ['Ads', 'Content (Inbound)', 'Cold Email', 'LinkedIn Outreach', 'Cold Calls', 'Referrals'],
+        },
+      ],
+    },
+    {
+      type: 'embed',
+      html: '<!-- Cal.com embed placeholder --><div style="display:flex;align-items:center;justify-content:center;min-height:500px;color:#a1a1aa;font-size:1.1rem;">Cal.com scheduling embed goes here</div>',
+    },
+  ],
+};
 
 /* ── Client logos (same as /ai-os) ── */
 const CLIENT_LOGOS = [
@@ -888,15 +943,9 @@ export default function AIOsClient() {
         </div>
         <div ref={formRef} className={s.formEmbed}>
           {formVisible ? (
-            <iframe
-              src="https://pulpsense.fillout.com/t/xsMCsFPnw6us?embed=true"
-              width="100%"
-              height="700"
-              style={{border: 'none'}}
-              title="Book a strategy call"
-            />
+            <MultiStepForm config={FORM_CONFIG} />
           ) : (
-            <div style={{ height: 700 }} />
+            <div style={{ height: 400 }} />
           )}
         </div>
       </section>
