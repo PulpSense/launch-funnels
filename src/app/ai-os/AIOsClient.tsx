@@ -64,7 +64,7 @@ const FORM_CONFIG: MultiStepFormConfig = {
           label: 'What\'s your current monthly revenue (USD)?',
           inputType: 'select',
           required: true,
-          options: ['< $25k', '$25k – $50k', '$50k – $100k', '$100k – $300k', '$300k – $500k', '> $1M'],
+          options: ['< $25k', '$25k - $50k', '$50k - $100k', '$100k - $200k', '$200k - $500k', '$500k - $1m', '> $1m'],
         },
         {
           name: 'businessType',

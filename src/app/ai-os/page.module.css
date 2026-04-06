@@ -1814,6 +1814,25 @@
   width: 100%;
 }
 
+.formEmbed :global(.msf-cal-header) {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.formEmbed :global(.msf-cal-title) {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+.formEmbed :global(.msf-cal-subtitle) {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
 .formEmbed :global(.msf-cal-embed) {
   min-height: 500px;
 }
@@ -1978,4 +1997,3 @@
   }
 
 }
-

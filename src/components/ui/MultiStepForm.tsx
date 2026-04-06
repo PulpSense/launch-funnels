@@ -547,6 +547,12 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
 
         {step.type === 'cal' && (
           <div>
+            <div className="msf-cal-header">
+              <h3 className="msf-cal-title">You&apos;re in. Pick a time for your strategy call!</h3>
+              <p className="msf-cal-subtitle">
+                In 25 minutes we&apos;ll map your biggest time drains and show you exactly which 3 AI agents would make the biggest impact on your business.
+              </p>
+            </div>
             <div className="msf-cal-embed">
               <Cal
                 namespace={step.namespace ?? 'default'}
@@ -557,8 +563,12 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
                     layout: 'month_view',
                     theme: 'dark',
                     useSlotsViewOnSmallScreen: 'true',
-                    name: [formData.firstName, formData.lastName].filter(Boolean).join(' '),
+                    firstName: formData.firstName as string,
+                    lastName: formData.lastName as string,
                     email: formData.email as string,
+                    rev: formData.revenue as string,
+                    biztype: formData.businessType as string,
+                    leadgen: Array.isArray(formData.leadGen) ? formData.leadGen.join(', ') : '',
                   }).filter(([, v]) => !!v),
                 )}
               />
@@ -568,6 +578,13 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
       </div>
 
       {/* Navigation */}
+      {step.type === 'cal' && currentStep > 0 && (
+        <div className="msf-nav">
+          <button type="button" className="msf-btn msf-btn-back" onClick={handleBack}>
+            ← Back
+          </button>
+        </div>
+      )}
       {step.type !== 'cal' && (
         <div className="msf-nav">
           {currentStep > 0 && (
