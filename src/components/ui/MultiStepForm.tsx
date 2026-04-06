@@ -2,10 +2,11 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Cal, { getCalApi } from '@calcom/embed-react';
 
 /* ── Types ── */
 
-export type FormStep = ContactStep | QualifyStep | EmbedStep;
+export type FormStep = ContactStep | QualifyStep | CalStep;
 
 type ContactStep = {
   type: 'contact';
@@ -36,9 +37,12 @@ type QualifyField = {
   | { inputType: 'multi-select'; options: string[] }
 );
 
-type EmbedStep = {
-  type: 'embed';
-  html: string;
+type CalStep = {
+  type: 'cal';
+  /** Cal.com link e.g. "santileoni/growth-mapping-funnel" */
+  calLink: string;
+  /** Cal.com namespace */
+  namespace?: string;
 };
 
 type QualificationRule = {
@@ -385,55 +389,58 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
   useEffect(() => { formDataRef.current = formData; }, [formData]);
   useEffect(() => { isQualifiedRef.current = isQualified; }, [isQualified]);
 
-  // Listen for Cal.com booking confirmation on the embed step
+  // Initialize Cal.com API and listen for booking confirmation
+  const calNamespace = step.type === 'cal' ? (step.namespace ?? 'default') : '';
   useEffect(() => {
-    if (step.type !== 'embed') return;
+    if (step.type !== 'cal') return;
 
-    const handleMessage = async (event: MessageEvent) => {
-      // Cal.com embed posts messages with a specific shape
-      const d = event.data;
-      if (!d || typeof d !== 'object') return;
+    (async () => {
+      const cal = await getCalApi({ namespace: calNamespace });
+      cal('ui', {
+        theme: 'dark',
+        cssVarsPerTheme: {
+          dark: { 'cal-brand': '#f97316' },
+          light: { 'cal-brand': '#f97316' },
+        },
+        hideEventTypeDetails: true,
+        layout: 'month_view',
+      });
+      cal('on', {
+        action: 'bookingSuccessful',
+        callback: async (e: { detail: { data?: Record<string, unknown> } }) => {
+          const booking = e.detail?.data ?? {};
+          const enrichedData = {
+            ...formDataRef.current,
+            bookingDate: (booking.date as string) ?? (booking.startTime as string) ?? '',
+            bookingTitle: (booking.title as string) ?? (booking.eventTitle as string) ?? '',
+          };
 
-      // Cal.com v2 embed fires: { type: "CAL:bookingSuccessful", data: { ... } }
-      const type = d.type ?? d.action;
-      if (type !== 'CAL:bookingSuccessful' && type !== ':cal:bookingSuccessful') return;
+          if (config.webhookUrlComplete) {
+            try {
+              await fetch('/api/form-submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  webhookUrl: config.webhookUrlComplete,
+                  event: 'booking_completed',
+                  data: enrichedData,
+                  submittedAt: new Date().toISOString(),
+                }),
+              });
+            } catch {
+              // Silently fail
+            }
+          }
 
-      const booking = d.data ?? {};
-      const enrichedData = {
-        ...formDataRef.current,
-        bookingDate: booking.date ?? booking.startTime ?? '',
-        bookingTitle: booking.title ?? booking.eventTitle ?? '',
-      };
-
-      // Fire the complete webhook with booking info
-      if (config.webhookUrlComplete) {
-        try {
-          await fetch('/api/form-submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              webhookUrl: config.webhookUrlComplete,
-              event: 'booking_completed',
-              data: enrichedData,
-              submittedAt: new Date().toISOString(),
-            }),
-          });
-        } catch {
-          // Silently fail
-        }
-      }
-
-      // Auto-redirect after booking
-      if (isQualifiedRef.current) {
-        router.push(config.qualifiedRedirect);
-      } else {
-        router.push(config.unqualifiedRedirect);
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, [step.type, config, router]);
+          if (isQualifiedRef.current) {
+            router.push(config.qualifiedRedirect);
+          } else {
+            router.push(config.unqualifiedRedirect);
+          }
+        },
+      });
+    })();
+  }, [step.type, calNamespace, config, router]);
 
   return (
     <div className={className}>
@@ -538,19 +545,30 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
           </div>
         )}
 
-        {step.type === 'embed' && (
+        {step.type === 'cal' && (
           <div>
-            <div
-              className="msf-embed"
-              dangerouslySetInnerHTML={{ __html: step.html }}
-            />
-            <p className="msf-embed-hint">You&apos;ll be redirected after booking.</p>
+            <div className="msf-cal-embed">
+              <Cal
+                namespace={step.namespace ?? 'default'}
+                calLink={step.calLink}
+                style={{ width: '100%', height: '100%', overflow: 'scroll' }}
+                config={Object.fromEntries(
+                  Object.entries({
+                    layout: 'month_view',
+                    theme: 'dark',
+                    useSlotsViewOnSmallScreen: 'true',
+                    name: [formData.firstName, formData.lastName].filter(Boolean).join(' '),
+                    email: formData.email as string,
+                  }).filter(([, v]) => !!v),
+                )}
+              />
+            </div>
           </div>
         )}
       </div>
 
       {/* Navigation */}
-      {step.type !== 'embed' && (
+      {step.type !== 'cal' && (
         <div className="msf-nav">
           {currentStep > 0 && (
             <button type="button" className="msf-btn msf-btn-back" onClick={handleBack}>

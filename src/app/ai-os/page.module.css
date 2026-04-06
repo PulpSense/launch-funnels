@@ -1814,23 +1814,10 @@
   width: 100%;
 }
 
-.formEmbed :global(.msf-embed) {
+.formEmbed :global(.msf-cal-embed) {
   min-height: 500px;
 }
 
-.formEmbed :global(.msf-embed iframe) {
-  width: 100%;
-  min-height: 500px;
-  border: none;
-  border-radius: 8px;
-}
-
-.formEmbed :global(.msf-embed-hint) {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  margin-top: 16px;
-}
 
 /* ── Calculator Sliders ── */
 .calcLabelRow {
