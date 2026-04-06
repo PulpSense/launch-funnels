@@ -1759,7 +1759,6 @@
   background: var(--orange);
   border-color: var(--orange);
   color: #000;
-  font-weight: 600;
 }
 
 .formEmbed :global(.msf-chip-selected:hover) {
