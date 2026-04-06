@@ -52,10 +52,6 @@ type QualificationRule = {
 
 export type MultiStepFormConfig = {
   steps: FormStep[];
-  /** Fires after step 1 (contact info) */
-  webhookUrl?: string;
-  /** Fires after step 2 (full form complete) */
-  webhookUrlComplete?: string;
   qualificationRules?: QualificationRule[];
   qualifiedRedirect: string;
   unqualifiedRedirect: string;
@@ -332,20 +328,19 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     return true;
   }, [config.qualificationRules, formData]);
 
-  const sendWebhook = useCallback(async (url: string | undefined, event: string) => {
-    if (!url) return;
+  const sendWebhook = useCallback(async (event: string, extraData?: Record<string, string>) => {
     // Enrich phone with country code for the webhook payload
     const phoneVal = formData.phone as string | undefined;
     const enriched = {
       ...formData,
       ...(phoneVal ? { phone: `${phoneCountry.code} ${phoneVal}` } : {}),
+      ...extraData,
     };
     try {
       await fetch('/api/form-submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          webhookUrl: url,
           event,
           data: enriched,
           submittedAt: new Date().toISOString(),
@@ -362,7 +357,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
 
     // After step 1 (contact), fire partial webhook
     if (currentStep === 0) {
-      await sendWebhook(config.webhookUrl, 'contact_submitted');
+      await sendWebhook('contact_submitted');
     }
 
     // After step 2 (qualify), check qualification
@@ -411,25 +406,23 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
           const booking = e.detail?.data ?? {};
           const enrichedData = {
             ...formDataRef.current,
+            bookingUid: (booking.uid as string) ?? '',
             bookingDate: (booking.date as string) ?? (booking.startTime as string) ?? '',
             bookingTitle: (booking.title as string) ?? (booking.eventTitle as string) ?? '',
           };
 
-          if (config.webhookUrlComplete) {
-            try {
-              await fetch('/api/form-submit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  webhookUrl: config.webhookUrlComplete,
-                  event: 'booking_completed',
-                  data: enrichedData,
-                  submittedAt: new Date().toISOString(),
-                }),
-              });
-            } catch {
-              // Silently fail
-            }
+          try {
+            await fetch('/api/form-submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                event: 'booking_completed',
+                data: enrichedData,
+                submittedAt: new Date().toISOString(),
+              }),
+            });
+          } catch {
+            // Silently fail
           }
 
           if (isQualifiedRef.current) {

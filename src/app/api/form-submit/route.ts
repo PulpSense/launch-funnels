@@ -1,17 +1,23 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
-  const { webhookUrl, data, submittedAt } = await req.json();
+const WEBHOOK_URLS: Record<string, string | undefined> = {
+  contact_submitted: process.env.FORM_WEBHOOK_URL,
+  booking_completed: process.env.FORM_WEBHOOK_COMPLETE_URL,
+};
 
-  if (!webhookUrl || typeof webhookUrl !== 'string') {
-    return NextResponse.json({ error: 'Missing webhookUrl' }, { status: 400 });
+export async function POST(req: Request) {
+  const { event, data, submittedAt } = await req.json();
+
+  const webhookUrl = WEBHOOK_URLS[event];
+  if (!webhookUrl) {
+    return NextResponse.json({ error: 'Unknown event' }, { status: 400 });
   }
 
   try {
     await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ data, submittedAt }),
+      body: JSON.stringify({ event, data, submittedAt }),
     });
     return NextResponse.json({ ok: true });
   } catch {
