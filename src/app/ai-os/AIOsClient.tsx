@@ -83,8 +83,9 @@ const FORM_CONFIG: MultiStepFormConfig = {
       ],
     },
     {
-      type: 'embed',
-      html: '<!-- Cal.com embed placeholder --><div style="display:flex;align-items:center;justify-content:center;min-height:500px;color:#a1a1aa;font-size:1.1rem;">Cal.com scheduling embed goes here</div>',
+      type: 'cal',
+      calLink: 'santileoni/growth-mapping-funnel',
+      namespace: 'growth-mapping-funnel',
     },
   ],
 };
