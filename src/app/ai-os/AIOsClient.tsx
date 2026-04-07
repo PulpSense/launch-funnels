@@ -410,11 +410,12 @@ export default function AIOsClient() {
           Agency Owners, Consultants &amp; Coaches Doing $50K+/Month
         </div>
         <h1 className={s.heroH1}>
-          Get 15+ Hours Back Every Week.{' '}
-          <span className={s.heroHighlight}>We Build Your AI OS.</span>
+          Get 15+ hours back every week.
+          <br className="hidden md:inline" />
+          <span className={s.heroHighlight}>{' '}We install your AI workforce.</span>
         </h1>
         <p className={s.heroSub}>
-          AI agents built for your ops. Email, reporting and follow-ups handled 24/7. One dashboard. Live in 14 days.
+          AI agents built for your ops. Email, reporting and follow-ups handled 24/7. Live in 14 days.
         </p>
         {/* DSL Embed */}
         <div className={s.dslEmbed}>
