@@ -33,7 +33,7 @@ function useInView(rootMargin = '200px') {
 // See layout.tsx or use generateMetadata in a wrapper; inline approach below via <title>.
 
 const CTA_HREF = '#apply';
-const CTA_TEXT = 'Book Your Free Strategy Call';
+const CTA_TEXT = 'See If You Qualify';
 const FB_PIXEL_ID = '828948073514575';
 
 /* ── Multi-step form config ── */
@@ -936,9 +936,9 @@ export default function AIOsClient() {
       {/* ── Apply / Embedded Form ── */}
       <section id="apply" className={s.applySection}>
         <div className={s.wrap}>
-          <span className={s.sectionLabel}>Book your call</span>
-          <h2 className={s.sectionTitle}>Book your free strategy call</h2>
-          <p className={s.sectionSubtitle}>25 minutes. We map your biggest time drains and show you exactly which 3 agents would make the biggest impact.</p>
+          <span className={s.sectionLabel}>Apply now</span>
+          <h2 className={s.sectionTitle}>See if you qualify</h2>
+          <p className={s.sectionSubtitle}>Answer a few quick questions and we&apos;ll show you exactly which 3 AI agents would make the biggest impact on your business.</p>
         </div>
         <div ref={formRef} className={s.formEmbed}>
           {formVisible ? (
@@ -976,9 +976,9 @@ export default function AIOsClient() {
         <div className={s.wrap}>
           <h2>Ready to get 15+ hours back?</h2>
           <p>
-            Book a free 25-minute strategy call. We&apos;ll map your biggest
-            time drains and show you exactly which 3 agents would make the
-            biggest impact.
+            Answer a few quick questions to see if you qualify. We&apos;ll
+            show you exactly which 3 AI agents would make the biggest
+            impact on your business.
           </p>
           <a href={CTA_HREF} className={s.ctaBtn}>
             {CTA_TEXT}
