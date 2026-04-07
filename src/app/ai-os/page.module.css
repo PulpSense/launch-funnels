@@ -1724,6 +1724,47 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Email verification ── */
+.formEmbed :global(.msf-email-wrapper) {
+  position: relative;
+}
+
+.formEmbed :global(.msf-email-wrapper input) {
+  padding-right: 38px;
+}
+
+.formEmbed :global(.msf-email-status) {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.formEmbed :global(.msf-email-spinner) {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: msf-spin 0.6s linear infinite;
+}
+
+@keyframes msf-spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.formEmbed :global(.msf-email-valid) {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.formEmbed :global(.msf-email-invalid) {
+  color: #ef4444;
+  font-weight: 700;
+}
+
 .formEmbed :global(.msf-input-error) {
   border-color: #ef4444 !important;
 }

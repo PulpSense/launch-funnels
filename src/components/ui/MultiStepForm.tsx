@@ -237,6 +237,18 @@ function CountryPicker({ value, onChange, hasError }: {
 
 /* ── Component ── */
 
+/* ── Email verification status icon ── */
+function EmailStatus({ status }: { status: 'idle' | 'verifying' | 'valid' | 'invalid' }) {
+  if (status === 'idle') return null;
+  if (status === 'verifying') {
+    return <span className="msf-email-status msf-email-spinner" aria-label="Verifying email" />;
+  }
+  if (status === 'valid') {
+    return <span className="msf-email-status msf-email-valid" aria-label="Email verified">✓</span>;
+  }
+  return <span className="msf-email-status msf-email-invalid" aria-label="Invalid email">✗</span>;
+}
+
 export function MultiStepForm({ config, className }: { config: MultiStepFormConfig; className?: string }) {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
@@ -245,6 +257,9 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
   const [submitting, setSubmitting] = useState(false);
   const [isQualified, setIsQualified] = useState(true);
   const [phoneCountry, setPhoneCountry] = useState<Country>(DEFAULT_COUNTRY);
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'verifying' | 'valid' | 'invalid'>('idle');
+  const emailAbortRef = useRef<AbortController | null>(null);
+  const lastVerifiedEmail = useRef<string>('');
 
   const step = config.steps[currentStep]!;
   const totalSteps = config.steps.length;
@@ -270,6 +285,54 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     const digits = stripToDigits(currentVal, country.maxDigits);
     updateField(name, formatPhone(digits, country));
   }, [formData, updateField]);
+
+  const verifyEmail = useCallback(async (email: string) => {
+    // Skip if the email hasn't changed since last verification
+    if (email === lastVerifiedEmail.current) return;
+
+    // Only verify if it passes the client-side business email regex first
+    const businessEmailRe = /^[a-zA-Z0-9._%+-]+@(?!(?:gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|live\.com|msn\.com|icloud\.com|me\.com|mac\.com|aol\.com|proton\.me|protonmail\.com|pm\.me|gmx\.com|mail\.com|zoho\.com|yandex\.com)$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || !businessEmailRe.test(email)) {
+      lastVerifiedEmail.current = '';
+
+      setEmailStatus('idle');
+      return;
+    }
+
+    // Cancel any in-flight request
+    emailAbortRef.current?.abort();
+    const controller = new AbortController();
+    emailAbortRef.current = controller;
+
+    setEmailStatus('verifying');
+    try {
+      const res = await fetch('/api/verify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+        signal: controller.signal,
+      });
+      const data = await res.json();
+      if (controller.signal.aborted) return;
+      lastVerifiedEmail.current = email;
+
+      if (data.valid) {
+        setEmailStatus('valid');
+        setErrors((prev) => {
+          const next = { ...prev };
+          delete next.email;
+          return next;
+        });
+      } else {
+        setEmailStatus('invalid');
+        setErrors((prev) => ({ ...prev, email: "Hmm.. seems there's something wrong with this email. Can you double check?" }));
+      }
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === 'AbortError') return;
+      // On network error, don't block the user
+      setEmailStatus('idle');
+    }
+  }, []);
 
   const toggleMultiSelect = useCallback((name: string, option: string) => {
     setFormData((prev) => {
@@ -473,20 +536,27 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
                     />
                   </div>
                 ) : (
-                  <input
-                    id={field.name}
-                    type={field.inputType}
-                    placeholder={field.placeholder}
-                    value={(formData[field.name] as string) ?? ''}
-                    onChange={(e) => updateField(field.name, e.target.value)}
-                    className={errors[field.name] ? 'msf-input-error' : ''}
-                    autoComplete={
-                      field.inputType === 'email' ? 'email' :
-                      field.name.includes('first') ? 'given-name' :
-                      field.name.includes('last') ? 'family-name' :
-                      'off'
-                    }
-                  />
+                  <div className={field.inputType === 'email' ? 'msf-email-wrapper' : undefined}>
+                    <input
+                      id={field.name}
+                      type={field.inputType}
+                      placeholder={field.placeholder}
+                      value={(formData[field.name] as string) ?? ''}
+                      onChange={(e) => {
+                        updateField(field.name, e.target.value);
+                        if (field.inputType === 'email') setEmailStatus('idle');
+                      }}
+                      onBlur={field.inputType === 'email' ? () => verifyEmail((formData[field.name] as string) ?? '') : undefined}
+                      className={errors[field.name] ? 'msf-input-error' : ''}
+                      autoComplete={
+                        field.inputType === 'email' ? 'email' :
+                        field.name.includes('first') ? 'given-name' :
+                        field.name.includes('last') ? 'family-name' :
+                        'off'
+                      }
+                    />
+                    {field.inputType === 'email' && <EmailStatus status={emailStatus} />}
+                  </div>
                 )}
                 {errors[field.name] && <span className="msf-error">{errors[field.name]}</span>}
               </div>
@@ -589,7 +659,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
             type="button"
             className="msf-btn msf-btn-primary"
             onClick={handleNext}
-            disabled={submitting}
+            disabled={submitting || emailStatus === 'verifying' || emailStatus === 'invalid'}
           >
             {submitting ? 'Submitting…' : 'Next →'}
           </button>
