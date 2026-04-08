@@ -8,19 +8,37 @@ const WEBHOOK_URLS: Record<string, string | undefined> = {
 export async function POST(req: Request) {
   const { event, data, submittedAt } = await req.json();
 
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[webhook] event="${event}"`, JSON.stringify(data, null, 2));
+  }
+
   const webhookUrl = WEBHOOK_URLS[event];
   if (!webhookUrl) {
     return NextResponse.json({ error: 'Unknown event' }, { status: 400 });
   }
 
+  const payload = JSON.stringify({ event, data, submittedAt });
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[webhook] → ${webhookUrl}`, payload);
+  }
+
   try {
-    await fetch(webhookUrl, {
+    const res = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ event, data, submittedAt }),
+      body: payload,
     });
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[webhook] ← ${res.status} ${res.statusText}`);
+    }
+
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`[webhook] FAILED`, err);
+    }
     return NextResponse.json({ error: 'Webhook delivery failed' }, { status: 502 });
   }
 }

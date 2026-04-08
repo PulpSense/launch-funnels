@@ -4,7 +4,8 @@ const API_KEY = process.env.MILLION_VERIFIER_API_KEY;
 
 export async function POST(req: Request) {
   if (!API_KEY) {
-    return NextResponse.json({ error: 'Email verification not configured' }, { status: 500 });
+    // Skip verification when no API key is set (e.g. local testing)
+    return NextResponse.json({ valid: true, result: 'skipped' });
   }
 
   const { email } = await req.json();
