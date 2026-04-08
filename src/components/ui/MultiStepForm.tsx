@@ -466,7 +466,14 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
       cal('on', {
         action: 'bookingSuccessful',
         callback: async (e: { detail: { data?: Record<string, unknown> } }) => {
-          const booking = e.detail?.data ?? {};
+          const raw = e.detail?.data ?? {};
+          // Cal.com embed may nest booking data under a `booking` key or at the top level
+          const booking = (raw.booking as Record<string, unknown>) ?? raw;
+
+          if (process.env.NODE_ENV === 'development') {
+            console.log('[Cal.com bookingSuccessful] raw event data:', JSON.stringify(raw, null, 2));
+          }
+
           const enrichedData = {
             ...formDataRef.current,
             bookingUid: (booking.uid as string) ?? '',
