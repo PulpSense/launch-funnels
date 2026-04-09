@@ -11,8 +11,7 @@ export const metadata: Metadata = {
 
 const FB_PIXEL_ID = '828948073514575';
 
-// TODO: replace with final Wistia video ID
-const HERO_VIDEO_ID = 'mg51fk3kah';
+const HERO_VIDEO_ID = '8py8vigtf1';
 
 const STEPS = [
   {
@@ -78,8 +77,8 @@ export default function ThankYouPage() {
       {/* Hero */}
       <section className={s.hero}>
         <div className={s.wrap}>
-          <span className={s.checkIcon}>&#9989;</span>
           <h1 className={s.heroH1}>
+            <span className={s.checkIcon}>&#9989;</span>
             You&apos;re in. Here&apos;s what happens next.
           </h1>
           <p className={s.heroSub}>
