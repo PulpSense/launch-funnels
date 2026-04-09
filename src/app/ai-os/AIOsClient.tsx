@@ -429,9 +429,6 @@ export default function AIOsClient() {
         <a href={CTA_HREF} className={s.ctaBtn}>
           {CTA_TEXT} &rarr;
         </a>
-        <p className={s.ctaDisclaimer}>
-          No commitment · 25 minutes
-        </p>
 
       </section>
 
