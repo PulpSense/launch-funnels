@@ -12,6 +12,9 @@ export const metadata: Metadata = {
 
 const FB_PIXEL_ID = '828948073514575';
 
+// TODO: replace with final Wistia video ID
+const HERO_VIDEO_ID = 'mg51fk3kah';
+
 const STEPS = [
   {
     num: 1,
@@ -51,7 +54,7 @@ export default function ThankYouPage() {
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '${FB_PIXEL_ID}');
       `}</Script>
-      <MetaPixelEvents events={['PageView', 'Schedule']} />
+      <MetaPixelEvents events={['Schedule']} />
       <noscript>
         <img
           height="1"
@@ -84,6 +87,16 @@ export default function ThankYouPage() {
             Check your email for next steps. If you don&apos;t see it in 5
             minutes, check spam.
           </p>
+
+          {/* Hero video */}
+          <div className={s.heroVideo}>
+            <iframe
+              src={`https://fast.wistia.net/embed/iframe/${HERO_VIDEO_ID}?seo=true&videoFoam=false`}
+              title="What to expect"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
 
