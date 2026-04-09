@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Cal, { getCalApi } from '@calcom/embed-react';
 
 /* ── Types ── */
@@ -251,6 +251,20 @@ function EmailStatus({ status }: { status: 'idle' | 'verifying' | 'valid' | 'inv
 
 export function MultiStepForm({ config, className }: { config: MultiStepFormConfig; className?: string }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Capture UTM params once on mount so they survive step transitions
+  const utmParams = useRef<Record<string, string>>({});
+  useEffect(() => {
+    const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const params: Record<string, string> = {};
+    for (const key of keys) {
+      const val = searchParams.get(key);
+      if (val) params[key] = val;
+    }
+    if (Object.keys(params).length > 0) utmParams.current = params;
+  }, [searchParams]);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, string | string[]>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -398,6 +412,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
       ...formData,
       ...(phoneVal ? { phone: `${phoneCountry.code} ${phoneVal}` } : {}),
       ...extraData,
+      ...utmParams.current,
     };
     try {
       await fetch('/api/form-submit', {
@@ -479,6 +494,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
             bookingUid: (booking.uid as string) ?? '',
             bookingDate: (booking.date as string) ?? (booking.startTime as string) ?? '',
             bookingTitle: (booking.title as string) ?? (booking.eventTitle as string) ?? '',
+            ...utmParams.current,
           };
 
           try {
