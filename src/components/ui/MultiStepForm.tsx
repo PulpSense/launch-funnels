@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Cal, { getCalApi } from '@calcom/embed-react';
+import { trackMetaEvent } from '@/utils/metaCapi';
 
 /* ── Types ── */
 
@@ -433,15 +434,17 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     if (!validate()) return;
     setSubmitting(true);
 
-    // After step 1 (contact), fire partial webhook
+    // After step 1 (contact), fire partial webhook + Lead event
     if (currentStep === 0) {
       await sendWebhook('contact_submitted');
+      trackMetaEvent('Lead');
     }
 
-    // After step 2 (qualify), check qualification
+    // After step 2 (qualify), check qualification + SubmitApplication event
     if (step.type === 'qualify') {
       const qualified = checkQualification();
       setIsQualified(qualified);
+      trackMetaEvent('SubmitApplication');
     }
 
     config.onStepComplete?.(currentStep, formData);
