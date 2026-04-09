@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import { MetaPixelEvents } from '@/components/ui/MetaPixelEvents';
-
 import s from './page.module.css';
 
 export const metadata: Metadata = {
@@ -11,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 const FB_PIXEL_ID = '828948073514575';
+
+const HERO_VIDEO_ID = '8py8vigtf1';
 
 const STEPS = [
   {
@@ -51,7 +52,7 @@ export default function ThankYouPage() {
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '${FB_PIXEL_ID}');
       `}</Script>
-      <MetaPixelEvents events={['PageView', 'Schedule']} />
+      <MetaPixelEvents events={['Schedule']} />
       <noscript>
         <img
           height="1"
@@ -76,14 +77,24 @@ export default function ThankYouPage() {
       {/* Hero */}
       <section className={s.hero}>
         <div className={s.wrap}>
-          <span className={s.checkIcon}>&#9989;</span>
           <h1 className={s.heroH1}>
+            <span className={s.checkIcon}>&#9989;</span>
             You&apos;re in. Here&apos;s what happens next.
           </h1>
           <p className={s.heroSub}>
             Check your email for next steps. If you don&apos;t see it in 5
             minutes, check spam.
           </p>
+
+          {/* Hero video */}
+          <div className={s.heroVideo}>
+            <iframe
+              src={`https://fast.wistia.net/embed/iframe/${HERO_VIDEO_ID}?seo=true&videoFoam=false`}
+              title="What to expect"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
 
