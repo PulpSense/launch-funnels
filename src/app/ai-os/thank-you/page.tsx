@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import { MetaPixelEvents } from '@/components/ui/MetaPixelEvents';
-
 import s from './page.module.css';
 
 export const metadata: Metadata = {
