@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import AIOsClient from './AIOsClient';
+
+import { AIOsPage as AIOsLandingPage } from './_components/AIOsPage';
 
 export const metadata: Metadata = {
   title: 'AI OS for Business | Custom AI Agent Systems Built for Operators',
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function AIOsPage() {
-  return <AIOsClient />;
+  return <AIOsLandingPage />;
 }
