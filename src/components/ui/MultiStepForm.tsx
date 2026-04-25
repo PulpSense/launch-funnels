@@ -44,6 +44,8 @@ type CalStep = {
   calLink: string;
   /** Cal.com namespace */
   namespace?: string;
+  title?: string;
+  subtitle?: string;
 };
 
 type QualificationRule = {
@@ -637,9 +639,12 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
         {step.type === 'cal' && (
           <div>
             <div className="msf-cal-header">
-              <h3 className="msf-cal-title">You&apos;re in! Pick a time to chat with us.</h3>
+              <h3 className="msf-cal-title">
+                {step.title ?? "You're in! Pick a time to chat with us."}
+              </h3>
               <p className="msf-cal-subtitle">
-                In 25 minutes we&apos;ll map your biggest time drains and show you exactly which 3 AI agents would make the biggest impact on your business.
+                {step.subtitle ??
+                  "In 25 minutes we'll map your biggest time drains and show you exactly which 3 AI agents would make the biggest impact on your business."}
               </p>
             </div>
             <div className="msf-cal-embed">
