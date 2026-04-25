@@ -1,6 +1,6 @@
 # Launch Funnels
 
-A landing page template built with Next.js 16, Tailwind CSS v4, and React 19. Designed for quickly spinning up high-converting funnel pages with a props-driven component architecture.
+A Next.js 16 funnel app for the AI OS offer. The app is structured so AI OS is the canonical live funnel and future funnels can reuse the shared funnel primitives without inheriting AI OS-specific styling.
 
 ## Tech Stack
 
@@ -37,29 +37,33 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 src/
 ├── app/
 │   ├── layout.tsx                 # Root layout
-│   └── sell-ai-funnel/            # Example funnel
-│       ├── page.tsx               # Lander
-│       ├── thank-you/page.tsx     # Thank you page
-│       └── unqualified/page.tsx   # Unqualified page
+│   └── ai-os/                     # Canonical live funnel
+│       ├── content.ts             # Typed copy/config for the funnel
+│       ├── page.tsx               # Lander route entry
+│       ├── _components/           # AI OS-specific sections and CSS Modules
+│       ├── thank-you/page.tsx     # Qualified thank-you page
+│       └── thank-you-u/page.tsx   # Unqualified thank-you page
 ├── components/
-│   ├── sections/                  # Page sections (HeroSection, FAQ, etc.)
+│   ├── funnel/                    # Future-funnel primitives
+│   ├── sections/                  # Legacy/shared page sections
 │   └── ui/                        # Reusable UI primitives
 └── utils/
     └── AppConfig.ts               # Global site config
 
 public/
-├── assets/                        # Shared assets
-└── sell-ai-funnel/                # Funnel-specific assets
+└── assets/                        # Shared assets
 ```
 
 ## Adding a New Funnel
 
 1. Create a folder in `src/app/[your-funnel-name]/`
-2. Add `page.tsx` with a `content` object passed to section components as props
-3. Add `thank-you/page.tsx` and `unqualified/page.tsx` as needed
-4. Create a matching folder in `public/[your-funnel-name]/` for assets
+2. Add a typed `content.ts` file for copy, media, form config, and section data
+3. Compose `page.tsx` from reusable primitives in `src/components/funnel`
+4. Keep offer-specific visual sections and CSS Modules in `src/app/[your-funnel-name]/_components`
+5. Add `thank-you/page.tsx` and `thank-you-u/page.tsx` only when the funnel needs those outcomes
+6. Put shared media in `public/assets`; create a funnel-specific public folder only when assets are truly unique to that funnel
 
-All section components accept typed props defined in `src/components/sections/types.ts`.
+Future funnels should reuse `src/components/funnel` for page shells, sections, CTAs, checklists, logo marquees, video grids, and legal footers. Keep one-off offer styling out of shared primitives.
 
 ## Deployment
 
