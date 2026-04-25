@@ -16,35 +16,39 @@ pnpm build-prod   # Clean + production build
 
 ## Architecture
 
-This is a Next.js 16 landing page template using the App Router, Tailwind CSS v4, and React 19.
+This is a Next.js 16 funnel app using the App Router, Tailwind CSS v4, and React 19. AI OS is the canonical live funnel.
 
 ### Component Layering
 
 The codebase follows a props-driven component architecture:
 
 1. **Pages** (`src/app/[funnel-name]/`) - Route entry points that define all content as props
-2. **Sections** (`src/components/sections/`) - Props-driven page sections (HeroSection, FAQ, DisclaimerFooter, etc.)
-3. **UI Components** (`src/components/ui/`) - Reusable UI primitives (GradientButton, TrustBadge, FormEmbed, etc.)
+2. **Funnel Primitives** (`src/components/funnel/`) - Reusable page shell, section, CTA, checklist, marquee, video grid, and legal footer primitives for future funnels
+3. **Feature Sections** (`src/app/[funnel-name]/_components/`) - Funnel-specific sections and CSS Modules that compose primitives
+4. **UI Components** (`src/components/ui/`) - Reusable UI primitives and interactive widgets
 
 ### Funnel Routing
 
-Each funnel has its own explicit folder in `src/app/`. To add a new funnel:
+Each funnel has its own explicit folder in `src/app/`. AI OS is currently the only live funnel. To add a new funnel:
 
 1. Create a new folder: `src/app/[your-funnel-name]/`
-2. Add `page.tsx` with content defined as a `content` object and passed to section components as props
-3. Add `thank-you/page.tsx` and `unqualified/page.tsx` as needed
+2. Add `content.ts` with typed copy, media, form config, and section data
+3. Add `page.tsx` that composes feature sections from `content.ts`
+4. Add `thank-you/page.tsx` and `thank-you-u/page.tsx` as needed
 
 Example structure:
 ```
-src/app/sell-ai-funnel/
-├── page.tsx              # Lander with all content defined here
-├── thank-you/page.tsx    # Thank you page
-└── unqualified/page.tsx  # Unqualified page
+src/app/ai-os/
+├── content.ts            # Typed funnel content/config
+├── page.tsx              # Lander route entry
+├── _components/          # Funnel-specific sections and CSS Modules
+├── thank-you/page.tsx    # Qualified thank-you page
+└── thank-you-u/page.tsx  # Unqualified thank-you page
 ```
 
 ### Creating New Funnels
 
-Copy an existing funnel folder and modify the `content` object in each page. All section components accept typed props defined in `src/components/sections/types.ts`.
+Use AI OS as the architecture reference, but keep future funnel-specific styling in that funnel's `_components` folder. Reuse `src/components/funnel` primitives instead of copying large page components.
 
 ### Asset Organization
 
@@ -54,8 +58,6 @@ Assets are organized in `public/` with a parallel structure to funnels:
 public/
 ├── assets/                    # Shared assets across all funnels
 │   └── images/
-├── sell-ai-funnel/            # Funnel-specific assets (mirrors src/app/sell-ai-funnel/)
-│   └── images/
 ├── [another-funnel]/          # Each funnel gets its own folder
 │   └── images/
 └── favicon.ico                # Root-level files
@@ -63,9 +65,9 @@ public/
 
 **Usage in content objects:**
 - Shared: `"/assets/images/logo.svg"`
-- Funnel-specific: `"/sell-ai-funnel/images/hero.png"`
+- Funnel-specific: `"/[funnel-name]/images/hero.png"`
 
-When creating a new funnel, also create a matching folder in `public/` for its assets.
+Create a matching folder in `public/` only when the funnel has assets that should not be shared.
 
 ### Configuration
 
@@ -73,7 +75,7 @@ When creating a new funnel, also create a matching folder in `public/` for its a
 
 ### Styling
 
-Uses Tailwind v4 with PostCSS. Global styles are in `src/app/globals.css`. The project uses `styled-jsx` for component-scoped styles where needed.
+Uses Tailwind v4 with PostCSS. Global styles are in `src/app/globals.css`. Funnel-specific visual systems should live in CSS Modules under the funnel's `_components` folder.
 
 ### Code Standards
 
