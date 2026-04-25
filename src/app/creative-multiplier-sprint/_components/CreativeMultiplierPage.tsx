@@ -1,7 +1,12 @@
+import { Suspense } from 'react';
+
 import { TrackingPixels } from '@/components/ui';
 import type { PixelConfig } from '@/components/ui';
+import { formConfig } from '../content';
 
-const CALL_URL = '#'; // TBD: booking/application URL
+import { ApplicationFormIsland } from './ApplicationFormIsland';
+
+const CALL_URL = '#apply';
 
 const pixels = {
   facebookPixelId: '828948073514575',
@@ -462,6 +467,29 @@ export function CreativeMultiplierPage() {
           </div>
         </section>
 
+        <section id="apply" className="px-5 py-14 md:px-8 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div className="lg:sticky lg:top-8">
+              <SectionLabel>Apply to book</SectionLabel>
+              <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.055em] md:text-5xl">
+                Answer a few fit questions. Qualified brands book immediately.
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-[#AEB6C2]">
+                The sprint only works when there is already a proven ad to multiply. The form checks spend, winner status, platforms, and timeline before showing the booking step.
+              </p>
+              <div className="mt-6 rounded-2xl border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] p-5 text-sm leading-6 text-[#D0D6E0]">
+                If it is a fit, you pick a time. If it is not, we route you away instead of wasting a call.
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0F1011] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] md:p-6">
+              <Suspense fallback={<div className="h-[620px] animate-pulse rounded-2xl bg-white/[0.04]" />}>
+                <ApplicationFormIsland config={formConfig} />
+              </Suspense>
+            </div>
+          </div>
+        </section>
+
         <section className="px-5 py-14 md:px-8 lg:py-20">
           <div className="mx-auto max-w-5xl overflow-hidden rounded-[32px] border border-[#FF6B1A]/25 bg-[radial-gradient(circle_at_20%_0%,rgba(255,107,26,0.22),transparent_32%),linear-gradient(145deg,#111318,#050506)] p-8 text-center shadow-[0_30px_100px_rgba(0,0,0,0.45)] md:p-12">
             <SectionLabel>Next step</SectionLabel>
@@ -469,12 +497,12 @@ export function CreativeMultiplierPage() {
               Have a winning ad that needs new faces?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
-              Book a short fit call. If your ad is a fit, we invoice after the call, collect your assets, and deliver 10 avatar variations in 2 business days.
+              Complete the short fit form. Qualified brands get the booking step, then we review the winning ad and confirm the sprint scope.
             </p>
             <div className="mt-8">
-              <PrimaryCta className="px-7 py-4 text-base">Book a 15-min Creative Multiplier Sprint call</PrimaryCta>
+              <PrimaryCta className="px-7 py-4 text-base">Start the Creative Multiplier application</PrimaryCta>
             </div>
-            <p className="mt-4 text-sm text-[#8A8F98]">Call-close only. No public price. No self-checkout.</p>
+            <p className="mt-4 text-sm text-[#8A8F98]">Qualification first. Booking second. No public price. No self-checkout.</p>
           </div>
         </section>
 
