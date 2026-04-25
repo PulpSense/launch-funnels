@@ -29,9 +29,6 @@ function useInView(rootMargin = '200px') {
   return [setEl, inView] as const;
 }
 
-/* ── Metadata (exported from a separate file since this is 'use client') ── */
-// See layout.tsx or use generateMetadata in a wrapper; inline approach below via <title>.
-
 const CTA_HREF = '#apply';
 const CTA_TEXT = 'See If You Qualify';
 const FB_PIXEL_ID = '828948073514575';
@@ -358,15 +355,6 @@ export default function AIOsClient() {
 
   return (
     <main className={s.page}>
-      {/* Meta */}
-      <title>
-        The Operator Launchpad | AI Agent Systems for $50K+/Month Operators
-      </title>
-      <meta
-        name="description"
-        content="We build 3 custom AI agents that handle your email, reporting, and follow-ups 24/7. One dashboard. Set up in 14 days. You get 15+ hours back every month."
-      />
-
       {/* Facebook Pixel */}
       <Script id="fb-pixel" strategy="lazyOnload">{`
         !function(f,b,e,v,n,t,s)
@@ -384,7 +372,7 @@ export default function AIOsClient() {
         <img
           height="1"
           width="1"
-          style={{ display: 'none' }}
+          className={s.trackingPixel}
           src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
           alt=""
         />
@@ -446,7 +434,6 @@ export default function AIOsClient() {
                   width={120}
                   height={44}
                   className={s.logoImg}
-                  style={{ width: 'auto', flexShrink: 0 }}
                 />
               ))}
             </div>
@@ -492,7 +479,7 @@ export default function AIOsClient() {
             </div>
           ))}
         </div>
-        <div style={{ textAlign: 'center', marginTop: 40 }}>
+        <div className={s.ctaCenterLg}>
           <a href={CTA_HREF} className={s.ctaBtnSmall}>
             {CTA_TEXT} &rarr;
           </a>
@@ -557,22 +544,28 @@ export default function AIOsClient() {
             <div className={s.calcInputs}>
               {/* Revenue slider */}
               {(() => {
-                const revMin = 25000, revMax = 1000000;
-                const revPct = (revenue - revMin) / (revMax - revMin) * 100;
-                const revLabel = revenue >= 1000000 ? '$1M' : `$${revenue/1000}K`;
+                const revMin = 25000;
+                const revMax = 1000000;
+                const revPct = ((revenue - revMin) / (revMax - revMin)) * 100;
+                const revLabel =
+                  revenue >= 1000000 ? '$1M' : `$${revenue / 1000}K`;
                 const revBg = `linear-gradient(to right, #f97316 0%, #f97316 ${revPct}%, #27272a ${revPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
-                    <label htmlFor="calc-revenue" className={s.calcLabelText}>Monthly revenue</label>
+                    <label htmlFor="calc-revenue" className={s.calcLabelText}>
+                      Monthly revenue
+                    </label>
                     <div className={s.sliderWithValue}>
                       <input
                         id="calc-revenue"
                         type="range"
-                        min={revMin} max={revMax} step={25000}
+                        min={revMin}
+                        max={revMax}
+                        step={25000}
                         value={revenue}
                         onChange={(e) => setRevenue(Number(e.target.value))}
                         className={s.calcSlider}
-                        style={{background: revBg}}
+                        style={{ background: revBg }}
                       />
                       <span className={s.calcLabelValue}>{revLabel}</span>
                     </div>
@@ -582,21 +575,29 @@ export default function AIOsClient() {
 
               {/* Hours slider */}
               {(() => {
-                const hrMin = 1, hrMax = 40;
-                const hrPct = (adminHours - hrMin) / (hrMax - hrMin) * 100;
+                const hrMin = 1;
+                const hrMax = 40;
+                const hrPct = ((adminHours - hrMin) / (hrMax - hrMin)) * 100;
                 const hrBg = `linear-gradient(to right, #f97316 0%, #f97316 ${hrPct}%, #27272a ${hrPct}%, #27272a 100%)`;
                 return (
                   <div className={s.calcRow}>
-                    <label htmlFor="calc-admin-hours" className={s.calcLabelText}>Admin hours per week</label>
+                    <label
+                      htmlFor="calc-admin-hours"
+                      className={s.calcLabelText}
+                    >
+                      Admin hours per week
+                    </label>
                     <div className={s.sliderWithValue}>
                       <input
                         id="calc-admin-hours"
                         type="range"
-                        min={hrMin} max={hrMax} step={1}
+                        min={hrMin}
+                        max={hrMax}
+                        step={1}
                         value={adminHours}
                         onChange={(e) => setAdminHours(Number(e.target.value))}
                         className={s.calcSlider}
-                        style={{background: hrBg}}
+                        style={{ background: hrBg }}
                       />
                       <span className={s.calcLabelValue}>{adminHours} hrs</span>
                     </div>
@@ -630,7 +631,7 @@ export default function AIOsClient() {
               </div>
 
               {/* Bar chart */}
-              <div style={{ marginBottom: 20 }}>
+              <div className={s.barChart}>
                 <div className={s.barSectionTitle}>Annual cost comparison</div>
 
                 <div className={s.resultBar}>
@@ -664,7 +665,9 @@ export default function AIOsClient() {
                 </div>
 
                 <div className={s.resultBar}>
-                  <div className={s.resultBarLabel}>The Operator Launchpad (year 1)</div>
+                  <div className={s.resultBarLabel}>
+                    The Operator Launchpad (year 1)
+                  </div>
                   <div className={s.resultBarRow}>
                     <div className={s.resultBarTrack}>
                       <div
@@ -692,7 +695,7 @@ export default function AIOsClient() {
                 </div>
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: 20 }}>
+              <div className={s.ctaCenterSm}>
                 <a href={CTA_HREF} className={s.ctaBtnSmall}>
                   {CTA_TEXT} &rarr;
                 </a>
@@ -745,15 +748,14 @@ export default function AIOsClient() {
             <div key={v.id} className={s.videoCard}>
               <div className={s.videoEmbed}>
                 <div
-                  className={`wistia_embed wistia_async_${v.id}`}
-                  style={{ width: '100%', height: '100%' }}
+                  className={`${s.wistiaEmbed} wistia_embed wistia_async_${v.id}`}
                 />
               </div>
               <h3>{v.title}</h3>
             </div>
           ))}
         </div>
-        <div style={{ textAlign: 'center', marginTop: 40 }}>
+        <div className={s.ctaCenterLg}>
           <a href={CTA_HREF} className={s.ctaBtnSmall}>
             {CTA_TEXT} &rarr;
           </a>
@@ -796,8 +798,7 @@ export default function AIOsClient() {
             </ul>
             <a
               href={CTA_HREF}
-              className={s.ctaBtn}
-              style={{ display: 'block', textAlign: 'center', width: '100%' }}
+              className={`${s.ctaBtn} ${s.ctaFull}`}
             >
               {CTA_TEXT} &rarr;
             </a>
@@ -869,8 +870,7 @@ export default function AIOsClient() {
 
             <a
               href={CTA_HREF}
-              className={s.ctaBtnSmall}
-              style={{ display: 'block', textAlign: 'center', width: '100%' }}
+              className={`${s.ctaBtnSmall} ${s.ctaFull}`}
             >
               {CTA_TEXT} &rarr;
             </a>
@@ -936,13 +936,16 @@ export default function AIOsClient() {
         <div className={s.wrap}>
           <span className={s.sectionLabel}>Apply now</span>
           <h2 className={s.sectionTitle}>See if you qualify</h2>
-          <p className={s.sectionSubtitle}>Answer a few quick questions and we&apos;ll show you exactly which 3 AI agents would make the biggest impact on your business.</p>
+          <p className={s.sectionSubtitle}>
+            Answer a few quick questions and we&apos;ll show you exactly which 3
+            AI agents would make the biggest impact on your business.
+          </p>
         </div>
         <div ref={formRef} className={s.formEmbed}>
           {formVisible ? (
             <MultiStepForm config={FORM_CONFIG} />
           ) : (
-            <div style={{ height: 400 }} />
+            <div className={s.formSkeleton} />
           )}
         </div>
       </section>
