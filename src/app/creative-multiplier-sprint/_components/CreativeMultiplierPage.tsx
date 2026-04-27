@@ -240,13 +240,13 @@ const AvatarOutputMockup = () => (
       </span>
     </div>
 
-    <div className="grid gap-3 lg:grid-cols-[0.92fr_1.25fr]">
-      <div className="rounded-2xl border border-white/10 bg-black p-3">
-        <div className="relative aspect-[9/16] overflow-hidden rounded-xl border border-white/10 bg-black">
+    <div className="grid gap-3 lg:grid-cols-[1.08fr_1.25fr]">
+      <div className="rounded-2xl border border-white/10 bg-black/80 p-3">
+        <div className="relative min-h-[520px] overflow-hidden rounded-xl border border-white/10 bg-black">
           <video
             src="/creative-multiplier-sprint/videos/ugc-example-01.mp4"
             poster="/creative-multiplier-sprint/images/ugc-example-01.jpg"
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             loop
             muted
@@ -267,28 +267,24 @@ const AvatarOutputMockup = () => (
         {exampleVideos.slice(1, 7).map((video) => (
           <div
             key={video.id}
-            className="group rounded-2xl border border-white/10 bg-white/[0.035] p-3 transition hover:border-[#FF6B1A]/40 hover:bg-white/[0.055]"
+            className="group relative aspect-[9/11] overflow-hidden rounded-2xl border border-white/10 bg-black transition hover:border-[#FF6B1A]/40"
           >
-            <div className="mb-3 aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-black">
-              <video
-                src={`/creative-multiplier-sprint/videos/${video.id}.mp4`}
-                poster={`/creative-multiplier-sprint/images/${video.id}.jpg`}
-                className="h-full w-full object-cover transition group-hover:scale-105"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                aria-label={video.title}
-              />
-            </div>
-            <div className="flex items-center justify-between gap-2">
-              <p className="truncate text-xs font-medium text-[#F7F8F8]">{video.title}</p>
-              <span className="rounded-full bg-[#FF6B1A]/15 px-2 py-0.5 text-[10px] text-[#ffb28a]">
+            <video
+              src={`/creative-multiplier-sprint/videos/${video.id}.mp4`}
+              poster={`/creative-multiplier-sprint/images/${video.id}.jpg`}
+              className="h-full w-full object-cover transition group-hover:scale-105"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label={video.title}
+            />
+            <div className="absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-black/80 to-transparent p-2">
+              <span className="rounded-full bg-[#FF6B1A]/85 px-2 py-0.5 text-[10px] font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.28)]">
                 Ready
               </span>
             </div>
-            <p className="mt-1 truncate text-[11px] text-[#8A8F98]">{video.tone}</p>
           </div>
         ))}
       </div>
@@ -349,7 +345,7 @@ export function CreativeMultiplierPage() {
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-[#D0D6E0]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
-                1 winning ad → 10 avatar variations in 48h
+                1 winning ad → 10 variations in 48h
               </div>
 
               <h1 className="max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.06em] text-[#F7F8F8] md:text-6xl lg:text-7xl">
