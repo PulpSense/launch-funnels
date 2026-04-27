@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, type MouseEvent, type PointerEvent } from 'react';
 
 const slides = [
   {
@@ -107,6 +107,8 @@ const slides = [
 
 export function DslCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const tapStartRef = useRef<{ x: number; y: number } | null>(null);
+  const lastTapDecisionAtRef = useRef(Number.NEGATIVE_INFINITY);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const goToSlide = (index: number) => {
@@ -142,17 +144,50 @@ export function DslCarousel() {
     setActiveIndex(nearestIndex);
   };
 
+  const goToSlideFromTap = (clientX: number, target: HTMLElement, index: number) => {
+    const { left, width } = target.getBoundingClientRect();
+    const isRightSide = clientX > left + width / 2;
+
+    goToSlide(isRightSide ? index + 1 : index - 1);
+  };
+
+  const handleSlidePointerDown = (event: PointerEvent<HTMLElement>) => {
+    tapStartRef.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handleSlidePointerUp = (event: PointerEvent<HTMLElement>, index: number) => {
+    const tapStart = tapStartRef.current;
+    tapStartRef.current = null;
+    if (!tapStart) return;
+
+    const movedX = Math.abs(event.clientX - tapStart.x);
+    const movedY = Math.abs(event.clientY - tapStart.y);
+    if (movedX > 12 || movedY > 12) {
+      lastTapDecisionAtRef.current = event.timeStamp;
+      return;
+    }
+
+    lastTapDecisionAtRef.current = event.timeStamp;
+    goToSlideFromTap(event.clientX, event.currentTarget, index);
+  };
+
+  const handleSlideClick = (event: MouseEvent<HTMLElement>, index: number) => {
+    if (event.timeStamp - lastTapDecisionAtRef.current < 500) return;
+
+    goToSlideFromTap(event.clientX, event.currentTarget, index);
+  };
+
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#050506] px-5 py-14 md:px-8 lg:py-20" aria-labelledby="dsl-heading">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(255,107,26,0.14),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(113,112,255,0.10),transparent_28%)]" />
+    <section className="relative overflow-hidden border-b border-white/10 bg-[#050506] px-5 pb-6 pt-0 select-none md:px-8 md:py-14 lg:py-20" aria-labelledby="dsl-heading">
+      <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_18%_0%,rgba(255,107,26,0.14),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(113,112,255,0.10),transparent_28%)] sm:block" />
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div className="mb-4 hidden flex-col justify-between gap-5 sm:flex md:mb-8 md:flex-row md:items-end">
           <div>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-[#8A8F98]">2-minute breakdown</p>
-            <h2 id="dsl-heading" className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.055em] text-white md:text-5xl">
+            <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.28em] text-[#8A8F98] md:mb-4 md:text-xs md:tracking-[0.35em]">2-minute breakdown</p>
+            <h2 id="dsl-heading" className="max-w-3xl text-[1.55rem] font-medium leading-[1.02] tracking-[-0.05em] text-white sm:text-[2rem] md:text-5xl">
               Before you book, see how the sprint works.
             </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
+            <p className="mt-4 hidden max-w-2xl text-lg leading-8 text-[#AEB6C2] sm:block">
               Swipe through the sales argument. One idea per card, no webinar hostage situation.
             </p>
           </div>
@@ -180,41 +215,55 @@ export function DslCarousel() {
         <div
           ref={trackRef}
           onScroll={handleScroll}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-3 md:pb-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Creative Multiplier Sprint deck"
         >
           {slides.map((slide, index) => (
             <article
               key={slide.eyebrow}
-              className="relative flex min-h-[430px] w-full shrink-0 snap-center flex-col justify-between overflow-hidden rounded-[28px] border border-white/10 bg-[#0F1011] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:min-h-[460px] md:p-8 lg:min-h-[500px]"
+              onPointerDown={handleSlidePointerDown}
+              onPointerUp={(event) => handleSlidePointerUp(event, index)}
+              onClick={(event) => handleSlideClick(event, index)}
+              className="relative flex min-h-[240px] w-full shrink-0 snap-center cursor-pointer flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[460px] sm:rounded-[28px] sm:p-6 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:p-8 lg:min-h-[500px]"
               aria-label={`Slide ${index + 1} of ${slides.length}`}
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent" />
-              <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#FF6B1A]/10 blur-3xl" />
-              <div className="absolute -bottom-24 left-10 h-56 w-56 rounded-full bg-[#7170FF]/10 blur-3xl" />
+              <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
+              <div className="absolute -right-20 -top-20 hidden h-56 w-56 rounded-full bg-[#FF6B1A]/10 blur-3xl sm:block" />
+              <div className="absolute -bottom-24 left-10 hidden h-56 w-56 rounded-full bg-[#7170FF]/10 blur-3xl sm:block" />
+              {index === 0 && (
+                <>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 animate-[tapCue_2.4s_ease-in-out_infinite] bg-gradient-to-l from-[#FF6B1A]/7 to-transparent md:hidden" />
+                  <div className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 rounded-full bg-white/[0.04] px-2 py-1 text-[9px] font-medium uppercase tracking-[0.16em] text-[#AEB6C2] opacity-80 animate-[tapNudge_2.4s_ease-in-out_infinite] min-[380px]:block md:hidden">
+                    Tap
+                  </div>
+                </>
+              )}
 
               <div className="relative">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-[#FF6B1A]/25 bg-[#FF6B1A]/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.22em] text-[#ffb28a]">
+                  <span className="rounded-full border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#ffb28a] md:text-xs md:tracking-[0.22em]">
                     {slide.eyebrow}
                   </span>
                   <span className="text-xs tabular-nums text-[#62666D]">{String(index + 1).padStart(2, '0')} / {slides.length}</span>
                 </div>
 
-                <h3 className="mt-16 max-w-4xl text-4xl font-medium leading-[0.98] tracking-[-0.06em] text-white md:text-6xl lg:text-7xl">
+                <h3 className="mt-7 max-w-4xl text-[1.58rem] font-medium leading-[1] tracking-[-0.055em] text-white sm:text-[2.05rem] md:mt-16 md:text-6xl lg:text-7xl">
                   {slide.title}
                 </h3>
               </div>
 
-              <p className="relative mt-10 max-w-2xl text-lg leading-8 text-[#AEB6C2] md:text-xl md:leading-9">
-                {slide.body}
-              </p>
+              <div className="relative mt-5 md:mt-10">
+                <p className="max-w-2xl text-[0.92rem] leading-6 text-[#AEB6C2] sm:text-base sm:leading-7 md:text-xl md:leading-9">
+                  {slide.body}
+                </p>
+                <p className="mt-3 text-xs font-medium text-[#747983] md:hidden">Tap right or swipe</p>
+              </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-2" aria-label="Deck progress">
+        <div className="mt-2 flex flex-col gap-3 md:mt-5 md:flex-row md:items-center md:justify-between">
+          <div className="hidden flex-wrap gap-2 md:flex" aria-label="Deck progress">
             {slides.map((slide, index) => (
               <button
                 key={slide.eyebrow}
@@ -229,7 +278,7 @@ export function DslCarousel() {
 
           <a
             href="#apply"
-            className="inline-flex items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00]"
+            className="inline-flex w-full items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] md:w-auto md:py-3"
           >
             Apply now
           </a>

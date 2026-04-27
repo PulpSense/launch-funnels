@@ -6,6 +6,7 @@ import { formConfig } from '../content';
 
 import { ApplicationFormIsland } from './ApplicationFormIsland';
 import { DslCarousel } from './DslCarousel';
+import { MobileStickyCta } from './MobileStickyCta';
 import { ProofVideoPlayer } from './ProofVideoPlayer';
 
 const CALL_URL = '#apply';
@@ -348,18 +349,18 @@ export function CreativeMultiplierPage() {
     <>
       <TrackingPixels pixels={pixels} />
       <main className="min-h-screen bg-[#010102] text-[#F7F8F8] [font-feature-settings:'cv01','ss03']">
-        <section className="relative overflow-hidden border-b border-white/10">
+        <section id="hero" className="relative overflow-hidden sm:border-b sm:border-white/10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(255,107,26,0.22),transparent_34%),radial-gradient(circle_at_78%_12%,rgba(113,112,255,0.18),transparent_30%),linear-gradient(180deg,#08090A_0%,#010102_100%)]" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/60 to-transparent" />
 
-          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-7 md:px-8 md:py-8 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-10">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-5 md:px-8 md:py-8 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-10">
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] font-medium leading-none text-[#D0D6E0] sm:text-xs">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] font-medium leading-none text-[#D0D6E0] sm:mb-5 sm:text-xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
                 <span>For DTC teams with $20k+/mo in paid-social spend</span>
               </div>
 
-              <h1 className="max-w-4xl text-[2.6rem] font-medium leading-[0.98] tracking-[-0.045em] text-[#F7F8F8] sm:text-5xl md:text-6xl md:leading-[0.95] md:tracking-[-0.06em] lg:text-7xl">
+              <h1 className="max-w-4xl text-[2.15rem] font-medium leading-[0.96] tracking-[-0.045em] text-[#F7F8F8] sm:text-5xl md:text-6xl md:leading-[0.95] md:tracking-[-0.06em] lg:text-7xl">
                 <span className="sm:hidden">
                   <span className="text-[#FF6B1A]">10 avatar videos</span> from one winning ad.
                 </span>
@@ -369,15 +370,15 @@ export function CreativeMultiplierPage() {
                 </span>
               </h1>
 
-              <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">
+              <p className="mt-3 max-w-2xl text-[0.93rem] leading-6 tracking-[-0.01em] text-[#AEB6C2] md:mt-5 md:text-lg md:leading-7">
                 Give your media buyer 10 new versions before the current winner burns out.
               </p>
 
-              <div className="mt-6 flex">
+              <div className="mt-6 hidden sm:flex">
                 <PrimaryCta className="w-full sm:w-auto">Apply now</PrimaryCta>
               </div>
 
-              <p className="mt-4 max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:text-sm">
+              <p className="mt-4 hidden max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:block sm:text-sm">
                 Bring the ad. We handle teardown, production, QA, and delivery.
               </p>
 
@@ -668,15 +669,7 @@ export function CreativeMultiplierPage() {
           </div>
         </footer>
 
-        <div className="fixed inset-x-3 bottom-3 z-50 rounded-2xl border border-white/10 bg-[#0F1011]/95 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur md:hidden">
-          <div className="flex items-center gap-3">
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-white">10 variations / 2 business days</p>
-              <p className="truncate text-xs text-[#8A8F98]">No upload. Book if it fits.</p>
-            </div>
-            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Apply now</PrimaryCta>
-          </div>
-        </div>
+        <MobileStickyCta />
       </main>
     </>
   );
