@@ -316,7 +316,7 @@ const VideoExamplesSection = () => (
             Short-form clips in the same style this sprint is designed to multiply: hooks, testimonials, demos, explainers, and creator-led product angles.
           </p>
         </div>
-        <PrimaryCta className="md:self-end">Check fit</PrimaryCta>
+        <PrimaryCta className="md:self-end">Apply now</PrimaryCta>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -374,7 +374,7 @@ export function CreativeMultiplierPage() {
               </p>
 
               <div className="mt-6 flex">
-                <PrimaryCta className="w-full sm:w-auto">Check fit</PrimaryCta>
+                <PrimaryCta className="w-full sm:w-auto">Apply now</PrimaryCta>
               </div>
 
               <p className="mt-4 max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:text-sm">
@@ -391,11 +391,17 @@ export function CreativeMultiplierPage() {
               </div>
             </div>
 
-            <AvatarOutputMockup />
+            <div className="hidden lg:block">
+              <AvatarOutputMockup />
+            </div>
           </div>
         </section>
 
         <DslCarousel />
+
+        <section className="border-b border-white/10 bg-[#050506] px-5 py-12 md:px-8 lg:hidden">
+          <AvatarOutputMockup />
+        </section>
 
         <VideoExamplesSection />
 
@@ -432,7 +438,7 @@ export function CreativeMultiplierPage() {
                   A production pipeline for multiplying what already works.
                 </h2>
               </div>
-              <PrimaryCta className="md:self-end">Check fit</PrimaryCta>
+              <PrimaryCta className="md:self-end">Apply now</PrimaryCta>
             </div>
 
             <div className="grid gap-3 lg:grid-cols-4">
@@ -573,7 +579,7 @@ export function CreativeMultiplierPage() {
                 Questions before you send the winner.
               </h2>
               <div className="mt-8 hidden lg:block">
-                <PrimaryCta>Check fit</PrimaryCta>
+                <PrimaryCta>Apply now</PrimaryCta>
               </div>
             </div>
             <div className="space-y-3">
@@ -636,7 +642,7 @@ export function CreativeMultiplierPage() {
               Let us see if it can become 10. No upload, no full brief, no strategy doc before booking.
             </p>
             <div className="mt-8">
-              <PrimaryCta className="px-7 py-4 text-base">Check fit and book</PrimaryCta>
+              <PrimaryCta className="px-7 py-4 text-base">Apply now</PrimaryCta>
             </div>
             <p className="mt-4 text-sm text-[#8A8F98]">
               Quick fit check first, so we only book calls where the sprint can actually help.
@@ -668,7 +674,7 @@ export function CreativeMultiplierPage() {
               <p className="truncate text-sm font-medium text-white">10 variations / 2 business days</p>
               <p className="truncate text-xs text-[#8A8F98]">No upload. Book if it fits.</p>
             </div>
-            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Check fit</PrimaryCta>
+            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Apply now</PrimaryCta>
           </div>
         </div>
       </main>

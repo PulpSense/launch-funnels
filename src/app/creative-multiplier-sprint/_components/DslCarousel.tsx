@@ -100,7 +100,7 @@ const slides = [
   },
   {
     eyebrow: '20 / Next step',
-    title: 'Check fit below.',
+    title: 'Apply below.',
     body: 'Answer a few questions. If your ad is a match, book the sprint call and bring the winner with you.',
   },
 ];
@@ -124,10 +124,22 @@ export function DslCarousel() {
     const track = trackRef.current;
     if (!track) return;
 
-    const slideWidth = track.clientWidth;
-    if (!slideWidth) return;
+    const slides = Array.from(track.children) as HTMLElement[];
+    const firstSlide = slides[0];
+    if (!firstSlide) return;
 
-    setActiveIndex(Math.round(track.scrollLeft / slideWidth));
+    let nearestIndex = 0;
+    let nearestDistance = Math.abs(firstSlide.offsetLeft - track.scrollLeft);
+
+    slides.forEach((slide, index) => {
+      const distance = Math.abs(slide.offsetLeft - track.scrollLeft);
+      if (distance < nearestDistance) {
+        nearestIndex = index;
+        nearestDistance = distance;
+      }
+    });
+
+    setActiveIndex(nearestIndex);
   };
 
   return (
@@ -219,7 +231,7 @@ export function DslCarousel() {
             href="#apply"
             className="inline-flex items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00]"
           >
-            Check fit
+            Apply now
           </a>
         </div>
       </div>
