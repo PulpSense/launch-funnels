@@ -16,7 +16,7 @@ pnpm build-prod   # Clean + production build
 
 ## Architecture
 
-This is a Next.js 16 funnel app using the App Router, Tailwind CSS v4, and React 19. AI OS is the canonical live funnel.
+This is a Next.js 16 funnel app using the App Router, Tailwind CSS v4, and React 19. Creative Multiplier Sprint is the current live funnel.
 
 ### Component Layering
 
@@ -29,7 +29,7 @@ The codebase follows a props-driven component architecture:
 
 ### Funnel Routing
 
-Each funnel has its own explicit folder in `src/app/`. AI OS is currently the only live funnel. To add a new funnel:
+Each funnel has its own explicit folder in `src/app/`. Creative Multiplier Sprint is currently the live funnel. To add a new funnel:
 
 1. Create a new folder: `src/app/[your-funnel-name]/`
 2. Add `content.ts` with typed copy, media, form config, and section data
@@ -38,7 +38,7 @@ Each funnel has its own explicit folder in `src/app/`. AI OS is currently the on
 
 Example structure:
 ```
-src/app/ai-os/
+src/app/creative-multiplier-sprint/
 ├── content.ts            # Typed funnel content/config
 ├── page.tsx              # Lander route entry
 ├── _components/          # Funnel-specific sections and CSS Modules
@@ -48,7 +48,7 @@ src/app/ai-os/
 
 ### Creating New Funnels
 
-Use AI OS as the architecture reference, but keep future funnel-specific styling in that funnel's `_components` folder. Reuse `src/components/funnel` primitives instead of copying large page components.
+Use the live funnel as the architecture reference, but keep future funnel-specific styling in that funnel's `_components` folder. Reuse `src/components/funnel` primitives instead of copying large page components.
 
 ### Asset Organization
 

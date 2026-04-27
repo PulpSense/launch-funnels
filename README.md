@@ -1,6 +1,6 @@
 # Launch Funnels
 
-A Next.js 16 funnel app for the AI OS offer. The app is structured so AI OS is the canonical live funnel and future funnels can reuse the shared funnel primitives without inheriting AI OS-specific styling.
+A Next.js 16 funnel app. Creative Multiplier Sprint is the current live funnel, and future funnels can reuse the shared funnel primitives without inheriting offer-specific styling.
 
 ## Tech Stack
 
@@ -17,7 +17,7 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
+Open [http://localhost:3000/creative-multiplier-sprint](http://localhost:3000/creative-multiplier-sprint) to view the live funnel.
 
 ## Scripts
 
@@ -37,10 +37,10 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 src/
 ├── app/
 │   ├── layout.tsx                 # Root layout
-│   └── ai-os/                     # Canonical live funnel
+│   └── creative-multiplier-sprint/ # Current live funnel
 │       ├── content.ts             # Typed copy/config for the funnel
 │       ├── page.tsx               # Lander route entry
-│       ├── _components/           # AI OS-specific sections and CSS Modules
+│       ├── _components/           # Funnel-specific sections and CSS Modules
 │       ├── thank-you/page.tsx     # Qualified thank-you page
 │       └── thank-you-u/page.tsx   # Unqualified thank-you page
 ├── components/
