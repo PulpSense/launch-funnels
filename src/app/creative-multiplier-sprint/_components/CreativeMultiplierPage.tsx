@@ -5,6 +5,7 @@ import type { PixelConfig } from '@/components/ui';
 import { formConfig } from '../content';
 
 import { ApplicationFormIsland } from './ApplicationFormIsland';
+import { DslCarousel } from './DslCarousel';
 import { ProofVideoPlayer } from './ProofVideoPlayer';
 
 const CALL_URL = '#apply';
@@ -393,6 +394,8 @@ export function CreativeMultiplierPage() {
             <AvatarOutputMockup />
           </div>
         </section>
+
+        <DslCarousel />
 
         <VideoExamplesSection />
 
