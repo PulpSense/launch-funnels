@@ -241,15 +241,6 @@ const PrimaryCta = ({ children, className = '' }: { children: React.ReactNode; c
   </a>
 );
 
-const GhostCta = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <a
-    href="#proof"
-    className={`inline-flex items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-[#D0D6E0] transition hover:border-white/20 hover:bg-white/[0.06] hover:text-white ${className}`}
-  >
-    {children}
-  </a>
-);
-
 const AvatarOutputMockup = () => (
   <div className="relative mx-auto w-full max-w-[560px] rounded-[28px] border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur">
     <div className="absolute -inset-1 -z-10 rounded-[30px] bg-[radial-gradient(circle_at_25%_20%,rgba(255,107,26,0.28),transparent_34%),radial-gradient(circle_at_80%_0%,rgba(113,112,255,0.20),transparent_30%)] blur-xl" />
@@ -364,8 +355,7 @@ export function CreativeMultiplierPage() {
             <div>
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] font-medium leading-none text-[#D0D6E0] sm:text-xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
-                <span className="sm:hidden">1 ad → 10 videos / 2 business days</span>
-                <span className="hidden sm:inline">1 winning ad → 10 variations in 2 business days</span>
+                <span>For DTC teams with $20k+/mo in paid-social spend</span>
               </div>
 
               <h1 className="max-w-4xl text-[2.6rem] font-medium leading-[0.98] tracking-[-0.045em] text-[#F7F8F8] sm:text-5xl md:text-6xl md:leading-[0.95] md:tracking-[-0.06em] lg:text-7xl">
@@ -382,9 +372,8 @@ export function CreativeMultiplierPage() {
                 Give your media buyer 10 new versions before the current winner burns out.
               </p>
 
-              <div className="mt-6 flex gap-3">
-                <PrimaryCta className="min-w-0 flex-1 sm:flex-none">Check fit</PrimaryCta>
-                <GhostCta className="min-w-0 flex-1 sm:flex-none">Examples</GhostCta>
+              <div className="mt-6 flex">
+                <PrimaryCta className="w-full sm:w-auto">Check fit</PrimaryCta>
               </div>
 
               <p className="mt-4 max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:text-sm">
