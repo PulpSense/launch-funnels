@@ -2,7 +2,7 @@ import type { MultiStepFormConfig } from '@/components/ui/MultiStepForm';
 
 export const cta = {
   href: '#apply',
-  text: 'Book a 15-min sprint fit call',
+  text: 'See if you qualify',
 };
 
 export const secondaryCta = {
@@ -332,10 +332,10 @@ export const creativeMultiplierContent = {
     ],
   },
   application: {
-    label: 'Apply',
-    title: 'Have a winning ad that needs new faces?',
+    label: 'Apply now',
+    title: 'See if you qualify',
     subtitle:
-      'Book a 15-minute Creative Multiplier Sprint call. We will confirm fit, review the original ad, and explain what happens after payment and asset intake.',
+      'Answer a few quick questions about your paid-social spend, winning ad, platforms, and timeline. Qualified brands get the booking step immediately.',
   },
   footer: {
     links: [

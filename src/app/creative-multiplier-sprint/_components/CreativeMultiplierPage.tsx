@@ -258,7 +258,7 @@ export function CreativeMultiplierPage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <PrimaryCta>Book a 15-min sprint fit call</PrimaryCta>
+                <PrimaryCta>See if you qualify</PrimaryCta>
                 <GhostCta>See what you get</GhostCta>
               </div>
 
@@ -313,7 +313,7 @@ export function CreativeMultiplierPage() {
                   A production pipeline for multiplying what already works.
                 </h2>
               </div>
-              <PrimaryCta className="md:self-end">Book the fit call</PrimaryCta>
+              <PrimaryCta className="md:self-end">See if you qualify</PrimaryCta>
             </div>
 
             <div className="grid gap-3 lg:grid-cols-4">
@@ -448,7 +448,7 @@ export function CreativeMultiplierPage() {
                 Questions before you send the winner.
               </h2>
               <div className="mt-8 hidden lg:block">
-                <PrimaryCta>Book your sprint fit call</PrimaryCta>
+                <PrimaryCta>See if you qualify</PrimaryCta>
               </div>
             </div>
             <div className="space-y-3">
@@ -497,10 +497,10 @@ export function CreativeMultiplierPage() {
               Have a winning ad that needs new faces?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
-              Complete the short fit form. Qualified brands get the booking step, then we review the winning ad and confirm the sprint scope.
+              Answer a few quick questions to see if you qualify. Qualified brands get the booking step, then we review the winning ad and confirm the sprint scope.
             </p>
             <div className="mt-8">
-              <PrimaryCta className="px-7 py-4 text-base">Start the Creative Multiplier application</PrimaryCta>
+              <PrimaryCta className="px-7 py-4 text-base">See if you qualify</PrimaryCta>
             </div>
             <p className="mt-4 text-sm text-[#8A8F98]">Qualification first. Booking second. No public price. No self-checkout.</p>
           </div>
@@ -528,9 +528,9 @@ export function CreativeMultiplierPage() {
           <div className="flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-white">10 variations / 2 business days</p>
-              <p className="truncate text-xs text-[#8A8F98]">Fit call first. No checkout.</p>
+              <p className="truncate text-xs text-[#8A8F98]">See if you qualify. No checkout.</p>
             </div>
-            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Book call</PrimaryCta>
+            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Qualify</PrimaryCta>
           </div>
         </div>
       </main>
