@@ -5,6 +5,7 @@ import type { PixelConfig } from '@/components/ui';
 import { formConfig } from '../content';
 
 import { ApplicationFormIsland } from './ApplicationFormIsland';
+import { ProofVideoPlayer } from './ProofVideoPlayer';
 
 const CALL_URL = '#apply';
 
@@ -13,13 +14,67 @@ const pixels = {
   facebookEvents: [{ name: 'PageView', type: 'standard' }],
 } satisfies PixelConfig;
 
-const outputCards = [
-  { label: 'Founder angle', tone: 'Direct response', status: 'Ready' },
-  { label: 'Expert voice', tone: 'Authority-led', status: 'Ready' },
-  { label: 'Gen Z creator', tone: 'Fast TikTok pace', status: 'Ready' },
-  { label: 'Mom buyer', tone: 'Problem-aware', status: 'Ready' },
-  { label: 'Calm explainer', tone: 'Trust-builder', status: 'Ready' },
-  { label: 'High-energy UGC', tone: 'Pattern interrupt', status: 'Ready' },
+const exampleVideos = [
+  {
+    id: 'ugc-example-01',
+    title: 'Authority-led hook',
+    tone: 'Podcast-style proof',
+  },
+  {
+    id: 'ugc-example-02',
+    title: 'Product testimonial',
+    tone: 'Calm creator delivery',
+  },
+  {
+    id: 'ugc-example-03',
+    title: 'Lifestyle b-roll',
+    tone: 'Visual product context',
+  },
+  {
+    id: 'ugc-example-04',
+    title: 'Car-seat UGC',
+    tone: 'Direct testimonial',
+  },
+  {
+    id: 'ugc-example-05',
+    title: 'Mirror demo',
+    tone: 'Founder-style product proof',
+  },
+  {
+    id: 'ugc-example-06',
+    title: 'Pattern interrupt',
+    tone: 'Fast direct-response hook',
+  },
+  {
+    id: 'ugc-example-07',
+    title: 'Persona explainer',
+    tone: 'Education-led angle',
+  },
+  {
+    id: 'ugc-example-08',
+    title: 'Comment response',
+    tone: 'Objection handling',
+  },
+  {
+    id: 'ugc-example-09',
+    title: 'Product reveal',
+    tone: 'Beauty creator POV',
+  },
+  {
+    id: 'ugc-example-10',
+    title: 'Routine proof',
+    tone: 'Before-after style',
+  },
+  {
+    id: 'ugc-example-11',
+    title: 'Kitchen founder POV',
+    tone: 'Trust-builder',
+  },
+  {
+    id: 'ugc-example-12',
+    title: 'Offer variant',
+    tone: 'Creator-led product pitch',
+  },
 ];
 
 const proofStats = [
@@ -164,7 +219,7 @@ const PrimaryCta = ({ children, className = '' }: { children: React.ReactNode; c
 
 const GhostCta = ({ children }: { children: React.ReactNode }) => (
   <a
-    href="#output"
+    href="#proof"
     className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-[#D0D6E0] transition hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
   >
     {children}
@@ -187,49 +242,98 @@ const AvatarOutputMockup = () => (
 
     <div className="grid gap-3 lg:grid-cols-[0.92fr_1.25fr]">
       <div className="rounded-2xl border border-white/10 bg-black p-3">
-        <div className="aspect-[9/16] rounded-xl border border-white/10 bg-[linear-gradient(145deg,#1f2328,#0b0c0f)] p-3">
-          <div className="flex h-full flex-col justify-between">
-            <div>
-              <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white/70">
-                Original
-              </span>
-              <div className="mt-4 h-24 rounded-lg bg-[radial-gradient(circle_at_50%_15%,#f59e0b,transparent_28%),linear-gradient(180deg,#2d333b,#111)]" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-2 w-4/5 rounded-full bg-white/70" />
-              <div className="h-2 w-3/5 rounded-full bg-white/30" />
-              <div className="rounded-md bg-[#FF6B1A] px-2 py-1 text-center text-[10px] font-semibold text-white">
-                Winning ad
-              </div>
-            </div>
+        <div className="relative aspect-[9/16] overflow-hidden rounded-xl border border-white/10 bg-black">
+          <video
+            src="/creative-multiplier-sprint/videos/ugc-example-01.mp4"
+            poster="/creative-multiplier-sprint/images/ugc-example-01.jpg"
+            className="h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="Authority-led hook"
+          />
+          <div className="absolute left-3 top-3 rounded-full bg-black/55 px-2 py-1 text-[10px] uppercase tracking-[0.2em] text-white/80 backdrop-blur">
+            Winner
+          </div>
+          <div className="absolute inset-x-3 bottom-3 rounded-lg bg-black/58 p-2 text-[10px] font-semibold text-white backdrop-blur">
+            Proven concept
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        {outputCards.map((card, index) => (
+        {exampleVideos.slice(1, 7).map((video) => (
           <div
-            key={card.label}
+            key={video.id}
             className="group rounded-2xl border border-white/10 bg-white/[0.035] p-3 transition hover:border-[#FF6B1A]/40 hover:bg-white/[0.055]"
           >
             <div className="mb-3 aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-black">
-              <div
-                className="h-full w-full bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.9),transparent_13%),linear-gradient(145deg,rgba(255,107,26,0.72),rgba(113,112,255,0.18)_42%,rgba(255,255,255,0.04))] opacity-80 transition group-hover:scale-105"
-                style={{ filter: `hue-rotate(${index * 22}deg)` }}
+              <video
+                src={`/creative-multiplier-sprint/videos/${video.id}.mp4`}
+                poster={`/creative-multiplier-sprint/images/${video.id}.jpg`}
+                className="h-full w-full object-cover transition group-hover:scale-105"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={video.title}
               />
             </div>
             <div className="flex items-center justify-between gap-2">
-              <p className="truncate text-xs font-medium text-[#F7F8F8]">{card.label}</p>
+              <p className="truncate text-xs font-medium text-[#F7F8F8]">{video.title}</p>
               <span className="rounded-full bg-[#FF6B1A]/15 px-2 py-0.5 text-[10px] text-[#ffb28a]">
-                {card.status}
+                Ready
               </span>
             </div>
-            <p className="mt-1 truncate text-[11px] text-[#8A8F98]">{card.tone}</p>
+            <p className="mt-1 truncate text-[11px] text-[#8A8F98]">{video.tone}</p>
           </div>
         ))}
       </div>
     </div>
   </div>
+);
+
+const VideoExamplesSection = () => (
+  <section id="proof" className="border-b border-white/10 bg-[#08090A] px-5 py-14 md:px-8 lg:py-20">
+    <div className="mx-auto max-w-7xl">
+      <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <SectionLabel>Proof examples</SectionLabel>
+          <h2 className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.055em] md:text-5xl">
+            Real vertical examples, ready to inspect.
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
+            Short-form clips in the same style this sprint is designed to multiply: hooks, testimonials, demos, explainers, and creator-led product angles.
+          </p>
+        </div>
+        <PrimaryCta className="md:self-end">See if you qualify</PrimaryCta>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {exampleVideos.map((video) => (
+          <article
+            key={video.id}
+            className="overflow-hidden rounded-2xl border border-white/10 bg-[#0F1011]"
+          >
+            <div className="aspect-[9/16] bg-black">
+              <ProofVideoPlayer
+                src={`/creative-multiplier-sprint/videos/${video.id}.mp4`}
+                poster={`/creative-multiplier-sprint/images/${video.id}.jpg`}
+                label={video.title}
+              />
+            </div>
+            <div className="min-h-20 border-t border-white/10 p-4">
+              <h3 className="text-sm font-medium text-white">{video.title}</h3>
+              <p className="mt-1 text-xs text-[#8A8F98]">{video.tone}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 );
 
 export function CreativeMultiplierPage() {
@@ -279,6 +383,8 @@ export function CreativeMultiplierPage() {
             <AvatarOutputMockup />
           </div>
         </section>
+
+        <VideoExamplesSection />
 
         <section className="border-b border-white/10 bg-[#08090A] px-5 py-14 md:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
