@@ -18,6 +18,10 @@ pnpm build-prod   # Clean + production build
 
 This is a Next.js 16 funnel app using the App Router, Tailwind CSS v4, and React 19. Creative Multiplier Sprint is the current live funnel.
 
+### Funnel Discovery
+
+Funnels are built for paid/direct traffic and are not intended to be discovered through organic search. Treat `noindex`/crawler-blocking behavior as intentional unless the user explicitly asks to make a funnel public or discoverable.
+
 ### Component Layering
 
 The codebase follows a props-driven component architecture:

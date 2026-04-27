@@ -107,7 +107,7 @@ export const formConfig: MultiStepFormConfig = {
       namespace: 'growth-mapping-funnel',
       title: 'Pick a time for your Creative Multiplier Sprint call.',
       subtitle:
-        "In 15 minutes we'll review fit, confirm your winning ad is a good input, and map what the 10 avatar variations should preserve.",
+        "In 15 minutes we'll review fit, look at your winning ad, and map what the 10 avatar variations should preserve. No full brief needed before booking.",
     },
   ],
 };
