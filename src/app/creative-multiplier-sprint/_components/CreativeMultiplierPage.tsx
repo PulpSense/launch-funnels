@@ -250,7 +250,7 @@ export function CreativeMultiplierPage() {
 
               <h1 className="max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.06em] text-[#F7F8F8] md:text-6xl lg:text-7xl">
                 Turn your winning ad into{' '}
-                <span className="text-[#FF6B1A]">10 AI avatar variations</span> in 2 business days.
+                <span className="text-[#FF6B1A]">10 avatar variations</span> in 2 business days.
               </h1>
 
               <p className="mt-6 max-w-2xl text-base leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">

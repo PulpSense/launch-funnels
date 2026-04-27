@@ -122,7 +122,7 @@ export const creativeMultiplierContent = {
   banner: 'Founder-led sprint capacity is limited. Price discussed on the fit call.',
   hero: {
     pill: 'For ecommerce brands with proven paid-social winners',
-    headline: 'Turn your winning ad into 10 AI avatar variations in 2 business days.',
+    headline: 'Turn your winning ad into 10 avatar variations in 2 business days.',
     subheadline:
       'Fresh faces, personas, and delivery styles for the same validated creative concept - without waiting weeks for UGC creators.',
     proofCaption: 'One winning concept -> multiple launch-ready avatar variations',
