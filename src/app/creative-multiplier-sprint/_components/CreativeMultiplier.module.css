@@ -602,6 +602,17 @@
 }
 
 .formEmbed {
+  --bg: #08090b;
+  --panel: #111419;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --text: #f7f7f2;
+  --muted: #a8b0bd;
+  --soft: #d7dce3;
+  --coral: #ff6b4a;
+  --mint: #7bd88f;
+  --radius: 8px;
+
   width: min(760px, 100%);
   margin: 0 auto;
   border: 1px solid var(--line);
@@ -702,6 +713,37 @@
 .formEmbed :global(.msf-phone-row input) {
   flex: 1;
   min-width: 0;
+}
+
+.formEmbed :global(.msf-url-input) {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.formEmbed :global(.msf-url-input:focus-within) {
+  border-color: rgba(255, 107, 74, 0.72);
+}
+
+.formEmbed :global(.msf-url-prefix) {
+  flex-shrink: 0;
+  padding-left: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.formEmbed :global(.msf-url-input input) {
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding-left: 0;
+}
+
+.formEmbed :global(.msf-url-input input:focus) {
+  border-color: transparent;
 }
 
 .formEmbed :global(.msf-dropdown) {

@@ -11,6 +11,7 @@ export const secondaryCta = {
 };
 
 export const formConfig: MultiStepFormConfig = {
+  funnelId: 'creative-multiplier-sprint',
   qualifiedRedirect: '/creative-multiplier-sprint/thank-you',
   unqualifiedRedirect: '/creative-multiplier-sprint/thank-you-u',
   qualificationRules: [
@@ -48,25 +49,18 @@ export const formConfig: MultiStepFormConfig = {
           inputType: 'phone',
           required: true,
         },
-        {
-          name: 'brandUrl',
-          label: 'Brand URL',
-          inputType: 'text',
-          placeholder: 'https://yourbrand.com',
-          required: true,
-        },
-        {
-          name: 'role',
-          label: 'Your role',
-          inputType: 'text',
-          placeholder: 'Head of Growth',
-          required: true,
-        },
       ],
     },
     {
       type: 'qualify',
       fields: [
+        {
+          name: 'brandUrl',
+          label: 'Brand URL',
+          inputType: 'url',
+          placeholder: 'https://yourbrand.com',
+          required: true,
+        },
         {
           name: 'paidSocialSpend',
           label: 'Current monthly paid social spend',
@@ -109,8 +103,8 @@ export const formConfig: MultiStepFormConfig = {
     },
     {
       type: 'cal',
-      calLink: 'santileoni/creative-multiplier-sprint',
-      namespace: 'creative-multiplier-sprint',
+      calLink: 'santileoni/growth-mapping-funnel',
+      namespace: 'growth-mapping-funnel',
       title: 'Pick a time for your Creative Multiplier Sprint call.',
       subtitle:
         "In 15 minutes we'll review fit, confirm your winning ad is a good input, and map what the 10 avatar variations should preserve.",
