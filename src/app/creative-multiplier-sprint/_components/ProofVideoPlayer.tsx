@@ -129,11 +129,55 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
             onClick={toggleMute}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/18"
           >
-            <span className="relative h-4 w-4">
-              <span className="absolute left-0 top-1 h-2 w-1.5 rounded-sm bg-white" />
-              <span className="absolute left-1.5 top-0 h-4 w-2 border-y-4 border-l-4 border-y-transparent border-l-white" />
-              {isMuted && <span className="absolute left-0 top-1.5 h-0.5 w-5 rotate-45 rounded-full bg-[#FF6B1A]" />}
-            </span>
+            {isMuted ? (
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11 5 6 9H3v6h3l5 4V5Z"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="m18 9-6 6m0-6 6 6"
+                  stroke="#FF6B1A"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+              </svg>
+            ) : (
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11 5 6 9H3v6h3l5 4V5Z"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M15.5 8.5a5 5 0 0 1 0 7"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M18.5 5.5a9 9 0 0 1 0 13"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+              </svg>
+            )}
           </button>
         </div>
       </div>
