@@ -184,8 +184,14 @@ const faqs = [
   {
     question: 'What do I need to send you?',
     answer:
-      'Your winning ad, product and brand context, any claims or compliance rules we need to respect, and examples of delivery styles you like or hate.',
+      'To book, just answer the fit questions. For the call, have your winning ad and brand URL nearby. If you have creative guidelines, claims to avoid, or style references, bring those too.',
   },
+];
+
+const callPrepItems = [
+  'Winning ad link or file',
+  'Brand or product URL',
+  'Claims, rules, or style references if you already have them',
 ];
 
 const goodFit = [
@@ -577,10 +583,21 @@ export function CreativeMultiplierPage() {
                 Answer a few fit questions. Qualified brands book immediately.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#AEB6C2]">
-                The sprint only works when there is already a proven ad to multiply. The form checks spend, winner status, platforms, and timeline before showing the booking step.
+                You do not need a full brief to apply. Answer the fit questions now; if you qualify, bring the winning ad to the call and we will map the variations with you.
               </p>
               <div className="mt-6 rounded-2xl border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] p-5 text-sm leading-6 text-[#D0D6E0]">
-                If it is a fit, you pick a time. If it is not, we route you away instead of wasting a call.
+                <p className="font-medium text-white">For the call, just have these nearby:</p>
+                <ul className="mt-3 space-y-2">
+                  {callPrepItems.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-[#FF6B1A]">+</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-[#AEB6C2]">
+                  We handle the teardown, variation map, avatar direction, and production plan.
+                </p>
               </div>
             </div>
 
@@ -599,7 +616,7 @@ export function CreativeMultiplierPage() {
               Have a winning ad that needs new faces?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
-              Answer a few quick questions to see if you qualify. Qualified brands get the booking step, then we review the winning ad and confirm the sprint scope.
+              Answer a few quick questions to see if you qualify. No upload, no full brief, no strategy doc. Bring the winning ad to the call and we will map the 10 variations with you.
             </p>
             <div className="mt-8">
               <PrimaryCta className="px-7 py-4 text-base">See if you qualify</PrimaryCta>

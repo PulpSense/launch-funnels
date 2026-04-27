@@ -1131,13 +1131,72 @@
   font-size: 1.08rem;
 }
 
+.thankYouProof {
+  width: min(980px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 0 80px;
+}
+
+.thankYouProofHeader {
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+
+.thankYouProofHeader h2 {
+  margin: 16px 0 12px;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.04;
+  font-weight: 850;
+}
+
+.thankYouProofHeader p {
+  margin: 0;
+  color: var(--soft);
+  font-size: 1rem;
+}
+
+.thankYouProofGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.thankYouProofCard {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.thankYouProofMedia {
+  aspect-ratio: 9 / 16;
+  background: #000;
+}
+
+.thankYouProofMeta {
+  min-height: 86px;
+  border-top: 1px solid var(--line);
+  padding: 14px;
+}
+
+.thankYouProofMeta h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.thankYouProofMeta p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .thankYouSteps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   width: min(980px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 0 0 80px;
+  padding: 0 0 52px;
 }
 
 .thankYouSteps .stepCard p {
@@ -1147,6 +1206,14 @@
 }
 
 @media (max-width: 780px) {
+  .thankYouProofGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .thankYouProofCard {
+    max-width: 360px;
+  }
+
   .thankYouSteps {
     grid-template-columns: 1fr;
   }
