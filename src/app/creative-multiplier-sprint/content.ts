@@ -2,7 +2,7 @@ import type { MultiStepFormConfig } from '@/components/ui/MultiStepForm';
 
 export const cta = {
   href: '#apply',
-  text: 'See if you qualify',
+  text: 'Check fit',
 };
 
 export const secondaryCta = {
@@ -116,9 +116,9 @@ export const creativeMultiplierContent = {
   banner: 'Founder-led sprint capacity is limited. Price discussed on the fit call.',
   hero: {
     pill: 'For ecommerce brands with proven paid-social winners',
-    headline: 'Turn your winning ad into 10 avatar variations in 2 business days.',
+    headline: 'Turn one winning paid-social ad into 10 avatar videos in 2 business days.',
     subheadline:
-      'Fresh faces, personas, and delivery styles for the same validated creative concept - without waiting weeks for UGC creators.',
+      'Bring the winning ad. We handle the teardown, avatar map, production, QA, and delivery.',
     proofCaption: 'One winning concept -> multiple launch-ready avatar variations',
   },
   proofStats: [
@@ -278,7 +278,7 @@ export const creativeMultiplierContent = {
       'Needs full strategy from scratch',
       'Wants guaranteed ROAS',
       'Needs dozens of new concepts or scripts',
-      'Is not comfortable testing AI-generated avatars',
+      'Is not open to QA-checked AI avatar variants',
     ],
   },
   process: {
@@ -327,9 +327,9 @@ export const creativeMultiplierContent = {
   },
   application: {
     label: 'Apply now',
-    title: 'See if you qualify',
+    title: 'Check fit',
     subtitle:
-      'Answer a few quick questions about your paid-social spend, winning ad, platforms, and timeline. Qualified brands get the booking step immediately.',
+      'Answer a few quick questions about your paid-social spend, winning ad, platforms, and timeline. Good-fit brands get the booking step immediately.',
   },
   footer: {
     links: [
