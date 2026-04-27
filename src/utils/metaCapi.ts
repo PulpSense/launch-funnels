@@ -16,6 +16,10 @@ declare global {
 export function trackMetaEvent(
   eventName: string,
   customData?: Record<string, unknown>,
+  userData?: {
+    email?: string;
+    phone?: string;
+  },
 ) {
   const eventId = generateEventId(eventName);
 
@@ -34,6 +38,8 @@ export function trackMetaEvent(
       event_source_url: window.location.href,
       fbc: getCookie('_fbc'),
       fbp: getCookie('_fbp'),
+      ...(userData?.email ? { user_email: userData.email } : {}),
+      ...(userData?.phone ? { user_phone: userData.phone } : {}),
       ...(customData ? { custom_data: customData } : {}),
     }),
   }).catch(() => {

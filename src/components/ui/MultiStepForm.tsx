@@ -492,6 +492,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
   const formDataRef = useRef(formData);
   const isQualifiedRef = useRef(isQualified);
   const phoneCountryRef = useRef(phoneCountry);
+  const scheduleEventSentRef = useRef(false);
   useEffect(() => { formDataRef.current = formData; }, [formData]);
   useEffect(() => { isQualifiedRef.current = isQualified; }, [isQualified]);
   useEffect(() => { phoneCountryRef.current = phoneCountry; }, [phoneCountry]);
@@ -548,6 +549,25 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
           }
 
           if (isQualifiedRef.current) {
+            if (!scheduleEventSentRef.current) {
+              scheduleEventSentRef.current = true;
+              const phone = formDataRef.current.phone
+                ? `${phoneCountryRef.current.code} ${formDataRef.current.phone}`
+                : undefined;
+
+              trackMetaEvent(
+                'Schedule',
+                {
+                  content_name: 'Creative Multiplier Sprint Fit Call',
+                  funnel_id: config.funnelId ?? 'default',
+                  booking_uid: enrichedData.bookingUid,
+                },
+                {
+                  email: formDataRef.current.email as string | undefined,
+                  phone,
+                },
+              );
+            }
             router.push(config.qualifiedRedirect);
           } else {
             router.push(config.unqualifiedRedirect);
