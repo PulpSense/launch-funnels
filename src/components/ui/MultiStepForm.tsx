@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Cal, { getCalApi } from '@calcom/embed-react';
+import { isBusinessEmail } from '@/utils/businessEmail';
 import { trackMetaEvent } from '@/utils/metaCapi';
 
 /* ── Types ── */
@@ -32,8 +33,10 @@ type QualifyStep = {
 type QualifyField = {
   name: string;
   label: string;
+  placeholder?: string;
   required?: boolean;
 } & (
+  | { inputType: 'text' | 'url' }
   | { inputType: 'select'; options: string[] }
   | { inputType: 'multi-select'; options: string[] }
 );
@@ -54,6 +57,7 @@ type QualificationRule = {
 };
 
 export type MultiStepFormConfig = {
+  funnelId?: string;
   steps: FormStep[];
   qualificationRules?: QualificationRule[];
   qualifiedRedirect: string;
@@ -86,6 +90,15 @@ function formatPhone(digits: string, country: Country): string {
 function isValidPhone(raw: string, country: Country): boolean {
   const digits = raw.replace(/\D/g, '');
   return digits.length >= country.minDigits && digits.length <= country.maxDigits;
+}
+
+function stripUrlProtocol(raw: string): string {
+  return raw.trim().replace(/^https?:\/\//i, '');
+}
+
+function normalizeHttpsUrl(raw: string): string {
+  const withoutProtocol = stripUrlProtocol(raw);
+  return withoutProtocol ? `https://${withoutProtocol}` : '';
 }
 
 /* ── Generic dropdown ── */
@@ -307,9 +320,8 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     // Skip if the email hasn't changed since last verification
     if (email === lastVerifiedEmail.current) return;
 
-    // Only verify if it passes the client-side business email regex first
-    const businessEmailRe = /^[a-zA-Z0-9._%+-]+@(?!(?:gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|live\.com|msn\.com|icloud\.com|me\.com|mac\.com|aol\.com|proton\.me|protonmail\.com|pm\.me|gmx\.com|mail\.com|zoho\.com|yandex\.com)$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!email || !businessEmailRe.test(email)) {
+    // Only verify if it passes the client-side business email check first
+    if (!email || !isBusinessEmail(email)) {
       lastVerifiedEmail.current = '';
 
       setEmailStatus('idle');
@@ -373,7 +385,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
         const val = (formData[field.name] as string) ?? '';
         if (field.required && !val.trim()) {
           errs[field.name] = 'Required';
-        } else if (field.inputType === 'email' && val && !/^[a-zA-Z0-9._%+-]+@(?!(?:gmail\.com|yahoo\.com|hotmail\.com|outlook\.com|live\.com|msn\.com|icloud\.com|me\.com|mac\.com|aol\.com|proton\.me|protonmail\.com|pm\.me|gmx\.com|mail\.com|zoho\.com|yandex\.com)$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val)) {
+        } else if (field.inputType === 'email' && val && !isBusinessEmail(val)) {
           errs[field.name] = 'Please use your business email';
         } else if (field.inputType === 'phone' && val && !isValidPhone(val, phoneCountry)) {
           errs[field.name] = phoneCountry.minDigits === phoneCountry.maxDigits
@@ -408,10 +420,14 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     return true;
   }, [config.qualificationRules, formData]);
 
-  const sendWebhook = useCallback(async (event: string, extraData?: Record<string, string>) => {
+  const sendWebhook = useCallback(async (
+    event: string,
+    extraData?: Record<string, string | string[] | boolean>,
+  ) => {
     // Enrich phone with country code for the webhook payload
     const phoneVal = formData.phone as string | undefined;
     const enriched = {
+      funnelId: config.funnelId ?? 'default',
       ...formData,
       ...(phoneVal ? { phone: `${phoneCountry.code} ${phoneVal}` } : {}),
       ...extraData,
@@ -430,7 +446,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     } catch {
       // Silently fail — don't block the user
     }
-  }, [formData, phoneCountry]);
+  }, [config.funnelId, formData, phoneCountry]);
 
   const handleNext = useCallback(async () => {
     if (!validate()) return;
@@ -446,7 +462,18 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     if (step.type === 'qualify') {
       const qualified = checkQualification();
       setIsQualified(qualified);
+      await sendWebhook('application_submitted', {
+        qualified,
+        qualificationStatus: qualified ? 'qualified' : 'unqualified',
+      });
       trackMetaEvent('SubmitApplication');
+
+      if (!qualified) {
+        config.onStepComplete?.(currentStep, formData);
+        router.push(config.unqualifiedRedirect);
+        setSubmitting(false);
+        return;
+      }
     }
 
     config.onStepComplete?.(currentStep, formData);
@@ -455,7 +482,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
       setCurrentStep((prev) => prev + 1);
     }
     setSubmitting(false);
-  }, [validate, currentStep, step, totalSteps, sendWebhook, checkQualification, config, formData]);
+  }, [validate, currentStep, step, totalSteps, sendWebhook, checkQualification, config, formData, router]);
 
   const handleBack = useCallback(() => {
     if (currentStep > 0) setCurrentStep((prev) => prev - 1);
@@ -464,8 +491,10 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
   // Refs so the postMessage listener always sees current values
   const formDataRef = useRef(formData);
   const isQualifiedRef = useRef(isQualified);
+  const phoneCountryRef = useRef(phoneCountry);
   useEffect(() => { formDataRef.current = formData; }, [formData]);
   useEffect(() => { isQualifiedRef.current = isQualified; }, [isQualified]);
+  useEffect(() => { phoneCountryRef.current = phoneCountry; }, [phoneCountry]);
 
   // Initialize Cal.com API and listen for booking confirmation
   const calNamespace = step.type === 'cal' ? (step.namespace ?? 'default') : '';
@@ -495,7 +524,9 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
           }
 
           const enrichedData = {
+            funnelId: config.funnelId ?? 'default',
             ...formDataRef.current,
+            ...(formDataRef.current.phone ? { phone: `${phoneCountryRef.current.code} ${formDataRef.current.phone}` } : {}),
             bookingUid: (booking.uid as string) ?? '',
             bookingDate: (booking.date as string) ?? (booking.startTime as string) ?? '',
             bookingTitle: (booking.title as string) ?? (booking.eventTitle as string) ?? '',
@@ -612,6 +643,34 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
                   />
                 )}
 
+                {(field.inputType === 'text' || field.inputType === 'url') && (
+                  field.inputType === 'url' ? (
+                    <div className={`msf-url-input ${errors[field.name] ? 'msf-input-error' : ''}`}>
+                      <span className="msf-url-prefix">https://</span>
+                      <input
+                        id={field.name}
+                        type="text"
+                        inputMode="url"
+                        placeholder={field.placeholder ? stripUrlProtocol(field.placeholder) : undefined}
+                        value={stripUrlProtocol((formData[field.name] as string) ?? '')}
+                        onChange={(e) => updateField(field.name, normalizeHttpsUrl(e.target.value))}
+                        className={errors[field.name] ? 'msf-input-error' : ''}
+                        autoComplete="url"
+                      />
+                    </div>
+                  ) : (
+                    <input
+                      id={field.name}
+                      type={field.inputType}
+                      placeholder={field.placeholder}
+                      value={(formData[field.name] as string) ?? ''}
+                      onChange={(e) => updateField(field.name, e.target.value)}
+                      className={errors[field.name] ? 'msf-input-error' : ''}
+                      autoComplete="off"
+                    />
+                  )
+                )}
+
                 {field.inputType === 'multi-select' && (
                   <div className="msf-chips">
                     {field.options.map((opt) => {
@@ -663,6 +722,12 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
                     rev: formData.revenue as string,
                     biztype: formData.businessType as string,
                     leadgen: Array.isArray(formData.leadGen) ? formData.leadGen.join(', ') : '',
+                    brandUrl: formData.brandUrl as string,
+                    role: formData.role as string,
+                    paidSocialSpend: formData.paidSocialSpend as string,
+                    winnerStatus: formData.winnerStatus as string,
+                    platforms: Array.isArray(formData.platforms) ? formData.platforms.join(', ') : '',
+                    deliveryTimeline: formData.deliveryTimeline as string,
                   }).filter(([, v]) => !!v),
                 )}
               />

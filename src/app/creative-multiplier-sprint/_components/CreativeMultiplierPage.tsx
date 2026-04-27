@@ -17,63 +17,63 @@ const pixels = {
 const exampleVideos = [
   {
     id: 'ugc-example-01',
-    title: 'Authority-led hook',
-    tone: 'Podcast-style proof',
+    title: 'Studio interview hook',
+    tone: 'Podcast-style authority angle',
   },
   {
     id: 'ugc-example-02',
-    title: 'Product testimonial',
-    tone: 'Calm creator delivery',
+    title: 'Supplement explainer',
+    tone: 'Seated creator product pitch',
   },
   {
     id: 'ugc-example-03',
-    title: 'Lifestyle b-roll',
-    tone: 'Visual product context',
+    title: 'Lifestyle walk-through',
+    tone: 'Polished vertical b-roll',
   },
   {
     id: 'ugc-example-04',
-    title: 'Car-seat UGC',
-    tone: 'Direct testimonial',
+    title: 'Car POV testimonial',
+    tone: 'Casual creator delivery',
   },
   {
     id: 'ugc-example-05',
-    title: 'Mirror demo',
-    tone: 'Founder-style product proof',
+    title: 'Elevator product demo',
+    tone: 'Handheld creator proof',
   },
   {
     id: 'ugc-example-06',
     title: 'Pattern interrupt',
-    tone: 'Fast direct-response hook',
+    tone: 'High-urgency face-to-camera hook',
   },
   {
     id: 'ugc-example-07',
-    title: 'Persona explainer',
-    tone: 'Education-led angle',
+    title: 'Listicle advice hook',
+    tone: 'Education-style creator angle',
   },
   {
     id: 'ugc-example-08',
     title: 'Comment response',
-    tone: 'Objection handling',
+    tone: 'Reply-style objection handling',
   },
   {
     id: 'ugc-example-09',
-    title: 'Product reveal',
-    tone: 'Beauty creator POV',
+    title: 'Beauty product pitch',
+    tone: 'Handheld creator demo',
   },
   {
     id: 'ugc-example-10',
-    title: 'Routine proof',
-    tone: 'Before-after style',
+    title: 'Drink product reveal',
+    tone: 'Kitchen counter product demo',
   },
   {
     id: 'ugc-example-11',
-    title: 'Kitchen founder POV',
-    tone: 'Trust-builder',
+    title: 'Kitchen testimonial',
+    tone: 'Founder-style explainer',
   },
   {
     id: 'ugc-example-12',
-    title: 'Offer variant',
-    tone: 'Creator-led product pitch',
+    title: 'Podcast story hook',
+    tone: 'Interview-style social proof',
   },
 ];
 
@@ -584,7 +584,7 @@ export function CreativeMultiplierPage() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0F1011] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] md:p-6">
+            <div className="overflow-visible rounded-[28px] border border-white/10 bg-[#0F1011] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] md:p-6">
               <Suspense fallback={<div className="h-[620px] animate-pulse rounded-2xl bg-white/[0.04]" />}>
                 <ApplicationFormIsland config={formConfig} />
               </Suspense>

@@ -1,16 +1,22 @@
 import { NextResponse } from 'next/server';
 
+import { isBusinessEmail } from '@/utils/businessEmail';
+
 const API_KEY = process.env.MILLION_VERIFIER_API_KEY;
 
 export async function POST(req: Request) {
-  if (!API_KEY) {
-    // Skip verification when no API key is set (e.g. local testing)
-    return NextResponse.json({ valid: true, result: 'skipped' });
-  }
-
   const { email } = await req.json();
   if (!email || typeof email !== 'string') {
     return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+  }
+
+  if (!isBusinessEmail(email)) {
+    return NextResponse.json({ valid: false, result: 'non_business_email' });
+  }
+
+  if (!API_KEY) {
+    // Skip verification when no API key is set (e.g. local testing)
+    return NextResponse.json({ valid: true, result: 'skipped' });
   }
 
   try {

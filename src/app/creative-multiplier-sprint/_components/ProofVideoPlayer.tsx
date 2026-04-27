@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type ProofVideoPlayerProps = {
   src: string;
@@ -11,8 +11,45 @@ type ProofVideoPlayerProps = {
 export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    video.muted = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          void video.play().catch(() => {
+            setIsPlaying(false);
+          });
+          return;
+        }
+
+        video.pause();
+      },
+      {
+        rootMargin: '120px 0px',
+        threshold: 0.45,
+      },
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const togglePlay = async () => {
     const video = videoRef.current;
@@ -72,6 +109,8 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
         src={src}
         poster={poster}
         className="h-full w-full object-cover"
+        loop
+        muted={isMuted}
         playsInline
         preload="metadata"
         aria-label={label}
@@ -93,6 +132,42 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
           className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/60 shadow-[0_18px_40px_rgba(0,0,0,0.35)] backdrop-blur transition hover:bg-black/75"
         >
           <span className="ml-1 h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-white" />
+        </button>
+      )}
+
+      {isPlaying && isMuted && (
+        <button
+          type="button"
+          aria-label={`Unmute ${label}`}
+          onClick={toggleMute}
+          className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-black/55 text-white shadow-[0_18px_44px_rgba(0,0,0,0.38)] backdrop-blur transition hover:scale-105 hover:bg-black/70"
+        >
+          <svg
+            aria-hidden="true"
+            className="h-7 w-7"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M11 5 6 9H3v6h3l5 4V5Z"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+            <path
+              d="M15.5 8.5a5 5 0 0 1 0 7"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="2"
+            />
+            <path
+              d="M18.5 5.5a9 9 0 0 1 0 13"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="2"
+            />
+          </svg>
         </button>
       )}
 
