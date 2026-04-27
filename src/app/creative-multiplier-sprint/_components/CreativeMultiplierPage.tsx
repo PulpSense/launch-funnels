@@ -87,15 +87,15 @@ const proofStats = [
 const problemCards = [
   {
     title: 'Creators take weeks',
-    body: 'Briefs, shipping, filming, revisions, and delivery timelines slow down the account when it needs fresh tests now.',
+    body: 'Briefs, shipping, filming, revisions, and delivery timelines slow the account down when your buyer needs fresh tests now.',
   },
   {
     title: 'New concepts are risky',
-    body: 'When a message already works, the fastest path is not reinventing the strategy. It is multiplying the visible variables.',
+    body: 'When a message already works, the fastest path is not reinventing the strategy. It is giving the same winner more shots at scale.',
   },
   {
     title: 'Same face burns out',
-    body: 'Editing old footage helps, but audience fatigue still hits when the avatar, voice, and delivery never change.',
+    body: 'Editing old footage helps, but audience fatigue still hits when the face, voice, and delivery never change.',
   },
 ];
 
@@ -379,7 +379,7 @@ export function CreativeMultiplierPage() {
               </h1>
 
               <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">
-                New faces and delivery styles without waiting weeks for UGC creators.
+                Give your media buyer 10 new versions before the current winner burns out.
               </p>
 
               <div className="mt-6 flex gap-3">
@@ -413,10 +413,10 @@ export function CreativeMultiplierPage() {
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
                 <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.055em] md:text-5xl">
-                  Creative fatigue is not always a concept problem.
+                  Your winning ad does not need a new idea. It needs new faces.
                 </h2>
                 <p className="mt-5 max-w-xl text-lg leading-8 text-[#AEB6C2]">
-                  If the message works, multiply the messenger. We keep the winning sales argument intact and change the visible variables around it.
+                  We keep the winning sales argument intact and change the visible variables around it before audience fatigue turns into climbing CPA.
                 </p>
               </div>
               <div className="grid gap-3 md:grid-cols-3">
@@ -464,7 +464,7 @@ export function CreativeMultiplierPage() {
               Waiting on UGC creators vs AI avatar multiplication.
             </h2>
             <p className="mt-4 max-w-2xl text-lg text-[#AEB6C2]">
-              Same creative strategy, much faster testing velocity.
+              Same winning ad. New faces. More shots at scale.
             </p>
 
             <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-[#0F1011]">
@@ -674,7 +674,7 @@ export function CreativeMultiplierPage() {
           <div className="flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-white">10 variations / 2 business days</p>
-              <p className="truncate text-xs text-[#8A8F98]">Check fit. No checkout.</p>
+              <p className="truncate text-xs text-[#8A8F98]">No upload. Book if it fits.</p>
             </div>
             <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Check fit</PrimaryCta>
           </div>
