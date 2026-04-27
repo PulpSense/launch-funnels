@@ -9,15 +9,19 @@ type ProofVideoPlayerProps = {
 };
 
 export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wantsPlayRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    const container = containerRef.current;
     const video = videoRef.current;
 
-    if (!video || !('IntersectionObserver' in window)) {
+    if (!container || !video || !('IntersectionObserver' in window)) {
       return;
     }
 
@@ -30,6 +34,13 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
         }
 
         if (entry.isIntersecting) {
+          wantsPlayRef.current = true;
+          setShouldLoad(true);
+
+          if (!video.currentSrc) {
+            return;
+          }
+
           void video.play().catch(() => {
             setIsPlaying(false);
           });
@@ -44,12 +55,24 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
       },
     );
 
-    observer.observe(video);
+    observer.observe(container);
 
     return () => {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!shouldLoad || !video || !wantsPlayRef.current) {
+      return;
+    }
+
+    void video.play().catch(() => {
+      setIsPlaying(false);
+    });
+  }, [shouldLoad]);
 
   const togglePlay = async () => {
     const video = videoRef.current;
@@ -58,12 +81,20 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
       return;
     }
 
+    if (!shouldLoad) {
+      wantsPlayRef.current = true;
+      setShouldLoad(true);
+      return;
+    }
+
     if (video.paused) {
+      wantsPlayRef.current = true;
       await video.play();
       setIsPlaying(true);
       return;
     }
 
+    wantsPlayRef.current = false;
     video.pause();
     setIsPlaying(false);
   };
@@ -103,10 +134,10 @@ export function ProofVideoPlayer({ src, poster, label }: ProofVideoPlayerProps) 
   };
 
   return (
-    <div className="group relative h-full w-full overflow-hidden bg-black">
+    <div ref={containerRef} className="group relative h-full w-full overflow-hidden bg-black">
       <video
         ref={videoRef}
-        src={src}
+        src={shouldLoad ? src : undefined}
         poster={poster}
         className="h-full w-full object-cover"
         loop

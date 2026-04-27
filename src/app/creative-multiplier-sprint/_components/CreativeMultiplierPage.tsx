@@ -123,11 +123,9 @@ const processSteps = [
 ];
 
 const comparisonRows = [
-  ['Speed', 'Often 2–4 weeks with briefs, shipping, filming, and edits', '10 variations delivered in 2 business days after assets'],
+  ['Speed', 'Often 2-4 weeks with briefs, shipping, filming, and edits', '10 variations delivered in 2 business days after assets'],
   ['Starting point', 'Usually starts from new concepts or creator interpretation', 'Starts from a paid-social ad that already works'],
-  ['Testing variables', 'Limited by creator schedule, footage, and revisions', 'Avatar, persona, delivery, tone, and pacing variants'],
-  ['Risk', 'New batch may miss the winning sales argument', 'Core hook and sales structure stay intact'],
-  ['Your time', 'Briefing, chasing, reviewing, and editing back-and-forth', 'Send the winner and context, then review the finished batch'],
+  ['Your time', 'Briefing, chasing, reviewing, and editing back-and-forth', 'Bring the winner. We map, produce, QA, and deliver'],
   ['Guarantee', 'Usually pay regardless of usable output', 'Usable creative after one revision pass or refund'],
 ];
 
@@ -186,6 +184,26 @@ const faqs = [
     answer:
       'To book, just answer the fit questions. For the call, have your winning ad and brand URL nearby. If you have creative guidelines, claims to avoid, or style references, bring those too.',
   },
+  {
+    question: 'Do I need to upload the ad before booking?',
+    answer:
+      'No. The form checks fit first. If it looks like a match, you can bring the ad link or file to the call.',
+  },
+  {
+    question: 'What happens after the call?',
+    answer:
+      'If the sprint is a fit, we invoice, collect the asset package, deconstruct the winning ad, produce the variants, QA the batch, and deliver the files by email.',
+  },
+  {
+    question: 'Who owns the finished files?',
+    answer:
+      'You do. Once the sprint is paid and delivered, the finished creative files are yours to test in your ad accounts.',
+  },
+  {
+    question: 'Can you work around claim or compliance restrictions?',
+    answer:
+      'Yes, as long as you tell us what needs to be avoided or preserved. Platform approval still depends on your account, offer, and platform policies.',
+  },
 ];
 
 const callPrepItems = [
@@ -198,7 +216,7 @@ const goodFit = [
   'You have a proven ad or message already working',
   'You run paid social and need fresh variants quickly',
   'You can send product, brand, and compliance context fast',
-  'You are comfortable testing AI-generated avatar creative',
+  'You are open to QA-checked AI avatar variants',
 ];
 
 const notFit = [
@@ -217,7 +235,7 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 const PrimaryCta = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
   <a
     href={CALL_URL}
-    className={`inline-flex items-center justify-center rounded-md border border-[#ff8752]/40 bg-[#FF6B1A] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.22)] transition hover:bg-[#ff7b33] ${className}`}
+    className={`inline-flex items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] ${className}`}
   >
     {children}
   </a>
@@ -238,7 +256,7 @@ const AvatarOutputMockup = () => (
 
     <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
       <div>
-        <p className="text-xs uppercase tracking-[0.28em] text-[#62666D]">Creative lab</p>
+        <p className="text-xs uppercase tracking-[0.28em] text-[#8A8F98]">Creative lab</p>
         <p className="mt-1 text-sm font-medium text-[#F7F8F8]">Winner Avatar Multiplier</p>
       </div>
       <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
@@ -250,7 +268,7 @@ const AvatarOutputMockup = () => (
       <div className="rounded-2xl border border-white/10 bg-black/80 p-3">
         <div className="relative min-h-[520px] overflow-hidden rounded-xl border border-white/10 bg-black">
           <video
-            src="/creative-multiplier-sprint/videos/ugc-example-01.mp4"
+            src="/creative-multiplier-sprint/videos/ugc-example-01-loop.mp4"
             poster="/creative-multiplier-sprint/images/ugc-example-01.jpg"
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
@@ -275,19 +293,14 @@ const AvatarOutputMockup = () => (
             key={video.id}
             className="group relative aspect-[9/11] overflow-hidden rounded-2xl border border-white/10 bg-black transition hover:border-[#FF6B1A]/40"
           >
-            <video
-              src={`/creative-multiplier-sprint/videos/${video.id}.mp4`}
-              poster={`/creative-multiplier-sprint/images/${video.id}.jpg`}
+            <img
+              src={`/creative-multiplier-sprint/images/${video.id}.jpg`}
+              alt={video.title}
               className="h-full w-full object-cover transition group-hover:scale-105"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              aria-label={video.title}
+              loading="eager"
             />
             <div className="absolute inset-x-0 bottom-0 flex justify-end bg-gradient-to-t from-black/80 to-transparent p-2">
-              <span className="rounded-full bg-[#FF6B1A]/85 px-2 py-0.5 text-[10px] font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.28)]">
+              <span className="rounded-full bg-[#B94100]/95 px-2 py-0.5 text-[10px] font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.28)]">
                 Ready
               </span>
             </div>
@@ -311,7 +324,7 @@ const VideoExamplesSection = () => (
             Short-form clips in the same style this sprint is designed to multiply: hooks, testimonials, demos, explainers, and creator-led product angles.
           </p>
         </div>
-        <PrimaryCta className="md:self-end">See if you qualify</PrimaryCta>
+        <PrimaryCta className="md:self-end">Check fit</PrimaryCta>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -351,12 +364,12 @@ export function CreativeMultiplierPage() {
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-[#D0D6E0]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
-                1 winning ad → 10 variations in 48h
+                1 winning ad → 10 variations in 2 business days
               </div>
 
               <h1 className="max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.06em] text-[#F7F8F8] md:text-6xl lg:text-7xl">
-                Turn your winning ad into{' '}
-                <span className="text-[#FF6B1A]">10 avatar variations</span> in 2 business days.
+                Turn one winning paid-social ad into{' '}
+                <span className="text-[#FF6B1A]">10 avatar videos</span> in 2 business days.
               </h1>
 
               <p className="mt-6 max-w-2xl text-base leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">
@@ -364,12 +377,12 @@ export function CreativeMultiplierPage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <PrimaryCta>See if you qualify</PrimaryCta>
+                <PrimaryCta>Check fit</PrimaryCta>
                 <GhostCta>See what you get</GhostCta>
               </div>
 
               <p className="mt-4 max-w-xl text-sm leading-6 text-[#8A8F98]">
-                No checkout on this page. We review fit first, then invoice after the call. Built for ecommerce brands running paid social.
+                Bring the winning ad. We handle the teardown, avatar map, production, QA, and delivery.
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -421,7 +434,7 @@ export function CreativeMultiplierPage() {
                   A production pipeline for multiplying what already works.
                 </h2>
               </div>
-              <PrimaryCta className="md:self-end">See if you qualify</PrimaryCta>
+              <PrimaryCta className="md:self-end">Check fit</PrimaryCta>
             </div>
 
             <div className="grid gap-3 lg:grid-cols-4">
@@ -475,12 +488,18 @@ export function CreativeMultiplierPage() {
               <p className="mt-5 max-w-xl text-lg leading-8 text-[#AEB6C2]">
                 You get a QA-led sprint deliverable built for paid-social testing. Not raw dashboard exports. Not random new concepts. Variations of the thing that already proved it can sell.
               </p>
+              <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.055] p-5 text-sm leading-6 text-[#D0D6E0]">
+                <p className="font-medium text-white">Usable creative guarantee</p>
+                <p className="mt-2 text-[#AEB6C2]">
+                  If the final batch is not usable after one revision pass, we refund your payment.
+                </p>
+              </div>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-[#0F1011] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
               <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-5">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-[#62666D]">Delivery receipt</p>
+                  <p className="text-xs uppercase tracking-[0.28em] text-[#8A8F98]">Delivery receipt</p>
                   <h3 className="mt-1 text-2xl font-medium tracking-[-0.045em] text-white">Creative Multiplier Sprint</h3>
                 </div>
                 <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
@@ -490,7 +509,7 @@ export function CreativeMultiplierPage() {
               <div className="space-y-3">
                 {deliverables.map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FF6B1A] text-xs font-bold text-white">✓</span>
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#B94100] text-xs font-bold text-white">✓</span>
                     <p className="text-sm leading-6 text-[#D0D6E0]">{item}</p>
                   </div>
                 ))}
@@ -556,7 +575,7 @@ export function CreativeMultiplierPage() {
                 Questions before you send the winner.
               </h2>
               <div className="mt-8 hidden lg:block">
-                <PrimaryCta>See if you qualify</PrimaryCta>
+                <PrimaryCta>Check fit</PrimaryCta>
               </div>
             </div>
             <div className="space-y-3">
@@ -580,10 +599,10 @@ export function CreativeMultiplierPage() {
             <div className="lg:sticky lg:top-8">
               <SectionLabel>Apply to book</SectionLabel>
               <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.055em] md:text-5xl">
-                Answer a few fit questions. Qualified brands book immediately.
+                Answer a few fit questions. Good-fit brands book immediately.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#AEB6C2]">
-                You do not need a full brief to apply. Answer the fit questions now; if you qualify, bring the winning ad to the call and we will map the variations with you.
+                You do not need a full brief to apply. Answer the fit questions now; if it looks like a match, bring the winning ad to the call and we will map the variations with you.
               </p>
               <div className="mt-6 rounded-2xl border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] p-5 text-sm leading-6 text-[#D0D6E0]">
                 <p className="font-medium text-white">For the call, just have these nearby:</p>
@@ -613,19 +632,19 @@ export function CreativeMultiplierPage() {
           <div className="mx-auto max-w-5xl overflow-hidden rounded-[32px] border border-[#FF6B1A]/25 bg-[radial-gradient(circle_at_20%_0%,rgba(255,107,26,0.22),transparent_32%),linear-gradient(145deg,#111318,#050506)] p-8 text-center shadow-[0_30px_100px_rgba(0,0,0,0.45)] md:p-12">
             <SectionLabel>Next step</SectionLabel>
             <h2 className="mx-auto max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.055em] md:text-6xl">
-              Have a winning ad that needs new faces?
+              Got one ad that already works?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#AEB6C2]">
-              Answer a few quick questions to see if you qualify. No upload, no full brief, no strategy doc. Bring the winning ad to the call and we will map the 10 variations with you.
+              Let us see if it can become 10. No upload, no full brief, no strategy doc before booking.
             </p>
             <div className="mt-8">
-              <PrimaryCta className="px-7 py-4 text-base">See if you qualify</PrimaryCta>
+              <PrimaryCta className="px-7 py-4 text-base">Check fit and book</PrimaryCta>
             </div>
             <p className="mt-4 text-sm text-[#8A8F98]">Qualification first. Booking second. No public price. No self-checkout.</p>
           </div>
         </section>
 
-        <footer className="border-t border-white/10 px-5 py-10 text-sm text-[#62666D] md:px-8">
+        <footer className="border-t border-white/10 px-5 py-10 text-sm text-[#8A8F98] md:px-8">
           <div className="mx-auto max-w-7xl">
             <h3 className="text-base font-medium text-[#D0D6E0]">Performance Disclaimer</h3>
             <p className="mt-3 max-w-4xl leading-6">
@@ -647,9 +666,9 @@ export function CreativeMultiplierPage() {
           <div className="flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-white">10 variations / 2 business days</p>
-              <p className="truncate text-xs text-[#8A8F98]">See if you qualify. No checkout.</p>
+              <p className="truncate text-xs text-[#8A8F98]">Check fit. No checkout.</p>
             </div>
-            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Qualify</PrimaryCta>
+            <PrimaryCta className="shrink-0 px-4 py-3 text-xs">Check fit</PrimaryCta>
           </div>
         </div>
       </main>
