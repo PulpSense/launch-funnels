@@ -241,10 +241,10 @@ const PrimaryCta = ({ children, className = '' }: { children: React.ReactNode; c
   </a>
 );
 
-const GhostCta = ({ children }: { children: React.ReactNode }) => (
+const GhostCta = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
   <a
     href="#proof"
-    className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-[#D0D6E0] transition hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+    className={`inline-flex items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-[#D0D6E0] transition hover:border-white/20 hover:bg-white/[0.06] hover:text-white ${className}`}
   >
     {children}
   </a>
@@ -360,32 +360,38 @@ export function CreativeMultiplierPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(255,107,26,0.22),transparent_34%),radial-gradient(circle_at_78%_12%,rgba(113,112,255,0.18),transparent_30%),linear-gradient(180deg,#08090A_0%,#010102_100%)]" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/60 to-transparent" />
 
-          <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-8 md:px-8 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-10">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-7 md:px-8 md:py-8 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-10">
             <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-[#D0D6E0]">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] font-medium leading-none text-[#D0D6E0] sm:text-xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
-                1 winning ad → 10 variations in 2 business days
+                <span className="sm:hidden">1 ad → 10 videos / 2 business days</span>
+                <span className="hidden sm:inline">1 winning ad → 10 variations in 2 business days</span>
               </div>
 
-              <h1 className="max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.06em] text-[#F7F8F8] md:text-6xl lg:text-7xl">
-                Turn one winning paid-social ad into{' '}
-                <span className="text-[#FF6B1A]">10 avatar videos</span> in 2 business days.
+              <h1 className="max-w-4xl text-[2.6rem] font-medium leading-[0.98] tracking-[-0.045em] text-[#F7F8F8] sm:text-5xl md:text-6xl md:leading-[0.95] md:tracking-[-0.06em] lg:text-7xl">
+                <span className="sm:hidden">
+                  <span className="text-[#FF6B1A]">10 avatar videos</span> from one winning ad.
+                </span>
+                <span className="hidden sm:inline">
+                  Turn one winning ad into{' '}
+                  <span className="text-[#FF6B1A]">10 avatar videos</span> in 2 business days.
+                </span>
               </h1>
 
-              <p className="mt-6 max-w-2xl text-base leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">
-                Give your best paid-social ad new faces, personas, and delivery styles without waiting weeks for UGC creators or gambling on brand-new concepts.
+              <p className="mt-5 max-w-2xl text-[0.98rem] leading-7 tracking-[-0.01em] text-[#AEB6C2] md:text-lg">
+                New faces and delivery styles without waiting weeks for UGC creators.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <PrimaryCta>Check fit</PrimaryCta>
-                <GhostCta>See what you get</GhostCta>
+              <div className="mt-6 flex gap-3">
+                <PrimaryCta className="min-w-0 flex-1 sm:flex-none">Check fit</PrimaryCta>
+                <GhostCta className="min-w-0 flex-1 sm:flex-none">Examples</GhostCta>
               </div>
 
-              <p className="mt-4 max-w-xl text-sm leading-6 text-[#8A8F98]">
-                Bring the winning ad. We handle the teardown, avatar map, production, QA, and delivery.
+              <p className="mt-4 max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:text-sm">
+                Bring the ad. We handle teardown, production, QA, and delivery.
               </p>
 
-              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="mt-8 hidden grid-cols-2 gap-3 sm:grid sm:grid-cols-4">
                 {proofStats.map((stat) => (
                   <div key={stat.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <p className="text-xl font-medium tracking-[-0.04em] text-white">{stat.value}</p>
@@ -640,7 +646,9 @@ export function CreativeMultiplierPage() {
             <div className="mt-8">
               <PrimaryCta className="px-7 py-4 text-base">Check fit and book</PrimaryCta>
             </div>
-            <p className="mt-4 text-sm text-[#8A8F98]">Qualification first. Booking second. No public price. No self-checkout.</p>
+            <p className="mt-4 text-sm text-[#8A8F98]">
+              Quick fit check first, so we only book calls where the sprint can actually help.
+            </p>
           </div>
         </section>
 
