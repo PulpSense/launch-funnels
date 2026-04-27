@@ -448,6 +448,18 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     }
   }, [config.funnelId, formData, phoneCountry]);
 
+  const getMetaUserData = useCallback(() => {
+    const email = formData.email;
+    const phone = formData.phone;
+
+    return {
+      email: typeof email === 'string' ? email : undefined,
+      phone: typeof phone === 'string' && phone
+        ? `${phoneCountry.code} ${phone}`
+        : undefined,
+    };
+  }, [formData.email, formData.phone, phoneCountry]);
+
   const handleNext = useCallback(async () => {
     if (!validate()) return;
     setSubmitting(true);
@@ -455,7 +467,17 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
     // After step 1 (contact), fire partial webhook + Lead event
     if (currentStep === 0) {
       await sendWebhook('contact_submitted');
-      trackMetaEvent('Lead');
+      if (!leadEventSentRef.current) {
+        leadEventSentRef.current = true;
+        trackMetaEvent(
+          'Lead',
+          {
+            content_name: 'Creative Multiplier Sprint Contact Step',
+            funnel_id: config.funnelId ?? 'default',
+          },
+          getMetaUserData(),
+        );
+      }
     }
 
     // After step 2 (qualify), check qualification + SubmitApplication event
@@ -466,7 +488,20 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
         qualified,
         qualificationStatus: qualified ? 'qualified' : 'unqualified',
       });
-      trackMetaEvent('SubmitApplication');
+      if (!submitApplicationEventSentRef.current) {
+        submitApplicationEventSentRef.current = true;
+        trackMetaEvent(
+          'SubmitApplication',
+          {
+            content_name: 'Creative Multiplier Sprint Application',
+            funnel_id: config.funnelId ?? 'default',
+            qualification_status: qualified ? 'qualified' : 'unqualified',
+            paid_social_spend: formData.paidSocialSpend,
+            winner_status: formData.winnerStatus,
+          },
+          getMetaUserData(),
+        );
+      }
 
       if (!qualified) {
         config.onStepComplete?.(currentStep, formData);
@@ -482,7 +517,7 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
       setCurrentStep((prev) => prev + 1);
     }
     setSubmitting(false);
-  }, [validate, currentStep, step, totalSteps, sendWebhook, checkQualification, config, formData, router]);
+  }, [validate, currentStep, step, totalSteps, sendWebhook, checkQualification, config, formData, router, getMetaUserData]);
 
   const handleBack = useCallback(() => {
     if (currentStep > 0) setCurrentStep((prev) => prev - 1);
@@ -492,6 +527,8 @@ export function MultiStepForm({ config, className }: { config: MultiStepFormConf
   const formDataRef = useRef(formData);
   const isQualifiedRef = useRef(isQualified);
   const phoneCountryRef = useRef(phoneCountry);
+  const leadEventSentRef = useRef(false);
+  const submitApplicationEventSentRef = useRef(false);
   const scheduleEventSentRef = useRef(false);
   useEffect(() => { formDataRef.current = formData; }, [formData]);
   useEffect(() => { isQualifiedRef.current = isQualified; }, [isQualified]);

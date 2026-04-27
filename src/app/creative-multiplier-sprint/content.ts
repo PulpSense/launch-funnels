@@ -13,7 +13,7 @@ export const secondaryCta = {
 export const formConfig: MultiStepFormConfig = {
   funnelId: 'creative-multiplier-sprint',
   qualifiedRedirect: '/creative-multiplier-sprint/thank-you',
-  unqualifiedRedirect: '/creative-multiplier-sprint/thank-you-u',
+  unqualifiedRedirect: '/creative-multiplier-sprint/unqualified',
   qualificationRules: [
     { field: 'paidSocialSpend', disqualifyValues: ['Less than $20k/month'] },
     { field: 'winnerStatus', disqualifyValues: ['No proven winner yet'] },

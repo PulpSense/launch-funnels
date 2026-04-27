@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   description: 'Your Creative Multiplier Sprint application has been received.',
 };
 
-export default function CreativeMultiplierUnqualifiedThankYouPage() {
+export default function CreativeMultiplierUnqualifiedPage() {
   return <SprintThankYouPage qualified={false} />;
 }
