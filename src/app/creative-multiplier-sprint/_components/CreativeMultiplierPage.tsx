@@ -79,13 +79,6 @@ const exampleVideos = [
   },
 ];
 
-const proofStats = [
-  { value: '10', label: 'avatar variations' },
-  { value: '2 days', label: 'delivery window' },
-  { value: '1', label: 'revision pass' },
-  { value: '9:16', label: 'paid-social files' },
-];
-
 const problemCards = [
   {
     title: 'Creators take weeks',
@@ -244,10 +237,10 @@ const PrimaryCta = ({ children, className = '' }: { children: React.ReactNode; c
 );
 
 const AvatarOutputMockup = () => (
-  <div className="relative mx-auto w-full max-w-[560px] rounded-[28px] border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur">
+  <div className="relative mx-auto w-full max-w-[520px] rounded-[28px] border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur lg:max-w-[660px] lg:p-3">
     <div className="absolute -inset-1 -z-10 rounded-[30px] bg-[radial-gradient(circle_at_25%_20%,rgba(255,107,26,0.28),transparent_34%),radial-gradient(circle_at_80%_0%,rgba(113,112,255,0.20),transparent_30%)] blur-xl" />
 
-    <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+    <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4 lg:mb-3 lg:pb-3">
       <div>
         <p className="text-xs uppercase tracking-[0.28em] text-[#8A8F98]">Creative lab</p>
         <p className="mt-1 text-sm font-medium text-[#F7F8F8]">Winner Avatar Multiplier</p>
@@ -257,9 +250,9 @@ const AvatarOutputMockup = () => (
       </span>
     </div>
 
-    <div className="grid gap-3 lg:grid-cols-[1.08fr_1.25fr]">
-      <div className="rounded-2xl border border-white/10 bg-black/80 p-3">
-        <div className="relative min-h-[520px] overflow-hidden rounded-xl border border-white/10 bg-black">
+    <div className="grid gap-3 lg:grid-cols-[0.9fr_1.65fr] lg:gap-2.5">
+      <div className="rounded-2xl border border-white/10 bg-black/80 p-3 lg:p-2.5">
+        <div className="relative min-h-[460px] overflow-hidden rounded-xl border border-white/10 bg-black lg:min-h-[360px]">
           <video
             src="/creative-multiplier-sprint/videos/ugc-example-01-loop.mp4"
             poster="/creative-multiplier-sprint/images/ugc-example-01.jpg"
@@ -280,11 +273,11 @@ const AvatarOutputMockup = () => (
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-2.5">
         {exampleVideos.slice(1, 7).map((video) => (
           <div
             key={video.id}
-            className="group relative aspect-[9/11] overflow-hidden rounded-2xl border border-white/10 bg-black transition hover:border-[#FF6B1A]/40"
+            className="group relative aspect-[9/11] overflow-hidden rounded-2xl border border-white/10 bg-black transition hover:border-[#FF6B1A]/40 lg:aspect-[9/10] lg:rounded-xl"
           >
             <img
               src={`/creative-multiplier-sprint/images/${video.id}.jpg`}
@@ -349,11 +342,12 @@ export function CreativeMultiplierPage() {
     <>
       <TrackingPixels pixels={pixels} />
       <main className="min-h-screen bg-[#010102] text-[#F7F8F8] [font-feature-settings:'cv01','ss03']">
-        <section id="hero" className="relative overflow-hidden sm:border-b sm:border-white/10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(255,107,26,0.22),transparent_34%),radial-gradient(circle_at_78%_12%,rgba(113,112,255,0.18),transparent_30%),linear-gradient(180deg,#08090A_0%,#010102_100%)]" />
+        <section id="hero" className="relative overflow-hidden bg-[#010102]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(255,107,26,0.22),transparent_32%),radial-gradient(circle_at_78%_10%,rgba(113,112,255,0.18),transparent_30%)]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-b from-transparent via-[#010102]/55 to-[#010102]" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/60 to-transparent" />
 
-          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-5 md:px-8 md:py-8 lg:min-h-[720px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-10">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-5 md:px-8 md:py-8 lg:min-h-[540px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:pb-4 lg:pt-10">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] font-medium leading-none text-[#D0D6E0] sm:mb-5 sm:text-xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B1A] shadow-[0_0_16px_rgba(255,107,26,0.8)]" />
@@ -378,27 +372,14 @@ export function CreativeMultiplierPage() {
                 <PrimaryCta className="w-full sm:w-auto">Apply now</PrimaryCta>
               </div>
 
-              <p className="mt-4 hidden max-w-xl text-[0.83rem] leading-6 text-[#AEB6C2] sm:block sm:text-sm">
-                Bring the ad. We handle teardown, production, QA, and delivery.
-              </p>
-
-              <div className="mt-8 hidden grid-cols-2 gap-3 sm:grid sm:grid-cols-4">
-                {proofStats.map((stat) => (
-                  <div key={stat.label} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <p className="text-xl font-medium tracking-[-0.04em] text-white">{stat.value}</p>
-                    <p className="mt-1 text-xs text-[#8A8F98]">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="hidden lg:block">
               <AvatarOutputMockup />
             </div>
           </div>
+          <DslCarousel />
         </section>
-
-        <DslCarousel />
 
         <section className="border-b border-white/10 bg-[#050506] px-5 py-12 md:px-8 lg:hidden">
           <AvatarOutputMockup />

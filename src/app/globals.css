@@ -95,9 +95,48 @@
   }
 }
 
+@keyframes clickEdgeGlow {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+  }
+  24%,
+  52% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes clickPillNudge {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+    transform: translate(0, -50%);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-8px, -50%);
+  }
+  48% {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+.click-cue-edge {
+  animation: clickEdgeGlow 2.9s ease-in-out infinite;
+}
+
+.click-cue-pill {
+  animation: clickPillNudge 2.9s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-\[tapCue_2\.4s_ease-in-out_infinite\],
-  .animate-\[tapNudge_2\.4s_ease-in-out_infinite\] {
+  .animate-\[tapNudge_2\.4s_ease-in-out_infinite\],
+  .click-cue-edge,
+  .click-cue-pill {
     animation: none;
   }
 }
