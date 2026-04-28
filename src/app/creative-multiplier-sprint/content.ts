@@ -2,7 +2,7 @@ import type { MultiStepFormConfig } from '@/components/ui/MultiStepForm';
 
 export const cta = {
   href: '#apply',
-  text: 'Check fit',
+  text: 'Apply now',
 };
 
 export const secondaryCta = {
@@ -327,7 +327,7 @@ export const creativeMultiplierContent = {
   },
   application: {
     label: 'Apply now',
-    title: 'Check fit',
+    title: 'Apply now',
     subtitle:
       'Answer a few quick questions about your paid-social spend, winning ad, platforms, and timeline. Good-fit brands get the booking step immediately.',
   },
