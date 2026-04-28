@@ -178,10 +178,10 @@ export function DslCarousel() {
   };
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#050506] px-5 pb-6 pt-0 select-none md:px-8 md:py-14 lg:py-20" aria-labelledby="dsl-heading">
+    <section className="relative overflow-hidden border-b border-white/10 bg-[#050506] px-5 pb-6 pt-0 select-none md:px-8 md:py-14 lg:py-14" aria-labelledby="dsl-heading">
       <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_18%_0%,rgba(255,107,26,0.14),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(113,112,255,0.10),transparent_28%)] sm:block" />
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-4 hidden flex-col justify-between gap-5 sm:flex md:mb-8 md:flex-row md:items-end">
+        <div className="mx-auto mb-4 hidden max-w-5xl flex-col justify-between gap-5 sm:flex md:mb-8 md:flex-row md:items-end">
           <div>
             <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.28em] text-[#8A8F98] md:mb-4 md:text-xs md:tracking-[0.35em]">2-minute breakdown</p>
             <h2 id="dsl-heading" className="max-w-3xl text-[1.55rem] font-medium leading-[1.02] tracking-[-0.05em] text-white sm:text-[2rem] md:text-5xl">
@@ -215,7 +215,7 @@ export function DslCarousel() {
         <div
           ref={trackRef}
           onScroll={handleScroll}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-3 md:pb-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mx-auto flex max-w-none snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-3 md:max-w-5xl md:pb-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Creative Multiplier Sprint deck"
         >
           {slides.map((slide, index) => (
@@ -224,7 +224,7 @@ export function DslCarousel() {
               onPointerDown={handleSlidePointerDown}
               onPointerUp={(event) => handleSlidePointerUp(event, index)}
               onClick={(event) => handleSlideClick(event, index)}
-              className="relative flex min-h-[240px] w-full shrink-0 snap-center cursor-pointer flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[460px] sm:rounded-[28px] sm:p-6 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:p-8 lg:min-h-[500px]"
+              className="relative flex min-h-[240px] w-full shrink-0 snap-center cursor-pointer flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[460px] sm:rounded-[28px] sm:p-6 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[360px] md:p-8 lg:min-h-[340px]"
               aria-label={`Slide ${index + 1} of ${slides.length}`}
             >
               <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
@@ -247,12 +247,12 @@ export function DslCarousel() {
                   <span className="text-xs tabular-nums text-[#62666D]">{String(index + 1).padStart(2, '0')} / {slides.length}</span>
                 </div>
 
-                <h3 className="mt-7 max-w-4xl text-[1.58rem] font-medium leading-[1] tracking-[-0.055em] text-white sm:text-[2.05rem] md:mt-16 md:text-6xl lg:text-7xl">
+                <h3 className="mt-7 max-w-4xl text-[1.58rem] font-medium leading-[1] tracking-[-0.055em] text-white sm:text-[2.05rem] md:mt-12 md:text-5xl lg:text-6xl">
                   {slide.title}
                 </h3>
               </div>
 
-              <div className="relative mt-5 md:mt-10">
+              <div className="relative mt-5 md:mt-8">
                 <p className="max-w-2xl text-[0.92rem] leading-6 text-[#AEB6C2] sm:text-base sm:leading-7 md:text-xl md:leading-9">
                   {slide.body}
                 </p>
@@ -262,23 +262,10 @@ export function DslCarousel() {
           ))}
         </div>
 
-        <div className="mt-2 flex flex-col gap-3 md:mt-5 md:flex-row md:items-center md:justify-between">
-          <div className="hidden flex-wrap gap-2 md:flex" aria-label="Deck progress">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.eyebrow}
-                type="button"
-                onClick={() => goToSlide(index)}
-                className={`h-2.5 rounded-full transition ${activeIndex === index ? 'w-8 bg-[#FF6B1A]' : 'w-2.5 bg-white/20 hover:bg-white/35'}`}
-                aria-label={`Go to slide ${index + 1}`}
-                aria-current={activeIndex === index ? 'step' : undefined}
-              />
-            ))}
-          </div>
-
+        <div className="mt-2 flex flex-col gap-3 md:hidden">
           <a
             href="#apply"
-            className="inline-flex w-full items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] md:w-auto md:py-3"
+            className="inline-flex w-full items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] md:hidden"
           >
             Apply now
           </a>
