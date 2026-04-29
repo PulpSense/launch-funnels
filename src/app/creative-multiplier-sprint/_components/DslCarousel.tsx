@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef, type MouseEvent, type PointerEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const slides = [
   {
     eyebrow: '01 / The mistake',
-    title: 'Your winning ad does not need a new idea.',
-    body: 'If it already sells, do not break the sales argument just to make something new.',
+    title: 'Your winner is dying before your team can replace it.',
+    body: 'The ad still has a strong sales argument. The problem is that the same face, voice, and delivery are getting overexposed.',
   },
   {
     eyebrow: '02 / The fix',
@@ -106,123 +106,179 @@ const slides = [
 ];
 
 export function DslCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const tapStartRef = useRef<{ x: number; y: number } | null>(null);
-  const lastTapDecisionAtRef = useRef(Number.NEGATIVE_INFINITY);
 
-  const goToSlide = (index: number) => {
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const centeredEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const index = centeredEntry?.target.getAttribute('data-slide-index');
+
+        if (index !== null) {
+          setActiveIndex(Number(index));
+        }
+      },
+      {
+        root: track,
+        threshold: [0.55, 0.7, 0.85],
+      },
+    );
+
+    Array.from(track.children).forEach((slide) => observer.observe(slide));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const goToSlide = (index: number, behavior: ScrollBehavior = 'smooth') => {
     const track = trackRef.current;
     if (!track) return;
 
     const clampedIndex = Math.max(0, Math.min(index, slides.length - 1));
     const slide = track.children.item(clampedIndex) as HTMLElement | null;
+    const firstSlide = track.children.item(0) as HTMLElement | null;
+    const secondSlide = track.children.item(1) as HTMLElement | null;
+    const slideStep =
+      firstSlide && secondSlide
+        ? secondSlide.getBoundingClientRect().left - firstSlide.getBoundingClientRect().left
+        : track.clientWidth;
 
-    slide?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  };
-
-  const goToSlideFromTap = (clientX: number, target: HTMLElement, index: number) => {
-    const { left, width } = target.getBoundingClientRect();
-    const isRightSide = clientX > left + width / 2;
-
-    goToSlide(isRightSide ? index + 1 : index - 1);
-  };
-
-  const handleSlidePointerDown = (event: PointerEvent<HTMLElement>) => {
-    tapStartRef.current = { x: event.clientX, y: event.clientY };
-  };
-
-  const handleSlidePointerUp = (event: PointerEvent<HTMLElement>, index: number) => {
-    const tapStart = tapStartRef.current;
-    tapStartRef.current = null;
-    if (!tapStart) return;
-
-    const movedX = Math.abs(event.clientX - tapStart.x);
-    const movedY = Math.abs(event.clientY - tapStart.y);
-    if (movedX > 12 || movedY > 12) {
-      lastTapDecisionAtRef.current = event.timeStamp;
-      return;
+    setActiveIndex(clampedIndex);
+    if (slide) {
+      track.scrollTo({ left: clampedIndex * slideStep, behavior });
     }
-
-    lastTapDecisionAtRef.current = event.timeStamp;
-    goToSlideFromTap(event.clientX, event.currentTarget, index);
-  };
-
-  const handleSlideClick = (event: MouseEvent<HTMLElement>, index: number) => {
-    if (event.timeStamp - lastTapDecisionAtRef.current < 500) return;
-
-    goToSlideFromTap(event.clientX, event.currentTarget, index);
   };
 
   return (
-    <section className="relative mt-4 overflow-hidden bg-transparent px-5 pb-7 pt-0 select-none md:mt-5 md:px-8 md:pb-12 md:pt-0 lg:mt-6" aria-labelledby="dsl-heading">
-      <div className="relative mx-auto max-w-[820px]">
-        <div className="mb-3 hidden sm:block">
-          <h2 id="dsl-heading" className="text-base font-medium leading-tight text-[#D0D6E0] md:text-lg">
-            Click through the 2 minute walkthrough deck.
+    <section className="relative mt-4 overflow-hidden bg-transparent px-5 pb-7 pt-0 select-none md:mt-5 md:px-8 md:pb-12 md:pt-0 lg:mt-2" aria-labelledby="dsl-heading">
+      <div className="relative mx-auto max-w-5xl">
+        <div className="mb-3 flex items-end justify-between gap-4">
+          <h2 id="dsl-heading" className="text-sm font-medium leading-tight text-[#D0D6E0] sm:text-base md:text-lg">
+            The 2-minute sales argument.
           </h2>
+          <p className="hidden text-xs font-medium uppercase tracking-[0.22em] text-[#62666D] sm:block">
+            Click or swipe
+          </p>
         </div>
 
-        <div
-          ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-3 md:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          aria-label="Creative Multiplier Sprint deck"
-        >
-          {slides.map((slide, index) => (
-            <article
-              key={slide.eyebrow}
-              onPointerDown={handleSlidePointerDown}
-              onPointerUp={(event) => handleSlidePointerUp(event, index)}
-              onClick={(event) => handleSlideClick(event, index)}
-              className="relative flex min-h-[240px] w-full shrink-0 snap-center cursor-pointer flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[460px] sm:rounded-[24px] sm:p-6 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[250px] md:p-6"
-              aria-label={`Slide ${index + 1} of ${slides.length}`}
-            >
-              <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
-              <div className="absolute -right-20 -top-20 hidden h-56 w-56 rounded-full bg-[#FF6B1A]/10 blur-3xl sm:block" />
-              <div className="absolute -bottom-24 left-10 hidden h-56 w-56 rounded-full bg-[#7170FF]/10 blur-3xl sm:block" />
-              {index === 0 && (
-                <>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 animate-[tapCue_2.4s_ease-in-out_infinite] bg-gradient-to-l from-[#FF6B1A]/7 to-transparent md:hidden" />
-                  <div className="pointer-events-none absolute right-4 top-[58%] hidden -translate-y-1/2 items-center gap-1 rounded-full border border-[#FF6B1A]/25 bg-[#FF6B1A]/[0.075] px-2.5 py-1.5 text-[10px] font-medium text-[#ffb28a] opacity-90 animate-[tapNudge_2.4s_ease-in-out_infinite] min-[380px]:flex md:hidden">
-                    <span>Tap</span>
-                    <span className="text-xs leading-none" aria-hidden="true">›</span>
+        <div className="relative">
+          <div
+            ref={trackRef}
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            aria-label="Creative Multiplier Sprint deck"
+          >
+            {slides.map((slide, index) => (
+              <article
+                key={slide.eyebrow}
+                data-slide-index={index}
+                className="relative flex min-h-[255px] w-full shrink-0 snap-start flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[430px] sm:rounded-[24px] sm:p-7 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[360px] md:p-8 lg:min-h-[380px]"
+                aria-label={`Slide ${index + 1} of ${slides.length}`}
+              >
+                <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
+                <div className="absolute -right-20 -top-20 hidden h-56 w-56 rounded-full bg-[#FF6B1A]/10 blur-3xl sm:block" />
+                <div className="absolute -bottom-24 left-10 hidden h-56 w-56 rounded-full bg-[#7170FF]/10 blur-3xl sm:block" />
+                <div className="relative">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="rounded-full border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#ffb28a] md:text-[10px] md:tracking-[0.18em]">
+                      {slide.eyebrow}
+                    </span>
+                    <span className="text-xs tabular-nums text-[#62666D]">{String(index + 1).padStart(2, '0')} / {slides.length}</span>
                   </div>
-                  <div className="click-cue-edge pointer-events-none absolute inset-y-0 right-0 hidden w-32 bg-gradient-to-l from-[#FF6B1A]/10 to-transparent md:block" />
-                  <div className="click-cue-pill pointer-events-none absolute right-6 top-1/2 hidden -translate-y-1/2 items-center gap-2 rounded-full border border-[#FF6B1A]/25 bg-[#FF6B1A]/[0.075] px-3 py-2 text-xs font-medium text-[#ffb28a] shadow-[0_0_24px_rgba(255,107,26,0.12)] md:flex">
-                    <span>Click</span>
-                    <span className="text-sm leading-none" aria-hidden="true">›</span>
-                  </div>
-                </>
-              )}
 
-              <div className="relative">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-[#FF6B1A]/20 bg-[#FF6B1A]/[0.055] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#ffb28a] md:text-[10px] md:tracking-[0.18em]">
-                    {slide.eyebrow}
-                  </span>
-                  <span className="text-xs tabular-nums text-[#62666D]">{String(index + 1).padStart(2, '0')} / {slides.length}</span>
+                  <h3 className="mt-7 max-w-xl text-[1.58rem] font-medium leading-[1] tracking-[-0.055em] text-white sm:text-[2.35rem] md:mt-8 md:max-w-3xl md:text-[2.65rem]">
+                    {slide.title}
+                  </h3>
                 </div>
 
-                <h3 className="mt-7 max-w-xl text-[1.58rem] font-medium leading-[1] tracking-[-0.055em] text-white sm:text-[2.05rem] md:mt-6 md:max-w-2xl md:text-[2rem]">
-                  {slide.title}
-                </h3>
-              </div>
+                <div className="relative mt-5 md:mt-6">
+                  <p className="max-w-2xl text-[0.92rem] leading-6 text-[#AEB6C2] sm:text-base sm:leading-7 md:text-lg md:leading-8">
+                    {slide.body}
+                  </p>
 
-              <div className="relative mt-5 md:mt-4">
-                <p className="max-w-xl text-[0.92rem] leading-6 text-[#AEB6C2] sm:text-base sm:leading-7 md:text-sm md:leading-6">
-                  {slide.body}
-                </p>
-              </div>
-            </article>
-          ))}
+                  {index === slides.length - 1 && (
+                    <a
+                      href="#apply"
+                      onClick={(event) => event.stopPropagation()}
+                      className="mt-6 inline-flex w-full items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] sm:w-auto sm:px-6"
+                    >
+                      Apply now
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goToSlide(activeIndex - 1)}
+            disabled={activeIndex === 0}
+            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start bg-gradient-to-r from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 md:w-24"
+            aria-label="Previous slide"
+          >
+            <span className="flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-white/10 bg-black/55 text-white shadow-[0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.5 4.5 7 10l5.5 5.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => goToSlide(activeIndex + 1)}
+            disabled={activeIndex === slides.length - 1}
+            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end bg-gradient-to-l from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 md:w-24"
+            aria-label="Next slide"
+          >
+            <span className="flex h-9 w-9 translate-x-1/2 items-center justify-center rounded-full border border-white/10 bg-black/55 text-white shadow-[0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m7.5 4.5 5.5 5.5-5.5 5.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
 
-        <div className="mt-2 flex flex-col gap-3 md:hidden">
-          <a
-            href="#apply"
-            className="inline-flex w-full items-center justify-center rounded-md border border-[#ff8752]/35 bg-[#B94100] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(255,107,26,0.18)] transition hover:bg-[#A83B00] md:hidden"
-          >
-            Apply now
-          </a>
+        <div className="mt-3 flex w-full flex-nowrap items-center justify-center gap-1 overflow-hidden px-1" aria-label="Slide progress">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.eyebrow}
+              type="button"
+              onClick={() => goToSlide(index, 'auto')}
+              className={`h-1.5 min-w-0 flex-1 rounded-full transition md:max-w-7 ${
+                activeIndex === index ? 'bg-[#FF6B1A]' : 'bg-white/15 hover:bg-white/30'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={activeIndex === index ? 'step' : undefined}
+            />
+          ))}
         </div>
       </div>
     </section>
