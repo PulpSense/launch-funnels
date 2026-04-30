@@ -159,7 +159,11 @@ const SlideTitle = ({ children, size = 'normal' }: { children: ReactNode; size?:
         ? 'text-[1.18rem] sm:text-[1.9rem] md:text-[2.2rem]'
         : 'text-[1.38rem] sm:text-[2.1rem] md:text-[2.35rem]';
 
-  return <h3 className={`font-medium leading-[0.98] tracking-[-0.055em] text-white ${sizeClass}`}>{children}</h3>;
+  return (
+    <h3 className={`max-w-[calc(100%-3.75rem)] font-medium leading-[0.98] tracking-[-0.055em] text-white md:max-w-none ${sizeClass}`}>
+      {children}
+    </h3>
+  );
 };
 
 const SlideBody = ({ children }: { children: ReactNode }) => (
@@ -170,7 +174,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
   switch (slide.variant) {
     case 'pressure':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -208,7 +212,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'face':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -235,7 +239,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'delay':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.85fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.85fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -265,7 +269,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'risk':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
@@ -282,7 +286,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'method':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -307,7 +311,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'preserve':
       return (
-        <div className="grid h-full gap-3 pr-8 md:flex md:flex-col md:justify-between md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:flex md:flex-col md:justify-between md:gap-4 md:pr-0">
           <SlideChrome slide={slide} index={index} />
           <div className="grid flex-1 gap-3 md:grid-cols-[0.95fr_1fr] md:items-center md:gap-4">
             <SlideTitle size="small">{slide.title}</SlideTitle>
@@ -330,7 +334,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'matrix':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-3 md:space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -373,7 +377,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'mechanism':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.75fr_1fr] md:items-center md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.75fr_1fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle size="small">{slide.title}</SlideTitle>
@@ -390,7 +394,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'input':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
@@ -413,7 +417,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'output':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -444,7 +448,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'speed':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -466,7 +470,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'qa':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
@@ -508,7 +512,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'guarantee':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.85fr] md:items-center md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[1fr_0.85fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
@@ -523,7 +527,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'cta':
       return (
-        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.82fr] md:items-center md:gap-4 md:pr-0">
+        <div className="grid h-full gap-3 pr-14 md:grid-cols-[1fr_0.82fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
@@ -618,7 +622,7 @@ export function DslCarousel() {
               <article
                 key={slide.eyebrow}
                 data-slide-index={index}
-                className="relative flex h-[255px] w-full shrink-0 snap-start flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:h-auto sm:min-h-[360px] sm:rounded-[24px] sm:p-7 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[350px] md:p-8 lg:min-h-[360px]"
+                className="relative flex h-[255px] w-full shrink-0 snap-start flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 px-7 py-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:h-auto sm:min-h-[360px] sm:rounded-[24px] sm:p-7 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[350px] md:p-8 lg:min-h-[360px]"
                 aria-label={`Slide ${index + 1} of ${slides.length}`}
               >
                 <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
@@ -633,9 +637,10 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
             disabled={activeIndex === 0}
-            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start rounded-l-xl bg-transparent transition focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-l-[24px] md:w-24 md:bg-gradient-to-r md:from-black/10 md:to-transparent md:hover:from-[#FF6B1A]/10"
+            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start rounded-l-xl bg-gradient-to-r from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-l-[24px] md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Previous slide"
           >
+            <span className="pointer-events-none absolute inset-y-0 left-0 w-14 rounded-l-xl bg-gradient-to-r from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-l-[24px] md:w-full md:from-[#FF6B1A]/22" />
             <span className="flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-[#FF6B1A]/25 bg-black/60 text-white shadow-[0_0_22px_rgba(255,107,26,0.20),0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-hover:shadow-[0_0_30px_rgba(255,107,26,0.34),0_12px_32px_rgba(0,0,0,0.35)] group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
               <svg
                 aria-hidden="true"
@@ -658,9 +663,10 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
             disabled={activeIndex === slides.length - 1}
-            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end rounded-r-xl bg-transparent transition focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-r-[24px] md:w-24 md:bg-gradient-to-l md:from-black/10 md:to-transparent md:hover:from-[#FF6B1A]/10"
+            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end rounded-r-xl bg-gradient-to-l from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-r-[24px] md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Next slide"
           >
+            <span className="pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-xl bg-gradient-to-l from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-r-[24px] md:w-full md:from-[#FF6B1A]/22" />
             <span className="flex h-9 w-9 translate-x-1/2 items-center justify-center rounded-full border border-[#FF6B1A]/25 bg-black/60 text-white shadow-[0_0_22px_rgba(255,107,26,0.20),0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-hover:shadow-[0_0_30px_rgba(255,107,26,0.34),0_12px_32px_rgba(0,0,0,0.35)] group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
               <svg
                 aria-hidden="true"
