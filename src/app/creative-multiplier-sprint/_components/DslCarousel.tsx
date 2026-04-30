@@ -170,6 +170,22 @@ const SlideBody = ({ children }: { children: ReactNode }) => (
   <p className="text-[0.88rem] leading-6 text-[#AEB6C2] sm:text-base sm:leading-7">{children}</p>
 );
 
+const MobileProofPill = ({ label, value, tone = 'neutral' }: { label: string; value: string; tone?: 'neutral' | 'hot' | 'good' }) => {
+  const toneClass =
+    tone === 'hot'
+      ? 'border-[#FF6B1A]/25 bg-[#FF6B1A]/10 text-[#ffb28a]'
+      : tone === 'good'
+        ? 'border-emerald-400/20 bg-emerald-400/[0.07] text-emerald-300'
+        : 'border-white/10 bg-white/[0.04] text-[#AEB6C2]';
+
+  return (
+    <div className={`rounded-lg border px-2.5 py-2 ${toneClass}`}>
+      <p className="text-[0.58rem] font-medium uppercase leading-none tracking-[0.16em]">{label}</p>
+      <p className="mt-1.5 text-xs font-semibold leading-tight text-white">{value}</p>
+    </div>
+  );
+};
+
 const renderSlideContent = (slide: Slide, index: number) => {
   switch (slide.variant) {
     case 'pressure':
@@ -179,6 +195,10 @@ const renderSlideContent = (slide: Slide, index: number) => {
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
+            <div className="grid grid-cols-2 gap-2 md:hidden">
+              <MobileProofPill label="Winner" value="still converts" tone="good" />
+              <MobileProofPill label="Wrapper" value="aging fast" tone="hot" />
+            </div>
           </div>
           <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/[0.07] p-3">
@@ -291,6 +311,11 @@ const renderSlideContent = (slide: Slide, index: number) => {
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
+            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 md:hidden">
+              <MobileProofPill label="Keep" value="buying reason" tone="good" />
+              <span className="text-xs font-semibold text-[#FF6B1A]">+</span>
+              <MobileProofPill label="Swap" value="avatar layer" tone="hot" />
+            </div>
           </div>
           <div className="hidden gap-2 md:grid">
             <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.07] p-4">
@@ -419,9 +444,22 @@ const renderSlideContent = (slide: Slide, index: number) => {
       return (
         <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
-            <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
+            <p className="max-w-md text-sm leading-5 text-[#AEB6C2] md:leading-6">{slide.body}</p>
+            <div className="rounded-lg border border-[#FF6B1A]/25 bg-[#FF6B1A]/10 px-2.5 py-2 md:hidden">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-2xl font-semibold leading-none text-white">10</p>
+                  <p className="mt-0.5 text-[0.58rem] font-medium uppercase tracking-[0.16em] text-[#ffb28a]">finished files</p>
+                </div>
+                <div className="grid grid-cols-5 gap-1">
+                  {Array.from({ length: 10 }).map((_, itemIndex) => (
+                    <span key={itemIndex} className="h-5 w-2.5 rounded-sm border border-white/10 bg-white/[0.06]" />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="flex items-end justify-between border-b border-white/10 pb-3">
