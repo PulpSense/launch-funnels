@@ -8,13 +8,14 @@ type FormSubmitBody = {
   submittedAt?: string;
 };
 
-const FUNNEL_WEBHOOK_URLS: Record<string, Partial<Record<FormEvent, string | undefined>>> = {
+const TRIGGER_API_ORIGIN = process.env.PULPSENSE_TRIGGER_API_ORIGIN ?? 'https://api.trigger.dev';
+const TRIGGER_SECRET_KEY = process.env.PULPSENSE_TRIGGER_SECRET_KEY;
+
+const FUNNEL_TASK_IDS: Record<string, Partial<Record<FormEvent, string | undefined>>> = {
   'creative-multiplier-sprint': {
-    contact_submitted: process.env.CREATIVE_MULTIPLIER_SPRINT_FORM_WEBHOOK_URL,
-    application_submitted:
-      process.env.CREATIVE_MULTIPLIER_SPRINT_FORM_WEBHOOK_APPLICATION_URL ??
-      process.env.CREATIVE_MULTIPLIER_SPRINT_FORM_WEBHOOK_URL,
-    booking_completed: process.env.CREATIVE_MULTIPLIER_SPRINT_FORM_WEBHOOK_COMPLETE_URL,
+    contact_submitted: process.env.CREATIVE_MULTIPLIER_SPRINT_CONTACT_TASK_ID,
+    application_submitted: process.env.CREATIVE_MULTIPLIER_SPRINT_APPLICATION_TASK_ID,
+    booking_completed: process.env.CREATIVE_MULTIPLIER_SPRINT_BOOKING_TASK_ID,
   },
 };
 
@@ -34,37 +35,55 @@ export async function POST(req: Request) {
   }
 
   const funnelId = typeof data.funnelId === 'string' ? data.funnelId : 'default';
-  const webhookUrl = FUNNEL_WEBHOOK_URLS[funnelId]?.[event];
+  const taskId = FUNNEL_TASK_IDS[funnelId]?.[event];
 
-  if (!webhookUrl) {
+  if (!TRIGGER_SECRET_KEY || !taskId) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn(`[webhook] no URL configured for funnel="${funnelId}" event="${event}"`);
+      console.warn(
+        `[trigger] skipped funnel="${funnelId}" event="${event}" secretConfigured=${Boolean(TRIGGER_SECRET_KEY)} taskId="${taskId ?? ''}"`,
+      );
     }
-    return NextResponse.json({ ok: false, skipped: true, reason: 'Webhook not configured' }, { status: 202 });
+    return NextResponse.json({ ok: false, skipped: true, reason: 'Trigger not configured' }, { status: 202 });
   }
 
-  const payload = JSON.stringify({ event, funnelId, data, submittedAt });
+  const payload = {
+    event,
+    funnelId,
+    data,
+    submittedAt: submittedAt ?? new Date().toISOString(),
+  };
 
   if (process.env.NODE_ENV === 'development') {
-    console.log(`[webhook] → ${webhookUrl}`, payload);
+    console.log(`[trigger] → ${taskId}`, JSON.stringify(payload, null, 2));
   }
 
   try {
-    const res = await fetch(webhookUrl, {
+    const res = await fetch(`${TRIGGER_API_ORIGIN}/api/v1/tasks/${encodeURIComponent(taskId)}/trigger`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: payload,
+      headers: {
+        Authorization: `Bearer ${TRIGGER_SECRET_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ payload }),
     });
 
     if (process.env.NODE_ENV === 'development') {
-      console.log(`[webhook] ← ${res.status} ${res.statusText}`);
+      console.log(`[trigger] ← ${res.status} ${res.statusText}`);
+    }
+
+    if (!res.ok) {
+      const responseText = await res.text();
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`[trigger] FAILED ${res.status}`, responseText);
+      }
+      return NextResponse.json({ error: 'Trigger delivery failed' }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     if (process.env.NODE_ENV === 'development') {
-      console.error(`[webhook] FAILED`, err);
+      console.error(`[trigger] FAILED`, err);
     }
-    return NextResponse.json({ error: 'Webhook delivery failed' }, { status: 502 });
+    return NextResponse.json({ error: 'Trigger delivery failed' }, { status: 502 });
   }
 }

@@ -65,6 +65,31 @@ public/
 
 Future funnels should reuse `src/components/funnel` for page shells, sections, CTAs, checklists, logo marquees, video grids, and legal footers. Keep one-off offer styling out of shared primitives.
 
+## Trigger.dev Events
+
+Form lifecycle events are sent from the server route `src/app/api/form-submit/route.ts` to Trigger.dev tasks. The browser posts to `/api/form-submit`; the server route calls Trigger's task API with `PULPSENSE_TRIGGER_SECRET_KEY`.
+
+Current Creative Multiplier Sprint events:
+
+| Funnel event | Task ID env var | Default task ID |
+|---|---|---|
+| `contact_submitted` | `CREATIVE_MULTIPLIER_SPRINT_CONTACT_TASK_ID` | `funnels.contact-submitted` |
+| `application_submitted` | `CREATIVE_MULTIPLIER_SPRINT_APPLICATION_TASK_ID` | `funnels.application-submitted` |
+| `booking_completed` | `CREATIVE_MULTIPLIER_SPRINT_BOOKING_TASK_ID` | `funnels.booking-completed` |
+
+The Trigger payload is:
+
+```ts
+{
+  event: 'contact_submitted' | 'application_submitted' | 'booking_completed';
+  funnelId: string;
+  data: Record<string, unknown>;
+  submittedAt: string;
+}
+```
+
+If the Trigger secret or task ID is not configured, local/dev submissions are skipped without blocking the user.
+
 ## Deployment
 
 Deployed to [Vercel](https://vercel.com) via GitHub integration. Pushes to `master` trigger production deployments; PRs get preview deployments.
