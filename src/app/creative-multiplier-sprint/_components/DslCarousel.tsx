@@ -633,7 +633,7 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
             disabled={activeIndex === 0}
-            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start bg-gradient-to-r from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 md:w-24"
+            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start rounded-l-xl bg-gradient-to-r from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-l-[24px] md:w-24"
             aria-label="Previous slide"
           >
             <span className="flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-white/10 bg-black/55 text-white shadow-[0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
@@ -658,7 +658,7 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
             disabled={activeIndex === slides.length - 1}
-            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end bg-gradient-to-l from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 md:w-24"
+            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end rounded-r-xl bg-gradient-to-l from-black/10 to-transparent transition hover:from-[#FF6B1A]/10 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-r-[24px] md:w-24"
             aria-label="Next slide"
           >
             <span className="flex h-9 w-9 translate-x-1/2 items-center justify-center rounded-full border border-white/10 bg-black/55 text-white shadow-[0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
