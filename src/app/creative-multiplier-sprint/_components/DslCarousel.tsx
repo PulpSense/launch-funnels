@@ -156,8 +156,8 @@ const SlideTitle = ({ children, size = 'normal' }: { children: ReactNode; size?:
     size === 'large'
       ? 'text-[2.35rem] sm:text-[3.2rem] md:text-[4rem]'
       : size === 'small'
-        ? 'text-[1.25rem] sm:text-[1.9rem] md:text-[2.2rem]'
-        : 'text-[1.45rem] sm:text-[2.1rem] md:text-[2.35rem]';
+        ? 'text-[1.18rem] sm:text-[1.9rem] md:text-[2.2rem]'
+        : 'text-[1.38rem] sm:text-[2.1rem] md:text-[2.35rem]';
 
   return <h3 className={`font-medium leading-[0.98] tracking-[-0.055em] text-white ${sizeClass}`}>{children}</h3>;
 };
@@ -170,13 +170,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
   switch (slide.variant) {
     case 'pressure':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/[0.07] p-3">
               <div className="flex items-center justify-between">
                 <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Winner signal</p>
@@ -208,13 +208,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'face':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <span className="text-xs uppercase tracking-[0.2em] text-[#8A8F98]">What still works</span>
               <span className="text-emerald-300">
@@ -235,13 +235,17 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'delay':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.85fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.85fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="relative rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+          <div className="rounded-xl border border-[#FF6B1A]/25 bg-[#FF6B1A]/10 p-3 md:hidden">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#ffb28a]">Meanwhile</p>
+            <p className="mt-2 text-sm font-semibold leading-tight text-white">The account still needs tests now.</p>
+          </div>
+          <div className="relative hidden rounded-2xl border border-white/10 bg-white/[0.035] p-4 md:block">
             <div className="absolute left-[1.35rem] right-[1.35rem] top-[1.375rem] hidden h-px bg-gradient-to-r from-white/20 via-[#FF6B1A]/60 to-[#FF6B1A] md:block" />
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {delaySteps.map(([label, value], itemIndex) => (
@@ -261,13 +265,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'risk':
       return (
-        <div className="grid h-full gap-4 md:grid-cols-[1fr_0.9fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
             <SlideBody>{slide.body}</SlideBody>
           </div>
-          <div className="grid gap-2">
+          <div className="hidden gap-2 md:grid">
             {['New hook', 'New offer', 'New proof'].map((item) => (
               <div key={item} className="rounded-xl border border-red-400/20 bg-red-400/[0.045] p-3 text-sm font-medium text-white">
                 ! {item}
@@ -278,13 +282,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'method':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="grid gap-2">
+          <div className="hidden gap-2 md:grid">
             <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.07] p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Keep locked</p>
               <p className="mt-3 text-2xl font-semibold leading-tight text-white">The buying reason</p>
@@ -303,14 +307,14 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'preserve':
       return (
-        <div className="flex h-full flex-col justify-between gap-4">
+        <div className="grid h-full gap-3 pr-8 md:flex md:flex-col md:justify-between md:gap-4 md:pr-0">
           <SlideChrome slide={slide} index={index} />
-          <div className="grid flex-1 gap-4 md:grid-cols-[0.95fr_1fr] md:items-center">
+          <div className="grid flex-1 gap-3 md:grid-cols-[0.95fr_1fr] md:items-center md:gap-4">
             <SlideTitle size="small">{slide.title}</SlideTitle>
-            <div className="relative rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] p-4">
+            <div className="relative rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] p-3 md:rounded-2xl md:p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Locked core</p>
-              <p className="mt-4 text-3xl font-semibold leading-tight text-white">Winning argument</p>
-              <div className="mt-5 grid grid-cols-2 gap-2">
+              <p className="mt-2 text-xl font-semibold leading-tight text-white md:mt-4 md:text-3xl">Winning argument</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 md:mt-5">
                 {['Hook', 'Offer', 'Proof', 'CTA'].map((item) => (
                   <div key={item} className="flex items-center gap-2 rounded-lg border border-emerald-400/15 bg-black/20 p-2 text-xs font-medium text-white">
                     <span className="text-emerald-300">
@@ -326,35 +330,38 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'matrix':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
-            <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
+            <p className="hidden max-w-md text-sm leading-5 text-[#AEB6C2] md:block md:leading-6">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
-            <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="rounded-xl border border-white/10 bg-black/25 p-3 md:rounded-2xl md:p-4">
+            <div className="mb-2 flex items-center justify-between border-b border-white/10 pb-2 md:mb-3 md:pb-3">
               <p className="text-xs uppercase tracking-[0.2em] text-[#8A8F98]">Avatar layer</p>
               <p className="text-xs uppercase tracking-[0.18em] text-[#ffb28a]">same script</p>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-4 gap-1.5 md:grid-cols-2 md:gap-2">
               {[
-                { label: 'Asian creator', face: 'bg-[#d6aa78]', body: 'w-8 bg-[#2563EB]/25' },
-                { label: 'Black creator', face: 'bg-[#6f3e27]', body: 'w-8 bg-[#FF6B1A]/25' },
-                { label: 'Plus-size creator', face: 'bg-[#b97852]', body: 'w-12 bg-emerald-400/20' },
-                { label: 'Older expert', face: 'bg-[#c8a07b]', body: 'w-8 bg-white/15' },
+                { label: 'Asian creator', mobileLabel: 'Asian', face: 'bg-[#d6aa78]', body: 'w-6 bg-[#2563EB]/25 md:w-8' },
+                { label: 'Black creator', mobileLabel: 'Black', face: 'bg-[#6f3e27]', body: 'w-6 bg-[#FF6B1A]/25 md:w-8' },
+                { label: 'Plus-size creator', mobileLabel: 'Plus', face: 'bg-[#b97852]', body: 'w-8 bg-emerald-400/20 md:w-12' },
+                { label: 'Older expert', mobileLabel: 'Older', face: 'bg-[#c8a07b]', body: 'w-6 bg-white/15 md:w-8' },
               ].map((avatar) => (
-                <div key={avatar.label} className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
-                  <div className="mx-auto flex h-14 w-14 flex-col items-center justify-end overflow-hidden rounded-full border border-white/10 bg-black/25">
-                    <div className={`h-6 w-6 rounded-full ${avatar.face}`} />
-                    <div className={`mt-1 h-5 rounded-t-full ${avatar.body}`} />
+                <div key={avatar.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-2 md:rounded-xl md:p-3">
+                  <div className="mx-auto flex h-8 w-8 flex-col items-center justify-end overflow-hidden rounded-full border border-white/10 bg-black/25 md:h-14 md:w-14">
+                    <div className={`h-4 w-4 rounded-full md:h-6 md:w-6 ${avatar.face}`} />
+                    <div className={`mt-0.5 h-2.5 rounded-t-full md:mt-1 md:h-5 ${avatar.body}`} />
                   </div>
-                  <p className="mt-2 text-center text-xs font-medium leading-tight text-white">{avatar.label}</p>
+                  <p className="mt-1.5 text-center text-[10px] font-medium leading-tight text-white md:mt-2 md:text-xs">
+                    <span className="md:hidden">{avatar.mobileLabel}</span>
+                    <span className="hidden md:inline">{avatar.label}</span>
+                  </p>
                 </div>
               ))}
             </div>
-            <div className="mt-3 rounded-xl border border-emerald-400/20 bg-emerald-400/[0.07] p-3">
-              <div className="flex items-center gap-2 text-sm font-medium text-white">
+            <div className="mt-2 rounded-lg border border-emerald-400/20 bg-emerald-400/[0.07] p-2 md:mt-3 md:rounded-xl md:p-3">
+              <div className="flex items-center gap-2 text-xs font-medium text-white md:text-sm">
                 <span className="text-emerald-300">
                   <CheckIcon />
                 </span>
@@ -366,12 +373,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'mechanism':
       return (
-        <div className="grid h-full gap-4 md:grid-cols-[0.75fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.75fr_1fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle size="small">{slide.title}</SlideTitle>
+            <p className="max-w-md text-sm leading-6 text-[#AEB6C2] md:hidden">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-[#FF6B1A]/25 bg-[#FF6B1A]/[0.075] p-4 text-center">
+          <div className="hidden rounded-2xl border border-[#FF6B1A]/25 bg-[#FF6B1A]/[0.075] p-4 text-center md:block">
             <p className="text-5xl font-semibold leading-none text-white">1</p>
             <p className="text-xs uppercase tracking-[0.2em] text-[#ffb28a]">winner</p>
             <p className="my-2 text-[#8A8F98]">x avatar layer</p>
@@ -382,12 +390,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'input':
       return (
-        <div className="grid h-full gap-4 md:grid-cols-[1fr_0.9fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
+            <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <p className="text-xs uppercase tracking-[0.2em] text-[#8A8F98]">Intake receipt</p>
             <div className="mt-4 grid gap-2">
               {['Winning ad link', 'Brand URL', 'Claims to keep', 'Claims to avoid'].map((item) => (
@@ -404,13 +413,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'output':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="flex items-end justify-between border-b border-white/10 pb-3">
               <div>
                 <p className="text-5xl font-semibold leading-none text-white">10</p>
@@ -435,13 +444,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'speed':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="border-b border-white/10 pb-4">
               <p className="text-6xl font-semibold leading-none text-white">48h</p>
               <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#ffb28a]">after intake</p>
@@ -457,13 +466,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'qa':
       return (
-        <div className="grid h-full gap-5 pr-12 md:grid-cols-[0.9fr_1fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
           <div className="space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-black/25 p-4">
+          <div className="hidden rounded-2xl border border-white/10 bg-black/25 p-4 md:block">
             <div className="rounded-xl border border-red-400/20 bg-red-400/[0.045] p-3">
               <p className="text-xs uppercase tracking-[0.2em] text-red-300">Raw AI</p>
               <p className="mt-2 text-sm font-medium text-white">awkward / off-brand / unclear</p>
@@ -499,12 +508,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'guarantee':
       return (
-        <div className="grid h-full gap-4 md:grid-cols-[1fr_0.85fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.85fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
+            <p className="max-w-md text-sm leading-6 text-[#AEB6C2] md:hidden">{slide.body}</p>
           </div>
-          <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.07] p-4">
+          <div className="hidden rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.07] p-4 md:block">
             <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Risk reversal</p>
             <p className="mt-3 text-4xl font-semibold leading-tight text-white">Refund.</p>
             <p className="mt-2 text-sm leading-6 text-[#AEB6C2]">After one revision pass.</p>
@@ -513,7 +523,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'cta':
       return (
-        <div className="grid h-full gap-4 md:grid-cols-[1fr_0.82fr] md:items-center">
+        <div className="grid h-full gap-3 pr-8 md:grid-cols-[1fr_0.82fr] md:items-center md:gap-4 md:pr-0">
           <div className="space-y-4">
             <SlideChrome slide={slide} index={index} />
             <SlideTitle>{slide.title}</SlideTitle>
@@ -526,7 +536,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
               Apply now
             </a>
           </div>
-          <div className="grid gap-2">
+          <div className="hidden gap-2 md:grid">
             <MiniCard label="Best fit" value="$20k+/mo paid social" tone="good" />
             <MiniCard label="Required" value="One proven winner" tone="hot" />
           </div>
@@ -587,9 +597,9 @@ export function DslCarousel() {
   };
 
   return (
-    <section className="relative mt-4 overflow-hidden bg-transparent px-5 pb-7 pt-0 select-none md:mt-5 md:px-8 md:pb-12 md:pt-0 lg:mt-2" aria-labelledby="dsl-heading">
+    <section className="relative mt-3 overflow-hidden bg-transparent px-4 pb-5 pt-0 select-none md:mt-5 md:px-8 md:pb-12 md:pt-0 lg:mt-2" aria-labelledby="dsl-heading">
       <div className="relative mx-auto max-w-5xl">
-        <div className="mb-3 flex items-end justify-between gap-4">
+        <div className="mb-2 flex items-end justify-between gap-4 md:mb-3">
           <h2 id="dsl-heading" className="text-sm font-medium leading-tight text-[#D0D6E0] sm:text-base md:text-lg">
             The 2-minute sales argument.
           </h2>
@@ -608,7 +618,7 @@ export function DslCarousel() {
               <article
                 key={slide.eyebrow}
                 data-slide-index={index}
-                className="relative flex min-h-[285px] w-full shrink-0 snap-start flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:min-h-[360px] sm:rounded-[24px] sm:p-7 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[350px] md:p-8 lg:min-h-[360px]"
+                className="relative flex h-[255px] w-full shrink-0 snap-start flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-[#0F1011]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] sm:h-auto sm:min-h-[360px] sm:rounded-[24px] sm:p-7 sm:shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:min-h-[350px] md:p-8 lg:min-h-[360px]"
                 aria-label={`Slide ${index + 1} of ${slides.length}`}
               >
                 <div className="absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-[#FF6B1A]/70 to-transparent sm:block" />
@@ -671,7 +681,7 @@ export function DslCarousel() {
           </button>
         </div>
 
-        <div className="mt-3 flex w-full flex-nowrap items-center justify-center gap-1 overflow-hidden px-1" aria-label="Slide progress">
+        <div className="mt-2 flex w-full flex-nowrap items-center justify-center gap-1 overflow-hidden px-1 md:mt-3" aria-label="Slide progress">
           {slides.map((slide, index) => (
             <button
               key={slide.eyebrow}
