@@ -637,7 +637,7 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex - 1)}
             disabled={activeIndex === 0}
-            className="group absolute inset-y-0 left-0 z-10 flex w-16 cursor-pointer items-center justify-start rounded-l-xl bg-gradient-to-r from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-l-[24px] md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
+            className="group absolute left-0 top-0 z-10 flex h-[255px] w-16 cursor-pointer items-center justify-start rounded-l-xl bg-gradient-to-r from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:h-[360px] sm:w-20 sm:rounded-l-[24px] md:inset-y-0 md:h-auto md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Previous slide"
           >
             <span className="pointer-events-none absolute inset-y-0 left-0 w-14 rounded-l-xl bg-gradient-to-r from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-l-[24px] md:w-full md:from-[#FF6B1A]/22" />
@@ -663,7 +663,7 @@ export function DslCarousel() {
             type="button"
             onClick={() => goToSlide(activeIndex + 1)}
             disabled={activeIndex === slides.length - 1}
-            className="group absolute inset-y-0 right-0 z-10 flex w-16 cursor-pointer items-center justify-end rounded-r-xl bg-gradient-to-l from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:w-20 sm:rounded-r-[24px] md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
+            className="group absolute right-0 top-0 z-10 flex h-[255px] w-16 cursor-pointer items-center justify-end rounded-r-xl bg-gradient-to-l from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:h-[360px] sm:w-20 sm:rounded-r-[24px] md:inset-y-0 md:h-auto md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Next slide"
           >
             <span className="pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-xl bg-gradient-to-l from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-r-[24px] md:w-full md:from-[#FF6B1A]/22" />
