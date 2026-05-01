@@ -159,11 +159,7 @@ const SlideTitle = ({ children, size = 'normal' }: { children: ReactNode; size?:
         ? 'text-[1.18rem] sm:text-[1.9rem] md:text-[2.2rem]'
         : 'text-[1.38rem] sm:text-[2.1rem] md:text-[2.35rem]';
 
-  return (
-    <h3 className={`max-w-[calc(100%-3.75rem)] font-medium leading-[0.98] tracking-[-0.055em] text-white md:max-w-none ${sizeClass}`}>
-      {children}
-    </h3>
-  );
+  return <h3 className={`font-medium leading-[0.98] tracking-[-0.055em] text-white ${sizeClass}`}>{children}</h3>;
 };
 
 const SlideBody = ({ children }: { children: ReactNode }) => (
@@ -261,13 +257,13 @@ const renderSlideContent = (slide: Slide, index: number) => {
       return (
         <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.85fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             <SlideTitle>{slide.title}</SlideTitle>
-            <p className="max-w-md text-sm leading-6 text-[#AEB6C2]">{slide.body}</p>
+            <p className="max-w-md text-sm leading-5 text-[#AEB6C2] md:leading-6">{slide.body}</p>
           </div>
-          <div className="rounded-xl border border-[#FF6B1A]/25 bg-[#FF6B1A]/10 p-3 md:hidden">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#ffb28a]">Meanwhile</p>
-            <p className="mt-2 text-sm font-semibold leading-tight text-white">The account still needs tests now.</p>
+          <div className="rounded-lg border border-[#FF6B1A]/25 bg-[#FF6B1A]/10 px-2.5 py-2 md:hidden">
+            <p className="text-[0.58rem] font-medium uppercase leading-none tracking-[0.16em] text-[#ffb28a]">Meanwhile</p>
+            <p className="mt-1.5 text-xs font-semibold leading-tight text-white">Account needs tests now.</p>
           </div>
           <div className="relative hidden rounded-2xl border border-white/10 bg-white/[0.035] p-4 md:block">
             <div className="absolute left-[1.35rem] right-[1.35rem] top-[1.375rem] hidden h-px bg-gradient-to-r from-white/20 via-[#FF6B1A]/60 to-[#FF6B1A] md:block" />
