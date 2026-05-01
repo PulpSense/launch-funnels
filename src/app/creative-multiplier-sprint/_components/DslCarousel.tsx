@@ -355,14 +355,14 @@ const renderSlideContent = (slide: Slide, index: number) => {
       );
     case 'matrix':
       return (
-        <div className="grid h-full gap-3 pr-14 md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
+        <div className="flex h-full flex-col justify-between gap-3 pr-0 md:grid md:grid-cols-[0.9fr_1fr] md:items-center md:gap-5 md:pr-12">
           <SlideChrome slide={slide} index={index} />
-          <div className="space-y-3 md:space-y-4">
+          <div className="space-y-3 pr-14 md:space-y-4 md:pr-0">
             <SlideTitle>{slide.title}</SlideTitle>
             <p className="hidden max-w-md text-sm leading-5 text-[#AEB6C2] md:block md:leading-6">{slide.body}</p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-black/25 p-3 md:rounded-2xl md:p-4">
-            <div className="mb-2 flex items-center justify-between border-b border-white/10 pb-2 md:mb-3 md:pb-3">
+          <div className="-mx-2 rounded-xl border border-white/10 bg-black/25 p-2 md:mx-0 md:rounded-2xl md:p-4">
+            <div className="mb-2 hidden items-center justify-between border-b border-white/10 pb-2 md:mb-3 md:flex md:pb-3">
               <p className="text-xs uppercase tracking-[0.2em] text-[#8A8F98]">Avatar layer</p>
               <p className="text-xs uppercase tracking-[0.18em] text-[#ffb28a]">same script</p>
             </div>
@@ -373,19 +373,19 @@ const renderSlideContent = (slide: Slide, index: number) => {
                 { label: 'Plus-size creator', mobileLabel: 'Plus', face: 'bg-[#b97852]', body: 'w-8 bg-emerald-400/20 md:w-12' },
                 { label: 'Older expert', mobileLabel: 'Older', face: 'bg-[#c8a07b]', body: 'w-6 bg-white/15 md:w-8' },
               ].map((avatar) => (
-                <div key={avatar.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-2 md:rounded-xl md:p-3">
-                  <div className="mx-auto flex h-8 w-8 flex-col items-center justify-end overflow-hidden rounded-full border border-white/10 bg-black/25 md:h-14 md:w-14">
-                    <div className={`h-4 w-4 rounded-full md:h-6 md:w-6 ${avatar.face}`} />
-                    <div className={`mt-0.5 h-2.5 rounded-t-full md:mt-1 md:h-5 ${avatar.body}`} />
+                <div key={avatar.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-1.5 md:rounded-xl md:p-3">
+                  <div className="mx-auto flex h-7 w-7 flex-col items-center justify-end overflow-hidden rounded-full border border-white/10 bg-black/25 md:h-14 md:w-14">
+                    <div className={`h-3.5 w-3.5 rounded-full md:h-6 md:w-6 ${avatar.face}`} />
+                    <div className={`mt-0.5 h-2 rounded-t-full md:mt-1 md:h-5 ${avatar.body}`} />
                   </div>
-                  <p className="mt-1.5 text-center text-[10px] font-medium leading-tight text-white md:mt-2 md:text-xs">
+                  <p className="mt-1 text-center text-[9px] font-medium leading-tight text-white md:mt-2 md:text-xs">
                     <span className="md:hidden">{avatar.mobileLabel}</span>
                     <span className="hidden md:inline">{avatar.label}</span>
                   </p>
                 </div>
               ))}
             </div>
-            <div className="mt-2 rounded-lg border border-emerald-400/20 bg-emerald-400/[0.07] p-2 md:mt-3 md:rounded-xl md:p-3">
+            <div className="mt-2 hidden rounded-lg border border-emerald-400/20 bg-emerald-400/[0.07] p-2 md:mt-3 md:block md:rounded-xl md:p-3">
               <div className="flex items-center gap-2 text-xs font-medium text-white md:text-sm">
                 <span className="text-emerald-300">
                   <CheckIcon />
