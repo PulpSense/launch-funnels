@@ -587,6 +587,7 @@ const renderSlideContent = (slide: Slide, index: number) => {
 
 export function DslCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -634,12 +635,14 @@ export function DslCarousel() {
     }
   };
 
+  const showTapCue = activeIndex === 0 && !hasInteracted;
+
   return (
     <section className="relative mt-3 overflow-hidden bg-transparent px-4 pb-5 pt-0 select-none md:mt-5 md:px-8 md:pb-12 md:pt-0 lg:mt-2" aria-labelledby="dsl-heading">
       <div className="relative mx-auto max-w-5xl">
         <div className="mb-2 flex items-end justify-between gap-4 md:mb-3">
           <h2 id="dsl-heading" className="text-sm font-medium leading-tight text-[#D0D6E0] sm:text-base md:text-lg">
-            The 2-minute sales argument.
+            The sprint, explained fast.
           </h2>
           <p className="hidden text-xs font-medium uppercase tracking-[0.22em] text-[#62666D] sm:block">
             Use edges or swipe
@@ -649,6 +652,7 @@ export function DslCarousel() {
         <div className="relative">
           <div
             ref={trackRef}
+            onPointerDown={() => setHasInteracted(true)}
             className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 md:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             aria-label="Creative Multiplier Sprint deck"
           >
@@ -669,7 +673,10 @@ export function DslCarousel() {
 
           <button
             type="button"
-            onClick={() => goToSlide(activeIndex - 1)}
+            onClick={() => {
+              setHasInteracted(true);
+              goToSlide(activeIndex - 1);
+            }}
             disabled={activeIndex === 0}
             className="group absolute left-0 top-0 z-10 flex h-[255px] w-16 cursor-pointer items-center justify-start rounded-l-xl bg-gradient-to-r from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:h-[360px] sm:w-20 sm:rounded-l-[24px] md:inset-y-0 md:h-auto md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Previous slide"
@@ -695,12 +702,20 @@ export function DslCarousel() {
           </button>
           <button
             type="button"
-            onClick={() => goToSlide(activeIndex + 1)}
+            onClick={() => {
+              setHasInteracted(true);
+              goToSlide(activeIndex + 1);
+            }}
             disabled={activeIndex === slides.length - 1}
             className="group absolute right-0 top-0 z-10 flex h-[255px] w-16 cursor-pointer items-center justify-end rounded-r-xl bg-gradient-to-l from-transparent to-transparent transition hover:from-[#FF6B1A]/12 focus:outline-none disabled:pointer-events-none disabled:opacity-30 sm:h-[360px] sm:w-20 sm:rounded-r-[24px] md:inset-y-0 md:h-auto md:w-24 md:from-black/10 md:hover:from-[#FF6B1A]/14"
             aria-label="Next slide"
           >
-            <span className="pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-xl bg-gradient-to-l from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-r-[24px] md:w-full md:from-[#FF6B1A]/22" />
+            <span
+              className={`pointer-events-none absolute inset-y-0 right-0 w-14 rounded-r-xl bg-gradient-to-l from-[#FF6B1A]/18 to-transparent opacity-0 transition group-hover:opacity-100 sm:rounded-r-[24px] md:w-full md:from-[#FF6B1A]/22 ${showTapCue ? 'click-cue-edge' : ''}`}
+            />
+            {showTapCue ? (
+              <span className="click-cue-pill pointer-events-none absolute -right-4 top-1/2 h-9 w-9 rounded-full border border-[#FF6B1A]/35 bg-[#FF6B1A]/20 shadow-[0_0_30px_rgba(255,107,26,0.35)] md:h-11 md:w-11" />
+            ) : null}
             <span className="flex h-9 w-9 translate-x-1/2 items-center justify-center rounded-full border border-[#FF6B1A]/25 bg-black/60 text-white shadow-[0_0_22px_rgba(255,107,26,0.20),0_12px_32px_rgba(0,0,0,0.35)] backdrop-blur transition group-hover:border-[#FF6B1A]/45 group-hover:bg-[#B94100]/85 group-hover:shadow-[0_0_30px_rgba(255,107,26,0.34),0_12px_32px_rgba(0,0,0,0.35)] group-focus-visible:ring-2 group-focus-visible:ring-[#FF6B1A]/60 md:h-11 md:w-11">
               <svg
                 aria-hidden="true"
